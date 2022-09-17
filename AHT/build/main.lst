@@ -1,0 +1,1263 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.reverse,"ax",%progbits
+  18              		.align	1
+  19              		.global	reverse
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	reverse:
+  25              	.LVL0:
+  26              	.LFB68:
+  27              		.file 1 "Core/Src/main.c"
+   1:Core/Src/main.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/main.c **** /**
+   3:Core/Src/main.c ****   ******************************************************************************
+   4:Core/Src/main.c ****   * @file           : main.c
+   5:Core/Src/main.c ****   * @brief          : Main program body
+   6:Core/Src/main.c ****   ******************************************************************************
+   7:Core/Src/main.c ****   * @attention
+   8:Core/Src/main.c ****   *
+   9:Core/Src/main.c ****   * Copyright (c) 2022 STMicroelectronics.
+  10:Core/Src/main.c ****   * All rights reserved.
+  11:Core/Src/main.c ****   *
+  12:Core/Src/main.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/main.c ****   * in the root directory of this software component.
+  14:Core/Src/main.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/main.c ****   *
+  16:Core/Src/main.c ****   ******************************************************************************
+  17:Core/Src/main.c ****   */
+  18:Core/Src/main.c **** /* USER CODE END Header */
+  19:Core/Src/main.c **** /* Includes ------------------------------------------------------------------*/
+  20:Core/Src/main.c **** #include "main.h"
+  21:Core/Src/main.c **** #include "i2c.h"
+  22:Core/Src/main.c **** #include "usart.h"
+  23:Core/Src/main.c **** #include "gpio.h"
+  24:Core/Src/main.c **** 
+  25:Core/Src/main.c **** /* Private includes ----------------------------------------------------------*/
+  26:Core/Src/main.c **** /* USER CODE BEGIN Includes */
+  27:Core/Src/main.c **** #include "stdio.h"
+  28:Core/Src/main.c **** #include "math.h"
+  29:Core/Src/main.c **** /* USER CODE END Includes */
+  30:Core/Src/main.c **** 
+  31:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 2
+
+
+  32:Core/Src/main.c **** /* USER CODE BEGIN PTD */
+  33:Core/Src/main.c **** 
+  34:Core/Src/main.c **** /* USER CODE END PTD */
+  35:Core/Src/main.c **** 
+  36:Core/Src/main.c **** /* Private define ------------------------------------------------------------*/
+  37:Core/Src/main.c **** /* USER CODE BEGIN PD */
+  38:Core/Src/main.c **** /* USER CODE END PD */
+  39:Core/Src/main.c **** 
+  40:Core/Src/main.c **** /* Private macro -------------------------------------------------------------*/
+  41:Core/Src/main.c **** /* USER CODE BEGIN PM */
+  42:Core/Src/main.c **** void reverse(char* str, int len)
+  43:Core/Src/main.c **** {
+  28              		.loc 1 43 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  44:Core/Src/main.c ****     int i = 0, j = len - 1, temp;
+  33              		.loc 1 44 5 view .LVU1
+  34              		.loc 1 44 16 is_stmt 0 view .LVU2
+  35 0000 0139     		subs	r1, r1, #1
+  36              	.LVL1:
+  45:Core/Src/main.c ****     while (i < j) {
+  37              		.loc 1 45 5 is_stmt 1 view .LVU3
+  44:Core/Src/main.c ****     int i = 0, j = len - 1, temp;
+  38              		.loc 1 44 9 is_stmt 0 view .LVU4
+  39 0002 0023     		movs	r3, #0
+  40              		.loc 1 45 11 view .LVU5
+  41 0004 07E0     		b	.L2
+  42              	.LVL2:
+  43              	.L3:
+  46:Core/Src/main.c ****         temp = str[i];
+  44              		.loc 1 46 9 is_stmt 1 view .LVU6
+  45              		.loc 1 46 19 is_stmt 0 view .LVU7
+  46 0006 C25C     		ldrb	r2, [r0, r3]	@ zero_extendqisi2
+  47              	.LVL3:
+  47:Core/Src/main.c ****         str[i] = str[j];
+  48              		.loc 1 47 9 is_stmt 1 view .LVU8
+  49              		.loc 1 47 21 is_stmt 0 view .LVU9
+  50 0008 10F801C0 		ldrb	ip, [r0, r1]	@ zero_extendqisi2
+  51              		.loc 1 47 16 view .LVU10
+  52 000c 00F803C0 		strb	ip, [r0, r3]
+  48:Core/Src/main.c ****         str[j] = temp;
+  53              		.loc 1 48 9 is_stmt 1 view .LVU11
+  54              		.loc 1 48 16 is_stmt 0 view .LVU12
+  55 0010 4254     		strb	r2, [r0, r1]
+  49:Core/Src/main.c ****         i++;
+  56              		.loc 1 49 9 is_stmt 1 view .LVU13
+  57              		.loc 1 49 10 is_stmt 0 view .LVU14
+  58 0012 0133     		adds	r3, r3, #1
+  59              	.LVL4:
+  50:Core/Src/main.c ****         j--;
+  60              		.loc 1 50 9 is_stmt 1 view .LVU15
+  61              		.loc 1 50 10 is_stmt 0 view .LVU16
+  62 0014 0139     		subs	r1, r1, #1
+  63              	.LVL5:
+  64              	.L2:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 3
+
+
+  45:Core/Src/main.c ****         temp = str[i];
+  65              		.loc 1 45 11 is_stmt 1 view .LVU17
+  66 0016 8B42     		cmp	r3, r1
+  67 0018 F5DB     		blt	.L3
+  51:Core/Src/main.c ****     }
+  52:Core/Src/main.c **** }
+  68              		.loc 1 52 1 is_stmt 0 view .LVU18
+  69 001a 7047     		bx	lr
+  70              		.cfi_endproc
+  71              	.LFE68:
+  73              		.section	.text.intToStr,"ax",%progbits
+  74              		.align	1
+  75              		.global	intToStr
+  76              		.syntax unified
+  77              		.thumb
+  78              		.thumb_func
+  80              	intToStr:
+  81              	.LVL6:
+  82              	.LFB69:
+  53:Core/Src/main.c **** 
+  54:Core/Src/main.c **** int intToStr(int x, char str[], int d)
+  55:Core/Src/main.c **** {
+  83              		.loc 1 55 1 is_stmt 1 view -0
+  84              		.cfi_startproc
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  87              		.loc 1 55 1 is_stmt 0 view .LVU20
+  88 0000 38B5     		push	{r3, r4, r5, lr}
+  89              	.LCFI0:
+  90              		.cfi_def_cfa_offset 16
+  91              		.cfi_offset 3, -16
+  92              		.cfi_offset 4, -12
+  93              		.cfi_offset 5, -8
+  94              		.cfi_offset 14, -4
+  95 0002 0D46     		mov	r5, r1
+  56:Core/Src/main.c ****     int i = 0;
+  96              		.loc 1 56 5 is_stmt 1 view .LVU21
+  97              	.LVL7:
+  57:Core/Src/main.c ****     while (x) {
+  98              		.loc 1 57 5 view .LVU22
+  56:Core/Src/main.c ****     int i = 0;
+  99              		.loc 1 56 9 is_stmt 0 view .LVU23
+ 100 0004 0024     		movs	r4, #0
+ 101              		.loc 1 57 11 view .LVU24
+ 102 0006 0EE0     		b	.L5
+ 103              	.LVL8:
+ 104              	.L6:
+  58:Core/Src/main.c ****         str[i++] = (x % 10) + '0';
+ 105              		.loc 1 58 9 is_stmt 1 view .LVU25
+ 106              		.loc 1 58 23 is_stmt 0 view .LVU26
+ 107 0008 0F4B     		ldr	r3, .L10
+ 108 000a 83FB003C 		smull	r3, ip, r3, r0
+ 109 000e C317     		asrs	r3, r0, #31
+ 110 0010 C3EBAC03 		rsb	r3, r3, ip, asr #2
+ 111 0014 1946     		mov	r1, r3
+ 112 0016 03EB8303 		add	r3, r3, r3, lsl #2
+ 113 001a A0EB4303 		sub	r3, r0, r3, lsl #1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 4
+
+
+ 114              	.LVL9:
+ 115              		.loc 1 58 29 view .LVU27
+ 116 001e 3033     		adds	r3, r3, #48
+ 117              		.loc 1 58 18 view .LVU28
+ 118 0020 2B55     		strb	r3, [r5, r4]
+  59:Core/Src/main.c ****         x = x / 10;
+ 119              		.loc 1 59 9 is_stmt 1 view .LVU29
+ 120              		.loc 1 59 11 is_stmt 0 view .LVU30
+ 121 0022 0846     		mov	r0, r1
+ 122              	.LVL10:
+  58:Core/Src/main.c ****         str[i++] = (x % 10) + '0';
+ 123              		.loc 1 58 14 view .LVU31
+ 124 0024 0134     		adds	r4, r4, #1
+ 125              	.LVL11:
+ 126              	.L5:
+  57:Core/Src/main.c ****     while (x) {
+ 127              		.loc 1 57 11 is_stmt 1 view .LVU32
+ 128 0026 0028     		cmp	r0, #0
+ 129 0028 EED1     		bne	.L6
+ 130 002a 02E0     		b	.L7
+ 131              	.L8:
+  60:Core/Src/main.c ****     }
+  61:Core/Src/main.c ****   
+  62:Core/Src/main.c ****     while (i < d)
+  63:Core/Src/main.c ****         str[i++] = '0';
+ 132              		.loc 1 63 9 view .LVU33
+ 133              	.LVL12:
+ 134              		.loc 1 63 18 is_stmt 0 view .LVU34
+ 135 002c 3023     		movs	r3, #48
+ 136 002e 2B55     		strb	r3, [r5, r4]
+ 137              		.loc 1 63 14 view .LVU35
+ 138 0030 0134     		adds	r4, r4, #1
+ 139              	.LVL13:
+ 140              	.L7:
+  62:Core/Src/main.c ****         str[i++] = '0';
+ 141              		.loc 1 62 11 is_stmt 1 view .LVU36
+ 142 0032 9442     		cmp	r4, r2
+ 143 0034 FADB     		blt	.L8
+  64:Core/Src/main.c ****   
+  65:Core/Src/main.c ****     reverse(str, i);
+ 144              		.loc 1 65 5 view .LVU37
+ 145 0036 2146     		mov	r1, r4
+ 146 0038 2846     		mov	r0, r5
+ 147              	.LVL14:
+ 148              		.loc 1 65 5 is_stmt 0 view .LVU38
+ 149 003a FFF7FEFF 		bl	reverse
+ 150              	.LVL15:
+  66:Core/Src/main.c ****     str[i] = '\0';
+ 151              		.loc 1 66 5 is_stmt 1 view .LVU39
+ 152              		.loc 1 66 12 is_stmt 0 view .LVU40
+ 153 003e 0023     		movs	r3, #0
+ 154 0040 2B55     		strb	r3, [r5, r4]
+  67:Core/Src/main.c ****     return i;
+ 155              		.loc 1 67 5 is_stmt 1 view .LVU41
+  68:Core/Src/main.c **** }
+ 156              		.loc 1 68 1 is_stmt 0 view .LVU42
+ 157 0042 2046     		mov	r0, r4
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 5
+
+
+ 158 0044 38BD     		pop	{r3, r4, r5, pc}
+ 159              	.LVL16:
+ 160              	.L11:
+ 161              		.loc 1 68 1 view .LVU43
+ 162 0046 00BF     		.align	2
+ 163              	.L10:
+ 164 0048 67666666 		.word	1717986919
+ 165              		.cfi_endproc
+ 166              	.LFE69:
+ 168              		.global	__aeabi_f2iz
+ 169              		.global	__aeabi_i2f
+ 170              		.global	__aeabi_fsub
+ 171              		.global	__aeabi_i2d
+ 172              		.global	__aeabi_f2d
+ 173              		.global	__aeabi_dmul
+ 174              		.global	__aeabi_d2f
+ 175              		.section	.text.ftoa,"ax",%progbits
+ 176              		.align	1
+ 177              		.global	ftoa
+ 178              		.syntax unified
+ 179              		.thumb
+ 180              		.thumb_func
+ 182              	ftoa:
+ 183              	.LVL17:
+ 184              	.LFB70:
+  69:Core/Src/main.c **** 
+  70:Core/Src/main.c **** void ftoa(float n, char* res, int afterpoint)
+  71:Core/Src/main.c **** {
+ 185              		.loc 1 71 1 is_stmt 1 view -0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189              		.loc 1 71 1 is_stmt 0 view .LVU45
+ 190 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 191              	.LCFI1:
+ 192              		.cfi_def_cfa_offset 32
+ 193              		.cfi_offset 3, -32
+ 194              		.cfi_offset 4, -28
+ 195              		.cfi_offset 5, -24
+ 196              		.cfi_offset 6, -20
+ 197              		.cfi_offset 7, -16
+ 198              		.cfi_offset 8, -12
+ 199              		.cfi_offset 9, -8
+ 200              		.cfi_offset 14, -4
+ 201 0004 0646     		mov	r6, r0
+ 202 0006 0C46     		mov	r4, r1
+ 203 0008 1746     		mov	r7, r2
+  72:Core/Src/main.c ****     int ipart = (int)n;
+ 204              		.loc 1 72 5 is_stmt 1 view .LVU46
+ 205              		.loc 1 72 9 is_stmt 0 view .LVU47
+ 206 000a FFF7FEFF 		bl	__aeabi_f2iz
+ 207              	.LVL18:
+ 208              		.loc 1 72 9 view .LVU48
+ 209 000e 0546     		mov	r5, r0
+ 210              	.LVL19:
+  73:Core/Src/main.c ****     float fpart = n - (float)ipart;
+ 211              		.loc 1 73 5 is_stmt 1 view .LVU49
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 6
+
+
+ 212              		.loc 1 73 23 is_stmt 0 view .LVU50
+ 213 0010 FFF7FEFF 		bl	__aeabi_i2f
+ 214              	.LVL20:
+ 215              		.loc 1 73 23 view .LVU51
+ 216 0014 0146     		mov	r1, r0
+ 217              		.loc 1 73 11 view .LVU52
+ 218 0016 3046     		mov	r0, r6
+ 219 0018 FFF7FEFF 		bl	__aeabi_fsub
+ 220              	.LVL21:
+ 221 001c 0646     		mov	r6, r0
+ 222              	.LVL22:
+  74:Core/Src/main.c ****     int i = intToStr(ipart, res, 0);
+ 223              		.loc 1 74 5 is_stmt 1 view .LVU53
+ 224              		.loc 1 74 13 is_stmt 0 view .LVU54
+ 225 001e 0022     		movs	r2, #0
+ 226 0020 2146     		mov	r1, r4
+ 227 0022 2846     		mov	r0, r5
+ 228              	.LVL23:
+ 229              		.loc 1 74 13 view .LVU55
+ 230 0024 FFF7FEFF 		bl	intToStr
+ 231              	.LVL24:
+  75:Core/Src/main.c ****     if (afterpoint != 0) 
+ 232              		.loc 1 75 5 is_stmt 1 view .LVU56
+ 233              		.loc 1 75 8 is_stmt 0 view .LVU57
+ 234 0028 0FB9     		cbnz	r7, .L15
+ 235              	.LVL25:
+ 236              	.L12:
+  76:Core/Src/main.c ****     {
+  77:Core/Src/main.c ****         res[i] = '.';
+  78:Core/Src/main.c ****         fpart = fpart * pow(10, afterpoint);
+  79:Core/Src/main.c ****         intToStr((int)fpart, res + i + 1, afterpoint);
+  80:Core/Src/main.c ****     }
+  81:Core/Src/main.c **** }
+ 237              		.loc 1 81 1 view .LVU58
+ 238 002a BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 239              	.LVL26:
+ 240              	.L15:
+ 241              		.loc 1 81 1 view .LVU59
+ 242 002e 0546     		mov	r5, r0
+ 243              	.LVL27:
+  77:Core/Src/main.c ****         fpart = fpart * pow(10, afterpoint);
+ 244              		.loc 1 77 9 is_stmt 1 view .LVU60
+  77:Core/Src/main.c ****         fpart = fpart * pow(10, afterpoint);
+ 245              		.loc 1 77 16 is_stmt 0 view .LVU61
+ 246 0030 2E23     		movs	r3, #46
+ 247 0032 2354     		strb	r3, [r4, r0]
+  78:Core/Src/main.c ****         intToStr((int)fpart, res + i + 1, afterpoint);
+ 248              		.loc 1 78 9 is_stmt 1 view .LVU62
+  78:Core/Src/main.c ****         intToStr((int)fpart, res + i + 1, afterpoint);
+ 249              		.loc 1 78 25 is_stmt 0 view .LVU63
+ 250 0034 3846     		mov	r0, r7
+ 251              	.LVL28:
+  78:Core/Src/main.c ****         intToStr((int)fpart, res + i + 1, afterpoint);
+ 252              		.loc 1 78 25 view .LVU64
+ 253 0036 FFF7FEFF 		bl	__aeabi_i2d
+ 254              	.LVL29:
+ 255 003a 0246     		mov	r2, r0
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 7
+
+
+ 256 003c 0B46     		mov	r3, r1
+ 257 003e 0020     		movs	r0, #0
+ 258 0040 0B49     		ldr	r1, .L16
+ 259 0042 FFF7FEFF 		bl	pow
+ 260              	.LVL30:
+ 261 0046 8046     		mov	r8, r0
+ 262 0048 8946     		mov	r9, r1
+  78:Core/Src/main.c ****         intToStr((int)fpart, res + i + 1, afterpoint);
+ 263              		.loc 1 78 23 view .LVU65
+ 264 004a 3046     		mov	r0, r6
+ 265 004c FFF7FEFF 		bl	__aeabi_f2d
+ 266              	.LVL31:
+ 267 0050 4246     		mov	r2, r8
+ 268 0052 4B46     		mov	r3, r9
+ 269 0054 FFF7FEFF 		bl	__aeabi_dmul
+ 270              	.LVL32:
+  78:Core/Src/main.c ****         intToStr((int)fpart, res + i + 1, afterpoint);
+ 271              		.loc 1 78 15 view .LVU66
+ 272 0058 FFF7FEFF 		bl	__aeabi_d2f
+ 273              	.LVL33:
+  79:Core/Src/main.c ****     }
+ 274              		.loc 1 79 9 is_stmt 1 view .LVU67
+  79:Core/Src/main.c ****     }
+ 275              		.loc 1 79 38 is_stmt 0 view .LVU68
+ 276 005c 691C     		adds	r1, r5, #1
+  79:Core/Src/main.c ****     }
+ 277              		.loc 1 79 9 view .LVU69
+ 278 005e 0C44     		add	r4, r4, r1
+ 279              	.LVL34:
+  79:Core/Src/main.c ****     }
+ 280              		.loc 1 79 9 view .LVU70
+ 281 0060 FFF7FEFF 		bl	__aeabi_f2iz
+ 282              	.LVL35:
+  79:Core/Src/main.c ****     }
+ 283              		.loc 1 79 9 view .LVU71
+ 284 0064 3A46     		mov	r2, r7
+ 285 0066 2146     		mov	r1, r4
+ 286 0068 FFF7FEFF 		bl	intToStr
+ 287              	.LVL36:
+ 288              		.loc 1 81 1 view .LVU72
+ 289 006c DDE7     		b	.L12
+ 290              	.L17:
+ 291 006e 00BF     		.align	2
+ 292              	.L16:
+ 293 0070 00002440 		.word	1076101120
+ 294              		.cfi_endproc
+ 295              	.LFE70:
+ 297              		.section	.text.Error_Handler,"ax",%progbits
+ 298              		.align	1
+ 299              		.global	Error_Handler
+ 300              		.syntax unified
+ 301              		.thumb
+ 302              		.thumb_func
+ 304              	Error_Handler:
+ 305              	.LFB73:
+  82:Core/Src/main.c **** /* USER CODE END PM */
+  83:Core/Src/main.c **** 
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 8
+
+
+  84:Core/Src/main.c **** /* Private variables ---------------------------------------------------------*/
+  85:Core/Src/main.c **** 
+  86:Core/Src/main.c **** /* USER CODE BEGIN PV */
+  87:Core/Src/main.c **** uint8_t AHT10_RX_Data[6];
+  88:Core/Src/main.c **** uint32_t AHT10_ADC_Raw;
+  89:Core/Src/main.c **** float AHT10_Temperature;
+  90:Core/Src/main.c **** float AHT10_Humidity;
+  91:Core/Src/main.c **** uint8_t temp[10] = {'\0'};
+  92:Core/Src/main.c **** uint8_t humi[10] = {'\0'};
+  93:Core/Src/main.c **** uint8_t AHT10_TmpHum_Cmd[3] = {0xAC, 0x33, 0x00};
+  94:Core/Src/main.c **** 
+  95:Core/Src/main.c **** #define AHT10_ADRESS (0x38 << 1) // 0b1110000; Adress[7-bit]Wite/Read[1-bit]
+  96:Core/Src/main.c **** /* USER CODE END PV */
+  97:Core/Src/main.c **** 
+  98:Core/Src/main.c **** /* Private function prototypes -----------------------------------------------*/
+  99:Core/Src/main.c **** void SystemClock_Config(void);
+ 100:Core/Src/main.c **** /* USER CODE BEGIN PFP */
+ 101:Core/Src/main.c **** 
+ 102:Core/Src/main.c **** /* USER CODE END PFP */
+ 103:Core/Src/main.c **** 
+ 104:Core/Src/main.c **** /* Private user code ---------------------------------------------------------*/
+ 105:Core/Src/main.c **** /* USER CODE BEGIN 0 */
+ 106:Core/Src/main.c **** 
+ 107:Core/Src/main.c **** /* USER CODE END 0 */
+ 108:Core/Src/main.c **** 
+ 109:Core/Src/main.c **** /**
+ 110:Core/Src/main.c ****   * @brief  The application entry point.
+ 111:Core/Src/main.c ****   * @retval int
+ 112:Core/Src/main.c ****   */
+ 113:Core/Src/main.c **** int main(void)
+ 114:Core/Src/main.c **** {
+ 115:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
+ 116:Core/Src/main.c **** 
+ 117:Core/Src/main.c ****   /* USER CODE END 1 */
+ 118:Core/Src/main.c **** 
+ 119:Core/Src/main.c ****   /* MCU Configuration--------------------------------------------------------*/
+ 120:Core/Src/main.c **** 
+ 121:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 122:Core/Src/main.c ****   HAL_Init();
+ 123:Core/Src/main.c **** 
+ 124:Core/Src/main.c ****   /* USER CODE BEGIN Init */
+ 125:Core/Src/main.c **** 
+ 126:Core/Src/main.c ****   /* USER CODE END Init */
+ 127:Core/Src/main.c **** 
+ 128:Core/Src/main.c ****   /* Configure the system clock */
+ 129:Core/Src/main.c ****   SystemClock_Config();
+ 130:Core/Src/main.c **** 
+ 131:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
+ 132:Core/Src/main.c **** 
+ 133:Core/Src/main.c ****   /* USER CODE END SysInit */
+ 134:Core/Src/main.c **** 
+ 135:Core/Src/main.c ****   /* Initialize all configured peripherals */
+ 136:Core/Src/main.c ****   MX_GPIO_Init();
+ 137:Core/Src/main.c ****   MX_I2C1_Init();
+ 138:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 139:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
+ 140:Core/Src/main.c ****   // HAL_I2C_Master_Transmit(&hi2c1, AHT10_ADRESS, (uint8_t*)AHT10_TmpHum_Cmd, 3, 100); /* Send com
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 9
+
+
+ 141:Core/Src/main.c ****   // HAL_I2C_Master_Receive(&hi2c1, AHT10_ADRESS, (uint8_t*)AHT10_RX_Data, 6,100); /* Receive data:
+ 142:Core/Src/main.c ****   // HAL_UART_Transmit(&huart1, (uint8_t*)AHT10_RX_Data, 6, 100);
+ 143:Core/Src/main.c ****   /* USER CODE END 2 */
+ 144:Core/Src/main.c **** 
+ 145:Core/Src/main.c ****   /* Infinite loop */
+ 146:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
+ 147:Core/Src/main.c ****   while (1)
+ 148:Core/Src/main.c ****   {
+ 149:Core/Src/main.c ****     /* USER CODE END WHILE */
+ 150:Core/Src/main.c ****     HAL_I2C_Master_Transmit(&hi2c1, AHT10_ADRESS, (uint8_t*)AHT10_TmpHum_Cmd, 3, 100); /* Send comm
+ 151:Core/Src/main.c ****     HAL_Delay(100);
+ 152:Core/Src/main.c ****     HAL_I2C_Master_Receive(&hi2c1, AHT10_ADRESS, (uint8_t*)AHT10_RX_Data, 6,100); /* Receive data: 
+ 153:Core/Src/main.c ****     //HAL_UART_Transmit(&huart1, (uint8_t*)AHT10_RX_Data, 6, 100);
+ 154:Core/Src/main.c ****     
+ 155:Core/Src/main.c ****     if(~AHT10_RX_Data[0] & 0x80)
+ 156:Core/Src/main.c **** 		{
+ 157:Core/Src/main.c **** 			/* Convert to Temperature in °C */
+ 158:Core/Src/main.c **** 			AHT10_ADC_Raw = (((uint32_t)AHT10_RX_Data[3] & 15) << 16) | ((uint32_t)AHT10_RX_Data[4] << 8) | 
+ 159:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 160:Core/Src/main.c **** 			/* Convert to Relative Humidity in % */
+ 161:Core/Src/main.c **** 			AHT10_ADC_Raw = ((uint32_t)AHT10_RX_Data[1] << 12) | ((uint32_t)AHT10_RX_Data[2] << 4) | (AHT10_
+ 162:Core/Src/main.c **** 			AHT10_Humidity = (float)(AHT10_ADC_Raw*100.00/1048576.00);
+ 163:Core/Src/main.c ****       ftoa(AHT10_Temperature, (char*)temp, 4);
+ 164:Core/Src/main.c ****       ftoa(AHT10_Humidity, (char*)humi, 4);
+ 165:Core/Src/main.c ****       HAL_UART_Transmit(&huart1, temp, 4, 100);
+ 166:Core/Src/main.c ****       HAL_UART_Transmit(&huart1, humi, 4, 100);
+ 167:Core/Src/main.c **** 		}
+ 168:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
+ 169:Core/Src/main.c ****     
+ 170:Core/Src/main.c ****   }
+ 171:Core/Src/main.c ****   /* USER CODE END 3 */
+ 172:Core/Src/main.c **** }
+ 173:Core/Src/main.c **** /**
+ 174:Core/Src/main.c ****   * @brief System Clock Configuration
+ 175:Core/Src/main.c ****   * @retval None
+ 176:Core/Src/main.c ****   */
+ 177:Core/Src/main.c **** void SystemClock_Config(void)
+ 178:Core/Src/main.c **** {
+ 179:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 180:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 181:Core/Src/main.c **** 
+ 182:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
+ 183:Core/Src/main.c ****   * in the RCC_OscInitTypeDef structure.
+ 184:Core/Src/main.c ****   */
+ 185:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+ 186:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 187:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 188:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+ 189:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 190:Core/Src/main.c ****   {
+ 191:Core/Src/main.c ****     Error_Handler();
+ 192:Core/Src/main.c ****   }
+ 193:Core/Src/main.c **** 
+ 194:Core/Src/main.c ****   /** Initializes the CPU, AHB and APB buses clocks
+ 195:Core/Src/main.c ****   */
+ 196:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 197:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 10
+
+
+ 198:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+ 199:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 200:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 201:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 202:Core/Src/main.c **** 
+ 203:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+ 204:Core/Src/main.c ****   {
+ 205:Core/Src/main.c ****     Error_Handler();
+ 206:Core/Src/main.c ****   }
+ 207:Core/Src/main.c **** }
+ 208:Core/Src/main.c **** 
+ 209:Core/Src/main.c **** /* USER CODE BEGIN 4 */
+ 210:Core/Src/main.c **** // void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c)
+ 211:Core/Src/main.c **** // {
+ 212:Core/Src/main.c **** //   if(hi2c == &hi2c1)
+ 213:Core/Src/main.c **** //   {
+ 214:Core/Src/main.c **** //     HAL_UART_Transmit(&huart1, (uint8_t*)AHT10_RX_Data, 6, 100);
+ 215:Core/Src/main.c **** //   }
+ 216:Core/Src/main.c **** // }
+ 217:Core/Src/main.c **** 
+ 218:Core/Src/main.c **** /* USER CODE END 4 */
+ 219:Core/Src/main.c **** 
+ 220:Core/Src/main.c **** /**
+ 221:Core/Src/main.c ****   * @brief  This function is executed in case of error occurrence.
+ 222:Core/Src/main.c ****   * @retval None
+ 223:Core/Src/main.c ****   */
+ 224:Core/Src/main.c **** void Error_Handler(void)
+ 225:Core/Src/main.c **** {
+ 306              		.loc 1 225 1 is_stmt 1 view -0
+ 307              		.cfi_startproc
+ 308              		@ Volatile: function does not return.
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311              		@ link register save eliminated.
+ 226:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 227:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
+ 228:Core/Src/main.c ****   __disable_irq();
+ 312              		.loc 1 228 3 view .LVU74
+ 313              	.LBB4:
+ 314              	.LBI4:
+ 315              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+   1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
+   2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
+   3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
+   4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V5.0.4
+   5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     09. April 2018
+   6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
+   7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
+   8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
+   9:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  10:Drivers/CMSIS/Include/cmsis_gcc.h ****  * SPDX-License-Identifier: Apache-2.0
+  11:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  12:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  13:Drivers/CMSIS/Include/cmsis_gcc.h ****  * not use this file except in compliance with the License.
+  14:Drivers/CMSIS/Include/cmsis_gcc.h ****  * You may obtain a copy of the License at
+  15:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  16:Drivers/CMSIS/Include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 11
+
+
+  17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
+  19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
+  22:Drivers/CMSIS/Include/cmsis_gcc.h ****  * limitations under the License.
+  23:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  24:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  25:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
+  26:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
+  27:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  28:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
+  29:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
+  30:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
+  31:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
+  32:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
+  33:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  34:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Fallback for __has_builtin */
+  35:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __has_builtin
+  36:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __has_builtin(x) (0)
+  37:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  38:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  39:Drivers/CMSIS/Include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
+  40:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ASM
+  41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
+  42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
+  44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
+  45:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  46:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
+  47:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_INLINE                        static inline
+  48:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  49:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_FORCEINLINE                 
+  50:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
+  51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif                                           
+  52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
+  53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
+  54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
+  56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
+  57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  58:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __WEAK
+  59:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __WEAK                                 __attribute__((weak))
+  60:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  61:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED
+  62:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
+  63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
+  65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
+  66:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  67:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_UNION
+  68:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_UNION                         union __attribute__((packed, aligned(1)))
+  69:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  70:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32        /* deprecated */
+  71:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  72:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  73:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 12
+
+
+  74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
+  75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
+  77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
+  79:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  80:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  81:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  82:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
+  83:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  84:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))-
+  85:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  86:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_READ
+  87:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  88:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  89:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  90:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
+  91:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  92:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(add
+  93:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  94:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_WRITE
+  95:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  96:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  97:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
+  99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ 100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
+ 101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 102:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_READ
+ 103:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+ 104:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+ 105:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+ 106:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
+ 107:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ 108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
+ 109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
+ 111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
+ 112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
+ 114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
+ 115:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 116:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 117:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 118:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
+ 119:Drivers/CMSIS/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
+ 120:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
+ 121:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
+ 122:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 123:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 124:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 125:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Enable IRQ Interrupts
+ 126:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+ 127:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+ 128:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 129:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __enable_irq(void)
+ 130:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 13
+
+
+ 131:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
+ 132:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 133:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 134:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 135:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 136:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
+ 137:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
+ 138:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+ 139:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 140:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
+ 316              		.loc 2 140 27 view .LVU75
+ 317              	.LBB5:
+ 141:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 142:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
+ 318              		.loc 2 142 3 view .LVU76
+ 319              		.syntax unified
+ 320              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 321 0000 72B6     		cpsid i
+ 322              	@ 0 "" 2
+ 323              		.thumb
+ 324              		.syntax unified
+ 325              	.L19:
+ 326              	.LBE5:
+ 327              	.LBE4:
+ 229:Core/Src/main.c ****   while (1)
+ 328              		.loc 1 229 3 discriminator 1 view .LVU77
+ 230:Core/Src/main.c ****   {
+ 231:Core/Src/main.c ****   }
+ 329              		.loc 1 231 3 discriminator 1 view .LVU78
+ 229:Core/Src/main.c ****   while (1)
+ 330              		.loc 1 229 9 discriminator 1 view .LVU79
+ 331 0002 FEE7     		b	.L19
+ 332              		.cfi_endproc
+ 333              	.LFE73:
+ 335              		.section	.text.SystemClock_Config,"ax",%progbits
+ 336              		.align	1
+ 337              		.global	SystemClock_Config
+ 338              		.syntax unified
+ 339              		.thumb
+ 340              		.thumb_func
+ 342              	SystemClock_Config:
+ 343              	.LFB72:
+ 178:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 344              		.loc 1 178 1 view -0
+ 345              		.cfi_startproc
+ 346              		@ args = 0, pretend = 0, frame = 64
+ 347              		@ frame_needed = 0, uses_anonymous_args = 0
+ 348 0000 00B5     		push	{lr}
+ 349              	.LCFI2:
+ 350              		.cfi_def_cfa_offset 4
+ 351              		.cfi_offset 14, -4
+ 352 0002 91B0     		sub	sp, sp, #68
+ 353              	.LCFI3:
+ 354              		.cfi_def_cfa_offset 72
+ 179:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 355              		.loc 1 179 3 view .LVU81
+ 179:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 14
+
+
+ 356              		.loc 1 179 22 is_stmt 0 view .LVU82
+ 357 0004 2822     		movs	r2, #40
+ 358 0006 0021     		movs	r1, #0
+ 359 0008 06A8     		add	r0, sp, #24
+ 360 000a FFF7FEFF 		bl	memset
+ 361              	.LVL37:
+ 180:Core/Src/main.c **** 
+ 362              		.loc 1 180 3 is_stmt 1 view .LVU83
+ 180:Core/Src/main.c **** 
+ 363              		.loc 1 180 22 is_stmt 0 view .LVU84
+ 364 000e 0023     		movs	r3, #0
+ 365 0010 0193     		str	r3, [sp, #4]
+ 366 0012 0293     		str	r3, [sp, #8]
+ 367 0014 0393     		str	r3, [sp, #12]
+ 368 0016 0493     		str	r3, [sp, #16]
+ 369 0018 0593     		str	r3, [sp, #20]
+ 185:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 370              		.loc 1 185 3 is_stmt 1 view .LVU85
+ 185:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 371              		.loc 1 185 36 is_stmt 0 view .LVU86
+ 372 001a 0223     		movs	r3, #2
+ 373 001c 0693     		str	r3, [sp, #24]
+ 186:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 374              		.loc 1 186 3 is_stmt 1 view .LVU87
+ 186:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 375              		.loc 1 186 30 is_stmt 0 view .LVU88
+ 376 001e 0123     		movs	r3, #1
+ 377 0020 0A93     		str	r3, [sp, #40]
+ 187:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+ 378              		.loc 1 187 3 is_stmt 1 view .LVU89
+ 187:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+ 379              		.loc 1 187 41 is_stmt 0 view .LVU90
+ 380 0022 1023     		movs	r3, #16
+ 381 0024 0B93     		str	r3, [sp, #44]
+ 188:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 382              		.loc 1 188 3 is_stmt 1 view .LVU91
+ 189:Core/Src/main.c ****   {
+ 383              		.loc 1 189 3 view .LVU92
+ 189:Core/Src/main.c ****   {
+ 384              		.loc 1 189 7 is_stmt 0 view .LVU93
+ 385 0026 06A8     		add	r0, sp, #24
+ 386 0028 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 387              	.LVL38:
+ 189:Core/Src/main.c ****   {
+ 388              		.loc 1 189 6 view .LVU94
+ 389 002c 68B9     		cbnz	r0, .L24
+ 196:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 390              		.loc 1 196 3 is_stmt 1 view .LVU95
+ 196:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 391              		.loc 1 196 31 is_stmt 0 view .LVU96
+ 392 002e 0F23     		movs	r3, #15
+ 393 0030 0193     		str	r3, [sp, #4]
+ 198:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 394              		.loc 1 198 3 is_stmt 1 view .LVU97
+ 198:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 395              		.loc 1 198 34 is_stmt 0 view .LVU98
+ 396 0032 0021     		movs	r1, #0
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 15
+
+
+ 397 0034 0291     		str	r1, [sp, #8]
+ 199:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 398              		.loc 1 199 3 is_stmt 1 view .LVU99
+ 199:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 399              		.loc 1 199 35 is_stmt 0 view .LVU100
+ 400 0036 0391     		str	r1, [sp, #12]
+ 200:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 401              		.loc 1 200 3 is_stmt 1 view .LVU101
+ 200:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 402              		.loc 1 200 36 is_stmt 0 view .LVU102
+ 403 0038 0491     		str	r1, [sp, #16]
+ 201:Core/Src/main.c **** 
+ 404              		.loc 1 201 3 is_stmt 1 view .LVU103
+ 201:Core/Src/main.c **** 
+ 405              		.loc 1 201 36 is_stmt 0 view .LVU104
+ 406 003a 0591     		str	r1, [sp, #20]
+ 203:Core/Src/main.c ****   {
+ 407              		.loc 1 203 3 is_stmt 1 view .LVU105
+ 203:Core/Src/main.c ****   {
+ 408              		.loc 1 203 7 is_stmt 0 view .LVU106
+ 409 003c 01A8     		add	r0, sp, #4
+ 410 003e FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 411              	.LVL39:
+ 203:Core/Src/main.c ****   {
+ 412              		.loc 1 203 6 view .LVU107
+ 413 0042 20B9     		cbnz	r0, .L25
+ 207:Core/Src/main.c **** 
+ 414              		.loc 1 207 1 view .LVU108
+ 415 0044 11B0     		add	sp, sp, #68
+ 416              	.LCFI4:
+ 417              		.cfi_remember_state
+ 418              		.cfi_def_cfa_offset 4
+ 419              		@ sp needed
+ 420 0046 5DF804FB 		ldr	pc, [sp], #4
+ 421              	.L24:
+ 422              	.LCFI5:
+ 423              		.cfi_restore_state
+ 191:Core/Src/main.c ****   }
+ 424              		.loc 1 191 5 is_stmt 1 view .LVU109
+ 425 004a FFF7FEFF 		bl	Error_Handler
+ 426              	.LVL40:
+ 427              	.L25:
+ 205:Core/Src/main.c ****   }
+ 428              		.loc 1 205 5 view .LVU110
+ 429 004e FFF7FEFF 		bl	Error_Handler
+ 430              	.LVL41:
+ 431              		.cfi_endproc
+ 432              	.LFE72:
+ 434              		.global	__aeabi_ui2d
+ 435              		.section	.text.main,"ax",%progbits
+ 436              		.align	1
+ 437              		.global	main
+ 438              		.syntax unified
+ 439              		.thumb
+ 440              		.thumb_func
+ 442              	main:
+ 443              	.LFB71:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 16
+
+
+ 114:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
+ 444              		.loc 1 114 1 view -0
+ 445              		.cfi_startproc
+ 446              		@ Volatile: function does not return.
+ 447              		@ args = 0, pretend = 0, frame = 0
+ 448              		@ frame_needed = 0, uses_anonymous_args = 0
+ 449 0000 80B5     		push	{r7, lr}
+ 450              	.LCFI6:
+ 451              		.cfi_def_cfa_offset 8
+ 452              		.cfi_offset 7, -8
+ 453              		.cfi_offset 14, -4
+ 454 0002 82B0     		sub	sp, sp, #8
+ 455              	.LCFI7:
+ 456              		.cfi_def_cfa_offset 16
+ 122:Core/Src/main.c **** 
+ 457              		.loc 1 122 3 view .LVU112
+ 458 0004 FFF7FEFF 		bl	HAL_Init
+ 459              	.LVL42:
+ 129:Core/Src/main.c **** 
+ 460              		.loc 1 129 3 view .LVU113
+ 461 0008 FFF7FEFF 		bl	SystemClock_Config
+ 462              	.LVL43:
+ 136:Core/Src/main.c ****   MX_I2C1_Init();
+ 463              		.loc 1 136 3 view .LVU114
+ 464 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 465              	.LVL44:
+ 137:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 466              		.loc 1 137 3 view .LVU115
+ 467 0010 FFF7FEFF 		bl	MX_I2C1_Init
+ 468              	.LVL45:
+ 138:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
+ 469              		.loc 1 138 3 view .LVU116
+ 470 0014 FFF7FEFF 		bl	MX_USART1_UART_Init
+ 471              	.LVL46:
+ 472              	.L27:
+ 147:Core/Src/main.c ****   {
+ 473              		.loc 1 147 3 view .LVU117
+ 150:Core/Src/main.c ****     HAL_Delay(100);
+ 474              		.loc 1 150 5 view .LVU118
+ 475 0018 324E     		ldr	r6, .L30
+ 476 001a 6424     		movs	r4, #100
+ 477 001c 0094     		str	r4, [sp]
+ 478 001e 0323     		movs	r3, #3
+ 479 0020 314A     		ldr	r2, .L30+4
+ 480 0022 7021     		movs	r1, #112
+ 481 0024 3046     		mov	r0, r6
+ 482 0026 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 483              	.LVL47:
+ 151:Core/Src/main.c ****     HAL_I2C_Master_Receive(&hi2c1, AHT10_ADRESS, (uint8_t*)AHT10_RX_Data, 6,100); /* Receive data: 
+ 484              		.loc 1 151 5 view .LVU119
+ 485 002a 2046     		mov	r0, r4
+ 486 002c FFF7FEFF 		bl	HAL_Delay
+ 487              	.LVL48:
+ 152:Core/Src/main.c ****     //HAL_UART_Transmit(&huart1, (uint8_t*)AHT10_RX_Data, 6, 100);
+ 488              		.loc 1 152 5 view .LVU120
+ 489 0030 2E4D     		ldr	r5, .L30+8
+ 490 0032 0094     		str	r4, [sp]
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 17
+
+
+ 491 0034 0623     		movs	r3, #6
+ 492 0036 2A46     		mov	r2, r5
+ 493 0038 7021     		movs	r1, #112
+ 494 003a 3046     		mov	r0, r6
+ 495 003c FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 496              	.LVL49:
+ 155:Core/Src/main.c **** 		{
+ 497              		.loc 1 155 5 view .LVU121
+ 155:Core/Src/main.c **** 		{
+ 498              		.loc 1 155 8 is_stmt 0 view .LVU122
+ 499 0040 95F90030 		ldrsb	r3, [r5]
+ 155:Core/Src/main.c **** 		{
+ 500              		.loc 1 155 7 view .LVU123
+ 501 0044 002B     		cmp	r3, #0
+ 502 0046 E7DB     		blt	.L27
+ 158:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 503              		.loc 1 158 4 is_stmt 1 view .LVU124
+ 158:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 504              		.loc 1 158 45 is_stmt 0 view .LVU125
+ 505 0048 EC78     		ldrb	r4, [r5, #3]	@ zero_extendqisi2
+ 158:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 506              		.loc 1 158 55 view .LVU126
+ 507 004a 2004     		lsls	r0, r4, #16
+ 508 004c 00F47020 		and	r0, r0, #983040
+ 158:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 509              		.loc 1 158 88 view .LVU127
+ 510 0050 2B79     		ldrb	r3, [r5, #4]	@ zero_extendqisi2
+ 158:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 511              		.loc 1 158 62 view .LVU128
+ 512 0052 40EA0320 		orr	r0, r0, r3, lsl #8
+ 158:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 513              		.loc 1 158 113 view .LVU129
+ 514 0056 6B79     		ldrb	r3, [r5, #5]	@ zero_extendqisi2
+ 158:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 515              		.loc 1 158 98 view .LVU130
+ 516 0058 1843     		orrs	r0, r0, r3
+ 158:Core/Src/main.c **** 			AHT10_Temperature = (float)(AHT10_ADC_Raw * 200.00 / 1048576.00) - 50.00;
+ 517              		.loc 1 158 18 view .LVU131
+ 518 005a 254E     		ldr	r6, .L30+12
+ 519 005c 3060     		str	r0, [r6]
+ 159:Core/Src/main.c **** 			/* Convert to Relative Humidity in % */
+ 520              		.loc 1 159 4 is_stmt 1 view .LVU132
+ 159:Core/Src/main.c **** 			/* Convert to Relative Humidity in % */
+ 521              		.loc 1 159 46 is_stmt 0 view .LVU133
+ 522 005e FFF7FEFF 		bl	__aeabi_ui2d
+ 523              	.LVL50:
+ 524 0062 0022     		movs	r2, #0
+ 525 0064 234B     		ldr	r3, .L30+16
+ 526 0066 FFF7FEFF 		bl	__aeabi_dmul
+ 527              	.LVL51:
+ 159:Core/Src/main.c **** 			/* Convert to Relative Humidity in % */
+ 528              		.loc 1 159 55 view .LVU134
+ 529 006a 0022     		movs	r2, #0
+ 530 006c 224B     		ldr	r3, .L30+20
+ 531 006e FFF7FEFF 		bl	__aeabi_dmul
+ 532              	.LVL52:
+ 159:Core/Src/main.c **** 			/* Convert to Relative Humidity in % */
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 18
+
+
+ 533              		.loc 1 159 24 view .LVU135
+ 534 0072 FFF7FEFF 		bl	__aeabi_d2f
+ 535              	.LVL53:
+ 159:Core/Src/main.c **** 			/* Convert to Relative Humidity in % */
+ 536              		.loc 1 159 69 view .LVU136
+ 537 0076 2149     		ldr	r1, .L30+24
+ 538 0078 FFF7FEFF 		bl	__aeabi_fsub
+ 539              	.LVL54:
+ 540 007c 0746     		mov	r7, r0
+ 159:Core/Src/main.c **** 			/* Convert to Relative Humidity in % */
+ 541              		.loc 1 159 22 view .LVU137
+ 542 007e 204B     		ldr	r3, .L30+28
+ 543 0080 1860     		str	r0, [r3]	@ float
+ 161:Core/Src/main.c **** 			AHT10_Humidity = (float)(AHT10_ADC_Raw*100.00/1048576.00);
+ 544              		.loc 1 161 4 is_stmt 1 view .LVU138
+ 161:Core/Src/main.c **** 			AHT10_Humidity = (float)(AHT10_ADC_Raw*100.00/1048576.00);
+ 545              		.loc 1 161 44 is_stmt 0 view .LVU139
+ 546 0082 6878     		ldrb	r0, [r5, #1]	@ zero_extendqisi2
+ 161:Core/Src/main.c **** 			AHT10_Humidity = (float)(AHT10_ADC_Raw*100.00/1048576.00);
+ 547              		.loc 1 161 81 view .LVU140
+ 548 0084 AB78     		ldrb	r3, [r5, #2]	@ zero_extendqisi2
+ 161:Core/Src/main.c **** 			AHT10_Humidity = (float)(AHT10_ADC_Raw*100.00/1048576.00);
+ 549              		.loc 1 161 85 view .LVU141
+ 550 0086 1B01     		lsls	r3, r3, #4
+ 161:Core/Src/main.c **** 			AHT10_Humidity = (float)(AHT10_ADC_Raw*100.00/1048576.00);
+ 551              		.loc 1 161 55 view .LVU142
+ 552 0088 43EA0033 		orr	r3, r3, r0, lsl #12
+ 161:Core/Src/main.c **** 			AHT10_Humidity = (float)(AHT10_ADC_Raw*100.00/1048576.00);
+ 553              		.loc 1 161 91 view .LVU143
+ 554 008c 43EA1410 		orr	r0, r3, r4, lsr #4
+ 161:Core/Src/main.c **** 			AHT10_Humidity = (float)(AHT10_ADC_Raw*100.00/1048576.00);
+ 555              		.loc 1 161 18 view .LVU144
+ 556 0090 3060     		str	r0, [r6]
+ 162:Core/Src/main.c ****       ftoa(AHT10_Temperature, (char*)temp, 4);
+ 557              		.loc 1 162 4 is_stmt 1 view .LVU145
+ 162:Core/Src/main.c ****       ftoa(AHT10_Temperature, (char*)temp, 4);
+ 558              		.loc 1 162 42 is_stmt 0 view .LVU146
+ 559 0092 FFF7FEFF 		bl	__aeabi_ui2d
+ 560              	.LVL55:
+ 561 0096 0022     		movs	r2, #0
+ 562 0098 1A4B     		ldr	r3, .L30+32
+ 563 009a FFF7FEFF 		bl	__aeabi_dmul
+ 564              	.LVL56:
+ 162:Core/Src/main.c ****       ftoa(AHT10_Temperature, (char*)temp, 4);
+ 565              		.loc 1 162 49 view .LVU147
+ 566 009e 0022     		movs	r2, #0
+ 567 00a0 154B     		ldr	r3, .L30+20
+ 568 00a2 FFF7FEFF 		bl	__aeabi_dmul
+ 569              	.LVL57:
+ 162:Core/Src/main.c ****       ftoa(AHT10_Temperature, (char*)temp, 4);
+ 570              		.loc 1 162 21 view .LVU148
+ 571 00a6 FFF7FEFF 		bl	__aeabi_d2f
+ 572              	.LVL58:
+ 162:Core/Src/main.c ****       ftoa(AHT10_Temperature, (char*)temp, 4);
+ 573              		.loc 1 162 19 view .LVU149
+ 574 00aa 174C     		ldr	r4, .L30+36
+ 575 00ac 2060     		str	r0, [r4]	@ float
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 19
+
+
+ 163:Core/Src/main.c ****       ftoa(AHT10_Humidity, (char*)humi, 4);
+ 576              		.loc 1 163 7 is_stmt 1 view .LVU150
+ 577 00ae 174E     		ldr	r6, .L30+40
+ 578 00b0 0422     		movs	r2, #4
+ 579 00b2 3146     		mov	r1, r6
+ 580 00b4 3846     		mov	r0, r7
+ 581 00b6 FFF7FEFF 		bl	ftoa
+ 582              	.LVL59:
+ 164:Core/Src/main.c ****       HAL_UART_Transmit(&huart1, temp, 4, 100);
+ 583              		.loc 1 164 7 view .LVU151
+ 584 00ba 154D     		ldr	r5, .L30+44
+ 585 00bc 0422     		movs	r2, #4
+ 586 00be 2946     		mov	r1, r5
+ 587 00c0 2068     		ldr	r0, [r4]	@ float
+ 588 00c2 FFF7FEFF 		bl	ftoa
+ 589              	.LVL60:
+ 165:Core/Src/main.c ****       HAL_UART_Transmit(&huart1, humi, 4, 100);
+ 590              		.loc 1 165 7 view .LVU152
+ 591 00c6 134C     		ldr	r4, .L30+48
+ 592 00c8 6423     		movs	r3, #100
+ 593 00ca 0422     		movs	r2, #4
+ 594 00cc 3146     		mov	r1, r6
+ 595 00ce 2046     		mov	r0, r4
+ 596 00d0 FFF7FEFF 		bl	HAL_UART_Transmit
+ 597              	.LVL61:
+ 166:Core/Src/main.c **** 		}
+ 598              		.loc 1 166 7 view .LVU153
+ 599 00d4 6423     		movs	r3, #100
+ 600 00d6 0422     		movs	r2, #4
+ 601 00d8 2946     		mov	r1, r5
+ 602 00da 2046     		mov	r0, r4
+ 603 00dc FFF7FEFF 		bl	HAL_UART_Transmit
+ 604              	.LVL62:
+ 605 00e0 9AE7     		b	.L27
+ 606              	.L31:
+ 607 00e2 00BF     		.align	2
+ 608              	.L30:
+ 609 00e4 00000000 		.word	hi2c1
+ 610 00e8 00000000 		.word	.LANCHOR0
+ 611 00ec 00000000 		.word	.LANCHOR1
+ 612 00f0 00000000 		.word	.LANCHOR2
+ 613 00f4 00006940 		.word	1080623104
+ 614 00f8 0000B03E 		.word	1051721728
+ 615 00fc 00004842 		.word	1112014848
+ 616 0100 00000000 		.word	.LANCHOR3
+ 617 0104 00005940 		.word	1079574528
+ 618 0108 00000000 		.word	.LANCHOR4
+ 619 010c 00000000 		.word	.LANCHOR5
+ 620 0110 00000000 		.word	.LANCHOR6
+ 621 0114 00000000 		.word	huart1
+ 622              		.cfi_endproc
+ 623              	.LFE71:
+ 625              		.global	AHT10_TmpHum_Cmd
+ 626              		.global	humi
+ 627              		.global	temp
+ 628              		.global	AHT10_Humidity
+ 629              		.global	AHT10_Temperature
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 20
+
+
+ 630              		.global	AHT10_ADC_Raw
+ 631              		.global	AHT10_RX_Data
+ 632              		.section	.bss.AHT10_ADC_Raw,"aw",%nobits
+ 633              		.align	2
+ 634              		.set	.LANCHOR2,. + 0
+ 637              	AHT10_ADC_Raw:
+ 638 0000 00000000 		.space	4
+ 639              		.section	.bss.AHT10_Humidity,"aw",%nobits
+ 640              		.align	2
+ 641              		.set	.LANCHOR4,. + 0
+ 644              	AHT10_Humidity:
+ 645 0000 00000000 		.space	4
+ 646              		.section	.bss.AHT10_RX_Data,"aw",%nobits
+ 647              		.align	2
+ 648              		.set	.LANCHOR1,. + 0
+ 651              	AHT10_RX_Data:
+ 652 0000 00000000 		.space	6
+ 652      0000
+ 653              		.section	.bss.AHT10_Temperature,"aw",%nobits
+ 654              		.align	2
+ 655              		.set	.LANCHOR3,. + 0
+ 658              	AHT10_Temperature:
+ 659 0000 00000000 		.space	4
+ 660              		.section	.bss.humi,"aw",%nobits
+ 661              		.align	2
+ 662              		.set	.LANCHOR6,. + 0
+ 665              	humi:
+ 666 0000 00000000 		.space	10
+ 666      00000000 
+ 666      0000
+ 667              		.section	.bss.temp,"aw",%nobits
+ 668              		.align	2
+ 669              		.set	.LANCHOR5,. + 0
+ 672              	temp:
+ 673 0000 00000000 		.space	10
+ 673      00000000 
+ 673      0000
+ 674              		.section	.data.AHT10_TmpHum_Cmd,"aw"
+ 675              		.align	2
+ 676              		.set	.LANCHOR0,. + 0
+ 679              	AHT10_TmpHum_Cmd:
+ 680 0000 AC3300   		.ascii	"\2543\000"
+ 681              		.text
+ 682              	.Letext0:
+ 683              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 684              		.file 4 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 685              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 686              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 687              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h"
+ 688              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h"
+ 689              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 690              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h"
+ 691              		.file 11 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
+ 692              		.file 12 "Core/Inc/i2c.h"
+ 693              		.file 13 "Core/Inc/usart.h"
+ 694              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ 695              		.file 15 "Core/Inc/gpio.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 21
+
+
+ 696              		.file 16 "<built-in>"
+ 697              		.file 17 "d:\\10 2021.10\\arm-none-eabi\\include\\math.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s 			page 22
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:18     .text.reverse:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:24     .text.reverse:00000000 reverse
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:74     .text.intToStr:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:80     .text.intToStr:00000000 intToStr
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:164    .text.intToStr:00000048 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:176    .text.ftoa:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:182    .text.ftoa:00000000 ftoa
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:293    .text.ftoa:00000070 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:298    .text.Error_Handler:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:304    .text.Error_Handler:00000000 Error_Handler
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:336    .text.SystemClock_Config:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:342    .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:436    .text.main:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:442    .text.main:00000000 main
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:609    .text.main:000000e4 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:679    .data.AHT10_TmpHum_Cmd:00000000 AHT10_TmpHum_Cmd
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:665    .bss.humi:00000000 humi
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:672    .bss.temp:00000000 temp
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:644    .bss.AHT10_Humidity:00000000 AHT10_Humidity
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:658    .bss.AHT10_Temperature:00000000 AHT10_Temperature
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:637    .bss.AHT10_ADC_Raw:00000000 AHT10_ADC_Raw
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:651    .bss.AHT10_RX_Data:00000000 AHT10_RX_Data
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:633    .bss.AHT10_ADC_Raw:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:640    .bss.AHT10_Humidity:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:647    .bss.AHT10_RX_Data:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:654    .bss.AHT10_Temperature:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:661    .bss.humi:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:668    .bss.temp:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccZuDH7l.s:675    .data.AHT10_TmpHum_Cmd:00000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_f2iz
+__aeabi_i2f
+__aeabi_fsub
+__aeabi_i2d
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_d2f
+pow
+memset
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+__aeabi_ui2d
+HAL_Init
+MX_GPIO_Init
+MX_I2C1_Init
+MX_USART1_UART_Init
+HAL_I2C_Master_Transmit
+HAL_Delay
+HAL_I2C_Master_Receive
+HAL_UART_Transmit
+hi2c1
+huart1

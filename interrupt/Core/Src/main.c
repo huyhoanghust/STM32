@@ -92,7 +92,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET);
+    HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
     HAL_Delay(1000);
   }
   /* USER CODE END 3 */
@@ -172,17 +172,6 @@ static void MX_GPIO_Init(void)
 
 }
 
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  if(GPIO_Pin == GPIO_PIN_0)
-  {
-    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,1);
-  }
-  if(GPIO_Pin == GPIO_PIN_6)
-  {
-    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,0);
-  }
-}
 
 /**
   * @brief  This function is executed in case of error occurrence.
@@ -215,3 +204,16 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if(GPIO_Pin == GPIO_PIN_0)
+  {
+    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,1);
+    HAL_Delay(2000);
+  }
+  if(GPIO_Pin == GPIO_PIN_6)
+  {
+    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,0);
+    HAL_Delay(2000);
+  }
+}

@@ -1,0 +1,833 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"FLASH_PAGE_F1.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.GetPage,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	GetPage:
+  24              	.LVL0:
+  25              	.LFB68:
+  26              		.file 1 "Core/Src/FLASH_PAGE_F1.c"
+   1:Core/Src/FLASH_PAGE_F1.c **** /**
+   2:Core/Src/FLASH_PAGE_F1.c ****   *************************************************************************************************
+   3:Core/Src/FLASH_PAGE_F1.c ****   *************************************************************************************************
+   4:Core/Src/FLASH_PAGE_F1.c ****   *************************************************************************************************
+   5:Core/Src/FLASH_PAGE_F1.c ****   File:	      FLASH_PAGE_F1.c
+   6:Core/Src/FLASH_PAGE_F1.c ****   Modifier:   ControllersTech.com
+   7:Core/Src/FLASH_PAGE_F1.c ****   Updated:    27th MAY 2021
+   8:Core/Src/FLASH_PAGE_F1.c ****   *************************************************************************************************
+   9:Core/Src/FLASH_PAGE_F1.c ****   Copyright (C) 2017 ControllersTech.com
+  10:Core/Src/FLASH_PAGE_F1.c ****   This is a free software under the GNU license, you can redistribute it and/or modify it under the
+  11:Core/Src/FLASH_PAGE_F1.c ****   of the GNU General Public License version 3 as published by the Free Software Foundation.
+  12:Core/Src/FLASH_PAGE_F1.c ****   This software library is shared with public for educational purposes, without WARRANTY and Author
+  13:Core/Src/FLASH_PAGE_F1.c ****   or indirectly by this software, read more about this on the GNU General Public License.
+  14:Core/Src/FLASH_PAGE_F1.c ****   *************************************************************************************************
+  15:Core/Src/FLASH_PAGE_F1.c **** */
+  16:Core/Src/FLASH_PAGE_F1.c **** 
+  17:Core/Src/FLASH_PAGE_F1.c **** #include "FLASH_PAGE_F1.h"
+  18:Core/Src/FLASH_PAGE_F1.c **** #include <string.h>
+  19:Core/Src/FLASH_PAGE_F1.c **** #include "stdio.h"
+  20:Core/Src/FLASH_PAGE_F1.c **** 
+  21:Core/Src/FLASH_PAGE_F1.c **** 
+  22:Core/Src/FLASH_PAGE_F1.c **** /* STM32F103 have 128 PAGES (Page 0 to Page 127) of 1 KB each. This makes up 128 KB Flash Memory
+  23:Core/Src/FLASH_PAGE_F1.c ****  * Some STM32F103C8 have 64 KB FLASH Memory, so I guess they have Page 0 to Page 63 only.
+  24:Core/Src/FLASH_PAGE_F1.c ****  */
+  25:Core/Src/FLASH_PAGE_F1.c **** 
+  26:Core/Src/FLASH_PAGE_F1.c **** /* FLASH_PAGE_SIZE should be able to get the size of the Page according to the controller */
+  27:Core/Src/FLASH_PAGE_F1.c **** static uint32_t GetPage(uint32_t Address)
+  28:Core/Src/FLASH_PAGE_F1.c **** {
+  27              		.loc 1 28 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 2
+
+
+  31              		@ link register save eliminated.
+  32              		.loc 1 28 1 is_stmt 0 view .LVU1
+  33 0000 0146     		mov	r1, r0
+  29:Core/Src/FLASH_PAGE_F1.c ****   for (int indx=0; indx<128; indx++)
+  34              		.loc 1 29 3 is_stmt 1 view .LVU2
+  35              	.LBB2:
+  36              		.loc 1 29 8 view .LVU3
+  37              	.LVL1:
+  38              		.loc 1 29 12 is_stmt 0 view .LVU4
+  39 0002 0023     		movs	r3, #0
+  40              		.loc 1 29 3 view .LVU5
+  41 0004 00E0     		b	.L2
+  42              	.LVL2:
+  43              	.L3:
+  44              		.loc 1 29 30 is_stmt 1 discriminator 2 view .LVU6
+  45              		.loc 1 29 34 is_stmt 0 discriminator 2 view .LVU7
+  46 0006 0133     		adds	r3, r3, #1
+  47              	.LVL3:
+  48              	.L2:
+  49              		.loc 1 29 20 is_stmt 1 discriminator 1 view .LVU8
+  50              		.loc 1 29 3 is_stmt 0 discriminator 1 view .LVU9
+  51 0008 7F2B     		cmp	r3, #127
+  52 000a 0CDC     		bgt	.L6
+  30:Core/Src/FLASH_PAGE_F1.c ****   {
+  31:Core/Src/FLASH_PAGE_F1.c **** 	  if((Address < (0x08000000 + (FLASH_PAGE_SIZE *(indx+1))) ) && (Address >= (0x08000000 + FLASH_PA
+  53              		.loc 1 31 4 is_stmt 1 view .LVU10
+  54              		.loc 1 31 30 is_stmt 0 view .LVU11
+  55 000c 03F50032 		add	r2, r3, #131072
+  56 0010 0132     		adds	r2, r2, #1
+  57              		.loc 1 31 6 view .LVU12
+  58 0012 B1EB822F 		cmp	r1, r2, lsl #10
+  59 0016 F6D2     		bcs	.L3
+  60              		.loc 1 31 90 discriminator 1 view .LVU13
+  61 0018 03F50032 		add	r2, r3, #131072
+  62 001c 9002     		lsls	r0, r2, #10
+  63              		.loc 1 31 63 discriminator 1 view .LVU14
+  64 001e B1EB822F 		cmp	r1, r2, lsl #10
+  65 0022 F0D3     		bcc	.L3
+  66              	.L1:
+  67              		.loc 1 31 63 discriminator 1 view .LVU15
+  68              	.LBE2:
+  32:Core/Src/FLASH_PAGE_F1.c **** 	  {
+  33:Core/Src/FLASH_PAGE_F1.c **** 		  return (0x08000000 + FLASH_PAGE_SIZE*indx);
+  34:Core/Src/FLASH_PAGE_F1.c **** 	  }
+  35:Core/Src/FLASH_PAGE_F1.c ****   }
+  36:Core/Src/FLASH_PAGE_F1.c **** 
+  37:Core/Src/FLASH_PAGE_F1.c ****   return 0;
+  38:Core/Src/FLASH_PAGE_F1.c **** }
+  69              		.loc 1 38 1 view .LVU16
+  70 0024 7047     		bx	lr
+  71              	.L6:
+  37:Core/Src/FLASH_PAGE_F1.c **** }
+  72              		.loc 1 37 10 view .LVU17
+  73 0026 0020     		movs	r0, #0
+  74 0028 FCE7     		b	.L1
+  75              		.cfi_endproc
+  76              	.LFE68:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 3
+
+
+  78              		.section	.text.float2Bytes,"ax",%progbits
+  79              		.align	1
+  80              		.global	float2Bytes
+  81              		.syntax unified
+  82              		.thumb
+  83              		.thumb_func
+  85              	float2Bytes:
+  86              	.LVL4:
+  87              	.LFB69:
+  39:Core/Src/FLASH_PAGE_F1.c **** 
+  40:Core/Src/FLASH_PAGE_F1.c **** 
+  41:Core/Src/FLASH_PAGE_F1.c **** uint8_t bytes_temp[4];
+  42:Core/Src/FLASH_PAGE_F1.c **** 
+  43:Core/Src/FLASH_PAGE_F1.c **** 
+  44:Core/Src/FLASH_PAGE_F1.c **** void float2Bytes(uint8_t * ftoa_bytes_temp,float float_variable)
+  45:Core/Src/FLASH_PAGE_F1.c **** {
+  88              		.loc 1 45 1 is_stmt 1 view -0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 8
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92              		@ link register save eliminated.
+  93              		.loc 1 45 1 is_stmt 0 view .LVU19
+  94 0000 82B0     		sub	sp, sp, #8
+  95              	.LCFI0:
+  96              		.cfi_def_cfa_offset 8
+  46:Core/Src/FLASH_PAGE_F1.c ****     union {
+  97              		.loc 1 46 5 is_stmt 1 view .LVU20
+  47:Core/Src/FLASH_PAGE_F1.c ****       float a;
+  48:Core/Src/FLASH_PAGE_F1.c ****       uint8_t bytes[4];
+  49:Core/Src/FLASH_PAGE_F1.c ****     } thing;
+  50:Core/Src/FLASH_PAGE_F1.c **** 
+  51:Core/Src/FLASH_PAGE_F1.c ****     thing.a = float_variable;
+  98              		.loc 1 51 5 view .LVU21
+  99              		.loc 1 51 13 is_stmt 0 view .LVU22
+ 100 0002 0191     		str	r1, [sp, #4]	@ float
+  52:Core/Src/FLASH_PAGE_F1.c **** 
+  53:Core/Src/FLASH_PAGE_F1.c ****     for (uint8_t i = 0; i < 4; i++) {
+ 101              		.loc 1 53 5 is_stmt 1 view .LVU23
+ 102              	.LBB3:
+ 103              		.loc 1 53 10 view .LVU24
+ 104              	.LVL5:
+ 105              		.loc 1 53 18 is_stmt 0 view .LVU25
+ 106 0004 0023     		movs	r3, #0
+ 107              		.loc 1 53 5 view .LVU26
+ 108 0006 07E0     		b	.L8
+ 109              	.LVL6:
+ 110              	.L9:
+  54:Core/Src/FLASH_PAGE_F1.c ****       ftoa_bytes_temp[i] = thing.bytes[i];
+ 111              		.loc 1 54 7 is_stmt 1 discriminator 3 view .LVU27
+ 112              		.loc 1 54 39 is_stmt 0 discriminator 3 view .LVU28
+ 113 0008 03F10802 		add	r2, r3, #8
+ 114 000c 6A44     		add	r2, sp, r2
+ 115 000e 12F8042C 		ldrb	r2, [r2, #-4]	@ zero_extendqisi2
+ 116              		.loc 1 54 26 discriminator 3 view .LVU29
+ 117 0012 C254     		strb	r2, [r0, r3]
+  53:Core/Src/FLASH_PAGE_F1.c ****       ftoa_bytes_temp[i] = thing.bytes[i];
+ 118              		.loc 1 53 32 is_stmt 1 discriminator 3 view .LVU30
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 4
+
+
+  53:Core/Src/FLASH_PAGE_F1.c ****       ftoa_bytes_temp[i] = thing.bytes[i];
+ 119              		.loc 1 53 33 is_stmt 0 discriminator 3 view .LVU31
+ 120 0014 0133     		adds	r3, r3, #1
+ 121              	.LVL7:
+  53:Core/Src/FLASH_PAGE_F1.c ****       ftoa_bytes_temp[i] = thing.bytes[i];
+ 122              		.loc 1 53 33 discriminator 3 view .LVU32
+ 123 0016 DBB2     		uxtb	r3, r3
+ 124              	.LVL8:
+ 125              	.L8:
+  53:Core/Src/FLASH_PAGE_F1.c ****       ftoa_bytes_temp[i] = thing.bytes[i];
+ 126              		.loc 1 53 25 is_stmt 1 discriminator 1 view .LVU33
+  53:Core/Src/FLASH_PAGE_F1.c ****       ftoa_bytes_temp[i] = thing.bytes[i];
+ 127              		.loc 1 53 5 is_stmt 0 discriminator 1 view .LVU34
+ 128 0018 032B     		cmp	r3, #3
+ 129 001a F5D9     		bls	.L9
+ 130              	.LBE3:
+  55:Core/Src/FLASH_PAGE_F1.c ****     }
+  56:Core/Src/FLASH_PAGE_F1.c **** 
+  57:Core/Src/FLASH_PAGE_F1.c **** }
+ 131              		.loc 1 57 1 view .LVU35
+ 132 001c 02B0     		add	sp, sp, #8
+ 133              	.LCFI1:
+ 134              		.cfi_def_cfa_offset 0
+ 135              		@ sp needed
+ 136 001e 7047     		bx	lr
+ 137              		.cfi_endproc
+ 138              	.LFE69:
+ 140              		.section	.text.Bytes2float,"ax",%progbits
+ 141              		.align	1
+ 142              		.global	Bytes2float
+ 143              		.syntax unified
+ 144              		.thumb
+ 145              		.thumb_func
+ 147              	Bytes2float:
+ 148              	.LVL9:
+ 149              	.LFB70:
+  58:Core/Src/FLASH_PAGE_F1.c **** 
+  59:Core/Src/FLASH_PAGE_F1.c **** float Bytes2float(uint8_t * ftoa_bytes_temp)
+  60:Core/Src/FLASH_PAGE_F1.c **** {
+ 150              		.loc 1 60 1 is_stmt 1 view -0
+ 151              		.cfi_startproc
+ 152              		@ args = 0, pretend = 0, frame = 8
+ 153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154              		@ link register save eliminated.
+ 155              		.loc 1 60 1 is_stmt 0 view .LVU37
+ 156 0000 82B0     		sub	sp, sp, #8
+ 157              	.LCFI2:
+ 158              		.cfi_def_cfa_offset 8
+  61:Core/Src/FLASH_PAGE_F1.c ****     union {
+ 159              		.loc 1 61 5 is_stmt 1 view .LVU38
+  62:Core/Src/FLASH_PAGE_F1.c ****       float a;
+  63:Core/Src/FLASH_PAGE_F1.c ****       uint8_t bytes[4];
+  64:Core/Src/FLASH_PAGE_F1.c ****     } thing;
+  65:Core/Src/FLASH_PAGE_F1.c **** 
+  66:Core/Src/FLASH_PAGE_F1.c ****     for (uint8_t i = 0; i < 4; i++) {
+ 160              		.loc 1 66 5 view .LVU39
+ 161              	.LBB4:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 5
+
+
+ 162              		.loc 1 66 10 view .LVU40
+ 163              	.LVL10:
+ 164              		.loc 1 66 18 is_stmt 0 view .LVU41
+ 165 0002 0023     		movs	r3, #0
+ 166              		.loc 1 66 5 view .LVU42
+ 167 0004 07E0     		b	.L12
+ 168              	.LVL11:
+ 169              	.L13:
+  67:Core/Src/FLASH_PAGE_F1.c ****     	thing.bytes[i] = ftoa_bytes_temp[i];
+ 170              		.loc 1 67 6 is_stmt 1 discriminator 3 view .LVU43
+ 171              		.loc 1 67 38 is_stmt 0 discriminator 3 view .LVU44
+ 172 0006 C15C     		ldrb	r1, [r0, r3]	@ zero_extendqisi2
+ 173              		.loc 1 67 21 discriminator 3 view .LVU45
+ 174 0008 03F10802 		add	r2, r3, #8
+ 175 000c 6A44     		add	r2, sp, r2
+ 176 000e 02F8041C 		strb	r1, [r2, #-4]
+  66:Core/Src/FLASH_PAGE_F1.c ****     	thing.bytes[i] = ftoa_bytes_temp[i];
+ 177              		.loc 1 66 32 is_stmt 1 discriminator 3 view .LVU46
+  66:Core/Src/FLASH_PAGE_F1.c ****     	thing.bytes[i] = ftoa_bytes_temp[i];
+ 178              		.loc 1 66 33 is_stmt 0 discriminator 3 view .LVU47
+ 179 0012 0133     		adds	r3, r3, #1
+ 180              	.LVL12:
+  66:Core/Src/FLASH_PAGE_F1.c ****     	thing.bytes[i] = ftoa_bytes_temp[i];
+ 181              		.loc 1 66 33 discriminator 3 view .LVU48
+ 182 0014 DBB2     		uxtb	r3, r3
+ 183              	.LVL13:
+ 184              	.L12:
+  66:Core/Src/FLASH_PAGE_F1.c ****     	thing.bytes[i] = ftoa_bytes_temp[i];
+ 185              		.loc 1 66 25 is_stmt 1 discriminator 1 view .LVU49
+  66:Core/Src/FLASH_PAGE_F1.c ****     	thing.bytes[i] = ftoa_bytes_temp[i];
+ 186              		.loc 1 66 5 is_stmt 0 discriminator 1 view .LVU50
+ 187 0016 032B     		cmp	r3, #3
+ 188 0018 F5D9     		bls	.L13
+ 189              	.LBE4:
+  68:Core/Src/FLASH_PAGE_F1.c ****     }
+  69:Core/Src/FLASH_PAGE_F1.c **** 
+  70:Core/Src/FLASH_PAGE_F1.c ****    float float_variable =  thing.a;
+ 190              		.loc 1 70 4 is_stmt 1 view .LVU51
+ 191              	.LVL14:
+  71:Core/Src/FLASH_PAGE_F1.c ****    return float_variable;
+ 192              		.loc 1 71 4 view .LVU52
+  72:Core/Src/FLASH_PAGE_F1.c **** }
+ 193              		.loc 1 72 1 is_stmt 0 view .LVU53
+ 194 001a 0198     		ldr	r0, [sp, #4]	@ float
+ 195              	.LVL15:
+ 196              		.loc 1 72 1 view .LVU54
+ 197 001c 02B0     		add	sp, sp, #8
+ 198              	.LCFI3:
+ 199              		.cfi_def_cfa_offset 0
+ 200              	.LVL16:
+ 201              		.loc 1 72 1 view .LVU55
+ 202              		@ sp needed
+ 203 001e 7047     		bx	lr
+ 204              		.cfi_endproc
+ 205              	.LFE70:
+ 207              		.section	.text.Flash_Write_Data,"ax",%progbits
+ 208              		.align	1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 6
+
+
+ 209              		.global	Flash_Write_Data
+ 210              		.syntax unified
+ 211              		.thumb
+ 212              		.thumb_func
+ 214              	Flash_Write_Data:
+ 215              	.LVL17:
+ 216              	.LFB71:
+  73:Core/Src/FLASH_PAGE_F1.c **** 
+  74:Core/Src/FLASH_PAGE_F1.c **** uint32_t Flash_Write_Data (uint32_t StartPageAddress, uint32_t *Data, uint16_t numberofwords)
+  75:Core/Src/FLASH_PAGE_F1.c **** {
+ 217              		.loc 1 75 1 is_stmt 1 view -0
+ 218              		.cfi_startproc
+ 219              		@ args = 0, pretend = 0, frame = 8
+ 220              		@ frame_needed = 0, uses_anonymous_args = 0
+ 221              		.loc 1 75 1 is_stmt 0 view .LVU57
+ 222 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 223              	.LCFI4:
+ 224              		.cfi_def_cfa_offset 20
+ 225              		.cfi_offset 4, -20
+ 226              		.cfi_offset 5, -16
+ 227              		.cfi_offset 6, -12
+ 228              		.cfi_offset 7, -8
+ 229              		.cfi_offset 14, -4
+ 230 0002 83B0     		sub	sp, sp, #12
+ 231              	.LCFI5:
+ 232              		.cfi_def_cfa_offset 32
+ 233 0004 0546     		mov	r5, r0
+ 234 0006 0F46     		mov	r7, r1
+ 235 0008 1646     		mov	r6, r2
+  76:Core/Src/FLASH_PAGE_F1.c **** 
+  77:Core/Src/FLASH_PAGE_F1.c **** 	static FLASH_EraseInitTypeDef EraseInitStruct;
+ 236              		.loc 1 77 2 is_stmt 1 view .LVU58
+  78:Core/Src/FLASH_PAGE_F1.c **** 	uint32_t PAGEError;
+ 237              		.loc 1 78 2 view .LVU59
+  79:Core/Src/FLASH_PAGE_F1.c **** 	int sofar=0;
+ 238              		.loc 1 79 2 view .LVU60
+ 239              	.LVL18:
+  80:Core/Src/FLASH_PAGE_F1.c **** 
+  81:Core/Src/FLASH_PAGE_F1.c **** 	  /* Unlock the Flash to enable the flash control register access *************/
+  82:Core/Src/FLASH_PAGE_F1.c **** 	   HAL_FLASH_Unlock();
+ 240              		.loc 1 82 5 view .LVU61
+ 241 000a FFF7FEFF 		bl	HAL_FLASH_Unlock
+ 242              	.LVL19:
+  83:Core/Src/FLASH_PAGE_F1.c **** 
+  84:Core/Src/FLASH_PAGE_F1.c **** 	   /* Erase the user Flash area*/
+  85:Core/Src/FLASH_PAGE_F1.c **** 
+  86:Core/Src/FLASH_PAGE_F1.c **** 	  uint32_t StartPage = GetPage(StartPageAddress);
+ 243              		.loc 1 86 4 view .LVU62
+ 244              		.loc 1 86 25 is_stmt 0 view .LVU63
+ 245 000e 2846     		mov	r0, r5
+ 246 0010 FFF7FEFF 		bl	GetPage
+ 247              	.LVL20:
+ 248 0014 0446     		mov	r4, r0
+ 249              	.LVL21:
+  87:Core/Src/FLASH_PAGE_F1.c **** 	  uint32_t EndPageAdress = StartPageAddress + numberofwords*4;
+ 250              		.loc 1 87 4 is_stmt 1 view .LVU64
+  88:Core/Src/FLASH_PAGE_F1.c **** 	  uint32_t EndPage = GetPage(EndPageAdress);
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 7
+
+
+ 251              		.loc 1 88 4 view .LVU65
+ 252              		.loc 1 88 23 is_stmt 0 view .LVU66
+ 253 0016 05EB8600 		add	r0, r5, r6, lsl #2
+ 254              	.LVL22:
+ 255              		.loc 1 88 23 view .LVU67
+ 256 001a FFF7FEFF 		bl	GetPage
+ 257              	.LVL23:
+ 258              		.loc 1 88 23 view .LVU68
+ 259 001e 0346     		mov	r3, r0
+ 260              	.LVL24:
+  89:Core/Src/FLASH_PAGE_F1.c **** 
+  90:Core/Src/FLASH_PAGE_F1.c **** 	   /* Fill EraseInit structure*/
+  91:Core/Src/FLASH_PAGE_F1.c **** 	   EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
+ 261              		.loc 1 91 5 is_stmt 1 view .LVU69
+ 262              		.loc 1 91 33 is_stmt 0 view .LVU70
+ 263 0020 1248     		ldr	r0, .L24
+ 264              	.LVL25:
+ 265              		.loc 1 91 33 view .LVU71
+ 266 0022 0022     		movs	r2, #0
+ 267 0024 0260     		str	r2, [r0]
+  92:Core/Src/FLASH_PAGE_F1.c **** 	   EraseInitStruct.PageAddress = StartPage;
+ 268              		.loc 1 92 5 is_stmt 1 view .LVU72
+ 269              		.loc 1 92 33 is_stmt 0 view .LVU73
+ 270 0026 8460     		str	r4, [r0, #8]
+  93:Core/Src/FLASH_PAGE_F1.c **** 	   EraseInitStruct.NbPages     = ((EndPage - StartPage)/FLASH_PAGE_SIZE) +1;
+ 271              		.loc 1 93 5 is_stmt 1 view .LVU74
+ 272              		.loc 1 93 45 is_stmt 0 view .LVU75
+ 273 0028 1B1B     		subs	r3, r3, r4
+ 274              	.LVL26:
+ 275              		.loc 1 93 57 view .LVU76
+ 276 002a 9B0A     		lsrs	r3, r3, #10
+ 277              		.loc 1 93 75 view .LVU77
+ 278 002c 0133     		adds	r3, r3, #1
+ 279              		.loc 1 93 33 view .LVU78
+ 280 002e C360     		str	r3, [r0, #12]
+  94:Core/Src/FLASH_PAGE_F1.c **** 
+  95:Core/Src/FLASH_PAGE_F1.c **** 	   if (HAL_FLASHEx_Erase(&EraseInitStruct, &PAGEError) != HAL_OK)
+ 281              		.loc 1 95 5 is_stmt 1 view .LVU79
+ 282              		.loc 1 95 9 is_stmt 0 view .LVU80
+ 283 0030 01A9     		add	r1, sp, #4
+ 284 0032 FFF7FEFF 		bl	HAL_FLASHEx_Erase
+ 285              	.LVL27:
+ 286              		.loc 1 95 8 view .LVU81
+ 287 0036 68B9     		cbnz	r0, .L22
+  79:Core/Src/FLASH_PAGE_F1.c **** 
+ 288              		.loc 1 79 6 view .LVU82
+ 289 0038 0024     		movs	r4, #0
+ 290              	.LVL28:
+ 291              	.L16:
+  96:Core/Src/FLASH_PAGE_F1.c **** 	   {
+  97:Core/Src/FLASH_PAGE_F1.c **** 	     /*Error occurred while page erase.*/
+  98:Core/Src/FLASH_PAGE_F1.c **** 		  return HAL_FLASH_GetError ();
+  99:Core/Src/FLASH_PAGE_F1.c **** 	   }
+ 100:Core/Src/FLASH_PAGE_F1.c **** 
+ 101:Core/Src/FLASH_PAGE_F1.c **** 	   /* Program the user Flash area word by word*/
+ 102:Core/Src/FLASH_PAGE_F1.c **** 
+ 103:Core/Src/FLASH_PAGE_F1.c **** 	   while (sofar<numberofwords)
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 8
+
+
+ 292              		.loc 1 103 11 is_stmt 1 view .LVU83
+ 293 003a A642     		cmp	r6, r4
+ 294 003c 10DD     		ble	.L23
+ 104:Core/Src/FLASH_PAGE_F1.c **** 	   {
+ 105:Core/Src/FLASH_PAGE_F1.c **** 	     if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, StartPageAddress, Data[sofar]) == HAL_OK)
+ 295              		.loc 1 105 7 view .LVU84
+ 296              		.loc 1 105 11 is_stmt 0 view .LVU85
+ 297 003e 57F82420 		ldr	r2, [r7, r4, lsl #2]
+ 298 0042 0023     		movs	r3, #0
+ 299 0044 2946     		mov	r1, r5
+ 300 0046 0220     		movs	r0, #2
+ 301 0048 FFF7FEFF 		bl	HAL_FLASH_Program
+ 302              	.LVL29:
+ 303              		.loc 1 105 10 view .LVU86
+ 304 004c 28B9     		cbnz	r0, .L18
+ 106:Core/Src/FLASH_PAGE_F1.c **** 	     {
+ 107:Core/Src/FLASH_PAGE_F1.c **** 	    	 StartPageAddress += 4;  // use StartPageAddress += 2 for half word and 8 for double word
+ 305              		.loc 1 107 8 is_stmt 1 view .LVU87
+ 306              		.loc 1 107 25 is_stmt 0 view .LVU88
+ 307 004e 0435     		adds	r5, r5, #4
+ 308              	.LVL30:
+ 108:Core/Src/FLASH_PAGE_F1.c **** 	    	 sofar++;
+ 309              		.loc 1 108 8 is_stmt 1 view .LVU89
+ 310              		.loc 1 108 13 is_stmt 0 view .LVU90
+ 311 0050 0134     		adds	r4, r4, #1
+ 312              	.LVL31:
+ 313              		.loc 1 108 13 view .LVU91
+ 314 0052 F2E7     		b	.L16
+ 315              	.LVL32:
+ 316              	.L22:
+  98:Core/Src/FLASH_PAGE_F1.c **** 	   }
+ 317              		.loc 1 98 5 is_stmt 1 view .LVU92
+  98:Core/Src/FLASH_PAGE_F1.c **** 	   }
+ 318              		.loc 1 98 12 is_stmt 0 view .LVU93
+ 319 0054 FFF7FEFF 		bl	HAL_FLASH_GetError
+ 320              	.LVL33:
+ 321 0058 05E0     		b	.L15
+ 322              	.LVL34:
+ 323              	.L18:
+ 109:Core/Src/FLASH_PAGE_F1.c **** 	     }
+ 110:Core/Src/FLASH_PAGE_F1.c **** 	     else
+ 111:Core/Src/FLASH_PAGE_F1.c **** 	     {
+ 112:Core/Src/FLASH_PAGE_F1.c **** 	       /* Error occurred while writing data in Flash memory*/
+ 113:Core/Src/FLASH_PAGE_F1.c **** 	    	 return HAL_FLASH_GetError ();
+ 324              		.loc 1 113 8 is_stmt 1 view .LVU94
+ 325              		.loc 1 113 15 is_stmt 0 view .LVU95
+ 326 005a FFF7FEFF 		bl	HAL_FLASH_GetError
+ 327              	.LVL35:
+ 328 005e 02E0     		b	.L15
+ 329              	.L23:
+ 114:Core/Src/FLASH_PAGE_F1.c **** 	     }
+ 115:Core/Src/FLASH_PAGE_F1.c **** 	   }
+ 116:Core/Src/FLASH_PAGE_F1.c **** 
+ 117:Core/Src/FLASH_PAGE_F1.c **** 	   /* Lock the Flash to disable the flash control register access (recommended
+ 118:Core/Src/FLASH_PAGE_F1.c **** 	      to protect the FLASH memory against possible unwanted operation) *********/
+ 119:Core/Src/FLASH_PAGE_F1.c **** 	   HAL_FLASH_Lock();
+ 330              		.loc 1 119 5 is_stmt 1 view .LVU96
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 9
+
+
+ 331 0060 FFF7FEFF 		bl	HAL_FLASH_Lock
+ 332              	.LVL36:
+ 120:Core/Src/FLASH_PAGE_F1.c **** 
+ 121:Core/Src/FLASH_PAGE_F1.c **** 	   return 0;
+ 333              		.loc 1 121 5 view .LVU97
+ 334              		.loc 1 121 12 is_stmt 0 view .LVU98
+ 335 0064 0020     		movs	r0, #0
+ 336              	.LVL37:
+ 337              	.L15:
+ 122:Core/Src/FLASH_PAGE_F1.c **** }
+ 338              		.loc 1 122 1 view .LVU99
+ 339 0066 03B0     		add	sp, sp, #12
+ 340              	.LCFI6:
+ 341              		.cfi_def_cfa_offset 20
+ 342              		@ sp needed
+ 343 0068 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 344              	.LVL38:
+ 345              	.L25:
+ 346              		.loc 1 122 1 view .LVU100
+ 347 006a 00BF     		.align	2
+ 348              	.L24:
+ 349 006c 00000000 		.word	.LANCHOR0
+ 350              		.cfi_endproc
+ 351              	.LFE71:
+ 353              		.section	.text.Flash_Read_Data,"ax",%progbits
+ 354              		.align	1
+ 355              		.global	Flash_Read_Data
+ 356              		.syntax unified
+ 357              		.thumb
+ 358              		.thumb_func
+ 360              	Flash_Read_Data:
+ 361              	.LFB72:
+ 123:Core/Src/FLASH_PAGE_F1.c **** 
+ 124:Core/Src/FLASH_PAGE_F1.c **** 
+ 125:Core/Src/FLASH_PAGE_F1.c **** void Flash_Read_Data (uint32_t StartPageAddress, uint32_t *RxBuf, uint16_t numberofwords)
+ 126:Core/Src/FLASH_PAGE_F1.c **** {
+ 362              		.loc 1 126 1 is_stmt 1 view -0
+ 363              		.cfi_startproc
+ 364              		@ args = 0, pretend = 0, frame = 0
+ 365              		@ frame_needed = 0, uses_anonymous_args = 0
+ 366              		@ link register save eliminated.
+ 367              	.LVL39:
+ 368              	.L27:
+ 127:Core/Src/FLASH_PAGE_F1.c **** 	while (1)
+ 369              		.loc 1 127 2 view .LVU102
+ 128:Core/Src/FLASH_PAGE_F1.c **** 	{
+ 129:Core/Src/FLASH_PAGE_F1.c **** 
+ 130:Core/Src/FLASH_PAGE_F1.c **** 		*RxBuf = *(__IO uint32_t *)StartPageAddress;
+ 370              		.loc 1 130 3 view .LVU103
+ 371              		.loc 1 130 12 is_stmt 0 view .LVU104
+ 372 0000 50F8043B 		ldr	r3, [r0], #4
+ 373              		.loc 1 130 10 view .LVU105
+ 374 0004 41F8043B 		str	r3, [r1], #4
+ 131:Core/Src/FLASH_PAGE_F1.c **** 		StartPageAddress += 4;
+ 375              		.loc 1 131 3 is_stmt 1 view .LVU106
+ 376              	.LVL40:
+ 132:Core/Src/FLASH_PAGE_F1.c **** 		RxBuf++;
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 10
+
+
+ 377              		.loc 1 132 3 view .LVU107
+ 133:Core/Src/FLASH_PAGE_F1.c **** 		if (!(numberofwords--)) break;
+ 378              		.loc 1 133 3 view .LVU108
+ 379 0008 1346     		mov	r3, r2
+ 380              		.loc 1 133 22 is_stmt 0 view .LVU109
+ 381 000a 013A     		subs	r2, r2, #1
+ 382 000c 92B2     		uxth	r2, r2
+ 383              	.LVL41:
+ 384              		.loc 1 133 6 view .LVU110
+ 385 000e 002B     		cmp	r3, #0
+ 386 0010 F6D1     		bne	.L27
+ 134:Core/Src/FLASH_PAGE_F1.c **** 	}
+ 135:Core/Src/FLASH_PAGE_F1.c **** }
+ 387              		.loc 1 135 1 view .LVU111
+ 388 0012 7047     		bx	lr
+ 389              		.cfi_endproc
+ 390              	.LFE72:
+ 392              		.section	.text.Convert_To_Str,"ax",%progbits
+ 393              		.align	1
+ 394              		.global	Convert_To_Str
+ 395              		.syntax unified
+ 396              		.thumb
+ 397              		.thumb_func
+ 399              	Convert_To_Str:
+ 400              	.LVL42:
+ 401              	.LFB73:
+ 136:Core/Src/FLASH_PAGE_F1.c **** void Convert_To_Str (uint32_t *Data, char *Buf)
+ 137:Core/Src/FLASH_PAGE_F1.c **** {
+ 402              		.loc 1 137 1 is_stmt 1 view -0
+ 403              		.cfi_startproc
+ 404              		@ args = 0, pretend = 0, frame = 0
+ 405              		@ frame_needed = 0, uses_anonymous_args = 0
+ 406              		.loc 1 137 1 is_stmt 0 view .LVU113
+ 407 0000 38B5     		push	{r3, r4, r5, lr}
+ 408              	.LCFI7:
+ 409              		.cfi_def_cfa_offset 16
+ 410              		.cfi_offset 3, -16
+ 411              		.cfi_offset 4, -12
+ 412              		.cfi_offset 5, -8
+ 413              		.cfi_offset 14, -4
+ 414 0002 0546     		mov	r5, r0
+ 415 0004 0C46     		mov	r4, r1
+ 138:Core/Src/FLASH_PAGE_F1.c **** 	int numberofbytes = ((strlen((char *)Data)/4) + ((strlen((char *)Data) % 4) != 0)) *4;
+ 416              		.loc 1 138 2 is_stmt 1 view .LVU114
+ 417              		.loc 1 138 24 is_stmt 0 view .LVU115
+ 418 0006 FFF7FEFF 		bl	strlen
+ 419              	.LVL43:
+ 420              		.loc 1 138 78 view .LVU116
+ 421 000a 10F0030C 		ands	ip, r0, #3
+ 422 000e 18BF     		it	ne
+ 423 0010 4FF0010C 		movne	ip, #1
+ 424              		.loc 1 138 48 view .LVU117
+ 425 0014 0CEB900C 		add	ip, ip, r0, lsr #2
+ 426              		.loc 1 138 85 view .LVU118
+ 427 0018 4FEA8C0C 		lsl	ip, ip, #2
+ 428              	.LVL44:
+ 139:Core/Src/FLASH_PAGE_F1.c **** 
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 11
+
+
+ 140:Core/Src/FLASH_PAGE_F1.c **** 	for (int i=0; i<numberofbytes; i++)
+ 429              		.loc 1 140 2 is_stmt 1 view .LVU119
+ 430              	.LBB5:
+ 431              		.loc 1 140 7 view .LVU120
+ 432              		.loc 1 140 11 is_stmt 0 view .LVU121
+ 433 001c 0023     		movs	r3, #0
+ 434              		.loc 1 140 2 view .LVU122
+ 435 001e 0EE0     		b	.L29
+ 436              	.LVL45:
+ 437              	.L30:
+ 141:Core/Src/FLASH_PAGE_F1.c **** 	{
+ 142:Core/Src/FLASH_PAGE_F1.c **** 		Buf[i] = Data[i/4]>>(8*(i%4));
+ 438              		.loc 1 142 18 discriminator 3 view .LVU123
+ 439 0020 9210     		asrs	r2, r2, #2
+ 440              		.loc 1 142 16 discriminator 3 view .LVU124
+ 441 0022 55F82210 		ldr	r1, [r5, r2, lsl #2]
+ 442              		.loc 1 142 28 discriminator 3 view .LVU125
+ 443 0026 5842     		rsbs	r0, r3, #0
+ 444 0028 03F00302 		and	r2, r3, #3
+ 445 002c 00F00300 		and	r0, r0, #3
+ 446 0030 58BF     		it	pl
+ 447 0032 4242     		rsbpl	r2, r0, #0
+ 448              		.loc 1 142 25 discriminator 3 view .LVU126
+ 449 0034 D200     		lsls	r2, r2, #3
+ 450              		.loc 1 142 21 discriminator 3 view .LVU127
+ 451 0036 21FA02F2 		lsr	r2, r1, r2
+ 452              		.loc 1 142 10 discriminator 3 view .LVU128
+ 453 003a E254     		strb	r2, [r4, r3]
+ 140:Core/Src/FLASH_PAGE_F1.c **** 	{
+ 454              		.loc 1 140 33 is_stmt 1 discriminator 3 view .LVU129
+ 140:Core/Src/FLASH_PAGE_F1.c **** 	{
+ 455              		.loc 1 140 34 is_stmt 0 discriminator 3 view .LVU130
+ 456 003c 0133     		adds	r3, r3, #1
+ 457              	.LVL46:
+ 458              	.L29:
+ 140:Core/Src/FLASH_PAGE_F1.c **** 	{
+ 459              		.loc 1 140 16 is_stmt 1 discriminator 1 view .LVU131
+ 140:Core/Src/FLASH_PAGE_F1.c **** 	{
+ 460              		.loc 1 140 2 is_stmt 0 discriminator 1 view .LVU132
+ 461 003e 6345     		cmp	r3, ip
+ 462 0040 04DA     		bge	.L33
+ 463              		.loc 1 142 3 is_stmt 1 discriminator 3 view .LVU133
+ 464              		.loc 1 142 18 is_stmt 0 discriminator 3 view .LVU134
+ 465 0042 1A46     		mov	r2, r3
+ 466 0044 002B     		cmp	r3, #0
+ 467 0046 EBDA     		bge	.L30
+ 468 0048 DA1C     		adds	r2, r3, #3
+ 469 004a E9E7     		b	.L30
+ 470              	.L33:
+ 471              	.LBE5:
+ 143:Core/Src/FLASH_PAGE_F1.c **** 	}
+ 144:Core/Src/FLASH_PAGE_F1.c **** }
+ 472              		.loc 1 144 1 view .LVU135
+ 473 004c 38BD     		pop	{r3, r4, r5, pc}
+ 474              		.loc 1 144 1 view .LVU136
+ 475              		.cfi_endproc
+ 476              	.LFE73:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 12
+
+
+ 478              		.section	.text.Flash_Write_NUM,"ax",%progbits
+ 479              		.align	1
+ 480              		.global	Flash_Write_NUM
+ 481              		.syntax unified
+ 482              		.thumb
+ 483              		.thumb_func
+ 485              	Flash_Write_NUM:
+ 486              	.LVL47:
+ 487              	.LFB74:
+ 145:Core/Src/FLASH_PAGE_F1.c **** 
+ 146:Core/Src/FLASH_PAGE_F1.c **** 
+ 147:Core/Src/FLASH_PAGE_F1.c **** void Flash_Write_NUM (uint32_t StartSectorAddress, float Num)
+ 148:Core/Src/FLASH_PAGE_F1.c **** {
+ 488              		.loc 1 148 1 is_stmt 1 view -0
+ 489              		.cfi_startproc
+ 490              		@ args = 0, pretend = 0, frame = 0
+ 491              		@ frame_needed = 0, uses_anonymous_args = 0
+ 492              		.loc 1 148 1 is_stmt 0 view .LVU138
+ 493 0000 38B5     		push	{r3, r4, r5, lr}
+ 494              	.LCFI8:
+ 495              		.cfi_def_cfa_offset 16
+ 496              		.cfi_offset 3, -16
+ 497              		.cfi_offset 4, -12
+ 498              		.cfi_offset 5, -8
+ 499              		.cfi_offset 14, -4
+ 500 0002 0446     		mov	r4, r0
+ 149:Core/Src/FLASH_PAGE_F1.c **** 
+ 150:Core/Src/FLASH_PAGE_F1.c **** 	float2Bytes(bytes_temp, Num);
+ 501              		.loc 1 150 2 is_stmt 1 view .LVU139
+ 502 0004 044D     		ldr	r5, .L36
+ 503 0006 2846     		mov	r0, r5
+ 504              	.LVL48:
+ 505              		.loc 1 150 2 is_stmt 0 view .LVU140
+ 506 0008 FFF7FEFF 		bl	float2Bytes
+ 507              	.LVL49:
+ 151:Core/Src/FLASH_PAGE_F1.c **** 
+ 152:Core/Src/FLASH_PAGE_F1.c **** 	Flash_Write_Data (StartSectorAddress, (uint32_t *)bytes_temp, 1);
+ 508              		.loc 1 152 2 is_stmt 1 view .LVU141
+ 509 000c 0122     		movs	r2, #1
+ 510 000e 2946     		mov	r1, r5
+ 511 0010 2046     		mov	r0, r4
+ 512 0012 FFF7FEFF 		bl	Flash_Write_Data
+ 513              	.LVL50:
+ 153:Core/Src/FLASH_PAGE_F1.c **** }
+ 514              		.loc 1 153 1 is_stmt 0 view .LVU142
+ 515 0016 38BD     		pop	{r3, r4, r5, pc}
+ 516              	.LVL51:
+ 517              	.L37:
+ 518              		.loc 1 153 1 view .LVU143
+ 519              		.align	2
+ 520              	.L36:
+ 521 0018 00000000 		.word	.LANCHOR1
+ 522              		.cfi_endproc
+ 523              	.LFE74:
+ 525              		.section	.text.Flash_Read_NUM,"ax",%progbits
+ 526              		.align	1
+ 527              		.global	Flash_Read_NUM
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 13
+
+
+ 528              		.syntax unified
+ 529              		.thumb
+ 530              		.thumb_func
+ 532              	Flash_Read_NUM:
+ 533              	.LVL52:
+ 534              	.LFB75:
+ 154:Core/Src/FLASH_PAGE_F1.c **** 
+ 155:Core/Src/FLASH_PAGE_F1.c **** 
+ 156:Core/Src/FLASH_PAGE_F1.c **** float Flash_Read_NUM (uint32_t StartSectorAddress)
+ 157:Core/Src/FLASH_PAGE_F1.c **** {
+ 535              		.loc 1 157 1 is_stmt 1 view -0
+ 536              		.cfi_startproc
+ 537              		@ args = 0, pretend = 0, frame = 8
+ 538              		@ frame_needed = 0, uses_anonymous_args = 0
+ 539              		.loc 1 157 1 is_stmt 0 view .LVU145
+ 540 0000 00B5     		push	{lr}
+ 541              	.LCFI9:
+ 542              		.cfi_def_cfa_offset 4
+ 543              		.cfi_offset 14, -4
+ 544 0002 83B0     		sub	sp, sp, #12
+ 545              	.LCFI10:
+ 546              		.cfi_def_cfa_offset 16
+ 158:Core/Src/FLASH_PAGE_F1.c **** 	uint8_t buffer[4];
+ 547              		.loc 1 158 2 is_stmt 1 view .LVU146
+ 159:Core/Src/FLASH_PAGE_F1.c **** 	float value;
+ 548              		.loc 1 159 2 view .LVU147
+ 160:Core/Src/FLASH_PAGE_F1.c **** 
+ 161:Core/Src/FLASH_PAGE_F1.c **** 	Flash_Read_Data(StartSectorAddress, (uint32_t *)buffer, 1);
+ 549              		.loc 1 161 2 view .LVU148
+ 550 0004 0122     		movs	r2, #1
+ 551 0006 01A9     		add	r1, sp, #4
+ 552 0008 FFF7FEFF 		bl	Flash_Read_Data
+ 553              	.LVL53:
+ 162:Core/Src/FLASH_PAGE_F1.c **** 	value = Bytes2float(buffer);
+ 554              		.loc 1 162 2 view .LVU149
+ 555              		.loc 1 162 10 is_stmt 0 view .LVU150
+ 556 000c 01A8     		add	r0, sp, #4
+ 557 000e FFF7FEFF 		bl	Bytes2float
+ 558              	.LVL54:
+ 163:Core/Src/FLASH_PAGE_F1.c **** 	return value;
+ 559              		.loc 1 163 2 is_stmt 1 view .LVU151
+ 164:Core/Src/FLASH_PAGE_F1.c **** }...
+ 560              		.loc 1 164 1 is_stmt 0 view .LVU152
+ 561 0012 03B0     		add	sp, sp, #12
+ 562              	.LCFI11:
+ 563              		.cfi_def_cfa_offset 4
+ 564              		@ sp needed
+ 565 0014 5DF804FB 		ldr	pc, [sp], #4
+ 566              		.cfi_endproc
+ 567              	.LFE75:
+ 569              		.global	bytes_temp
+ 570              		.section	.bss.EraseInitStruct.0,"aw",%nobits
+ 571              		.align	2
+ 572              		.set	.LANCHOR0,. + 0
+ 575              	EraseInitStruct.0:
+ 576 0000 00000000 		.space	16
+ 576      00000000 
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 14
+
+
+ 576      00000000 
+ 576      00000000 
+ 577              		.section	.bss.bytes_temp,"aw",%nobits
+ 578              		.align	2
+ 579              		.set	.LANCHOR1,. + 0
+ 582              	bytes_temp:
+ 583 0000 00000000 		.space	4
+ 584              		.text
+ 585              	.Letext0:
+ 586              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 587              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 588              		.file 4 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h"
+ 589              		.file 5 "d:\\10 2021.10\\arm-none-eabi\\include\\string.h"
+ 590              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h"
+ 591              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 FLASH_PAGE_F1.c
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:18     .text.GetPage:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:23     .text.GetPage:00000000 GetPage
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:79     .text.float2Bytes:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:85     .text.float2Bytes:00000000 float2Bytes
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:141    .text.Bytes2float:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:147    .text.Bytes2float:00000000 Bytes2float
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:208    .text.Flash_Write_Data:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:214    .text.Flash_Write_Data:00000000 Flash_Write_Data
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:349    .text.Flash_Write_Data:0000006c $d
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:354    .text.Flash_Read_Data:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:360    .text.Flash_Read_Data:00000000 Flash_Read_Data
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:393    .text.Convert_To_Str:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:399    .text.Convert_To_Str:00000000 Convert_To_Str
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:479    .text.Flash_Write_NUM:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:485    .text.Flash_Write_NUM:00000000 Flash_Write_NUM
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:521    .text.Flash_Write_NUM:00000018 $d
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:526    .text.Flash_Read_NUM:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:532    .text.Flash_Read_NUM:00000000 Flash_Read_NUM
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:582    .bss.bytes_temp:00000000 bytes_temp
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:571    .bss.EraseInitStruct.0:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:575    .bss.EraseInitStruct.0:00000000 EraseInitStruct.0
+C:\Users\Admin\AppData\Local\Temp\ccyX9BIe.s:578    .bss.bytes_temp:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_FLASH_Unlock
+HAL_FLASHEx_Erase
+HAL_FLASH_Program
+HAL_FLASH_GetError
+HAL_FLASH_Lock
+strlen

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cct1yGPG.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 1
   30:Src/stm32f1xx_hal_msp.c **** /* USER CODE END TD */
   31:Src/stm32f1xx_hal_msp.c **** 
   32:Src/stm32f1xx_hal_msp.c **** /* Private define ------------------------------------------------------------*/
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 2
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cct1yGPG.s 			page 2
 
 
   33:Src/stm32f1xx_hal_msp.c **** /* USER CODE BEGIN Define */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 1
   44 000c 9A69     		ldr	r2, [r3, #24]
   45 000e 02F00102 		and	r2, r2, #1
   46 0012 0092     		str	r2, [sp]
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 3
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cct1yGPG.s 			page 3
 
 
   47              		.loc 1 69 3 view .LVU5
@@ -144,9 +144,9 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 1
   71:Src/stm32f1xx_hal_msp.c **** 
   72:Src/stm32f1xx_hal_msp.c ****   /* System interrupt init*/
   73:Src/stm32f1xx_hal_msp.c **** 
-  74:Src/stm32f1xx_hal_msp.c ****   /** DISABLE: JTAG-DP Disabled and SW-DP Disabled
+  74:Src/stm32f1xx_hal_msp.c ****   /** NOJTAG: JTAG-DP Disabled and SW-DP Enabled
   75:Src/stm32f1xx_hal_msp.c ****   */
-  76:Src/stm32f1xx_hal_msp.c ****   __HAL_AFIO_REMAP_SWJ_DISABLE();
+  76:Src/stm32f1xx_hal_msp.c ****   __HAL_AFIO_REMAP_SWJ_NOJTAG();
   66              		.loc 1 76 3 view .LVU13
   67              	.LBB4:
   68              		.loc 1 76 3 view .LVU14
@@ -157,7 +157,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 1
   73 002c 23F0E063 		bic	r3, r3, #117440512
   74              	.LVL1:
   75              		.loc 1 76 3 view .LVU16
-  76 0030 43F08063 		orr	r3, r3, #67108864
+  76 0030 43F00073 		orr	r3, r3, #33554432
   77              	.LVL2:
   78              		.loc 1 76 3 view .LVU17
   79 0034 5360     		str	r3, [r2, #4]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 1
   89 003a 00BF     		.align	2
   90              	.L3:
   91 003c 00100240 		.word	1073876992
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 4
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cct1yGPG.s 			page 4
 
 
   92 0040 00000140 		.word	1073807360
@@ -189,13 +189,13 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 1
   98              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
   99              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
  100              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s 			page 5
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cct1yGPG.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f1xx_hal_msp.c
-C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s:18     .text.HAL_MspInit:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s:24     .text.HAL_MspInit:00000000 HAL_MspInit
-C:\Users\Admin\AppData\Local\Temp\ccYFnNZh.s:91     .text.HAL_MspInit:0000003c $d
+C:\Users\Admin\AppData\Local\Temp\cct1yGPG.s:18     .text.HAL_MspInit:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cct1yGPG.s:24     .text.HAL_MspInit:00000000 HAL_MspInit
+C:\Users\Admin\AppData\Local\Temp\cct1yGPG.s:91     .text.HAL_MspInit:0000003c $d
 
 NO UNDEFINED SYMBOLS

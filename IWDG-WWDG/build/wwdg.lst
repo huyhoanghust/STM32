@@ -1,0 +1,251 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"wwdg.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MX_WWDG_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	MX_WWDG_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	MX_WWDG_Init:
+  25              	.LFB65:
+  26              		.file 1 "Core/Src/wwdg.c"
+   1:Core/Src/wwdg.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/wwdg.c **** /**
+   3:Core/Src/wwdg.c ****   ******************************************************************************
+   4:Core/Src/wwdg.c ****   * @file    wwdg.c
+   5:Core/Src/wwdg.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/wwdg.c ****   *          of the WWDG instances.
+   7:Core/Src/wwdg.c ****   ******************************************************************************
+   8:Core/Src/wwdg.c ****   * @attention
+   9:Core/Src/wwdg.c ****   *
+  10:Core/Src/wwdg.c ****   * Copyright (c) 2022 STMicroelectronics.
+  11:Core/Src/wwdg.c ****   * All rights reserved.
+  12:Core/Src/wwdg.c ****   *
+  13:Core/Src/wwdg.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/wwdg.c ****   * in the root directory of this software component.
+  15:Core/Src/wwdg.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/wwdg.c ****   *
+  17:Core/Src/wwdg.c ****   ******************************************************************************
+  18:Core/Src/wwdg.c ****   */
+  19:Core/Src/wwdg.c **** /* USER CODE END Header */
+  20:Core/Src/wwdg.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/wwdg.c **** #include "wwdg.h"
+  22:Core/Src/wwdg.c **** 
+  23:Core/Src/wwdg.c **** /* USER CODE BEGIN 0 */
+  24:Core/Src/wwdg.c **** 
+  25:Core/Src/wwdg.c **** /* USER CODE END 0 */
+  26:Core/Src/wwdg.c **** 
+  27:Core/Src/wwdg.c **** WWDG_HandleTypeDef hwwdg;
+  28:Core/Src/wwdg.c **** 
+  29:Core/Src/wwdg.c **** /* WWDG init function */
+  30:Core/Src/wwdg.c **** void MX_WWDG_Init(void)
+  31:Core/Src/wwdg.c **** {
+  27              		.loc 1 31 1 view -0
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s 			page 2
+
+
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  32:Core/Src/wwdg.c **** 
+  33:Core/Src/wwdg.c ****   /* USER CODE BEGIN WWDG_Init 0 */
+  34:Core/Src/wwdg.c **** 
+  35:Core/Src/wwdg.c ****   /* USER CODE END WWDG_Init 0 */
+  36:Core/Src/wwdg.c **** 
+  37:Core/Src/wwdg.c ****   /* USER CODE BEGIN WWDG_Init 1 */
+  38:Core/Src/wwdg.c **** 
+  39:Core/Src/wwdg.c ****   /* USER CODE END WWDG_Init 1 */
+  40:Core/Src/wwdg.c ****   hwwdg.Instance = WWDG;
+  36              		.loc 1 40 3 view .LVU1
+  37              		.loc 1 40 18 is_stmt 0 view .LVU2
+  38 0002 0948     		ldr	r0, .L5
+  39 0004 094B     		ldr	r3, .L5+4
+  40 0006 0360     		str	r3, [r0]
+  41:Core/Src/wwdg.c ****   hwwdg.Init.Prescaler = WWDG_PRESCALER_8;
+  41              		.loc 1 41 3 is_stmt 1 view .LVU3
+  42              		.loc 1 41 24 is_stmt 0 view .LVU4
+  43 0008 4FF4C073 		mov	r3, #384
+  44 000c 4360     		str	r3, [r0, #4]
+  42:Core/Src/wwdg.c ****   hwwdg.Init.Window = 81;
+  45              		.loc 1 42 3 is_stmt 1 view .LVU5
+  46              		.loc 1 42 21 is_stmt 0 view .LVU6
+  47 000e 5123     		movs	r3, #81
+  48 0010 8360     		str	r3, [r0, #8]
+  43:Core/Src/wwdg.c ****   hwwdg.Init.Counter = 82;
+  49              		.loc 1 43 3 is_stmt 1 view .LVU7
+  50              		.loc 1 43 22 is_stmt 0 view .LVU8
+  51 0012 5223     		movs	r3, #82
+  52 0014 C360     		str	r3, [r0, #12]
+  44:Core/Src/wwdg.c ****   hwwdg.Init.EWIMode = WWDG_EWI_DISABLE;
+  53              		.loc 1 44 3 is_stmt 1 view .LVU9
+  54              		.loc 1 44 22 is_stmt 0 view .LVU10
+  55 0016 0023     		movs	r3, #0
+  56 0018 0361     		str	r3, [r0, #16]
+  45:Core/Src/wwdg.c ****   if (HAL_WWDG_Init(&hwwdg) != HAL_OK)
+  57              		.loc 1 45 3 is_stmt 1 view .LVU11
+  58              		.loc 1 45 7 is_stmt 0 view .LVU12
+  59 001a FFF7FEFF 		bl	HAL_WWDG_Init
+  60              	.LVL0:
+  61              		.loc 1 45 6 view .LVU13
+  62 001e 00B9     		cbnz	r0, .L4
+  63              	.L1:
+  46:Core/Src/wwdg.c ****   {
+  47:Core/Src/wwdg.c ****     Error_Handler();
+  48:Core/Src/wwdg.c ****   }
+  49:Core/Src/wwdg.c ****   /* USER CODE BEGIN WWDG_Init 2 */
+  50:Core/Src/wwdg.c **** 
+  51:Core/Src/wwdg.c ****   /* USER CODE END WWDG_Init 2 */
+  52:Core/Src/wwdg.c **** 
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s 			page 3
+
+
+  53:Core/Src/wwdg.c **** }
+  64              		.loc 1 53 1 view .LVU14
+  65 0020 08BD     		pop	{r3, pc}
+  66              	.L4:
+  47:Core/Src/wwdg.c ****   }
+  67              		.loc 1 47 5 is_stmt 1 view .LVU15
+  68 0022 FFF7FEFF 		bl	Error_Handler
+  69              	.LVL1:
+  70              		.loc 1 53 1 is_stmt 0 view .LVU16
+  71 0026 FBE7     		b	.L1
+  72              	.L6:
+  73              		.align	2
+  74              	.L5:
+  75 0028 00000000 		.word	.LANCHOR0
+  76 002c 002C0040 		.word	1073753088
+  77              		.cfi_endproc
+  78              	.LFE65:
+  80              		.section	.text.HAL_WWDG_MspInit,"ax",%progbits
+  81              		.align	1
+  82              		.global	HAL_WWDG_MspInit
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  87              	HAL_WWDG_MspInit:
+  88              	.LVL2:
+  89              	.LFB66:
+  54:Core/Src/wwdg.c **** 
+  55:Core/Src/wwdg.c **** void HAL_WWDG_MspInit(WWDG_HandleTypeDef* wwdgHandle)
+  56:Core/Src/wwdg.c **** {
+  90              		.loc 1 56 1 is_stmt 1 view -0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 8
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              		@ link register save eliminated.
+  57:Core/Src/wwdg.c **** 
+  58:Core/Src/wwdg.c ****   if(wwdgHandle->Instance==WWDG)
+  95              		.loc 1 58 3 view .LVU18
+  96              		.loc 1 58 16 is_stmt 0 view .LVU19
+  97 0000 0268     		ldr	r2, [r0]
+  98              		.loc 1 58 5 view .LVU20
+  99 0002 094B     		ldr	r3, .L14
+ 100 0004 9A42     		cmp	r2, r3
+ 101 0006 00D0     		beq	.L13
+ 102 0008 7047     		bx	lr
+ 103              	.L13:
+  56:Core/Src/wwdg.c **** 
+ 104              		.loc 1 56 1 view .LVU21
+ 105 000a 82B0     		sub	sp, sp, #8
+ 106              	.LCFI1:
+ 107              		.cfi_def_cfa_offset 8
+  59:Core/Src/wwdg.c ****   {
+  60:Core/Src/wwdg.c ****   /* USER CODE BEGIN WWDG_MspInit 0 */
+  61:Core/Src/wwdg.c **** 
+  62:Core/Src/wwdg.c ****   /* USER CODE END WWDG_MspInit 0 */
+  63:Core/Src/wwdg.c ****     /* WWDG clock enable */
+  64:Core/Src/wwdg.c ****     __HAL_RCC_WWDG_CLK_ENABLE();
+ 108              		.loc 1 64 5 is_stmt 1 view .LVU22
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s 			page 4
+
+
+ 109              	.LBB2:
+ 110              		.loc 1 64 5 view .LVU23
+ 111              		.loc 1 64 5 view .LVU24
+ 112 000c 03F5F233 		add	r3, r3, #123904
+ 113 0010 DA69     		ldr	r2, [r3, #28]
+ 114 0012 42F40062 		orr	r2, r2, #2048
+ 115 0016 DA61     		str	r2, [r3, #28]
+ 116              		.loc 1 64 5 view .LVU25
+ 117 0018 DB69     		ldr	r3, [r3, #28]
+ 118 001a 03F40063 		and	r3, r3, #2048
+ 119 001e 0193     		str	r3, [sp, #4]
+ 120              		.loc 1 64 5 view .LVU26
+ 121 0020 019B     		ldr	r3, [sp, #4]
+ 122              	.LBE2:
+ 123              		.loc 1 64 5 view .LVU27
+  65:Core/Src/wwdg.c ****   /* USER CODE BEGIN WWDG_MspInit 1 */
+  66:Core/Src/wwdg.c **** 
+  67:Core/Src/wwdg.c ****   /* USER CODE END WWDG_MspInit 1 */
+  68:Core/Src/wwdg.c ****   }
+  69:Core/Src/wwdg.c **** }
+ 124              		.loc 1 69 1 is_stmt 0 view .LVU28
+ 125 0022 02B0     		add	sp, sp, #8
+ 126              	.LCFI2:
+ 127              		.cfi_def_cfa_offset 0
+ 128              		@ sp needed
+ 129 0024 7047     		bx	lr
+ 130              	.L15:
+ 131 0026 00BF     		.align	2
+ 132              	.L14:
+ 133 0028 002C0040 		.word	1073753088
+ 134              		.cfi_endproc
+ 135              	.LFE66:
+ 137              		.global	hwwdg
+ 138              		.section	.bss.hwwdg,"aw",%nobits
+ 139              		.align	2
+ 140              		.set	.LANCHOR0,. + 0
+ 143              	hwwdg:
+ 144 0000 00000000 		.space	20
+ 144      00000000 
+ 144      00000000 
+ 144      00000000 
+ 144      00000000 
+ 145              		.text
+ 146              	.Letext0:
+ 147              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 148              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 149              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 150              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_wwdg.h"
+ 151              		.file 6 "Core/Inc/main.h"
+ 152              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 153              		.file 8 "Core/Inc/wwdg.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 wwdg.c
+C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s:18     .text.MX_WWDG_Init:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s:24     .text.MX_WWDG_Init:00000000 MX_WWDG_Init
+C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s:75     .text.MX_WWDG_Init:00000028 $d
+C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s:81     .text.HAL_WWDG_MspInit:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s:87     .text.HAL_WWDG_MspInit:00000000 HAL_WWDG_MspInit
+C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s:133    .text.HAL_WWDG_MspInit:00000028 $d
+C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s:143    .bss.hwwdg:00000000 hwwdg
+C:\Users\Admin\AppData\Local\Temp\cc5Qwbtq.s:139    .bss.hwwdg:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_WWDG_Init
+Error_Handler

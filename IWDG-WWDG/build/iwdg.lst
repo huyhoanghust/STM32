@@ -1,0 +1,161 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"iwdg.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MX_IWDG_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	MX_IWDG_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	MX_IWDG_Init:
+  25              	.LFB65:
+  26              		.file 1 "Core/Src/iwdg.c"
+   1:Core/Src/iwdg.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/iwdg.c **** /**
+   3:Core/Src/iwdg.c ****   ******************************************************************************
+   4:Core/Src/iwdg.c ****   * @file    iwdg.c
+   5:Core/Src/iwdg.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/iwdg.c ****   *          of the IWDG instances.
+   7:Core/Src/iwdg.c ****   ******************************************************************************
+   8:Core/Src/iwdg.c ****   * @attention
+   9:Core/Src/iwdg.c ****   *
+  10:Core/Src/iwdg.c ****   * Copyright (c) 2022 STMicroelectronics.
+  11:Core/Src/iwdg.c ****   * All rights reserved.
+  12:Core/Src/iwdg.c ****   *
+  13:Core/Src/iwdg.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/iwdg.c ****   * in the root directory of this software component.
+  15:Core/Src/iwdg.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/iwdg.c ****   *
+  17:Core/Src/iwdg.c ****   ******************************************************************************
+  18:Core/Src/iwdg.c ****   */
+  19:Core/Src/iwdg.c **** /* USER CODE END Header */
+  20:Core/Src/iwdg.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/iwdg.c **** #include "iwdg.h"
+  22:Core/Src/iwdg.c **** 
+  23:Core/Src/iwdg.c **** /* USER CODE BEGIN 0 */
+  24:Core/Src/iwdg.c **** 
+  25:Core/Src/iwdg.c **** /* USER CODE END 0 */
+  26:Core/Src/iwdg.c **** 
+  27:Core/Src/iwdg.c **** IWDG_HandleTypeDef hiwdg;
+  28:Core/Src/iwdg.c **** 
+  29:Core/Src/iwdg.c **** /* IWDG init function */
+  30:Core/Src/iwdg.c **** void MX_IWDG_Init(void)
+  31:Core/Src/iwdg.c **** {
+  27              		.loc 1 31 1 view -0
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s 			page 2
+
+
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  32:Core/Src/iwdg.c **** 
+  33:Core/Src/iwdg.c ****   /* USER CODE BEGIN IWDG_Init 0 */
+  34:Core/Src/iwdg.c **** 
+  35:Core/Src/iwdg.c ****   /* USER CODE END IWDG_Init 0 */
+  36:Core/Src/iwdg.c **** 
+  37:Core/Src/iwdg.c ****   /* USER CODE BEGIN IWDG_Init 1 */
+  38:Core/Src/iwdg.c **** 
+  39:Core/Src/iwdg.c ****   /* USER CODE END IWDG_Init 1 */
+  40:Core/Src/iwdg.c ****   hiwdg.Instance = IWDG;
+  36              		.loc 1 40 3 view .LVU1
+  37              		.loc 1 40 18 is_stmt 0 view .LVU2
+  38 0002 0748     		ldr	r0, .L5
+  39 0004 074B     		ldr	r3, .L5+4
+  40 0006 0360     		str	r3, [r0]
+  41:Core/Src/iwdg.c ****   hiwdg.Init.Prescaler = IWDG_PRESCALER_256;
+  41              		.loc 1 41 3 is_stmt 1 view .LVU3
+  42              		.loc 1 41 24 is_stmt 0 view .LVU4
+  43 0008 0623     		movs	r3, #6
+  44 000a 4360     		str	r3, [r0, #4]
+  42:Core/Src/iwdg.c ****   hiwdg.Init.Reload = 312;
+  45              		.loc 1 42 3 is_stmt 1 view .LVU5
+  46              		.loc 1 42 21 is_stmt 0 view .LVU6
+  47 000c 4FF49C73 		mov	r3, #312
+  48 0010 8360     		str	r3, [r0, #8]
+  43:Core/Src/iwdg.c ****   if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
+  49              		.loc 1 43 3 is_stmt 1 view .LVU7
+  50              		.loc 1 43 7 is_stmt 0 view .LVU8
+  51 0012 FFF7FEFF 		bl	HAL_IWDG_Init
+  52              	.LVL0:
+  53              		.loc 1 43 6 view .LVU9
+  54 0016 00B9     		cbnz	r0, .L4
+  55              	.L1:
+  44:Core/Src/iwdg.c ****   {
+  45:Core/Src/iwdg.c ****     Error_Handler();
+  46:Core/Src/iwdg.c ****   }
+  47:Core/Src/iwdg.c ****   /* USER CODE BEGIN IWDG_Init 2 */
+  48:Core/Src/iwdg.c **** 
+  49:Core/Src/iwdg.c ****   /* USER CODE END IWDG_Init 2 */
+  50:Core/Src/iwdg.c **** 
+  51:Core/Src/iwdg.c **** }
+  56              		.loc 1 51 1 view .LVU10
+  57 0018 08BD     		pop	{r3, pc}
+  58              	.L4:
+  45:Core/Src/iwdg.c ****   }
+  59              		.loc 1 45 5 is_stmt 1 view .LVU11
+  60 001a FFF7FEFF 		bl	Error_Handler
+  61              	.LVL1:
+  62              		.loc 1 51 1 is_stmt 0 view .LVU12
+  63 001e FBE7     		b	.L1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s 			page 3
+
+
+  64              	.L6:
+  65              		.align	2
+  66              	.L5:
+  67 0020 00000000 		.word	.LANCHOR0
+  68 0024 00300040 		.word	1073754112
+  69              		.cfi_endproc
+  70              	.LFE65:
+  72              		.global	hiwdg
+  73              		.section	.bss.hiwdg,"aw",%nobits
+  74              		.align	2
+  75              		.set	.LANCHOR0,. + 0
+  78              	hiwdg:
+  79 0000 00000000 		.space	12
+  79      00000000 
+  79      00000000 
+  80              		.text
+  81              	.Letext0:
+  82              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+  83              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+  84              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+  85              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_iwdg.h"
+  86              		.file 6 "Core/Inc/main.h"
+  87              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+  88              		.file 8 "Core/Inc/iwdg.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 iwdg.c
+C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s:18     .text.MX_IWDG_Init:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s:24     .text.MX_IWDG_Init:00000000 MX_IWDG_Init
+C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s:67     .text.MX_IWDG_Init:00000020 $d
+C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s:78     .bss.hiwdg:00000000 hiwdg
+C:\Users\Admin\AppData\Local\Temp\ccCuK91V.s:74     .bss.hiwdg:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_IWDG_Init
+Error_Handler

@@ -20,7 +20,7 @@
 #include "main.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,9 +54,21 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+  uint8_t arr[4] = {0};
+  float f = 5.1;
+  uint32_t t = 0;
+// void display(uint8_t *data)
+// {
+//   uint8_t buffer[4];
+//   for(int i = 0; i < 4; i++)
+//   {
+//     sprintf(buffer[i], "%02X", data[i]);
+//   }
+// }
 /* USER CODE END 0 */
-uint8_t buffer[10];
+uint8_t Rx_buffer[10];
+uint8_t Tx_buffer[10] = "a";
+uint8_t x, y;
 /**
   * @brief  The application entry point.
   * @retval int
@@ -87,19 +99,22 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart1,buffer,1);
+  HAL_UART_Receive_IT(&huart1, Rx_buffer,1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,0);
-  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,0);
-
   while (1)
   {
-    HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
-    HAL_Delay(1000);
-    
+    // // for(int i = 0; i < 4; i++){
+    //   // HAL_UART_Transmit(&huart1, "arr[]", 5, 100);
+    //   HAL_UART_Transmit(&huart1, (&result + 0x30), 1, 100);
+    //   HAL_UART_Transmit(&huart1, "\r\n", 2, 100);
+    // //   HAL_Delay(100);
+    // // }
+    // // HAL_UART_Transmit(&huart1, "hello", 5, 100);
+    // HAL_Delay(3000);
   }
   /* USER CODE END 3 */
 }
@@ -199,6 +214,20 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+//moi khi nhan 1 ki tu thi xay ra ngat
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if(huart == &huart1)
+  {
+    //HAL_UART_Transmit(&huart1, Rx_buffer, (uint16_t)strlen(Rx_buffer), 500);
+    /*// phải khai báo lại hàm ngắt này để lần ngắt tiếp
+    được thực thi nếu không khai báo lại thì chỉ ngắt được
+    1 lần           (uint16_t)strlen(Rx_buffer)*/
+    //HAL_UART_Transmit(&huart1, Tx_buffer, (uint16_t)strlen(Tx_buffer), 100);
+    x++;
+    HAL_UART_Receive_IT(&huart1, Rx_buffer, 1);
+  }
+}
 
 /* USER CODE END 4 */
 
@@ -233,17 +262,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-  if(huart->Instance == huart1.Instance)
-  {
-    if(buffer[0] == 'a')
-    {
-      HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
-    }
-    /*// phải khai báo lại hàm ngắt này để lần ngắt tiếp
-    được thực thi nếu không khai báo lại thì chỉ ngắt được
-    1 lần*/
-    HAL_UART_Receive_IT(&huart1,buffer,1); 
-  }
-}

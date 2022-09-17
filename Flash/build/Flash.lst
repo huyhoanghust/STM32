@@ -1,0 +1,589 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"Flash.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Flash_Erase_Page,"ax",%progbits
+  18              		.align	1
+  19              		.global	Flash_Erase_Page
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	Flash_Erase_Page:
+  25              	.LVL0:
+  26              	.LFB68:
+  27              		.file 1 "Core/Src/Flash.c"
+   1:Core/Src/Flash.c **** #include "Flash.h"
+   2:Core/Src/Flash.c **** 
+   3:Core/Src/Flash.c **** 
+   4:Core/Src/Flash.c **** void Flash_Erase_Page(uint32_t address)
+   5:Core/Src/Flash.c **** {
+  28              		.loc 1 5 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 24
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 5 1 is_stmt 0 view .LVU1
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  38 0002 86B0     		sub	sp, sp, #24
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 32
+  41 0004 0446     		mov	r4, r0
+   6:Core/Src/Flash.c ****     HAL_FLASH_Unlock();
+  42              		.loc 1 6 5 is_stmt 1 view .LVU2
+  43 0006 FFF7FEFF 		bl	HAL_FLASH_Unlock
+  44              	.LVL1:
+   7:Core/Src/Flash.c ****     FLASH_EraseInitTypeDef EraseInitStruct; //initialize a struct 
+  45              		.loc 1 7 5 view .LVU3
+   8:Core/Src/Flash.c ****     EraseInitStruct.Banks = 1;  //STM32F103 has 1bank obtain 64pages              
+  46              		.loc 1 8 5 view .LVU4
+  47              		.loc 1 8 27 is_stmt 0 view .LVU5
+  48 000a 0123     		movs	r3, #1
+  49 000c 0393     		str	r3, [sp, #12]
+   9:Core/Src/Flash.c ****     EraseInitStruct.NbPages = 1;
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 2
+
+
+  50              		.loc 1 9 5 is_stmt 1 view .LVU6
+  51              		.loc 1 9 29 is_stmt 0 view .LVU7
+  52 000e 0593     		str	r3, [sp, #20]
+  10:Core/Src/Flash.c ****     EraseInitStruct.PageAddress = address;
+  53              		.loc 1 10 5 is_stmt 1 view .LVU8
+  54              		.loc 1 10 33 is_stmt 0 view .LVU9
+  55 0010 0494     		str	r4, [sp, #16]
+  11:Core/Src/Flash.c ****     EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES; 
+  56              		.loc 1 11 5 is_stmt 1 view .LVU10
+  57              		.loc 1 11 31 is_stmt 0 view .LVU11
+  58 0012 0023     		movs	r3, #0
+  59 0014 0293     		str	r3, [sp, #8]
+  12:Core/Src/Flash.c ****     uint32_t page_error;
+  60              		.loc 1 12 5 is_stmt 1 view .LVU12
+  13:Core/Src/Flash.c ****     HAL_FLASHEx_Erase(&EraseInitStruct, &page_error);
+  61              		.loc 1 13 5 view .LVU13
+  62 0016 01A9     		add	r1, sp, #4
+  63 0018 02A8     		add	r0, sp, #8
+  64 001a FFF7FEFF 		bl	HAL_FLASHEx_Erase
+  65              	.LVL2:
+  14:Core/Src/Flash.c ****     HAL_FLASH_Lock();
+  66              		.loc 1 14 5 view .LVU14
+  67 001e FFF7FEFF 		bl	HAL_FLASH_Lock
+  68              	.LVL3:
+  15:Core/Src/Flash.c **** }
+  69              		.loc 1 15 1 is_stmt 0 view .LVU15
+  70 0022 06B0     		add	sp, sp, #24
+  71              	.LCFI2:
+  72              		.cfi_def_cfa_offset 8
+  73              		@ sp needed
+  74 0024 10BD     		pop	{r4, pc}
+  75              		.loc 1 15 1 view .LVU16
+  76              		.cfi_endproc
+  77              	.LFE68:
+  79              		.section	.text.Flash_Write_Int,"ax",%progbits
+  80              		.align	1
+  81              		.global	Flash_Write_Int
+  82              		.syntax unified
+  83              		.thumb
+  84              		.thumb_func
+  86              	Flash_Write_Int:
+  87              	.LVL4:
+  88              	.LFB69:
+  16:Core/Src/Flash.c **** 
+  17:Core/Src/Flash.c **** void Flash_Write_Int(uint32_t address ,int value)
+  18:Core/Src/Flash.c **** {
+  89              		.loc 1 18 1 is_stmt 1 view -0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 0, uses_anonymous_args = 0
+  93              		.loc 1 18 1 is_stmt 0 view .LVU18
+  94 0000 38B5     		push	{r3, r4, r5, lr}
+  95              	.LCFI3:
+  96              		.cfi_def_cfa_offset 16
+  97              		.cfi_offset 3, -16
+  98              		.cfi_offset 4, -12
+  99              		.cfi_offset 5, -8
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 3
+
+
+ 100              		.cfi_offset 14, -4
+ 101 0002 0546     		mov	r5, r0
+ 102 0004 0C46     		mov	r4, r1
+  19:Core/Src/Flash.c ****     HAL_FLASH_Unlock();
+ 103              		.loc 1 19 5 is_stmt 1 view .LVU19
+ 104 0006 FFF7FEFF 		bl	HAL_FLASH_Unlock
+ 105              	.LVL5:
+  20:Core/Src/Flash.c ****     HAL_FLASH_Program(FLASH_TYPEPROGRAM_HALFWORD, address, value);
+ 106              		.loc 1 20 5 view .LVU20
+ 107 000a 2246     		mov	r2, r4
+ 108 000c E317     		asrs	r3, r4, #31
+ 109 000e 2946     		mov	r1, r5
+ 110 0010 0120     		movs	r0, #1
+ 111 0012 FFF7FEFF 		bl	HAL_FLASH_Program
+ 112              	.LVL6:
+  21:Core/Src/Flash.c ****     HAL_FLASH_Lock();
+ 113              		.loc 1 21 5 view .LVU21
+ 114 0016 FFF7FEFF 		bl	HAL_FLASH_Lock
+ 115              	.LVL7:
+  22:Core/Src/Flash.c **** }
+ 116              		.loc 1 22 1 is_stmt 0 view .LVU22
+ 117 001a 38BD     		pop	{r3, r4, r5, pc}
+ 118              		.loc 1 22 1 view .LVU23
+ 119              		.cfi_endproc
+ 120              	.LFE69:
+ 122              		.global	__aeabi_f2uiz
+ 123              		.section	.text.Flash_Write_Float,"ax",%progbits
+ 124              		.align	1
+ 125              		.global	Flash_Write_Float
+ 126              		.syntax unified
+ 127              		.thumb
+ 128              		.thumb_func
+ 130              	Flash_Write_Float:
+ 131              	.LVL8:
+ 132              	.LFB70:
+  23:Core/Src/Flash.c **** 
+  24:Core/Src/Flash.c **** // void Flash_Write_Float(uint32_t address ,float number, int afterpoint)
+  25:Core/Src/Flash.c **** // {
+  26:Core/Src/Flash.c **** //     // HAL_FLASH_Unlock();
+  27:Core/Src/Flash.c **** // 	// char string[10] = {0};
+  28:Core/Src/Flash.c **** // 	// int intnumber = (int)number;
+  29:Core/Src/Flash.c **** // 	// float diffnumber = number - (float)intnumber;
+  30:Core/Src/Flash.c **** // 	// int anotherintnumber = (int)(diffnumber * pow(10, afterpoint));
+  31:Core/Src/Flash.c **** // 	// sprintf(string, "%d.%d", intnumber, anotherintnumber);
+  32:Core/Src/Flash.c **** //     // len_float = strlen(string);
+  33:Core/Src/Flash.c **** //     // Flash_Write_String(address, (uint8_t*)string, strlen(string));
+  34:Core/Src/Flash.c **** //     // HAL_FLASH_Lock();
+  35:Core/Src/Flash.c **** // }
+  36:Core/Src/Flash.c **** 
+  37:Core/Src/Flash.c **** void Flash_Write_Float(uint32_t address ,float f)
+  38:Core/Src/Flash.c **** {
+ 133              		.loc 1 38 1 is_stmt 1 view -0
+ 134              		.cfi_startproc
+ 135              		@ args = 0, pretend = 0, frame = 8
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137              		.loc 1 38 1 is_stmt 0 view .LVU25
+ 138 0000 30B5     		push	{r4, r5, lr}
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 4
+
+
+ 139              	.LCFI4:
+ 140              		.cfi_def_cfa_offset 12
+ 141              		.cfi_offset 4, -12
+ 142              		.cfi_offset 5, -8
+ 143              		.cfi_offset 14, -4
+ 144 0002 83B0     		sub	sp, sp, #12
+ 145              	.LCFI5:
+ 146              		.cfi_def_cfa_offset 24
+ 147 0004 0446     		mov	r4, r0
+ 148 0006 0D46     		mov	r5, r1
+  39:Core/Src/Flash.c ****     HAL_FLASH_Unlock();
+ 149              		.loc 1 39 5 is_stmt 1 view .LVU26
+ 150 0008 FFF7FEFF 		bl	HAL_FLASH_Unlock
+ 151              	.LVL9:
+  40:Core/Src/Flash.c ****     uint8_t data[4];
+ 152              		.loc 1 40 5 view .LVU27
+  41:Core/Src/Flash.c ****     *(uint32_t *)data = f;
+ 153              		.loc 1 41 5 view .LVU28
+ 154              		.loc 1 41 23 is_stmt 0 view .LVU29
+ 155 000c 2846     		mov	r0, r5
+ 156 000e FFF7FEFF 		bl	__aeabi_f2uiz
+ 157              	.LVL10:
+ 158 0012 0246     		mov	r2, r0
+ 159 0014 0190     		str	r0, [sp, #4]
+  42:Core/Src/Flash.c ****     HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, *(uint32_t*)data);
+ 160              		.loc 1 42 5 is_stmt 1 view .LVU30
+ 161 0016 0023     		movs	r3, #0
+ 162 0018 2146     		mov	r1, r4
+ 163 001a 0220     		movs	r0, #2
+ 164 001c FFF7FEFF 		bl	HAL_FLASH_Program
+ 165              	.LVL11:
+  43:Core/Src/Flash.c ****     HAL_FLASH_Lock();
+ 166              		.loc 1 43 5 view .LVU31
+ 167 0020 FFF7FEFF 		bl	HAL_FLASH_Lock
+ 168              	.LVL12:
+  44:Core/Src/Flash.c **** }
+ 169              		.loc 1 44 1 is_stmt 0 view .LVU32
+ 170 0024 03B0     		add	sp, sp, #12
+ 171              	.LCFI6:
+ 172              		.cfi_def_cfa_offset 12
+ 173              		@ sp needed
+ 174 0026 30BD     		pop	{r4, r5, pc}
+ 175              		.loc 1 44 1 view .LVU33
+ 176              		.cfi_endproc
+ 177              	.LFE70:
+ 179              		.section	.text.Flash_Write_String,"ax",%progbits
+ 180              		.align	1
+ 181              		.global	Flash_Write_String
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 186              	Flash_Write_String:
+ 187              	.LVL13:
+ 188              	.LFB71:
+  45:Core/Src/Flash.c **** 
+  46:Core/Src/Flash.c **** void Flash_Write_String(uint32_t address, uint8_t *str, uint16_t len)
+  47:Core/Src/Flash.c **** {
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 5
+
+
+ 189              		.loc 1 47 1 is_stmt 1 view -0
+ 190              		.cfi_startproc
+ 191              		@ args = 0, pretend = 0, frame = 0
+ 192              		@ frame_needed = 0, uses_anonymous_args = 0
+ 193              		.loc 1 47 1 is_stmt 0 view .LVU35
+ 194 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 195              	.LCFI7:
+ 196              		.cfi_def_cfa_offset 24
+ 197              		.cfi_offset 3, -24
+ 198              		.cfi_offset 4, -20
+ 199              		.cfi_offset 5, -16
+ 200              		.cfi_offset 6, -12
+ 201              		.cfi_offset 7, -8
+ 202              		.cfi_offset 14, -4
+ 203 0002 0746     		mov	r7, r0
+ 204 0004 0D46     		mov	r5, r1
+ 205 0006 1646     		mov	r6, r2
+  48:Core/Src/Flash.c ****     HAL_FLASH_Unlock();
+ 206              		.loc 1 48 5 is_stmt 1 view .LVU36
+ 207 0008 FFF7FEFF 		bl	HAL_FLASH_Unlock
+ 208              	.LVL14:
+  49:Core/Src/Flash.c ****     uint16_t *pt = (uint16_t*)str; //value of pointer is 2 byte respectively 2 implement 
+ 209              		.loc 1 49 5 view .LVU37
+  50:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 210              		.loc 1 50 5 view .LVU38
+ 211              	.LBB2:
+ 212              		.loc 1 50 9 view .LVU39
+ 213              		.loc 1 50 18 is_stmt 0 view .LVU40
+ 214 000c 0024     		movs	r4, #0
+ 215              		.loc 1 50 5 view .LVU41
+ 216 000e 09E0     		b	.L8
+ 217              	.LVL15:
+ 218              	.L9:
+  51:Core/Src/Flash.c ****     {
+  52:Core/Src/Flash.c ****         HAL_FLASH_Program(FLASH_TYPEPROGRAM_HALFWORD, address +2*i,*pt);
+ 219              		.loc 1 52 9 is_stmt 1 discriminator 3 view .LVU42
+ 220 0010 35F8022B 		ldrh	r2, [r5], #2
+ 221              	.LVL16:
+ 222              		.loc 1 52 9 is_stmt 0 discriminator 3 view .LVU43
+ 223 0014 0023     		movs	r3, #0
+ 224 0016 07EB4401 		add	r1, r7, r4, lsl #1
+ 225 001a 0120     		movs	r0, #1
+ 226 001c FFF7FEFF 		bl	HAL_FLASH_Program
+ 227              	.LVL17:
+  53:Core/Src/Flash.c ****         pt++;
+ 228              		.loc 1 53 9 is_stmt 1 discriminator 3 view .LVU44
+  50:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 229              		.loc 1 50 37 discriminator 3 view .LVU45
+  50:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 230              		.loc 1 50 38 is_stmt 0 discriminator 3 view .LVU46
+ 231 0020 0134     		adds	r4, r4, #1
+ 232              	.LVL18:
+  50:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 233              		.loc 1 50 38 discriminator 3 view .LVU47
+ 234 0022 A4B2     		uxth	r4, r4
+ 235              	.LVL19:
+ 236              	.L8:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 6
+
+
+  50:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 237              		.loc 1 50 25 is_stmt 1 discriminator 1 view .LVU48
+  50:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 238              		.loc 1 50 34 is_stmt 0 discriminator 1 view .LVU49
+ 239 0024 731C     		adds	r3, r6, #1
+  50:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 240              		.loc 1 50 5 discriminator 1 view .LVU50
+ 241 0026 B4EB630F 		cmp	r4, r3, asr #1
+ 242 002a F1DB     		blt	.L9
+  50:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 243              		.loc 1 50 5 discriminator 1 view .LVU51
+ 244              	.LBE2:
+  54:Core/Src/Flash.c ****     }
+  55:Core/Src/Flash.c ****     HAL_FLASH_Lock();
+ 245              		.loc 1 55 5 is_stmt 1 view .LVU52
+ 246 002c FFF7FEFF 		bl	HAL_FLASH_Lock
+ 247              	.LVL20:
+  56:Core/Src/Flash.c **** }
+ 248              		.loc 1 56 1 is_stmt 0 view .LVU53
+ 249 0030 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 250              		.loc 1 56 1 view .LVU54
+ 251              		.cfi_endproc
+ 252              	.LFE71:
+ 254              		.section	.text.Flash_Write_Struct,"ax",%progbits
+ 255              		.align	1
+ 256              		.global	Flash_Write_Struct
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 261              	Flash_Write_Struct:
+ 262              	.LVL21:
+ 263              	.LFB72:
+  57:Core/Src/Flash.c **** 
+  58:Core/Src/Flash.c **** void Flash_Write_Struct(uint32_t address ,wifi_info data)
+  59:Core/Src/Flash.c **** {
+ 264              		.loc 1 59 1 is_stmt 1 view -0
+ 265              		.cfi_startproc
+ 266              		@ args = 64, pretend = 16, frame = 0
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 268              		.loc 1 59 1 is_stmt 0 view .LVU56
+ 269 0000 84B0     		sub	sp, sp, #16
+ 270              	.LCFI8:
+ 271              		.cfi_def_cfa_offset 16
+ 272 0002 08B5     		push	{r3, lr}
+ 273              	.LCFI9:
+ 274              		.cfi_def_cfa_offset 24
+ 275              		.cfi_offset 3, -24
+ 276              		.cfi_offset 14, -20
+ 277 0004 0DF10C0C 		add	ip, sp, #12
+ 278 0008 8CE80E00 		stm	ip, {r1, r2, r3}
+  60:Core/Src/Flash.c ****     Flash_Write_String(address, (uint8_t*)&data, sizeof(data));
+ 279              		.loc 1 60 5 is_stmt 1 view .LVU57
+ 280 000c 3C22     		movs	r2, #60
+ 281 000e 6146     		mov	r1, ip
+ 282 0010 FFF7FEFF 		bl	Flash_Write_String
+ 283              	.LVL22:
+  61:Core/Src/Flash.c **** }
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 7
+
+
+ 284              		.loc 1 61 1 is_stmt 0 view .LVU58
+ 285 0014 BDE80840 		pop	{r3, lr}
+ 286              	.LCFI10:
+ 287              		.cfi_restore 14
+ 288              		.cfi_restore 3
+ 289              		.cfi_def_cfa_offset 16
+ 290 0018 04B0     		add	sp, sp, #16
+ 291              	.LCFI11:
+ 292              		.cfi_def_cfa_offset 0
+ 293 001a 7047     		bx	lr
+ 294              		.cfi_endproc
+ 295              	.LFE72:
+ 297              		.section	.text.Flash_Read_Int,"ax",%progbits
+ 298              		.align	1
+ 299              		.global	Flash_Read_Int
+ 300              		.syntax unified
+ 301              		.thumb
+ 302              		.thumb_func
+ 304              	Flash_Read_Int:
+ 305              	.LVL23:
+ 306              	.LFB73:
+  62:Core/Src/Flash.c **** 
+  63:Core/Src/Flash.c **** 
+  64:Core/Src/Flash.c **** int Flash_Read_Int(uint32_t address)
+  65:Core/Src/Flash.c **** {
+ 307              		.loc 1 65 1 is_stmt 1 view -0
+ 308              		.cfi_startproc
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311              		@ link register save eliminated.
+  66:Core/Src/Flash.c ****     return *(__IO uint16_t *)(address); // convert read 4 bytes to read 2 bytes
+ 312              		.loc 1 66 5 view .LVU60
+ 313              		.loc 1 66 12 is_stmt 0 view .LVU61
+ 314 0000 0088     		ldrh	r0, [r0]
+ 315              	.LVL24:
+  67:Core/Src/Flash.c **** }
+ 316              		.loc 1 67 1 view .LVU62
+ 317 0002 80B2     		uxth	r0, r0
+ 318 0004 7047     		bx	lr
+ 319              		.cfi_endproc
+ 320              	.LFE73:
+ 322              		.section	.text.Flash_Read_Float,"ax",%progbits
+ 323              		.align	1
+ 324              		.global	Flash_Read_Float
+ 325              		.syntax unified
+ 326              		.thumb
+ 327              		.thumb_func
+ 329              	Flash_Read_Float:
+ 330              	.LVL25:
+ 331              	.LFB74:
+  68:Core/Src/Flash.c **** 
+  69:Core/Src/Flash.c **** float Flash_Read_Float(uint32_t address)
+  70:Core/Src/Flash.c **** {
+ 332              		.loc 1 70 1 is_stmt 1 view -0
+ 333              		.cfi_startproc
+ 334              		@ args = 0, pretend = 0, frame = 0
+ 335              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 8
+
+
+ 336              		@ link register save eliminated.
+  71:Core/Src/Flash.c ****     // char str[10] = {0};
+  72:Core/Src/Flash.c ****     // double f;
+  73:Core/Src/Flash.c ****     // Flash_Read_String(address, (uint8_t*)str, len_float);
+  74:Core/Src/Flash.c ****     // f = atof((char*)str);
+  75:Core/Src/Flash.c ****     // return (float)f;
+  76:Core/Src/Flash.c ****     uint32_t data = *(__IO uint32_t*)address;
+ 337              		.loc 1 76 5 view .LVU64
+ 338              		.loc 1 76 21 is_stmt 0 view .LVU65
+ 339 0000 0068     		ldr	r0, [r0]
+ 340              	.LVL26:
+  77:Core/Src/Flash.c ****     return *(float*)&data;
+ 341              		.loc 1 77 5 is_stmt 1 view .LVU66
+  78:Core/Src/Flash.c **** }
+ 342              		.loc 1 78 1 is_stmt 0 view .LVU67
+ 343 0002 7047     		bx	lr
+ 344              		.cfi_endproc
+ 345              	.LFE74:
+ 347              		.section	.text.Flash_Read_String,"ax",%progbits
+ 348              		.align	1
+ 349              		.global	Flash_Read_String
+ 350              		.syntax unified
+ 351              		.thumb
+ 352              		.thumb_func
+ 354              	Flash_Read_String:
+ 355              	.LVL27:
+ 356              	.LFB75:
+  79:Core/Src/Flash.c **** 
+  80:Core/Src/Flash.c **** void Flash_Read_String(uint32_t address, uint8_t *str, uint16_t len)
+  81:Core/Src/Flash.c **** {
+ 357              		.loc 1 81 1 is_stmt 1 view -0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 361              		@ link register save eliminated.
+  82:Core/Src/Flash.c ****     //read string from flash and store in str
+  83:Core/Src/Flash.c ****     uint16_t *pt = (uint16_t*)str; //value of pointer is 2 byte respectively 2 implement 
+ 362              		.loc 1 83 5 view .LVU69
+  84:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 363              		.loc 1 84 5 view .LVU70
+ 364              	.LBB3:
+ 365              		.loc 1 84 9 view .LVU71
+ 366              		.loc 1 84 18 is_stmt 0 view .LVU72
+ 367 0000 0023     		movs	r3, #0
+ 368              		.loc 1 84 5 view .LVU73
+ 369 0002 05E0     		b	.L16
+ 370              	.LVL28:
+ 371              	.L17:
+  85:Core/Src/Flash.c ****     {
+  86:Core/Src/Flash.c ****         *pt = *(__IO uint16_t *)(address+2*i);
+ 372              		.loc 1 86 9 is_stmt 1 discriminator 3 view .LVU74
+ 373              		.loc 1 86 15 is_stmt 0 discriminator 3 view .LVU75
+ 374 0004 30F813C0 		ldrh	ip, [r0, r3, lsl #1]
+ 375              		.loc 1 86 13 discriminator 3 view .LVU76
+ 376 0008 21F802CB 		strh	ip, [r1], #2	@ movhi
+ 377              	.LVL29:
+  87:Core/Src/Flash.c ****         pt++;
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 9
+
+
+ 378              		.loc 1 87 9 is_stmt 1 discriminator 3 view .LVU77
+  84:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 379              		.loc 1 84 37 discriminator 3 view .LVU78
+  84:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 380              		.loc 1 84 38 is_stmt 0 discriminator 3 view .LVU79
+ 381 000c 0133     		adds	r3, r3, #1
+ 382              	.LVL30:
+  84:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 383              		.loc 1 84 38 discriminator 3 view .LVU80
+ 384 000e 9BB2     		uxth	r3, r3
+ 385              	.LVL31:
+ 386              	.L16:
+  84:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 387              		.loc 1 84 25 is_stmt 1 discriminator 1 view .LVU81
+  84:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 388              		.loc 1 84 34 is_stmt 0 discriminator 1 view .LVU82
+ 389 0010 02F1010C 		add	ip, r2, #1
+  84:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 390              		.loc 1 84 5 discriminator 1 view .LVU83
+ 391 0014 B3EB6C0F 		cmp	r3, ip, asr #1
+ 392 0018 F4DB     		blt	.L17
+  84:Core/Src/Flash.c ****     for(uint16_t i = 0; i<(len+1)/2;i++)
+ 393              		.loc 1 84 5 discriminator 1 view .LVU84
+ 394              	.LBE3:
+  88:Core/Src/Flash.c ****     }
+  89:Core/Src/Flash.c **** }
+ 395              		.loc 1 89 1 view .LVU85
+ 396 001a 7047     		bx	lr
+ 397              		.cfi_endproc
+ 398              	.LFE75:
+ 400              		.section	.text.Flash_Read_Struct,"ax",%progbits
+ 401              		.align	1
+ 402              		.global	Flash_Read_Struct
+ 403              		.syntax unified
+ 404              		.thumb
+ 405              		.thumb_func
+ 407              	Flash_Read_Struct:
+ 408              	.LVL32:
+ 409              	.LFB76:
+  90:Core/Src/Flash.c **** 
+  91:Core/Src/Flash.c **** // void Flash_Read_Struct(uint32_t address ,wifi_info data)
+  92:Core/Src/Flash.c **** // {
+  93:Core/Src/Flash.c **** //     Flash_Read_String(address, (uint8_t*)&data, sizeof(data));
+  94:Core/Src/Flash.c **** // }
+  95:Core/Src/Flash.c **** void Flash_Read_Struct(uint32_t address ,uint8_t *data)
+  96:Core/Src/Flash.c **** {
+ 410              		.loc 1 96 1 is_stmt 1 view -0
+ 411              		.cfi_startproc
+ 412              		@ args = 0, pretend = 0, frame = 0
+ 413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 414              		.loc 1 96 1 is_stmt 0 view .LVU87
+ 415 0000 08B5     		push	{r3, lr}
+ 416              	.LCFI12:
+ 417              		.cfi_def_cfa_offset 8
+ 418              		.cfi_offset 3, -8
+ 419              		.cfi_offset 14, -4
+  97:Core/Src/Flash.c ****     Flash_Read_String(address, data, sizeof(wifi_info));
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 10
+
+
+ 420              		.loc 1 97 5 is_stmt 1 view .LVU88
+ 421 0002 3C22     		movs	r2, #60
+ 422 0004 FFF7FEFF 		bl	Flash_Read_String
+ 423              	.LVL33:
+  98:Core/Src/Flash.c **** }...
+ 424              		.loc 1 98 1 is_stmt 0 view .LVU89
+ 425 0008 08BD     		pop	{r3, pc}
+ 426              		.cfi_endproc
+ 427              	.LFE76:
+ 429              		.text
+ 430              	.Letext0:
+ 431              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 432              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 433              		.file 4 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h"
+ 434              		.file 5 "Core/Inc/Flash.h"
+ 435              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Flash.c
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:18     .text.Flash_Erase_Page:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:24     .text.Flash_Erase_Page:00000000 Flash_Erase_Page
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:80     .text.Flash_Write_Int:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:86     .text.Flash_Write_Int:00000000 Flash_Write_Int
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:124    .text.Flash_Write_Float:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:130    .text.Flash_Write_Float:00000000 Flash_Write_Float
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:180    .text.Flash_Write_String:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:186    .text.Flash_Write_String:00000000 Flash_Write_String
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:255    .text.Flash_Write_Struct:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:261    .text.Flash_Write_Struct:00000000 Flash_Write_Struct
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:298    .text.Flash_Read_Int:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:304    .text.Flash_Read_Int:00000000 Flash_Read_Int
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:323    .text.Flash_Read_Float:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:329    .text.Flash_Read_Float:00000000 Flash_Read_Float
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:348    .text.Flash_Read_String:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:354    .text.Flash_Read_String:00000000 Flash_Read_String
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:401    .text.Flash_Read_Struct:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cceOUH9m.s:407    .text.Flash_Read_Struct:00000000 Flash_Read_Struct
+
+UNDEFINED SYMBOLS
+HAL_FLASH_Unlock
+HAL_FLASHEx_Erase
+HAL_FLASH_Lock
+HAL_FLASH_Program
+__aeabi_f2uiz
