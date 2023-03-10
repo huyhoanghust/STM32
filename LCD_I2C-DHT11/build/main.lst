@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
   30:Core/Src/main.c **** /* USER CODE END Includes */
   31:Core/Src/main.c **** 
   32:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 2
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 2
 
 
   33:Core/Src/main.c **** /* USER CODE BEGIN PTD */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
   87:Core/Src/main.c ****   /* Configure the system clock */
   88:Core/Src/main.c ****   SystemClock_Config();
   89:Core/Src/main.c **** 
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 3
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 3
 
 
   90:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
@@ -131,8 +131,8 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
   97:Core/Src/main.c ****   MX_TIM1_Init();
   98:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
   99:Core/Src/main.c ****   HAL_TIM_Base_Start(&htim1);
- 100:Core/Src/main.c ****   lcd_init();
- 101:Core/Src/main.c ****   lcd_clear_display();
+ 100:Core/Src/main.c ****   // lcd_init();
+ 101:Core/Src/main.c ****   // lcd_clear_display();
  102:Core/Src/main.c ****   /* USER CODE END 2 */
  103:Core/Src/main.c **** 
  104:Core/Src/main.c ****   /* Infinite loop */
@@ -157,10 +157,10 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
  123:Core/Src/main.c **** 
  124:Core/Src/main.c ****     Temperature = (float)TEMP;
  125:Core/Src/main.c ****     Humidity = (float)RH;
- 126:Core/Src/main.c ****     lcd_send_float_number(Temperature, 2);
- 127:Core/Src/main.c ****     lcd_goto_XY(2,0);
- 128:Core/Src/main.c ****     lcd_send_float_number(Humidity, 2);
- 129:Core/Src/main.c ****     HAL_Delay(2000);
+ 126:Core/Src/main.c ****     // lcd_send_float_number(Temperature, 2);
+ 127:Core/Src/main.c ****     // lcd_goto_XY(2,0);
+ 128:Core/Src/main.c ****     // lcd_send_float_number(Humidity, 2);
+ 129:Core/Src/main.c ****     // HAL_Delay(2000);
  130:Core/Src/main.c ****   }
  131:Core/Src/main.c ****   /* USER CODE END 3 */
  132:Core/Src/main.c **** }
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
  144:Core/Src/main.c ****   * in the RCC_OscInitTypeDef structure.
  145:Core/Src/main.c ****   */
  146:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 4
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 4
 
 
  147:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
    6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
    7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
    8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 5
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 5
 
 
    9:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
   63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
   65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 6
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 6
 
 
   66:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
  120:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
  121:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
  122:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 7
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 7
 
 
  123:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
   68              		@ frame_needed = 0, uses_anonymous_args = 0
   69 0000 00B5     		push	{lr}
   70              	.LCFI0:
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 8
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 8
 
 
   71              		.cfi_def_cfa_offset 4
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
  152:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
  110              		.loc 1 152 3 is_stmt 1 view .LVU23
  152:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 9
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 9
 
 
  111              		.loc 1 152 32 is_stmt 0 view .LVU24
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
  148 0056 11B0     		add	sp, sp, #68
  149              	.LCFI2:
  150              		.cfi_remember_state
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 10
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 10
 
 
  151              		.cfi_def_cfa_offset 4
@@ -598,283 +598,247 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 1
  199              		.loc 1 97 3 view .LVU49
  200 0012 FFF7FEFF 		bl	MX_TIM1_Init
  201              	.LVL9:
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 11
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 11
 
 
-  99:Core/Src/main.c ****   lcd_init();
+  99:Core/Src/main.c ****   // lcd_init();
  202              		.loc 1 99 3 view .LVU50
- 203 0016 2148     		ldr	r0, .L12
+ 203 0016 1648     		ldr	r0, .L12
  204 0018 FFF7FEFF 		bl	HAL_TIM_Base_Start
  205              	.LVL10:
- 100:Core/Src/main.c ****   lcd_clear_display();
- 206              		.loc 1 100 3 view .LVU51
- 207 001c FFF7FEFF 		bl	lcd_init
- 208              	.LVL11:
- 101:Core/Src/main.c ****   /* USER CODE END 2 */
- 209              		.loc 1 101 3 view .LVU52
- 210 0020 FFF7FEFF 		bl	lcd_clear_display
- 211              	.LVL12:
- 212              	.L10:
+ 206              	.L10:
  106:Core/Src/main.c ****   {
- 213              		.loc 1 106 3 discriminator 1 view .LVU53
+ 207              		.loc 1 106 3 discriminator 1 view .LVU51
  113:Core/Src/main.c ****     Presence = DHT11_Check_Response();
- 214              		.loc 1 113 5 discriminator 1 view .LVU54
- 215 0024 FFF7FEFF 		bl	DHT11_Start
- 216              	.LVL13:
+ 208              		.loc 1 113 5 discriminator 1 view .LVU52
+ 209 001c FFF7FEFF 		bl	DHT11_Start
+ 210              	.LVL11:
  114:Core/Src/main.c ****     Rh_byte1 = DHT11_Read();
- 217              		.loc 1 114 5 discriminator 1 view .LVU55
+ 211              		.loc 1 114 5 discriminator 1 view .LVU53
  114:Core/Src/main.c ****     Rh_byte1 = DHT11_Read();
- 218              		.loc 1 114 16 is_stmt 0 discriminator 1 view .LVU56
- 219 0028 FFF7FEFF 		bl	DHT11_Check_Response
- 220              	.LVL14:
+ 212              		.loc 1 114 16 is_stmt 0 discriminator 1 view .LVU54
+ 213 0020 FFF7FEFF 		bl	DHT11_Check_Response
+ 214              	.LVL12:
  114:Core/Src/main.c ****     Rh_byte1 = DHT11_Read();
- 221              		.loc 1 114 14 discriminator 1 view .LVU57
- 222 002c 1C4B     		ldr	r3, .L12+4
- 223 002e 1870     		strb	r0, [r3]
+ 215              		.loc 1 114 14 discriminator 1 view .LVU55
+ 216 0024 134B     		ldr	r3, .L12+4
+ 217 0026 1870     		strb	r0, [r3]
  115:Core/Src/main.c ****     Rh_byte2 = DHT11_Read();
- 224              		.loc 1 115 5 is_stmt 1 discriminator 1 view .LVU58
+ 218              		.loc 1 115 5 is_stmt 1 discriminator 1 view .LVU56
  115:Core/Src/main.c ****     Rh_byte2 = DHT11_Read();
- 225              		.loc 1 115 16 is_stmt 0 discriminator 1 view .LVU59
- 226 0030 FFF7FEFF 		bl	DHT11_Read
- 227              	.LVL15:
+ 219              		.loc 1 115 16 is_stmt 0 discriminator 1 view .LVU57
+ 220 0028 FFF7FEFF 		bl	DHT11_Read
+ 221              	.LVL13:
  115:Core/Src/main.c ****     Rh_byte2 = DHT11_Read();
- 228              		.loc 1 115 14 discriminator 1 view .LVU60
- 229 0034 1B4C     		ldr	r4, .L12+8
- 230 0036 2070     		strb	r0, [r4]
+ 222              		.loc 1 115 14 discriminator 1 view .LVU58
+ 223 002c 124C     		ldr	r4, .L12+8
+ 224 002e 2070     		strb	r0, [r4]
  116:Core/Src/main.c ****     Temp_byte1 = DHT11_Read();
- 231              		.loc 1 116 5 is_stmt 1 discriminator 1 view .LVU61
+ 225              		.loc 1 116 5 is_stmt 1 discriminator 1 view .LVU59
  116:Core/Src/main.c ****     Temp_byte1 = DHT11_Read();
- 232              		.loc 1 116 16 is_stmt 0 discriminator 1 view .LVU62
- 233 0038 FFF7FEFF 		bl	DHT11_Read
- 234              	.LVL16:
+ 226              		.loc 1 116 16 is_stmt 0 discriminator 1 view .LVU60
+ 227 0030 FFF7FEFF 		bl	DHT11_Read
+ 228              	.LVL14:
  116:Core/Src/main.c ****     Temp_byte1 = DHT11_Read();
- 235              		.loc 1 116 14 discriminator 1 view .LVU63
- 236 003c 1A4B     		ldr	r3, .L12+12
- 237 003e 1870     		strb	r0, [r3]
+ 229              		.loc 1 116 14 discriminator 1 view .LVU61
+ 230 0034 114B     		ldr	r3, .L12+12
+ 231 0036 1870     		strb	r0, [r3]
  117:Core/Src/main.c ****     Temp_byte2 = DHT11_Read();
- 238              		.loc 1 117 5 is_stmt 1 discriminator 1 view .LVU64
+ 232              		.loc 1 117 5 is_stmt 1 discriminator 1 view .LVU62
  117:Core/Src/main.c ****     Temp_byte2 = DHT11_Read();
- 239              		.loc 1 117 18 is_stmt 0 discriminator 1 view .LVU65
- 240 0040 FFF7FEFF 		bl	DHT11_Read
- 241              	.LVL17:
+ 233              		.loc 1 117 18 is_stmt 0 discriminator 1 view .LVU63
+ 234 0038 FFF7FEFF 		bl	DHT11_Read
+ 235              	.LVL15:
  117:Core/Src/main.c ****     Temp_byte2 = DHT11_Read();
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 12
+ 236              		.loc 1 117 16 discriminator 1 view .LVU64
+ 237 003c 104D     		ldr	r5, .L12+16
+ 238 003e 2870     		strb	r0, [r5]
+ 118:Core/Src/main.c ****     SUM = DHT11_Read();
+ 239              		.loc 1 118 5 is_stmt 1 discriminator 1 view .LVU65
+ 118:Core/Src/main.c ****     SUM = DHT11_Read();
+ 240              		.loc 1 118 18 is_stmt 0 discriminator 1 view .LVU66
+ 241 0040 FFF7FEFF 		bl	DHT11_Read
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 12
 
 
- 242              		.loc 1 117 16 discriminator 1 view .LVU66
- 243 0044 194D     		ldr	r5, .L12+16
- 244 0046 2870     		strb	r0, [r5]
+ 242              	.LVL16:
  118:Core/Src/main.c ****     SUM = DHT11_Read();
- 245              		.loc 1 118 5 is_stmt 1 discriminator 1 view .LVU67
- 118:Core/Src/main.c ****     SUM = DHT11_Read();
- 246              		.loc 1 118 18 is_stmt 0 discriminator 1 view .LVU68
- 247 0048 FFF7FEFF 		bl	DHT11_Read
- 248              	.LVL18:
- 118:Core/Src/main.c ****     SUM = DHT11_Read();
- 249              		.loc 1 118 16 discriminator 1 view .LVU69
- 250 004c 184B     		ldr	r3, .L12+20
- 251 004e 1870     		strb	r0, [r3]
+ 243              		.loc 1 118 16 discriminator 1 view .LVU67
+ 244 0044 0F4B     		ldr	r3, .L12+20
+ 245 0046 1870     		strb	r0, [r3]
  119:Core/Src/main.c **** 
- 252              		.loc 1 119 5 is_stmt 1 discriminator 1 view .LVU70
+ 246              		.loc 1 119 5 is_stmt 1 discriminator 1 view .LVU68
  119:Core/Src/main.c **** 
- 253              		.loc 1 119 11 is_stmt 0 discriminator 1 view .LVU71
- 254 0050 FFF7FEFF 		bl	DHT11_Read
- 255              	.LVL19:
+ 247              		.loc 1 119 11 is_stmt 0 discriminator 1 view .LVU69
+ 248 0048 FFF7FEFF 		bl	DHT11_Read
+ 249              	.LVL17:
  119:Core/Src/main.c **** 
- 256              		.loc 1 119 9 discriminator 1 view .LVU72
- 257 0054 174B     		ldr	r3, .L12+24
- 258 0056 1880     		strh	r0, [r3]	@ movhi
+ 250              		.loc 1 119 9 discriminator 1 view .LVU70
+ 251 004c 0E4B     		ldr	r3, .L12+24
+ 252 004e 1880     		strh	r0, [r3]	@ movhi
  121:Core/Src/main.c ****     RH = Rh_byte1;
- 259              		.loc 1 121 5 is_stmt 1 discriminator 1 view .LVU73
+ 253              		.loc 1 121 5 is_stmt 1 discriminator 1 view .LVU71
  121:Core/Src/main.c ****     RH = Rh_byte1;
- 260              		.loc 1 121 10 is_stmt 0 discriminator 1 view .LVU74
- 261 0058 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
- 262 005a 174B     		ldr	r3, .L12+28
- 263 005c 1880     		strh	r0, [r3]	@ movhi
+ 254              		.loc 1 121 10 is_stmt 0 discriminator 1 view .LVU72
+ 255 0050 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
+ 256 0052 0E4B     		ldr	r3, .L12+28
+ 257 0054 1880     		strh	r0, [r3]	@ movhi
  122:Core/Src/main.c **** 
- 264              		.loc 1 122 5 is_stmt 1 discriminator 1 view .LVU75
+ 258              		.loc 1 122 5 is_stmt 1 discriminator 1 view .LVU73
  122:Core/Src/main.c **** 
- 265              		.loc 1 122 8 is_stmt 0 discriminator 1 view .LVU76
- 266 005e 2578     		ldrb	r5, [r4]	@ zero_extendqisi2
- 267 0060 164B     		ldr	r3, .L12+32
- 268 0062 1D80     		strh	r5, [r3]	@ movhi
+ 259              		.loc 1 122 8 is_stmt 0 discriminator 1 view .LVU74
+ 260 0056 2478     		ldrb	r4, [r4]	@ zero_extendqisi2
+ 261 0058 0D4B     		ldr	r3, .L12+32
+ 262 005a 1C80     		strh	r4, [r3]	@ movhi
  124:Core/Src/main.c ****     Humidity = (float)RH;
- 269              		.loc 1 124 5 is_stmt 1 discriminator 1 view .LVU77
+ 263              		.loc 1 124 5 is_stmt 1 discriminator 1 view .LVU75
  124:Core/Src/main.c ****     Humidity = (float)RH;
- 270              		.loc 1 124 19 is_stmt 0 discriminator 1 view .LVU78
- 271 0064 FFF7FEFF 		bl	__aeabi_ui2f
- 272              	.LVL20:
- 273 0068 0446     		mov	r4, r0
+ 264              		.loc 1 124 19 is_stmt 0 discriminator 1 view .LVU76
+ 265 005c FFF7FEFF 		bl	__aeabi_ui2f
+ 266              	.LVL18:
  124:Core/Src/main.c ****     Humidity = (float)RH;
- 274              		.loc 1 124 17 discriminator 1 view .LVU79
- 275 006a 154B     		ldr	r3, .L12+36
- 276 006c 1860     		str	r0, [r3]	@ float
- 125:Core/Src/main.c ****     lcd_send_float_number(Temperature, 2);
- 277              		.loc 1 125 5 is_stmt 1 discriminator 1 view .LVU80
- 125:Core/Src/main.c ****     lcd_send_float_number(Temperature, 2);
- 278              		.loc 1 125 16 is_stmt 0 discriminator 1 view .LVU81
- 279 006e 2846     		mov	r0, r5
- 280 0070 FFF7FEFF 		bl	__aeabi_ui2f
- 281              	.LVL21:
- 125:Core/Src/main.c ****     lcd_send_float_number(Temperature, 2);
- 282              		.loc 1 125 14 discriminator 1 view .LVU82
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 13
-
-
- 283 0074 134D     		ldr	r5, .L12+40
- 284 0076 2860     		str	r0, [r5]	@ float
- 126:Core/Src/main.c ****     lcd_goto_XY(2,0);
- 285              		.loc 1 126 5 is_stmt 1 discriminator 1 view .LVU83
- 286 0078 0221     		movs	r1, #2
- 287 007a 2046     		mov	r0, r4
- 288 007c FFF7FEFF 		bl	lcd_send_float_number
- 289              	.LVL22:
- 127:Core/Src/main.c ****     lcd_send_float_number(Humidity, 2);
- 290              		.loc 1 127 5 discriminator 1 view .LVU84
- 291 0080 0021     		movs	r1, #0
- 292 0082 0220     		movs	r0, #2
- 293 0084 FFF7FEFF 		bl	lcd_goto_XY
- 294              	.LVL23:
- 128:Core/Src/main.c ****     HAL_Delay(2000);
- 295              		.loc 1 128 5 discriminator 1 view .LVU85
- 296 0088 0221     		movs	r1, #2
- 297 008a 2868     		ldr	r0, [r5]	@ float
- 298 008c FFF7FEFF 		bl	lcd_send_float_number
- 299              	.LVL24:
- 129:Core/Src/main.c ****   }
- 300              		.loc 1 129 5 discriminator 1 view .LVU86
- 301 0090 4FF4FA60 		mov	r0, #2000
- 302 0094 FFF7FEFF 		bl	HAL_Delay
- 303              	.LVL25:
+ 267              		.loc 1 124 17 discriminator 1 view .LVU77
+ 268 0060 0C4B     		ldr	r3, .L12+36
+ 269 0062 1860     		str	r0, [r3]	@ float
+ 125:Core/Src/main.c ****     // lcd_send_float_number(Temperature, 2);
+ 270              		.loc 1 125 5 is_stmt 1 discriminator 1 view .LVU78
+ 125:Core/Src/main.c ****     // lcd_send_float_number(Temperature, 2);
+ 271              		.loc 1 125 16 is_stmt 0 discriminator 1 view .LVU79
+ 272 0064 2046     		mov	r0, r4
+ 273 0066 FFF7FEFF 		bl	__aeabi_ui2f
+ 274              	.LVL19:
+ 125:Core/Src/main.c ****     // lcd_send_float_number(Temperature, 2);
+ 275              		.loc 1 125 14 discriminator 1 view .LVU80
+ 276 006a 0B4B     		ldr	r3, .L12+40
+ 277 006c 1860     		str	r0, [r3]	@ float
  106:Core/Src/main.c ****   {
- 304              		.loc 1 106 9 discriminator 1 view .LVU87
- 305 0098 C4E7     		b	.L10
- 306              	.L13:
- 307 009a 00BF     		.align	2
- 308              	.L12:
- 309 009c 00000000 		.word	htim1
- 310 00a0 00000000 		.word	.LANCHOR0
- 311 00a4 00000000 		.word	.LANCHOR1
- 312 00a8 00000000 		.word	.LANCHOR2
- 313 00ac 00000000 		.word	.LANCHOR3
- 314 00b0 00000000 		.word	.LANCHOR4
- 315 00b4 00000000 		.word	.LANCHOR5
- 316 00b8 00000000 		.word	.LANCHOR6
- 317 00bc 00000000 		.word	.LANCHOR7
- 318 00c0 00000000 		.word	.LANCHOR8
- 319 00c4 00000000 		.word	.LANCHOR9
- 320              		.cfi_endproc
- 321              	.LFE68:
- 323              		.global	Presence
- 324              		.global	Humidity
- 325              		.global	Temperature
- 326              		.global	TEMP
- 327              		.global	RH
- 328              		.global	SUM
- 329              		.global	Temp_byte2
- 330              		.global	Temp_byte1
- 331              		.global	Rh_byte2
- 332              		.global	Rh_byte1
- 333              		.section	.bss.Humidity,"aw",%nobits
- 334              		.align	2
- 335              		.set	.LANCHOR9,. + 0
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 14
+ 278              		.loc 1 106 9 is_stmt 1 discriminator 1 view .LVU81
+ 279 006e D5E7     		b	.L10
+ 280              	.L13:
+ 281              		.align	2
+ 282              	.L12:
+ 283 0070 00000000 		.word	htim1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 13
 
 
- 338              	Humidity:
- 339 0000 00000000 		.space	4
- 340              		.section	.bss.Presence,"aw",%nobits
- 341              		.set	.LANCHOR0,. + 0
- 344              	Presence:
- 345 0000 00       		.space	1
- 346              		.section	.bss.RH,"aw",%nobits
+ 284 0074 00000000 		.word	.LANCHOR0
+ 285 0078 00000000 		.word	.LANCHOR1
+ 286 007c 00000000 		.word	.LANCHOR2
+ 287 0080 00000000 		.word	.LANCHOR3
+ 288 0084 00000000 		.word	.LANCHOR4
+ 289 0088 00000000 		.word	.LANCHOR5
+ 290 008c 00000000 		.word	.LANCHOR6
+ 291 0090 00000000 		.word	.LANCHOR7
+ 292 0094 00000000 		.word	.LANCHOR8
+ 293 0098 00000000 		.word	.LANCHOR9
+ 294              		.cfi_endproc
+ 295              	.LFE68:
+ 297              		.global	Presence
+ 298              		.global	Humidity
+ 299              		.global	Temperature
+ 300              		.global	TEMP
+ 301              		.global	RH
+ 302              		.global	SUM
+ 303              		.global	Temp_byte2
+ 304              		.global	Temp_byte1
+ 305              		.global	Rh_byte2
+ 306              		.global	Rh_byte1
+ 307              		.section	.bss.Humidity,"aw",%nobits
+ 308              		.align	2
+ 309              		.set	.LANCHOR9,. + 0
+ 312              	Humidity:
+ 313 0000 00000000 		.space	4
+ 314              		.section	.bss.Presence,"aw",%nobits
+ 315              		.set	.LANCHOR0,. + 0
+ 318              	Presence:
+ 319 0000 00       		.space	1
+ 320              		.section	.bss.RH,"aw",%nobits
+ 321              		.align	1
+ 322              		.set	.LANCHOR7,. + 0
+ 325              	RH:
+ 326 0000 0000     		.space	2
+ 327              		.section	.bss.Rh_byte1,"aw",%nobits
+ 328              		.set	.LANCHOR1,. + 0
+ 331              	Rh_byte1:
+ 332 0000 00       		.space	1
+ 333              		.section	.bss.Rh_byte2,"aw",%nobits
+ 334              		.set	.LANCHOR2,. + 0
+ 337              	Rh_byte2:
+ 338 0000 00       		.space	1
+ 339              		.section	.bss.SUM,"aw",%nobits
+ 340              		.align	1
+ 341              		.set	.LANCHOR5,. + 0
+ 344              	SUM:
+ 345 0000 0000     		.space	2
+ 346              		.section	.bss.TEMP,"aw",%nobits
  347              		.align	1
- 348              		.set	.LANCHOR7,. + 0
- 351              	RH:
+ 348              		.set	.LANCHOR6,. + 0
+ 351              	TEMP:
  352 0000 0000     		.space	2
- 353              		.section	.bss.Rh_byte1,"aw",%nobits
- 354              		.set	.LANCHOR1,. + 0
- 357              	Rh_byte1:
+ 353              		.section	.bss.Temp_byte1,"aw",%nobits
+ 354              		.set	.LANCHOR3,. + 0
+ 357              	Temp_byte1:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 14
+
+
  358 0000 00       		.space	1
- 359              		.section	.bss.Rh_byte2,"aw",%nobits
- 360              		.set	.LANCHOR2,. + 0
- 363              	Rh_byte2:
+ 359              		.section	.bss.Temp_byte2,"aw",%nobits
+ 360              		.set	.LANCHOR4,. + 0
+ 363              	Temp_byte2:
  364 0000 00       		.space	1
- 365              		.section	.bss.SUM,"aw",%nobits
- 366              		.align	1
- 367              		.set	.LANCHOR5,. + 0
- 370              	SUM:
- 371 0000 0000     		.space	2
- 372              		.section	.bss.TEMP,"aw",%nobits
- 373              		.align	1
- 374              		.set	.LANCHOR6,. + 0
- 377              	TEMP:
- 378 0000 0000     		.space	2
- 379              		.section	.bss.Temp_byte1,"aw",%nobits
- 380              		.set	.LANCHOR3,. + 0
- 383              	Temp_byte1:
- 384 0000 00       		.space	1
- 385              		.section	.bss.Temp_byte2,"aw",%nobits
- 386              		.set	.LANCHOR4,. + 0
- 389              	Temp_byte2:
- 390 0000 00       		.space	1
- 391              		.section	.bss.Temperature,"aw",%nobits
- 392              		.align	2
- 393              		.set	.LANCHOR8,. + 0
- 396              	Temperature:
- 397 0000 00000000 		.space	4
- 398              		.text
- 399              	.Letext0:
- 400              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
- 401              		.file 4 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
- 402              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 403              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
- 404              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h"
- 405              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h"
- 406              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
- 407              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
- 408              		.file 11 "Core/Inc/tim.h"
- 409              		.file 12 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
- 410              		.file 13 "Core/Inc/gpio.h"
- 411              		.file 14 "Core/Inc/i2c.h"
- 412              		.file 15 "Core/Inc/i2c-lcd.h"
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 15
-
-
- 413              		.file 16 "Core/Inc/dht11.h"
- 414              		.file 17 "<built-in>"
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s 			page 16
+ 365              		.section	.bss.Temperature,"aw",%nobits
+ 366              		.align	2
+ 367              		.set	.LANCHOR8,. + 0
+ 370              	Temperature:
+ 371 0000 00000000 		.space	4
+ 372              		.text
+ 373              	.Letext0:
+ 374              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 375              		.file 4 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 376              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 377              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 378              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h"
+ 379              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h"
+ 380              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 381              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ 382              		.file 11 "Core/Inc/tim.h"
+ 383              		.file 12 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ 384              		.file 13 "Core/Inc/gpio.h"
+ 385              		.file 14 "Core/Inc/i2c.h"
+ 386              		.file 15 "Core/Inc/dht11.h"
+ 387              		.file 16 "<built-in>"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:18     .text.Error_Handler:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:24     .text.Error_Handler:00000000 Error_Handler
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:57     .text.SystemClock_Config:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:63     .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:169    .text.main:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:175    .text.main:00000000 main
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:309    .text.main:0000009c $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:344    .bss.Presence:00000000 Presence
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:338    .bss.Humidity:00000000 Humidity
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:396    .bss.Temperature:00000000 Temperature
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:377    .bss.TEMP:00000000 TEMP
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:351    .bss.RH:00000000 RH
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:370    .bss.SUM:00000000 SUM
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:389    .bss.Temp_byte2:00000000 Temp_byte2
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:383    .bss.Temp_byte1:00000000 Temp_byte1
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:363    .bss.Rh_byte2:00000000 Rh_byte2
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:357    .bss.Rh_byte1:00000000 Rh_byte1
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:334    .bss.Humidity:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:345    .bss.Presence:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:347    .bss.RH:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:358    .bss.Rh_byte1:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:364    .bss.Rh_byte2:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:366    .bss.SUM:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:373    .bss.TEMP:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:384    .bss.Temp_byte1:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:390    .bss.Temp_byte2:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\ccX3HLX6.s:392    .bss.Temperature:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:18     .text.Error_Handler:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:24     .text.Error_Handler:00000000 Error_Handler
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:57     .text.SystemClock_Config:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:63     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:169    .text.main:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:175    .text.main:00000000 main
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:283    .text.main:00000070 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:318    .bss.Presence:00000000 Presence
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:312    .bss.Humidity:00000000 Humidity
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:370    .bss.Temperature:00000000 Temperature
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:351    .bss.TEMP:00000000 TEMP
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:325    .bss.RH:00000000 RH
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:344    .bss.SUM:00000000 SUM
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:363    .bss.Temp_byte2:00000000 Temp_byte2
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:357    .bss.Temp_byte1:00000000 Temp_byte1
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:337    .bss.Rh_byte2:00000000 Rh_byte2
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:331    .bss.Rh_byte1:00000000 Rh_byte1
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:308    .bss.Humidity:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:319    .bss.Presence:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:321    .bss.RH:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:332    .bss.Rh_byte1:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:338    .bss.Rh_byte2:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:340    .bss.SUM:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:347    .bss.TEMP:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:358    .bss.Temp_byte1:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:364    .bss.Temp_byte2:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccXp3ofa.s:366    .bss.Temperature:00000000 $d
 
 UNDEFINED SYMBOLS
 memset
@@ -886,12 +850,7 @@ MX_GPIO_Init
 MX_I2C1_Init
 MX_TIM1_Init
 HAL_TIM_Base_Start
-lcd_init
-lcd_clear_display
 DHT11_Start
 DHT11_Check_Response
 DHT11_Read
-lcd_send_float_number
-lcd_goto_XY
-HAL_Delay
 htim1

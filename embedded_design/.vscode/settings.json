@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "fonts.h": "c",
+        "stm32f1xx_it.h": "c",
+        "stdbool.h": "c",
+        "st7735.h": "c",
+        "gfx_functions.h": "c",
+        "dht11.h": "c",
+        "cstdio": "c",
+        "tim.h": "c",
+        "delay_timer.h": "c",
+        "cmath": "c",
+        "*.tcc": "c"
+    }
+}

@@ -1,0 +1,185 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"delay_timer.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.DELAY_TIM_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	DELAY_TIM_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	DELAY_TIM_Init:
+  25              	.LVL0:
+  26              	.LFB65:
+  27              		.file 1 "Core/Src/delay_timer.c"
+   1:Core/Src/delay_timer.c **** /**************************************************************************************************
+   2:Core/Src/delay_timer.c **** @tac gia: khuenguyen
+   3:Core/Src/delay_timer.c **** @website: khuenguyencreator.com
+   4:Core/Src/delay_timer.c **** @youtube: https://www.youtube.com/channel/UCt8cFnPOaHrQXWmVkk-lfvg
+   5:Core/Src/delay_timer.c **** @huong dan su dung:
+   6:Core/Src/delay_timer.c **** - Khoi tao timer dem moi 1us VD: fapb2 = 72 mhz. prescaler = 72 -1, ARR = 0xFFFF -1 
+   7:Core/Src/delay_timer.c **** - Truyen timer do vao delay Init VD: DELAY_TIM_Init(&htim1)
+   8:Core/Src/delay_timer.c **** - Su dung thu vien hal
+   9:Core/Src/delay_timer.c **** 
+  10:Core/Src/delay_timer.c **** ***************************************************************************************************
+  11:Core/Src/delay_timer.c **** #include "delay_timer.h"
+  12:Core/Src/delay_timer.c **** void DELAY_TIM_Init(TIM_HandleTypeDef *htim)
+  13:Core/Src/delay_timer.c **** {
+  28              		.loc 1 13 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 13 1 is_stmt 0 view .LVU1
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  14:Core/Src/delay_timer.c **** 	HAL_TIM_Base_Start(htim);
+  38              		.loc 1 14 2 is_stmt 1 view .LVU2
+  39 0002 FFF7FEFF 		bl	HAL_TIM_Base_Start
+  40              	.LVL1:
+  15:Core/Src/delay_timer.c **** }
+  41              		.loc 1 15 1 is_stmt 0 view .LVU3
+  42 0006 08BD     		pop	{r3, pc}
+  43              		.cfi_endproc
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s 			page 2
+
+
+  44              	.LFE65:
+  46              		.section	.text.DELAY_TIM_Us,"ax",%progbits
+  47              		.align	1
+  48              		.global	DELAY_TIM_Us
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  53              	DELAY_TIM_Us:
+  54              	.LVL2:
+  55              	.LFB66:
+  16:Core/Src/delay_timer.c **** 
+  17:Core/Src/delay_timer.c **** void DELAY_TIM_Us(TIM_HandleTypeDef *htim, uint16_t time)
+  18:Core/Src/delay_timer.c **** {
+  56              		.loc 1 18 1 is_stmt 1 view -0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60              		@ link register save eliminated.
+  19:Core/Src/delay_timer.c **** 	__HAL_TIM_SET_COUNTER(htim,0);
+  61              		.loc 1 19 2 view .LVU5
+  62 0000 0368     		ldr	r3, [r0]
+  63 0002 0022     		movs	r2, #0
+  64 0004 5A62     		str	r2, [r3, #36]
+  20:Core/Src/delay_timer.c **** 	while(__HAL_TIM_GET_COUNTER(htim)<time){}
+  65              		.loc 1 20 2 view .LVU6
+  66              	.L4:
+  67              		.loc 1 20 42 discriminator 1 view .LVU7
+  68              		.loc 1 20 7 discriminator 1 view .LVU8
+  69              		.loc 1 20 8 is_stmt 0 discriminator 1 view .LVU9
+  70 0006 0368     		ldr	r3, [r0]
+  71 0008 5B6A     		ldr	r3, [r3, #36]
+  72              		.loc 1 20 7 discriminator 1 view .LVU10
+  73 000a 8B42     		cmp	r3, r1
+  74 000c FBD3     		bcc	.L4
+  21:Core/Src/delay_timer.c **** }
+  75              		.loc 1 21 1 view .LVU11
+  76 000e 7047     		bx	lr
+  77              		.cfi_endproc
+  78              	.LFE66:
+  80              		.section	.text.DELAY_TIM_Ms,"ax",%progbits
+  81              		.align	1
+  82              		.global	DELAY_TIM_Ms
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  87              	DELAY_TIM_Ms:
+  88              	.LVL3:
+  89              	.LFB67:
+  22:Core/Src/delay_timer.c **** void DELAY_TIM_Ms(TIM_HandleTypeDef *htim, uint16_t Time)
+  23:Core/Src/delay_timer.c **** {
+  90              		.loc 1 23 1 is_stmt 1 view -0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              		@ link register save eliminated.
+  24:Core/Src/delay_timer.c **** 	__HAL_TIM_SET_COUNTER(htim,0);
+  95              		.loc 1 24 2 view .LVU13
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s 			page 3
+
+
+  96 0000 0368     		ldr	r3, [r0]
+  97 0002 0022     		movs	r2, #0
+  98 0004 5A62     		str	r2, [r3, #36]
+  25:Core/Src/delay_timer.c **** 	while(Time--)
+  99              		.loc 1 25 2 view .LVU14
+ 100              		.loc 1 25 7 is_stmt 0 view .LVU15
+ 101 0006 04E0     		b	.L6
+ 102              	.L7:
+  26:Core/Src/delay_timer.c **** 	{
+  27:Core/Src/delay_timer.c **** 		while(__HAL_TIM_GET_COUNTER(htim)<1000){}
+ 103              		.loc 1 27 43 is_stmt 1 discriminator 1 view .LVU16
+ 104              		.loc 1 27 8 discriminator 1 view .LVU17
+ 105              		.loc 1 27 9 is_stmt 0 discriminator 1 view .LVU18
+ 106 0008 0368     		ldr	r3, [r0]
+ 107 000a 5B6A     		ldr	r3, [r3, #36]
+ 108              		.loc 1 27 8 discriminator 1 view .LVU19
+ 109 000c B3F57A7F 		cmp	r3, #1000
+ 110 0010 FAD3     		bcc	.L7
+ 111              	.L6:
+  25:Core/Src/delay_timer.c **** 	while(Time--)
+ 112              		.loc 1 25 7 is_stmt 1 view .LVU20
+ 113 0012 0B46     		mov	r3, r1
+  25:Core/Src/delay_timer.c **** 	while(Time--)
+ 114              		.loc 1 25 12 is_stmt 0 view .LVU21
+ 115 0014 0139     		subs	r1, r1, #1
+ 116              	.LVL4:
+  25:Core/Src/delay_timer.c **** 	while(Time--)
+ 117              		.loc 1 25 12 view .LVU22
+ 118 0016 89B2     		uxth	r1, r1
+ 119              	.LVL5:
+  25:Core/Src/delay_timer.c **** 	while(Time--)
+ 120              		.loc 1 25 7 view .LVU23
+ 121 0018 002B     		cmp	r3, #0
+ 122 001a F5D1     		bne	.L7
+  28:Core/Src/delay_timer.c **** 	}
+  29:Core/Src/delay_timer.c **** }...
+ 123              		.loc 1 29 1 view .LVU24
+ 124 001c 7047     		bx	lr
+ 125              		.cfi_endproc
+ 126              	.LFE67:
+ 128              		.text
+ 129              	.Letext0:
+ 130              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 131              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 132              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 133              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 134              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 135              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 delay_timer.c
+C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s:18     .text.DELAY_TIM_Init:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s:24     .text.DELAY_TIM_Init:00000000 DELAY_TIM_Init
+C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s:47     .text.DELAY_TIM_Us:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s:53     .text.DELAY_TIM_Us:00000000 DELAY_TIM_Us
+C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s:81     .text.DELAY_TIM_Ms:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccQgDrtA.s:87     .text.DELAY_TIM_Ms:00000000 DELAY_TIM_Ms
+
+UNDEFINED SYMBOLS
+HAL_TIM_Base_Start

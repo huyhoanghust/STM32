@@ -97,8 +97,8 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start(&htim1);
-  lcd_init();
-  lcd_clear_display();
+  // lcd_init();
+  // lcd_clear_display();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -123,10 +123,10 @@ int main(void)
 
     Temperature = (float)TEMP;
     Humidity = (float)RH;
-    lcd_send_float_number(Temperature, 2);
-    lcd_goto_XY(2,0);
-    lcd_send_float_number(Humidity, 2);
-    HAL_Delay(2000);
+    // lcd_send_float_number(Temperature, 2);
+    // lcd_goto_XY(2,0);
+    // lcd_send_float_number(Humidity, 2);
+    // HAL_Delay(2000);
   }
   /* USER CODE END 3 */
 }

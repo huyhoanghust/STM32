@@ -1,0 +1,953 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"ds18b20.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.DS18B20_DelayInit,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	DS18B20_DelayInit:
+  24              	.LVL0:
+  25              	.LFB65:
+  26              		.file 1 "Core/Src/ds18b20.c"
+   1:Core/Src/ds18b20.c **** /**************************************************************************************************
+   2:Core/Src/ds18b20.c **** @File:  	DS18B20 Sensor
+   3:Core/Src/ds18b20.c **** @Author:  Khue Nguyen
+   4:Core/Src/ds18b20.c **** @Website: khuenguyencreator.com
+   5:Core/Src/ds18b20.c **** @Youtube: https://www.youtube.com/channel/UCt8cFnPOaHrQXWmVkk-lfvg
+   6:Core/Src/ds18b20.c **** Huong dan su dung:
+   7:Core/Src/ds18b20.c **** - Su dung thu vien HAL
+   8:Core/Src/ds18b20.c **** - Khoi tao bien DS18B20 : DS18B20_Name DS1;
+   9:Core/Src/ds18b20.c **** - Khoi tao chan DS18B20:
+  10:Core/Src/ds18b20.c **** 	DS18B20_Init(&DS1, &htim4, DS18B20_GPIO_Port, DS18B20_Pin);
+  11:Core/Src/ds18b20.c **** - Su dung cac ham phai truyen dia chi cua DS18B20 do: 
+  12:Core/Src/ds18b20.c **** 	Temp = DS18B20_ReadTemp(&DS1);
+  13:Core/Src/ds18b20.c **** ***************************************************************************************************
+  14:Core/Src/ds18b20.c **** #include "ds18b20.h"
+  15:Core/Src/ds18b20.c **** //************************** Low Level Layer ******************************************************
+  16:Core/Src/ds18b20.c **** #include "delay_timer.h"
+  17:Core/Src/ds18b20.c **** 
+  18:Core/Src/ds18b20.c **** static void DS18B20_DelayInit(DS18B20_Name* DS18B20)
+  19:Core/Src/ds18b20.c **** {
+  27              		.loc 1 19 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		.loc 1 19 1 is_stmt 0 view .LVU1
+  32 0000 08B5     		push	{r3, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+  20:Core/Src/ds18b20.c **** 	DELAY_TIM_Init(DS18B20->Timer);
+  37              		.loc 1 20 2 is_stmt 1 view .LVU2
+  38 0002 0068     		ldr	r0, [r0]
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 2
+
+
+  39              	.LVL1:
+  40              		.loc 1 20 2 is_stmt 0 view .LVU3
+  41 0004 FFF7FEFF 		bl	DELAY_TIM_Init
+  42              	.LVL2:
+  21:Core/Src/ds18b20.c **** }
+  43              		.loc 1 21 1 view .LVU4
+  44 0008 08BD     		pop	{r3, pc}
+  45              		.cfi_endproc
+  46              	.LFE65:
+  48              		.section	.text.DS18B20_SetPinOut,"ax",%progbits
+  49              		.align	1
+  50              		.syntax unified
+  51              		.thumb
+  52              		.thumb_func
+  54              	DS18B20_SetPinOut:
+  55              	.LVL3:
+  56              	.LFB68:
+  22:Core/Src/ds18b20.c **** static void DS18B20_DelayUs(DS18B20_Name* DS18B20, uint16_t Time)
+  23:Core/Src/ds18b20.c **** {
+  24:Core/Src/ds18b20.c **** 	DELAY_TIM_Us(DS18B20->Timer, Time);
+  25:Core/Src/ds18b20.c **** }
+  26:Core/Src/ds18b20.c **** static void DS18B20_DelayMs(DS18B20_Name* DS18B20, uint16_t Time)
+  27:Core/Src/ds18b20.c **** {
+  28:Core/Src/ds18b20.c **** 	DELAY_TIM_Ms(DS18B20->Timer, Time);
+  29:Core/Src/ds18b20.c **** }
+  30:Core/Src/ds18b20.c **** 
+  31:Core/Src/ds18b20.c **** static void DS18B20_SetPinOut(DS18B20_Name* DS18B20)
+  32:Core/Src/ds18b20.c **** {
+  57              		.loc 1 32 1 is_stmt 1 view -0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 16
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              		.loc 1 32 1 is_stmt 0 view .LVU6
+  62 0000 00B5     		push	{lr}
+  63              	.LCFI1:
+  64              		.cfi_def_cfa_offset 4
+  65              		.cfi_offset 14, -4
+  66 0002 85B0     		sub	sp, sp, #20
+  67              	.LCFI2:
+  68              		.cfi_def_cfa_offset 24
+  33:Core/Src/ds18b20.c **** 	GPIO_InitTypeDef GPIO_InitStruct = {0};
+  69              		.loc 1 33 2 is_stmt 1 view .LVU7
+  70              		.loc 1 33 19 is_stmt 0 view .LVU8
+  71 0004 0023     		movs	r3, #0
+  72 0006 0093     		str	r3, [sp]
+  73 0008 0193     		str	r3, [sp, #4]
+  74 000a 0293     		str	r3, [sp, #8]
+  75 000c 0393     		str	r3, [sp, #12]
+  34:Core/Src/ds18b20.c **** 	GPIO_InitStruct.Pin = DS18B20->Pin;
+  76              		.loc 1 34 2 is_stmt 1 view .LVU9
+  77              		.loc 1 34 31 is_stmt 0 view .LVU10
+  78 000e 8388     		ldrh	r3, [r0, #4]
+  79              		.loc 1 34 22 view .LVU11
+  80 0010 0093     		str	r3, [sp]
+  35:Core/Src/ds18b20.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  81              		.loc 1 35 3 is_stmt 1 view .LVU12
+  82              		.loc 1 35 24 is_stmt 0 view .LVU13
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 3
+
+
+  83 0012 0123     		movs	r3, #1
+  84 0014 0193     		str	r3, [sp, #4]
+  36:Core/Src/ds18b20.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  85              		.loc 1 36 3 is_stmt 1 view .LVU14
+  86              		.loc 1 36 25 is_stmt 0 view .LVU15
+  87 0016 0223     		movs	r3, #2
+  88 0018 0393     		str	r3, [sp, #12]
+  37:Core/Src/ds18b20.c ****   HAL_GPIO_Init(DS18B20->PORT, &GPIO_InitStruct);
+  89              		.loc 1 37 3 is_stmt 1 view .LVU16
+  90 001a 6946     		mov	r1, sp
+  91 001c 8068     		ldr	r0, [r0, #8]
+  92              	.LVL4:
+  93              		.loc 1 37 3 is_stmt 0 view .LVU17
+  94 001e FFF7FEFF 		bl	HAL_GPIO_Init
+  95              	.LVL5:
+  38:Core/Src/ds18b20.c **** }
+  96              		.loc 1 38 1 view .LVU18
+  97 0022 05B0     		add	sp, sp, #20
+  98              	.LCFI3:
+  99              		.cfi_def_cfa_offset 4
+ 100              		@ sp needed
+ 101 0024 5DF804FB 		ldr	pc, [sp], #4
+ 102              		.cfi_endproc
+ 103              	.LFE68:
+ 105              		.section	.text.DS18B20_SetPinIn,"ax",%progbits
+ 106              		.align	1
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	DS18B20_SetPinIn:
+ 112              	.LVL6:
+ 113              	.LFB69:
+  39:Core/Src/ds18b20.c **** static void DS18B20_SetPinIn(DS18B20_Name* DS18B20)
+  40:Core/Src/ds18b20.c **** {
+ 114              		.loc 1 40 1 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 16
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		.loc 1 40 1 is_stmt 0 view .LVU20
+ 119 0000 00B5     		push	{lr}
+ 120              	.LCFI4:
+ 121              		.cfi_def_cfa_offset 4
+ 122              		.cfi_offset 14, -4
+ 123 0002 85B0     		sub	sp, sp, #20
+ 124              	.LCFI5:
+ 125              		.cfi_def_cfa_offset 24
+  41:Core/Src/ds18b20.c **** 	GPIO_InitTypeDef GPIO_InitStruct = {0};
+ 126              		.loc 1 41 2 is_stmt 1 view .LVU21
+ 127              		.loc 1 41 19 is_stmt 0 view .LVU22
+ 128 0004 0023     		movs	r3, #0
+ 129 0006 0093     		str	r3, [sp]
+ 130 0008 0193     		str	r3, [sp, #4]
+ 131 000a 0293     		str	r3, [sp, #8]
+ 132 000c 0393     		str	r3, [sp, #12]
+  42:Core/Src/ds18b20.c **** 	GPIO_InitStruct.Pin = DS18B20->Pin;
+ 133              		.loc 1 42 2 is_stmt 1 view .LVU23
+ 134              		.loc 1 42 31 is_stmt 0 view .LVU24
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 4
+
+
+ 135 000e 8388     		ldrh	r3, [r0, #4]
+ 136              		.loc 1 42 22 view .LVU25
+ 137 0010 0093     		str	r3, [sp]
+  43:Core/Src/ds18b20.c ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 138              		.loc 1 43 3 is_stmt 1 view .LVU26
+  44:Core/Src/ds18b20.c ****   GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 139              		.loc 1 44 3 view .LVU27
+ 140              		.loc 1 44 24 is_stmt 0 view .LVU28
+ 141 0012 0123     		movs	r3, #1
+ 142 0014 0293     		str	r3, [sp, #8]
+  45:Core/Src/ds18b20.c ****   HAL_GPIO_Init(DS18B20->PORT, &GPIO_InitStruct);
+ 143              		.loc 1 45 3 is_stmt 1 view .LVU29
+ 144 0016 6946     		mov	r1, sp
+ 145 0018 8068     		ldr	r0, [r0, #8]
+ 146              	.LVL7:
+ 147              		.loc 1 45 3 is_stmt 0 view .LVU30
+ 148 001a FFF7FEFF 		bl	HAL_GPIO_Init
+ 149              	.LVL8:
+  46:Core/Src/ds18b20.c **** }
+ 150              		.loc 1 46 1 view .LVU31
+ 151 001e 05B0     		add	sp, sp, #20
+ 152              	.LCFI6:
+ 153              		.cfi_def_cfa_offset 4
+ 154              		@ sp needed
+ 155 0020 5DF804FB 		ldr	pc, [sp], #4
+ 156              		.cfi_endproc
+ 157              	.LFE69:
+ 159              		.section	.text.DS18B20_WritePin,"ax",%progbits
+ 160              		.align	1
+ 161              		.syntax unified
+ 162              		.thumb
+ 163              		.thumb_func
+ 165              	DS18B20_WritePin:
+ 166              	.LVL9:
+ 167              	.LFB70:
+  47:Core/Src/ds18b20.c **** static void DS18B20_WritePin(DS18B20_Name* DS18B20, uint8_t Value)
+  48:Core/Src/ds18b20.c **** {
+ 168              		.loc 1 48 1 is_stmt 1 view -0
+ 169              		.cfi_startproc
+ 170              		@ args = 0, pretend = 0, frame = 0
+ 171              		@ frame_needed = 0, uses_anonymous_args = 0
+ 172              		.loc 1 48 1 is_stmt 0 view .LVU33
+ 173 0000 08B5     		push	{r3, lr}
+ 174              	.LCFI7:
+ 175              		.cfi_def_cfa_offset 8
+ 176              		.cfi_offset 3, -8
+ 177              		.cfi_offset 14, -4
+ 178 0002 0A46     		mov	r2, r1
+  49:Core/Src/ds18b20.c **** 	HAL_GPIO_WritePin(DS18B20->PORT, DS18B20->Pin, Value);
+ 179              		.loc 1 49 2 is_stmt 1 view .LVU34
+ 180 0004 8188     		ldrh	r1, [r0, #4]
+ 181              	.LVL10:
+ 182              		.loc 1 49 2 is_stmt 0 view .LVU35
+ 183 0006 8068     		ldr	r0, [r0, #8]
+ 184              	.LVL11:
+ 185              		.loc 1 49 2 view .LVU36
+ 186 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 5
+
+
+ 187              	.LVL12:
+  50:Core/Src/ds18b20.c **** }
+ 188              		.loc 1 50 1 view .LVU37
+ 189 000c 08BD     		pop	{r3, pc}
+ 190              		.cfi_endproc
+ 191              	.LFE70:
+ 193              		.section	.text.DS18B20_ReadPin,"ax",%progbits
+ 194              		.align	1
+ 195              		.syntax unified
+ 196              		.thumb
+ 197              		.thumb_func
+ 199              	DS18B20_ReadPin:
+ 200              	.LVL13:
+ 201              	.LFB71:
+  51:Core/Src/ds18b20.c **** static uint8_t DS18B20_ReadPin(DS18B20_Name* DS18B20)
+  52:Core/Src/ds18b20.c **** {
+ 202              		.loc 1 52 1 is_stmt 1 view -0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206              		.loc 1 52 1 is_stmt 0 view .LVU39
+ 207 0000 08B5     		push	{r3, lr}
+ 208              	.LCFI8:
+ 209              		.cfi_def_cfa_offset 8
+ 210              		.cfi_offset 3, -8
+ 211              		.cfi_offset 14, -4
+  53:Core/Src/ds18b20.c **** 	return  HAL_GPIO_ReadPin(DS18B20->PORT, DS18B20->Pin);
+ 212              		.loc 1 53 2 is_stmt 1 view .LVU40
+ 213              		.loc 1 53 10 is_stmt 0 view .LVU41
+ 214 0002 8188     		ldrh	r1, [r0, #4]
+ 215 0004 8068     		ldr	r0, [r0, #8]
+ 216              	.LVL14:
+ 217              		.loc 1 53 10 view .LVU42
+ 218 0006 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 219              	.LVL15:
+  54:Core/Src/ds18b20.c **** }
+ 220              		.loc 1 54 1 view .LVU43
+ 221 000a 08BD     		pop	{r3, pc}
+ 222              		.cfi_endproc
+ 223              	.LFE71:
+ 225              		.section	.text.DS18B20_DelayUs,"ax",%progbits
+ 226              		.align	1
+ 227              		.syntax unified
+ 228              		.thumb
+ 229              		.thumb_func
+ 231              	DS18B20_DelayUs:
+ 232              	.LVL16:
+ 233              	.LFB66:
+  23:Core/Src/ds18b20.c **** 	DELAY_TIM_Us(DS18B20->Timer, Time);
+ 234              		.loc 1 23 1 is_stmt 1 view -0
+ 235              		.cfi_startproc
+ 236              		@ args = 0, pretend = 0, frame = 0
+ 237              		@ frame_needed = 0, uses_anonymous_args = 0
+  23:Core/Src/ds18b20.c **** 	DELAY_TIM_Us(DS18B20->Timer, Time);
+ 238              		.loc 1 23 1 is_stmt 0 view .LVU45
+ 239 0000 08B5     		push	{r3, lr}
+ 240              	.LCFI9:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 6
+
+
+ 241              		.cfi_def_cfa_offset 8
+ 242              		.cfi_offset 3, -8
+ 243              		.cfi_offset 14, -4
+  24:Core/Src/ds18b20.c **** }
+ 244              		.loc 1 24 2 is_stmt 1 view .LVU46
+ 245 0002 0068     		ldr	r0, [r0]
+ 246              	.LVL17:
+  24:Core/Src/ds18b20.c **** }
+ 247              		.loc 1 24 2 is_stmt 0 view .LVU47
+ 248 0004 FFF7FEFF 		bl	DELAY_TIM_Us
+ 249              	.LVL18:
+  25:Core/Src/ds18b20.c **** static void DS18B20_DelayMs(DS18B20_Name* DS18B20, uint16_t Time)
+ 250              		.loc 1 25 1 view .LVU48
+ 251 0008 08BD     		pop	{r3, pc}
+ 252              		.cfi_endproc
+ 253              	.LFE66:
+ 255              		.section	.text.DS18B20_Start,"ax",%progbits
+ 256              		.align	1
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 261              	DS18B20_Start:
+ 262              	.LVL19:
+ 263              	.LFB72:
+  55:Core/Src/ds18b20.c **** //********************************* Middle level Layer ********************************************
+  56:Core/Src/ds18b20.c **** static uint8_t DS18B20_Start(DS18B20_Name* DS18B20)
+  57:Core/Src/ds18b20.c **** {
+ 264              		.loc 1 57 1 is_stmt 1 view -0
+ 265              		.cfi_startproc
+ 266              		@ args = 0, pretend = 0, frame = 0
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 268              		.loc 1 57 1 is_stmt 0 view .LVU50
+ 269 0000 38B5     		push	{r3, r4, r5, lr}
+ 270              	.LCFI10:
+ 271              		.cfi_def_cfa_offset 16
+ 272              		.cfi_offset 3, -16
+ 273              		.cfi_offset 4, -12
+ 274              		.cfi_offset 5, -8
+ 275              		.cfi_offset 14, -4
+ 276 0002 0446     		mov	r4, r0
+  58:Core/Src/ds18b20.c **** 	uint8_t Response = 0;
+ 277              		.loc 1 58 2 is_stmt 1 view .LVU51
+ 278              	.LVL20:
+  59:Core/Src/ds18b20.c **** 	DS18B20_SetPinOut(DS18B20);  
+ 279              		.loc 1 59 2 view .LVU52
+ 280 0004 FFF7FEFF 		bl	DS18B20_SetPinOut
+ 281              	.LVL21:
+  60:Core/Src/ds18b20.c **** 	DS18B20_WritePin(DS18B20, 0);
+ 282              		.loc 1 60 2 view .LVU53
+ 283 0008 0021     		movs	r1, #0
+ 284 000a 2046     		mov	r0, r4
+ 285 000c FFF7FEFF 		bl	DS18B20_WritePin
+ 286              	.LVL22:
+  61:Core/Src/ds18b20.c **** 	DS18B20_DelayUs(DS18B20, 480);   
+ 287              		.loc 1 61 2 view .LVU54
+ 288 0010 4FF4F071 		mov	r1, #480
+ 289 0014 2046     		mov	r0, r4
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 7
+
+
+ 290 0016 FFF7FEFF 		bl	DS18B20_DelayUs
+ 291              	.LVL23:
+  62:Core/Src/ds18b20.c **** 	DS18B20_SetPinIn(DS18B20);    
+ 292              		.loc 1 62 2 view .LVU55
+ 293 001a 2046     		mov	r0, r4
+ 294 001c FFF7FEFF 		bl	DS18B20_SetPinIn
+ 295              	.LVL24:
+  63:Core/Src/ds18b20.c **** 	DS18B20_DelayUs(DS18B20, 80); 
+ 296              		.loc 1 63 2 view .LVU56
+ 297 0020 5021     		movs	r1, #80
+ 298 0022 2046     		mov	r0, r4
+ 299 0024 FFF7FEFF 		bl	DS18B20_DelayUs
+ 300              	.LVL25:
+  64:Core/Src/ds18b20.c **** 	if (!(DS18B20_ReadPin(DS18B20))) Response = 1;   
+ 301              		.loc 1 64 2 view .LVU57
+ 302              		.loc 1 64 8 is_stmt 0 view .LVU58
+ 303 0028 2046     		mov	r0, r4
+ 304 002a FFF7FEFF 		bl	DS18B20_ReadPin
+ 305              	.LVL26:
+ 306              		.loc 1 64 5 view .LVU59
+ 307 002e 38B9     		cbnz	r0, .L15
+ 308              		.loc 1 64 44 view .LVU60
+ 309 0030 0125     		movs	r5, #1
+ 310              	.L14:
+ 311              	.LVL27:
+  65:Core/Src/ds18b20.c **** 	else Response = 0;
+  66:Core/Src/ds18b20.c **** 	DS18B20_DelayUs(DS18B20, 400); // 480 us delay totally.
+ 312              		.loc 1 66 2 is_stmt 1 view .LVU61
+ 313 0032 4FF4C871 		mov	r1, #400
+ 314 0036 2046     		mov	r0, r4
+ 315 0038 FFF7FEFF 		bl	DS18B20_DelayUs
+ 316              	.LVL28:
+  67:Core/Src/ds18b20.c **** 
+  68:Core/Src/ds18b20.c **** 	return Response;
+ 317              		.loc 1 68 2 view .LVU62
+  69:Core/Src/ds18b20.c **** }
+ 318              		.loc 1 69 1 is_stmt 0 view .LVU63
+ 319 003c 2846     		mov	r0, r5
+ 320 003e 38BD     		pop	{r3, r4, r5, pc}
+ 321              	.LVL29:
+ 322              	.L15:
+  65:Core/Src/ds18b20.c **** 	else Response = 0;
+ 323              		.loc 1 65 16 view .LVU64
+ 324 0040 0025     		movs	r5, #0
+ 325 0042 F6E7     		b	.L14
+ 326              		.cfi_endproc
+ 327              	.LFE72:
+ 329              		.section	.text.DS18B20_Write,"ax",%progbits
+ 330              		.align	1
+ 331              		.syntax unified
+ 332              		.thumb
+ 333              		.thumb_func
+ 335              	DS18B20_Write:
+ 336              	.LVL30:
+ 337              	.LFB73:
+  70:Core/Src/ds18b20.c **** static void DS18B20_Write(DS18B20_Name* DS18B20, uint8_t Data)
+  71:Core/Src/ds18b20.c **** {
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 8
+
+
+ 338              		.loc 1 71 1 is_stmt 1 view -0
+ 339              		.cfi_startproc
+ 340              		@ args = 0, pretend = 0, frame = 0
+ 341              		@ frame_needed = 0, uses_anonymous_args = 0
+ 342              		.loc 1 71 1 is_stmt 0 view .LVU66
+ 343 0000 70B5     		push	{r4, r5, r6, lr}
+ 344              	.LCFI11:
+ 345              		.cfi_def_cfa_offset 16
+ 346              		.cfi_offset 4, -16
+ 347              		.cfi_offset 5, -12
+ 348              		.cfi_offset 6, -8
+ 349              		.cfi_offset 14, -4
+ 350 0002 0446     		mov	r4, r0
+ 351 0004 0E46     		mov	r6, r1
+  72:Core/Src/ds18b20.c **** 	DS18B20_SetPinOut(DS18B20);
+ 352              		.loc 1 72 2 is_stmt 1 view .LVU67
+ 353 0006 FFF7FEFF 		bl	DS18B20_SetPinOut
+ 354              	.LVL31:
+  73:Core/Src/ds18b20.c **** 	for(int i = 0; i<8; i++)
+ 355              		.loc 1 73 2 view .LVU68
+ 356              	.LBB2:
+ 357              		.loc 1 73 6 view .LVU69
+ 358              		.loc 1 73 10 is_stmt 0 view .LVU70
+ 359 000a 0025     		movs	r5, #0
+ 360              		.loc 1 73 2 view .LVU71
+ 361 000c 0EE0     		b	.L18
+ 362              	.LVL32:
+ 363              	.L19:
+  74:Core/Src/ds18b20.c **** 	{
+  75:Core/Src/ds18b20.c **** 		if((Data&(1<<i))!=0)
+  76:Core/Src/ds18b20.c **** 		{
+  77:Core/Src/ds18b20.c **** 			DS18B20_SetPinOut(DS18B20);
+  78:Core/Src/ds18b20.c **** 			DS18B20_WritePin(DS18B20, 0);
+  79:Core/Src/ds18b20.c **** 			DS18B20_DelayUs(DS18B20, 1);
+  80:Core/Src/ds18b20.c **** 			DS18B20_SetPinIn(DS18B20);
+  81:Core/Src/ds18b20.c **** 			DS18B20_DelayUs(DS18B20, 50);
+  82:Core/Src/ds18b20.c **** 		}
+  83:Core/Src/ds18b20.c **** 		else
+  84:Core/Src/ds18b20.c **** 		{
+  85:Core/Src/ds18b20.c **** 			DS18B20_SetPinOut(DS18B20);
+ 364              		.loc 1 85 4 is_stmt 1 view .LVU72
+ 365 000e 2046     		mov	r0, r4
+ 366 0010 FFF7FEFF 		bl	DS18B20_SetPinOut
+ 367              	.LVL33:
+  86:Core/Src/ds18b20.c **** 			DS18B20_WritePin(DS18B20, 0);
+ 368              		.loc 1 86 4 view .LVU73
+ 369 0014 0021     		movs	r1, #0
+ 370 0016 2046     		mov	r0, r4
+ 371 0018 FFF7FEFF 		bl	DS18B20_WritePin
+ 372              	.LVL34:
+  87:Core/Src/ds18b20.c **** 			DS18B20_DelayUs(DS18B20, 50);
+ 373              		.loc 1 87 4 view .LVU74
+ 374 001c 3221     		movs	r1, #50
+ 375 001e 2046     		mov	r0, r4
+ 376 0020 FFF7FEFF 		bl	DS18B20_DelayUs
+ 377              	.LVL35:
+  88:Core/Src/ds18b20.c **** 			DS18B20_SetPinIn(DS18B20);
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 9
+
+
+ 378              		.loc 1 88 4 view .LVU75
+ 379 0024 2046     		mov	r0, r4
+ 380 0026 FFF7FEFF 		bl	DS18B20_SetPinIn
+ 381              	.LVL36:
+ 382              	.L20:
+  73:Core/Src/ds18b20.c **** 	{
+ 383              		.loc 1 73 22 discriminator 2 view .LVU76
+  73:Core/Src/ds18b20.c **** 	{
+ 384              		.loc 1 73 23 is_stmt 0 discriminator 2 view .LVU77
+ 385 002a 0135     		adds	r5, r5, #1
+ 386              	.LVL37:
+ 387              	.L18:
+  73:Core/Src/ds18b20.c **** 	{
+ 388              		.loc 1 73 17 is_stmt 1 discriminator 1 view .LVU78
+  73:Core/Src/ds18b20.c **** 	{
+ 389              		.loc 1 73 2 is_stmt 0 discriminator 1 view .LVU79
+ 390 002c 072D     		cmp	r5, #7
+ 391 002e 17DC     		bgt	.L23
+  75:Core/Src/ds18b20.c **** 		{
+ 392              		.loc 1 75 3 is_stmt 1 view .LVU80
+  75:Core/Src/ds18b20.c **** 		{
+ 393              		.loc 1 75 19 is_stmt 0 view .LVU81
+ 394 0030 46FA05F3 		asr	r3, r6, r5
+  75:Core/Src/ds18b20.c **** 		{
+ 395              		.loc 1 75 5 view .LVU82
+ 396 0034 13F0010F 		tst	r3, #1
+ 397 0038 E9D0     		beq	.L19
+  77:Core/Src/ds18b20.c **** 			DS18B20_WritePin(DS18B20, 0);
+ 398              		.loc 1 77 4 is_stmt 1 view .LVU83
+ 399 003a 2046     		mov	r0, r4
+ 400 003c FFF7FEFF 		bl	DS18B20_SetPinOut
+ 401              	.LVL38:
+  78:Core/Src/ds18b20.c **** 			DS18B20_DelayUs(DS18B20, 1);
+ 402              		.loc 1 78 4 view .LVU84
+ 403 0040 0021     		movs	r1, #0
+ 404 0042 2046     		mov	r0, r4
+ 405 0044 FFF7FEFF 		bl	DS18B20_WritePin
+ 406              	.LVL39:
+  79:Core/Src/ds18b20.c **** 			DS18B20_SetPinIn(DS18B20);
+ 407              		.loc 1 79 4 view .LVU85
+ 408 0048 0121     		movs	r1, #1
+ 409 004a 2046     		mov	r0, r4
+ 410 004c FFF7FEFF 		bl	DS18B20_DelayUs
+ 411              	.LVL40:
+  80:Core/Src/ds18b20.c **** 			DS18B20_DelayUs(DS18B20, 50);
+ 412              		.loc 1 80 4 view .LVU86
+ 413 0050 2046     		mov	r0, r4
+ 414 0052 FFF7FEFF 		bl	DS18B20_SetPinIn
+ 415              	.LVL41:
+  81:Core/Src/ds18b20.c **** 		}
+ 416              		.loc 1 81 4 view .LVU87
+ 417 0056 3221     		movs	r1, #50
+ 418 0058 2046     		mov	r0, r4
+ 419 005a FFF7FEFF 		bl	DS18B20_DelayUs
+ 420              	.LVL42:
+ 421 005e E4E7     		b	.L20
+ 422              	.L23:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 10
+
+
+  81:Core/Src/ds18b20.c **** 		}
+ 423              		.loc 1 81 4 is_stmt 0 view .LVU88
+ 424              	.LBE2:
+  89:Core/Src/ds18b20.c **** 		}
+  90:Core/Src/ds18b20.c **** 	}
+  91:Core/Src/ds18b20.c **** }
+ 425              		.loc 1 91 1 view .LVU89
+ 426 0060 70BD     		pop	{r4, r5, r6, pc}
+ 427              		.loc 1 91 1 view .LVU90
+ 428              		.cfi_endproc
+ 429              	.LFE73:
+ 431              		.section	.text.DS18B20_Read,"ax",%progbits
+ 432              		.align	1
+ 433              		.syntax unified
+ 434              		.thumb
+ 435              		.thumb_func
+ 437              	DS18B20_Read:
+ 438              	.LVL43:
+ 439              	.LFB74:
+  92:Core/Src/ds18b20.c **** static uint8_t DS18B20_Read(DS18B20_Name* DS18B20)
+  93:Core/Src/ds18b20.c **** {
+ 440              		.loc 1 93 1 is_stmt 1 view -0
+ 441              		.cfi_startproc
+ 442              		@ args = 0, pretend = 0, frame = 0
+ 443              		@ frame_needed = 0, uses_anonymous_args = 0
+ 444              		.loc 1 93 1 is_stmt 0 view .LVU92
+ 445 0000 70B5     		push	{r4, r5, r6, lr}
+ 446              	.LCFI12:
+ 447              		.cfi_def_cfa_offset 16
+ 448              		.cfi_offset 4, -16
+ 449              		.cfi_offset 5, -12
+ 450              		.cfi_offset 6, -8
+ 451              		.cfi_offset 14, -4
+ 452 0002 0446     		mov	r4, r0
+  94:Core/Src/ds18b20.c **** 	uint8_t Value = 0;
+ 453              		.loc 1 94 2 is_stmt 1 view .LVU93
+ 454              	.LVL44:
+  95:Core/Src/ds18b20.c **** 	DS18B20_SetPinIn(DS18B20);
+ 455              		.loc 1 95 2 view .LVU94
+ 456 0004 FFF7FEFF 		bl	DS18B20_SetPinIn
+ 457              	.LVL45:
+  96:Core/Src/ds18b20.c **** 	for(int i = 0; i<8; i++)
+ 458              		.loc 1 96 2 view .LVU95
+ 459              	.LBB3:
+ 460              		.loc 1 96 6 view .LVU96
+ 461              		.loc 1 96 10 is_stmt 0 view .LVU97
+ 462 0008 0025     		movs	r5, #0
+ 463              	.LBE3:
+  94:Core/Src/ds18b20.c **** 	uint8_t Value = 0;
+ 464              		.loc 1 94 10 view .LVU98
+ 465 000a 2E46     		mov	r6, r5
+ 466              	.LBB4:
+ 467              		.loc 1 96 2 view .LVU99
+ 468 000c 04E0     		b	.L25
+ 469              	.LVL46:
+ 470              	.L26:
+  97:Core/Src/ds18b20.c **** 	{
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 11
+
+
+  98:Core/Src/ds18b20.c **** 		DS18B20_SetPinOut(DS18B20);
+  99:Core/Src/ds18b20.c **** 		DS18B20_WritePin(DS18B20, 0);
+ 100:Core/Src/ds18b20.c **** 		DS18B20_DelayUs(DS18B20, 1);
+ 101:Core/Src/ds18b20.c **** 		DS18B20_SetPinIn(DS18B20);
+ 102:Core/Src/ds18b20.c **** 		if(DS18B20_ReadPin(DS18B20))
+ 103:Core/Src/ds18b20.c **** 		{
+ 104:Core/Src/ds18b20.c **** 			Value |= 1<<i;
+ 105:Core/Src/ds18b20.c **** 		}
+ 106:Core/Src/ds18b20.c **** 		DS18B20_DelayUs(DS18B20, 50);
+ 471              		.loc 1 106 3 is_stmt 1 discriminator 2 view .LVU100
+ 472 000e 3221     		movs	r1, #50
+ 473 0010 2046     		mov	r0, r4
+ 474 0012 FFF7FEFF 		bl	DS18B20_DelayUs
+ 475              	.LVL47:
+  96:Core/Src/ds18b20.c **** 	for(int i = 0; i<8; i++)
+ 476              		.loc 1 96 22 discriminator 2 view .LVU101
+  96:Core/Src/ds18b20.c **** 	for(int i = 0; i<8; i++)
+ 477              		.loc 1 96 23 is_stmt 0 discriminator 2 view .LVU102
+ 478 0016 0135     		adds	r5, r5, #1
+ 479              	.LVL48:
+ 480              	.L25:
+  96:Core/Src/ds18b20.c **** 	for(int i = 0; i<8; i++)
+ 481              		.loc 1 96 17 is_stmt 1 discriminator 1 view .LVU103
+  96:Core/Src/ds18b20.c **** 	for(int i = 0; i<8; i++)
+ 482              		.loc 1 96 2 is_stmt 0 discriminator 1 view .LVU104
+ 483 0018 072D     		cmp	r5, #7
+ 484 001a 17DC     		bgt	.L29
+  98:Core/Src/ds18b20.c **** 		DS18B20_WritePin(DS18B20, 0);
+ 485              		.loc 1 98 3 is_stmt 1 view .LVU105
+ 486 001c 2046     		mov	r0, r4
+ 487 001e FFF7FEFF 		bl	DS18B20_SetPinOut
+ 488              	.LVL49:
+  99:Core/Src/ds18b20.c **** 		DS18B20_DelayUs(DS18B20, 1);
+ 489              		.loc 1 99 3 view .LVU106
+ 490 0022 0021     		movs	r1, #0
+ 491 0024 2046     		mov	r0, r4
+ 492 0026 FFF7FEFF 		bl	DS18B20_WritePin
+ 493              	.LVL50:
+ 100:Core/Src/ds18b20.c **** 		DS18B20_SetPinIn(DS18B20);
+ 494              		.loc 1 100 3 view .LVU107
+ 495 002a 0121     		movs	r1, #1
+ 496 002c 2046     		mov	r0, r4
+ 497 002e FFF7FEFF 		bl	DS18B20_DelayUs
+ 498              	.LVL51:
+ 101:Core/Src/ds18b20.c **** 		if(DS18B20_ReadPin(DS18B20))
+ 499              		.loc 1 101 3 view .LVU108
+ 500 0032 2046     		mov	r0, r4
+ 501 0034 FFF7FEFF 		bl	DS18B20_SetPinIn
+ 502              	.LVL52:
+ 102:Core/Src/ds18b20.c **** 		{
+ 503              		.loc 1 102 3 view .LVU109
+ 102:Core/Src/ds18b20.c **** 		{
+ 504              		.loc 1 102 6 is_stmt 0 view .LVU110
+ 505 0038 2046     		mov	r0, r4
+ 506 003a FFF7FEFF 		bl	DS18B20_ReadPin
+ 507              	.LVL53:
+ 102:Core/Src/ds18b20.c **** 		{
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 12
+
+
+ 508              		.loc 1 102 5 view .LVU111
+ 509 003e 0028     		cmp	r0, #0
+ 510 0040 E5D0     		beq	.L26
+ 104:Core/Src/ds18b20.c **** 		}
+ 511              		.loc 1 104 4 is_stmt 1 view .LVU112
+ 104:Core/Src/ds18b20.c **** 		}
+ 512              		.loc 1 104 14 is_stmt 0 view .LVU113
+ 513 0042 0123     		movs	r3, #1
+ 514 0044 AB40     		lsls	r3, r3, r5
+ 104:Core/Src/ds18b20.c **** 		}
+ 515              		.loc 1 104 10 view .LVU114
+ 516 0046 1E43     		orrs	r6, r6, r3
+ 517              	.LVL54:
+ 104:Core/Src/ds18b20.c **** 		}
+ 518              		.loc 1 104 10 view .LVU115
+ 519 0048 F6B2     		uxtb	r6, r6
+ 520              	.LVL55:
+ 104:Core/Src/ds18b20.c **** 		}
+ 521              		.loc 1 104 10 view .LVU116
+ 522 004a E0E7     		b	.L26
+ 523              	.L29:
+ 104:Core/Src/ds18b20.c **** 		}
+ 524              		.loc 1 104 10 view .LVU117
+ 525              	.LBE4:
+ 107:Core/Src/ds18b20.c **** 	}
+ 108:Core/Src/ds18b20.c **** 	return Value;
+ 526              		.loc 1 108 2 is_stmt 1 view .LVU118
+ 109:Core/Src/ds18b20.c **** }
+ 527              		.loc 1 109 1 is_stmt 0 view .LVU119
+ 528 004c 3046     		mov	r0, r6
+ 529 004e 70BD     		pop	{r4, r5, r6, pc}
+ 530              		.loc 1 109 1 view .LVU120
+ 531              		.cfi_endproc
+ 532              	.LFE74:
+ 534              		.section	.text.DS18B20_DelayMs,"ax",%progbits
+ 535              		.align	1
+ 536              		.syntax unified
+ 537              		.thumb
+ 538              		.thumb_func
+ 540              	DS18B20_DelayMs:
+ 541              	.LVL56:
+ 542              	.LFB67:
+  27:Core/Src/ds18b20.c **** 	DELAY_TIM_Ms(DS18B20->Timer, Time);
+ 543              		.loc 1 27 1 is_stmt 1 view -0
+ 544              		.cfi_startproc
+ 545              		@ args = 0, pretend = 0, frame = 0
+ 546              		@ frame_needed = 0, uses_anonymous_args = 0
+  27:Core/Src/ds18b20.c **** 	DELAY_TIM_Ms(DS18B20->Timer, Time);
+ 547              		.loc 1 27 1 is_stmt 0 view .LVU122
+ 548 0000 08B5     		push	{r3, lr}
+ 549              	.LCFI13:
+ 550              		.cfi_def_cfa_offset 8
+ 551              		.cfi_offset 3, -8
+ 552              		.cfi_offset 14, -4
+  28:Core/Src/ds18b20.c **** }
+ 553              		.loc 1 28 2 is_stmt 1 view .LVU123
+ 554 0002 0068     		ldr	r0, [r0]
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 13
+
+
+ 555              	.LVL57:
+  28:Core/Src/ds18b20.c **** }
+ 556              		.loc 1 28 2 is_stmt 0 view .LVU124
+ 557 0004 FFF7FEFF 		bl	DELAY_TIM_Ms
+ 558              	.LVL58:
+  29:Core/Src/ds18b20.c **** 
+ 559              		.loc 1 29 1 view .LVU125
+ 560 0008 08BD     		pop	{r3, pc}
+ 561              		.cfi_endproc
+ 562              	.LFE67:
+ 564              		.section	.text.DS18B20_Init,"ax",%progbits
+ 565              		.align	1
+ 566              		.global	DS18B20_Init
+ 567              		.syntax unified
+ 568              		.thumb
+ 569              		.thumb_func
+ 571              	DS18B20_Init:
+ 572              	.LVL59:
+ 573              	.LFB75:
+ 110:Core/Src/ds18b20.c **** 
+ 111:Core/Src/ds18b20.c **** //************************** High Level Layer *****************************************************
+ 112:Core/Src/ds18b20.c **** void DS18B20_Init(DS18B20_Name* DS18B20, TIM_HandleTypeDef* Timer, GPIO_TypeDef* DS_PORT, uint16_t 
+ 113:Core/Src/ds18b20.c **** {
+ 574              		.loc 1 113 1 is_stmt 1 view -0
+ 575              		.cfi_startproc
+ 576              		@ args = 0, pretend = 0, frame = 0
+ 577              		@ frame_needed = 0, uses_anonymous_args = 0
+ 578              		.loc 1 113 1 is_stmt 0 view .LVU127
+ 579 0000 08B5     		push	{r3, lr}
+ 580              	.LCFI14:
+ 581              		.cfi_def_cfa_offset 8
+ 582              		.cfi_offset 3, -8
+ 583              		.cfi_offset 14, -4
+ 114:Core/Src/ds18b20.c **** 	DS18B20->PORT = DS_PORT;
+ 584              		.loc 1 114 2 is_stmt 1 view .LVU128
+ 585              		.loc 1 114 16 is_stmt 0 view .LVU129
+ 586 0002 8260     		str	r2, [r0, #8]
+ 115:Core/Src/ds18b20.c **** 	DS18B20->Pin = DS_Pin;
+ 587              		.loc 1 115 2 is_stmt 1 view .LVU130
+ 588              		.loc 1 115 15 is_stmt 0 view .LVU131
+ 589 0004 8380     		strh	r3, [r0, #4]	@ movhi
+ 116:Core/Src/ds18b20.c **** 	DS18B20->Timer = Timer;
+ 590              		.loc 1 116 2 is_stmt 1 view .LVU132
+ 591              		.loc 1 116 17 is_stmt 0 view .LVU133
+ 592 0006 0160     		str	r1, [r0]
+ 117:Core/Src/ds18b20.c **** 	DS18B20_DelayInit(DS18B20);
+ 593              		.loc 1 117 2 is_stmt 1 view .LVU134
+ 594 0008 FFF7FEFF 		bl	DS18B20_DelayInit
+ 595              	.LVL60:
+ 118:Core/Src/ds18b20.c **** }
+ 596              		.loc 1 118 1 is_stmt 0 view .LVU135
+ 597 000c 08BD     		pop	{r3, pc}
+ 598              		.cfi_endproc
+ 599              	.LFE75:
+ 601              		.global	__aeabi_i2f
+ 602              		.section	.text.DS18B20_ReadTemp,"ax",%progbits
+ 603              		.align	1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 14
+
+
+ 604              		.global	DS18B20_ReadTemp
+ 605              		.syntax unified
+ 606              		.thumb
+ 607              		.thumb_func
+ 609              	DS18B20_ReadTemp:
+ 610              	.LVL61:
+ 611              	.LFB76:
+ 119:Core/Src/ds18b20.c **** 
+ 120:Core/Src/ds18b20.c **** float DS18B20_ReadTemp(DS18B20_Name* DS18B20)
+ 121:Core/Src/ds18b20.c **** {
+ 612              		.loc 1 121 1 is_stmt 1 view -0
+ 613              		.cfi_startproc
+ 614              		@ args = 0, pretend = 0, frame = 0
+ 615              		@ frame_needed = 0, uses_anonymous_args = 0
+ 616              		.loc 1 121 1 is_stmt 0 view .LVU137
+ 617 0000 38B5     		push	{r3, r4, r5, lr}
+ 618              	.LCFI15:
+ 619              		.cfi_def_cfa_offset 16
+ 620              		.cfi_offset 3, -16
+ 621              		.cfi_offset 4, -12
+ 622              		.cfi_offset 5, -8
+ 623              		.cfi_offset 14, -4
+ 624 0002 0446     		mov	r4, r0
+ 122:Core/Src/ds18b20.c **** 	uint8_t Temp1, Temp2;
+ 625              		.loc 1 122 2 is_stmt 1 view .LVU138
+ 123:Core/Src/ds18b20.c **** 	uint16_t Temp;
+ 626              		.loc 1 123 2 view .LVU139
+ 124:Core/Src/ds18b20.c **** 	DS18B20_Start(DS18B20);
+ 627              		.loc 1 124 2 view .LVU140
+ 628 0004 FFF7FEFF 		bl	DS18B20_Start
+ 629              	.LVL62:
+ 125:Core/Src/ds18b20.c **** 	DS18B20_DelayMs(DS18B20, 1);
+ 630              		.loc 1 125 2 view .LVU141
+ 631 0008 0121     		movs	r1, #1
+ 632 000a 2046     		mov	r0, r4
+ 633 000c FFF7FEFF 		bl	DS18B20_DelayMs
+ 634              	.LVL63:
+ 126:Core/Src/ds18b20.c **** 	DS18B20_Write(DS18B20, DS18B20_SKIPROM);
+ 635              		.loc 1 126 2 view .LVU142
+ 636 0010 CC21     		movs	r1, #204
+ 637 0012 2046     		mov	r0, r4
+ 638 0014 FFF7FEFF 		bl	DS18B20_Write
+ 639              	.LVL64:
+ 127:Core/Src/ds18b20.c **** 	DS18B20_Write(DS18B20, DS18B20_CONVERT);
+ 640              		.loc 1 127 2 view .LVU143
+ 641 0018 4421     		movs	r1, #68
+ 642 001a 2046     		mov	r0, r4
+ 643 001c FFF7FEFF 		bl	DS18B20_Write
+ 644              	.LVL65:
+ 128:Core/Src/ds18b20.c **** 	DS18B20_DelayMs(DS18B20, 200);
+ 645              		.loc 1 128 2 view .LVU144
+ 646 0020 C821     		movs	r1, #200
+ 647 0022 2046     		mov	r0, r4
+ 648 0024 FFF7FEFF 		bl	DS18B20_DelayMs
+ 649              	.LVL66:
+ 129:Core/Src/ds18b20.c **** 	DS18B20_Start(DS18B20);
+ 650              		.loc 1 129 2 view .LVU145
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 15
+
+
+ 651 0028 2046     		mov	r0, r4
+ 652 002a FFF7FEFF 		bl	DS18B20_Start
+ 653              	.LVL67:
+ 130:Core/Src/ds18b20.c **** 	DS18B20_DelayMs(DS18B20, 1);
+ 654              		.loc 1 130 2 view .LVU146
+ 655 002e 0121     		movs	r1, #1
+ 656 0030 2046     		mov	r0, r4
+ 657 0032 FFF7FEFF 		bl	DS18B20_DelayMs
+ 658              	.LVL68:
+ 131:Core/Src/ds18b20.c **** 	DS18B20_Write(DS18B20, DS18B20_SKIPROM);
+ 659              		.loc 1 131 2 view .LVU147
+ 660 0036 CC21     		movs	r1, #204
+ 661 0038 2046     		mov	r0, r4
+ 662 003a FFF7FEFF 		bl	DS18B20_Write
+ 663              	.LVL69:
+ 132:Core/Src/ds18b20.c **** 	DS18B20_Write(DS18B20, DS18B20_READSCRAT);
+ 664              		.loc 1 132 2 view .LVU148
+ 665 003e BE21     		movs	r1, #190
+ 666 0040 2046     		mov	r0, r4
+ 667 0042 FFF7FEFF 		bl	DS18B20_Write
+ 668              	.LVL70:
+ 133:Core/Src/ds18b20.c **** 	Temp1 = DS18B20_Read(DS18B20);
+ 669              		.loc 1 133 2 view .LVU149
+ 670              		.loc 1 133 10 is_stmt 0 view .LVU150
+ 671 0046 2046     		mov	r0, r4
+ 672 0048 FFF7FEFF 		bl	DS18B20_Read
+ 673              	.LVL71:
+ 674 004c 0546     		mov	r5, r0
+ 675              	.LVL72:
+ 134:Core/Src/ds18b20.c **** 	Temp2 = DS18B20_Read(DS18B20);
+ 676              		.loc 1 134 2 is_stmt 1 view .LVU151
+ 677              		.loc 1 134 10 is_stmt 0 view .LVU152
+ 678 004e 2046     		mov	r0, r4
+ 679 0050 FFF7FEFF 		bl	DS18B20_Read
+ 680              	.LVL73:
+ 135:Core/Src/ds18b20.c **** 	Temp = (Temp2<<8)|Temp1;
+ 681              		.loc 1 135 2 is_stmt 1 view .LVU153
+ 682              		.loc 1 135 19 is_stmt 0 view .LVU154
+ 683 0054 45EA0020 		orr	r0, r5, r0, lsl #8
+ 684              	.LVL74:
+ 136:Core/Src/ds18b20.c **** 	DS18B20->Temp = (float)(Temp/16);
+ 685              		.loc 1 136 2 is_stmt 1 view .LVU155
+ 686              		.loc 1 136 18 is_stmt 0 view .LVU156
+ 687 0058 C0F30B10 		ubfx	r0, r0, #4, #12
+ 688              	.LVL75:
+ 689              		.loc 1 136 18 view .LVU157
+ 690 005c FFF7FEFF 		bl	__aeabi_i2f
+ 691              	.LVL76:
+ 692              		.loc 1 136 16 view .LVU158
+ 693 0060 E060     		str	r0, [r4, #12]	@ float
+ 137:Core/Src/ds18b20.c **** 	return DS18B20->Temp;
+ 694              		.loc 1 137 2 is_stmt 1 view .LVU159
+ 138:Core/Src/ds18b20.c **** }...
+ 695              		.loc 1 138 1 is_stmt 0 view .LVU160
+ 696 0062 38BD     		pop	{r3, r4, r5, pc}
+ 697              		.loc 1 138 1 view .LVU161
+ 698              		.cfi_endproc
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 16
+
+
+ 699              	.LFE76:
+ 701              		.text
+ 702              	.Letext0:
+ 703              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 704              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 705              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 706              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 707              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ 708              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 709              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ 710              		.file 9 "Core/Inc/ds18b20.h"
+ 711              		.file 10 "Core/Inc/delay_timer.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ds18b20.c
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:18     .text.DS18B20_DelayInit:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:23     .text.DS18B20_DelayInit:00000000 DS18B20_DelayInit
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:49     .text.DS18B20_SetPinOut:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:54     .text.DS18B20_SetPinOut:00000000 DS18B20_SetPinOut
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:106    .text.DS18B20_SetPinIn:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:111    .text.DS18B20_SetPinIn:00000000 DS18B20_SetPinIn
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:160    .text.DS18B20_WritePin:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:165    .text.DS18B20_WritePin:00000000 DS18B20_WritePin
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:194    .text.DS18B20_ReadPin:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:199    .text.DS18B20_ReadPin:00000000 DS18B20_ReadPin
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:226    .text.DS18B20_DelayUs:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:231    .text.DS18B20_DelayUs:00000000 DS18B20_DelayUs
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:256    .text.DS18B20_Start:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:261    .text.DS18B20_Start:00000000 DS18B20_Start
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:330    .text.DS18B20_Write:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:335    .text.DS18B20_Write:00000000 DS18B20_Write
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:432    .text.DS18B20_Read:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:437    .text.DS18B20_Read:00000000 DS18B20_Read
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:535    .text.DS18B20_DelayMs:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:540    .text.DS18B20_DelayMs:00000000 DS18B20_DelayMs
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:565    .text.DS18B20_Init:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:571    .text.DS18B20_Init:00000000 DS18B20_Init
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:603    .text.DS18B20_ReadTemp:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\cc8bOO9l.s:609    .text.DS18B20_ReadTemp:00000000 DS18B20_ReadTemp
+
+UNDEFINED SYMBOLS
+DELAY_TIM_Init
+HAL_GPIO_Init
+HAL_GPIO_WritePin
+HAL_GPIO_ReadPin
+DELAY_TIM_Us
+DELAY_TIM_Ms
+__aeabi_i2f

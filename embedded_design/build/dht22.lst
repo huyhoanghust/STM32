@@ -1,0 +1,602 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"dht22.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.microDelay,"ax",%progbits
+  18              		.align	1
+  19              		.global	microDelay
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	microDelay:
+  25              	.LVL0:
+  26              	.LFB68:
+  27              		.file 1 "Core/Src/dht22.c"
+   1:Core/Src/dht22.c **** #include "dht22.h"
+   2:Core/Src/dht22.c **** uint32_t pMillis, cMillis;
+   3:Core/Src/dht22.c **** void microDelay (uint16_t delay)
+   4:Core/Src/dht22.c **** {
+  28              		.loc 1 4 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+   5:Core/Src/dht22.c ****   __HAL_TIM_SET_COUNTER(&htim1, 0);
+  33              		.loc 1 5 3 view .LVU1
+  34 0000 034B     		ldr	r3, .L3
+  35 0002 1A68     		ldr	r2, [r3]
+  36 0004 0023     		movs	r3, #0
+  37 0006 5362     		str	r3, [r2, #36]
+   6:Core/Src/dht22.c ****   while (__HAL_TIM_GET_COUNTER(&htim1) < delay);
+  38              		.loc 1 6 3 view .LVU2
+  39              	.L2:
+  40              		.loc 1 6 48 discriminator 1 view .LVU3
+  41              		.loc 1 6 9 discriminator 1 view .LVU4
+  42              		.loc 1 6 10 is_stmt 0 discriminator 1 view .LVU5
+  43 0008 536A     		ldr	r3, [r2, #36]
+  44              		.loc 1 6 9 discriminator 1 view .LVU6
+  45 000a 8342     		cmp	r3, r0
+  46 000c FCD3     		bcc	.L2
+   7:Core/Src/dht22.c **** }
+  47              		.loc 1 7 1 view .LVU7
+  48 000e 7047     		bx	lr
+  49              	.L4:
+  50              		.align	2
+  51              	.L3:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 2
+
+
+  52 0010 00000000 		.word	htim1
+  53              		.cfi_endproc
+  54              	.LFE68:
+  56              		.section	.text.DHT11_Start,"ax",%progbits
+  57              		.align	1
+  58              		.global	DHT11_Start
+  59              		.syntax unified
+  60              		.thumb
+  61              		.thumb_func
+  63              	DHT11_Start:
+  64              	.LFB69:
+   8:Core/Src/dht22.c **** 
+   9:Core/Src/dht22.c **** uint8_t DHT11_Start (void)
+  10:Core/Src/dht22.c **** {
+  65              		.loc 1 10 1 is_stmt 1 view -0
+  66              		.cfi_startproc
+  67              		@ args = 0, pretend = 0, frame = 16
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  70              	.LCFI0:
+  71              		.cfi_def_cfa_offset 20
+  72              		.cfi_offset 4, -20
+  73              		.cfi_offset 5, -16
+  74              		.cfi_offset 6, -12
+  75              		.cfi_offset 7, -8
+  76              		.cfi_offset 14, -4
+  77 0002 85B0     		sub	sp, sp, #20
+  78              	.LCFI1:
+  79              		.cfi_def_cfa_offset 40
+  11:Core/Src/dht22.c ****   uint8_t Response = 0;
+  80              		.loc 1 11 3 view .LVU9
+  81              	.LVL1:
+  12:Core/Src/dht22.c ****   GPIO_InitTypeDef GPIO_InitStructPrivate = {0};
+  82              		.loc 1 12 3 view .LVU10
+  83              		.loc 1 12 20 is_stmt 0 view .LVU11
+  84 0004 0024     		movs	r4, #0
+  85 0006 0094     		str	r4, [sp]
+  86 0008 0194     		str	r4, [sp, #4]
+  87 000a 0294     		str	r4, [sp, #8]
+  88 000c 0394     		str	r4, [sp, #12]
+  13:Core/Src/dht22.c ****   GPIO_InitStructPrivate.Pin = DHT11_PIN;
+  89              		.loc 1 13 3 is_stmt 1 view .LVU12
+  90              		.loc 1 13 30 is_stmt 0 view .LVU13
+  91 000e 4FF40066 		mov	r6, #2048
+  92 0012 0096     		str	r6, [sp]
+  14:Core/Src/dht22.c ****   GPIO_InitStructPrivate.Mode = GPIO_MODE_OUTPUT_PP;
+  93              		.loc 1 14 3 is_stmt 1 view .LVU14
+  94              		.loc 1 14 31 is_stmt 0 view .LVU15
+  95 0014 0127     		movs	r7, #1
+  96 0016 0197     		str	r7, [sp, #4]
+  15:Core/Src/dht22.c ****   GPIO_InitStructPrivate.Speed = GPIO_SPEED_FREQ_LOW;
+  97              		.loc 1 15 3 is_stmt 1 view .LVU16
+  98              		.loc 1 15 32 is_stmt 0 view .LVU17
+  99 0018 0223     		movs	r3, #2
+ 100 001a 0393     		str	r3, [sp, #12]
+  16:Core/Src/dht22.c ****   GPIO_InitStructPrivate.Pull = GPIO_NOPULL;
+ 101              		.loc 1 16 3 is_stmt 1 view .LVU18
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 3
+
+
+  17:Core/Src/dht22.c ****   HAL_GPIO_Init(DHT11_PORT, &GPIO_InitStructPrivate); // set the pin as output
+ 102              		.loc 1 17 3 view .LVU19
+ 103 001c 264D     		ldr	r5, .L14
+ 104 001e 6946     		mov	r1, sp
+ 105 0020 2846     		mov	r0, r5
+ 106 0022 FFF7FEFF 		bl	HAL_GPIO_Init
+ 107              	.LVL2:
+  18:Core/Src/dht22.c ****   HAL_GPIO_WritePin (DHT11_PORT, DHT11_PIN, 0);   // pull the pin low
+ 108              		.loc 1 18 3 view .LVU20
+ 109 0026 2246     		mov	r2, r4
+ 110 0028 3146     		mov	r1, r6
+ 111 002a 2846     		mov	r0, r5
+ 112 002c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 113              	.LVL3:
+  19:Core/Src/dht22.c ****   HAL_Delay(20);   // wait for 20ms
+ 114              		.loc 1 19 3 view .LVU21
+ 115 0030 1420     		movs	r0, #20
+ 116 0032 FFF7FEFF 		bl	HAL_Delay
+ 117              	.LVL4:
+  20:Core/Src/dht22.c ****   HAL_GPIO_WritePin (DHT11_PORT, DHT11_PIN, 1);   // pull the pin high
+ 118              		.loc 1 20 3 view .LVU22
+ 119 0036 3A46     		mov	r2, r7
+ 120 0038 3146     		mov	r1, r6
+ 121 003a 2846     		mov	r0, r5
+ 122 003c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 123              	.LVL5:
+  21:Core/Src/dht22.c ****   microDelay (30);   // wait for 30us
+ 124              		.loc 1 21 3 view .LVU23
+ 125 0040 1E20     		movs	r0, #30
+ 126 0042 FFF7FEFF 		bl	microDelay
+ 127              	.LVL6:
+  22:Core/Src/dht22.c ****   GPIO_InitStructPrivate.Mode = GPIO_MODE_INPUT;
+ 128              		.loc 1 22 3 view .LVU24
+ 129              		.loc 1 22 31 is_stmt 0 view .LVU25
+ 130 0046 0194     		str	r4, [sp, #4]
+  23:Core/Src/dht22.c ****   GPIO_InitStructPrivate.Pull = GPIO_PULLUP;
+ 131              		.loc 1 23 3 is_stmt 1 view .LVU26
+ 132              		.loc 1 23 31 is_stmt 0 view .LVU27
+ 133 0048 0297     		str	r7, [sp, #8]
+  24:Core/Src/dht22.c ****   HAL_GPIO_Init(DHT11_PORT, &GPIO_InitStructPrivate); // set the pin as input
+ 134              		.loc 1 24 3 is_stmt 1 view .LVU28
+ 135 004a 6946     		mov	r1, sp
+ 136 004c 2846     		mov	r0, r5
+ 137 004e FFF7FEFF 		bl	HAL_GPIO_Init
+ 138              	.LVL7:
+  25:Core/Src/dht22.c ****   microDelay (40);
+ 139              		.loc 1 25 3 view .LVU29
+ 140 0052 2820     		movs	r0, #40
+ 141 0054 FFF7FEFF 		bl	microDelay
+ 142              	.LVL8:
+  26:Core/Src/dht22.c ****   if (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)))
+ 143              		.loc 1 26 3 view .LVU30
+ 144              		.loc 1 26 9 is_stmt 0 view .LVU31
+ 145 0058 3146     		mov	r1, r6
+ 146 005a 2846     		mov	r0, r5
+ 147 005c FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 148              	.LVL9:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 4
+
+
+ 149              		.loc 1 26 6 view .LVU32
+ 150 0060 48B1     		cbz	r0, .L13
+  11:Core/Src/dht22.c ****   GPIO_InitTypeDef GPIO_InitStructPrivate = {0};
+ 151              		.loc 1 11 11 view .LVU33
+ 152 0062 0024     		movs	r4, #0
+ 153              	.L6:
+ 154              	.LVL10:
+  27:Core/Src/dht22.c ****   {
+  28:Core/Src/dht22.c ****     microDelay (80);
+  29:Core/Src/dht22.c ****     if ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN))) Response = 1;
+  30:Core/Src/dht22.c ****   }
+  31:Core/Src/dht22.c ****   pMillis = HAL_GetTick();
+ 155              		.loc 1 31 3 is_stmt 1 view .LVU34
+ 156              		.loc 1 31 13 is_stmt 0 view .LVU35
+ 157 0064 FFF7FEFF 		bl	HAL_GetTick
+ 158              	.LVL11:
+ 159              		.loc 1 31 11 view .LVU36
+ 160 0068 144B     		ldr	r3, .L14+4
+ 161 006a 1860     		str	r0, [r3]
+  32:Core/Src/dht22.c ****   cMillis = HAL_GetTick();
+ 162              		.loc 1 32 3 is_stmt 1 view .LVU37
+ 163              		.loc 1 32 13 is_stmt 0 view .LVU38
+ 164 006c FFF7FEFF 		bl	HAL_GetTick
+ 165              	.LVL12:
+ 166              		.loc 1 32 11 view .LVU39
+ 167 0070 134B     		ldr	r3, .L14+8
+ 168 0072 1860     		str	r0, [r3]
+  33:Core/Src/dht22.c ****   while ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+ 169              		.loc 1 33 3 is_stmt 1 view .LVU40
+ 170              		.loc 1 33 9 is_stmt 0 view .LVU41
+ 171 0074 0FE0     		b	.L7
+ 172              	.LVL13:
+ 173              	.L13:
+  28:Core/Src/dht22.c ****     if ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN))) Response = 1;
+ 174              		.loc 1 28 5 is_stmt 1 view .LVU42
+ 175 0076 5020     		movs	r0, #80
+ 176 0078 FFF7FEFF 		bl	microDelay
+ 177              	.LVL14:
+  29:Core/Src/dht22.c ****   }
+ 178              		.loc 1 29 5 view .LVU43
+  29:Core/Src/dht22.c ****   }
+ 179              		.loc 1 29 10 is_stmt 0 view .LVU44
+ 180 007c 3146     		mov	r1, r6
+ 181 007e 2846     		mov	r0, r5
+ 182 0080 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 183              	.LVL15:
+  29:Core/Src/dht22.c ****   }
+ 184              		.loc 1 29 8 view .LVU45
+ 185 0084 0446     		mov	r4, r0
+ 186 0086 0028     		cmp	r0, #0
+ 187 0088 ECD0     		beq	.L6
+  29:Core/Src/dht22.c ****   }
+ 188              		.loc 1 29 62 view .LVU46
+ 189 008a 0124     		movs	r4, #1
+ 190 008c EAE7     		b	.L6
+ 191              	.LVL16:
+ 192              	.L9:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 5
+
+
+  34:Core/Src/dht22.c ****   {
+  35:Core/Src/dht22.c ****     cMillis = HAL_GetTick();
+ 193              		.loc 1 35 5 is_stmt 1 view .LVU47
+ 194              		.loc 1 35 15 is_stmt 0 view .LVU48
+ 195 008e FFF7FEFF 		bl	HAL_GetTick
+ 196              	.LVL17:
+ 197              		.loc 1 35 13 view .LVU49
+ 198 0092 0B4B     		ldr	r3, .L14+8
+ 199 0094 1860     		str	r0, [r3]
+ 200              	.L7:
+  33:Core/Src/dht22.c ****   {
+ 201              		.loc 1 33 9 is_stmt 1 view .LVU50
+  33:Core/Src/dht22.c ****   {
+ 202              		.loc 1 33 11 is_stmt 0 view .LVU51
+ 203 0096 4FF40061 		mov	r1, #2048
+ 204 009a 0748     		ldr	r0, .L14
+ 205 009c FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 206              	.LVL18:
+  33:Core/Src/dht22.c ****   {
+ 207              		.loc 1 33 9 view .LVU52
+ 208 00a0 30B1     		cbz	r0, .L8
+  33:Core/Src/dht22.c ****   {
+ 209              		.loc 1 33 64 discriminator 1 view .LVU53
+ 210 00a2 064B     		ldr	r3, .L14+4
+ 211 00a4 1B68     		ldr	r3, [r3]
+ 212 00a6 0233     		adds	r3, r3, #2
+  33:Core/Src/dht22.c ****   {
+ 213              		.loc 1 33 68 discriminator 1 view .LVU54
+ 214 00a8 054A     		ldr	r2, .L14+8
+ 215 00aa 1268     		ldr	r2, [r2]
+  33:Core/Src/dht22.c ****   {
+ 216              		.loc 1 33 53 discriminator 1 view .LVU55
+ 217 00ac 9342     		cmp	r3, r2
+ 218 00ae EED8     		bhi	.L9
+ 219              	.L8:
+  36:Core/Src/dht22.c ****   }
+  37:Core/Src/dht22.c ****   return Response;
+ 220              		.loc 1 37 3 is_stmt 1 view .LVU56
+  38:Core/Src/dht22.c **** }
+ 221              		.loc 1 38 1 is_stmt 0 view .LVU57
+ 222 00b0 2046     		mov	r0, r4
+ 223 00b2 05B0     		add	sp, sp, #20
+ 224              	.LCFI2:
+ 225              		.cfi_def_cfa_offset 20
+ 226              		@ sp needed
+ 227 00b4 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 228              	.LVL19:
+ 229              	.L15:
+ 230              		.loc 1 38 1 view .LVU58
+ 231 00b6 00BF     		.align	2
+ 232              	.L14:
+ 233 00b8 000C0140 		.word	1073810432
+ 234 00bc 00000000 		.word	.LANCHOR0
+ 235 00c0 00000000 		.word	.LANCHOR1
+ 236              		.cfi_endproc
+ 237              	.LFE69:
+ 239              		.section	.text.DHT11_Read,"ax",%progbits
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 6
+
+
+ 240              		.align	1
+ 241              		.global	DHT11_Read
+ 242              		.syntax unified
+ 243              		.thumb
+ 244              		.thumb_func
+ 246              	DHT11_Read:
+ 247              	.LFB70:
+  39:Core/Src/dht22.c **** 
+  40:Core/Src/dht22.c **** uint8_t DHT11_Read (void)
+  41:Core/Src/dht22.c **** {
+ 248              		.loc 1 41 1 is_stmt 1 view -0
+ 249              		.cfi_startproc
+ 250              		@ args = 0, pretend = 0, frame = 0
+ 251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 252 0000 38B5     		push	{r3, r4, r5, lr}
+ 253              	.LCFI3:
+ 254              		.cfi_def_cfa_offset 16
+ 255              		.cfi_offset 3, -16
+ 256              		.cfi_offset 4, -12
+ 257              		.cfi_offset 5, -8
+ 258              		.cfi_offset 14, -4
+ 259 0002 0025     		movs	r5, #0
+  42:Core/Src/dht22.c ****   uint8_t a,b;
+ 260              		.loc 1 42 3 view .LVU60
+  43:Core/Src/dht22.c ****   for (a=0;a<8;a++)
+ 261              		.loc 1 43 3 view .LVU61
+ 262              	.LVL20:
+ 263              		.loc 1 43 9 is_stmt 0 view .LVU62
+ 264 0004 2C46     		mov	r4, r5
+ 265              		.loc 1 43 3 view .LVU63
+ 266 0006 42E0     		b	.L17
+ 267              	.LVL21:
+ 268              	.L20:
+  44:Core/Src/dht22.c ****   {
+  45:Core/Src/dht22.c ****     pMillis = HAL_GetTick();
+  46:Core/Src/dht22.c ****     cMillis = HAL_GetTick();
+  47:Core/Src/dht22.c ****     while (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+  48:Core/Src/dht22.c ****     {  // wait for the pin to go high
+  49:Core/Src/dht22.c ****       cMillis = HAL_GetTick();
+ 269              		.loc 1 49 7 is_stmt 1 view .LVU64
+ 270              		.loc 1 49 17 is_stmt 0 view .LVU65
+ 271 0008 FFF7FEFF 		bl	HAL_GetTick
+ 272              	.LVL22:
+ 273              		.loc 1 49 15 view .LVU66
+ 274 000c 264B     		ldr	r3, .L29
+ 275 000e 1860     		str	r0, [r3]
+ 276              	.L18:
+  47:Core/Src/dht22.c ****     {  // wait for the pin to go high
+ 277              		.loc 1 47 11 is_stmt 1 view .LVU67
+  47:Core/Src/dht22.c ****     {  // wait for the pin to go high
+ 278              		.loc 1 47 14 is_stmt 0 view .LVU68
+ 279 0010 4FF40061 		mov	r1, #2048
+ 280 0014 2548     		ldr	r0, .L29+4
+ 281 0016 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 282              	.LVL23:
+  47:Core/Src/dht22.c ****     {  // wait for the pin to go high
+ 283              		.loc 1 47 11 view .LVU69
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 7
+
+
+ 284 001a 30B9     		cbnz	r0, .L19
+  47:Core/Src/dht22.c ****     {  // wait for the pin to go high
+ 285              		.loc 1 47 67 discriminator 1 view .LVU70
+ 286 001c 244B     		ldr	r3, .L29+8
+ 287 001e 1B68     		ldr	r3, [r3]
+ 288 0020 0233     		adds	r3, r3, #2
+  47:Core/Src/dht22.c ****     {  // wait for the pin to go high
+ 289              		.loc 1 47 71 discriminator 1 view .LVU71
+ 290 0022 214A     		ldr	r2, .L29
+ 291 0024 1268     		ldr	r2, [r2]
+  47:Core/Src/dht22.c ****     {  // wait for the pin to go high
+ 292              		.loc 1 47 56 discriminator 1 view .LVU72
+ 293 0026 9342     		cmp	r3, r2
+ 294 0028 EED8     		bhi	.L20
+ 295              	.L19:
+  50:Core/Src/dht22.c ****     }
+  51:Core/Src/dht22.c ****     microDelay (40);   // wait for 40 us
+ 296              		.loc 1 51 5 is_stmt 1 view .LVU73
+ 297 002a 2820     		movs	r0, #40
+ 298 002c FFF7FEFF 		bl	microDelay
+ 299              	.LVL24:
+  52:Core/Src/dht22.c ****     if (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)))   // if the pin is low
+ 300              		.loc 1 52 5 view .LVU74
+ 301              		.loc 1 52 11 is_stmt 0 view .LVU75
+ 302 0030 4FF40061 		mov	r1, #2048
+ 303 0034 1D48     		ldr	r0, .L29+4
+ 304 0036 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 305              	.LVL25:
+ 306              		.loc 1 52 8 view .LVU76
+ 307 003a 70B9     		cbnz	r0, .L21
+  53:Core/Src/dht22.c ****       b&= ~(1<<(7-a));
+ 308              		.loc 1 53 7 is_stmt 1 view .LVU77
+ 309              		.loc 1 53 18 is_stmt 0 view .LVU78
+ 310 003c C4F10702 		rsb	r2, r4, #7
+ 311              		.loc 1 53 14 view .LVU79
+ 312 0040 0123     		movs	r3, #1
+ 313 0042 9340     		lsls	r3, r3, r2
+ 314              		.loc 1 53 8 view .LVU80
+ 315 0044 25EA0305 		bic	r5, r5, r3
+ 316              	.LVL26:
+ 317              	.L22:
+  54:Core/Src/dht22.c ****     else
+  55:Core/Src/dht22.c ****       b|= (1<<(7-a));
+  56:Core/Src/dht22.c ****     pMillis = HAL_GetTick();
+ 318              		.loc 1 56 5 is_stmt 1 view .LVU81
+ 319              		.loc 1 56 15 is_stmt 0 view .LVU82
+ 320 0048 FFF7FEFF 		bl	HAL_GetTick
+ 321              	.LVL27:
+ 322              		.loc 1 56 13 view .LVU83
+ 323 004c 184B     		ldr	r3, .L29+8
+ 324 004e 1860     		str	r0, [r3]
+  57:Core/Src/dht22.c ****     cMillis = HAL_GetTick();
+ 325              		.loc 1 57 5 is_stmt 1 view .LVU84
+ 326              		.loc 1 57 15 is_stmt 0 view .LVU85
+ 327 0050 FFF7FEFF 		bl	HAL_GetTick
+ 328              	.LVL28:
+ 329              		.loc 1 57 13 view .LVU86
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 8
+
+
+ 330 0054 144B     		ldr	r3, .L29
+ 331 0056 1860     		str	r0, [r3]
+  58:Core/Src/dht22.c ****     while ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+ 332              		.loc 1 58 5 is_stmt 1 view .LVU87
+ 333              		.loc 1 58 11 is_stmt 0 view .LVU88
+ 334 0058 0AE0     		b	.L23
+ 335              	.L21:
+  55:Core/Src/dht22.c ****     pMillis = HAL_GetTick();
+ 336              		.loc 1 55 7 is_stmt 1 view .LVU89
+  55:Core/Src/dht22.c ****     pMillis = HAL_GetTick();
+ 337              		.loc 1 55 17 is_stmt 0 view .LVU90
+ 338 005a C4F10702 		rsb	r2, r4, #7
+  55:Core/Src/dht22.c ****     pMillis = HAL_GetTick();
+ 339              		.loc 1 55 13 view .LVU91
+ 340 005e 0123     		movs	r3, #1
+ 341 0060 9340     		lsls	r3, r3, r2
+  55:Core/Src/dht22.c ****     pMillis = HAL_GetTick();
+ 342              		.loc 1 55 8 view .LVU92
+ 343 0062 1D43     		orrs	r5, r5, r3
+ 344              	.LVL29:
+  55:Core/Src/dht22.c ****     pMillis = HAL_GetTick();
+ 345              		.loc 1 55 8 view .LVU93
+ 346 0064 EDB2     		uxtb	r5, r5
+ 347              	.LVL30:
+  55:Core/Src/dht22.c ****     pMillis = HAL_GetTick();
+ 348              		.loc 1 55 8 view .LVU94
+ 349 0066 EFE7     		b	.L22
+ 350              	.L25:
+  59:Core/Src/dht22.c ****     {  // wait for the pin to go low
+  60:Core/Src/dht22.c ****       cMillis = HAL_GetTick();
+ 351              		.loc 1 60 7 is_stmt 1 view .LVU95
+ 352              		.loc 1 60 17 is_stmt 0 view .LVU96
+ 353 0068 FFF7FEFF 		bl	HAL_GetTick
+ 354              	.LVL31:
+ 355              		.loc 1 60 15 view .LVU97
+ 356 006c 0E4B     		ldr	r3, .L29
+ 357 006e 1860     		str	r0, [r3]
+ 358              	.L23:
+  58:Core/Src/dht22.c ****     {  // wait for the pin to go low
+ 359              		.loc 1 58 11 is_stmt 1 view .LVU98
+  58:Core/Src/dht22.c ****     {  // wait for the pin to go low
+ 360              		.loc 1 58 13 is_stmt 0 view .LVU99
+ 361 0070 4FF40061 		mov	r1, #2048
+ 362 0074 0D48     		ldr	r0, .L29+4
+ 363 0076 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 364              	.LVL32:
+  58:Core/Src/dht22.c ****     {  // wait for the pin to go low
+ 365              		.loc 1 58 11 view .LVU100
+ 366 007a 30B1     		cbz	r0, .L24
+  58:Core/Src/dht22.c ****     {  // wait for the pin to go low
+ 367              		.loc 1 58 66 discriminator 1 view .LVU101
+ 368 007c 0C4B     		ldr	r3, .L29+8
+ 369 007e 1B68     		ldr	r3, [r3]
+ 370 0080 0233     		adds	r3, r3, #2
+  58:Core/Src/dht22.c ****     {  // wait for the pin to go low
+ 371              		.loc 1 58 70 discriminator 1 view .LVU102
+ 372 0082 094A     		ldr	r2, .L29
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 9
+
+
+ 373 0084 1268     		ldr	r2, [r2]
+  58:Core/Src/dht22.c ****     {  // wait for the pin to go low
+ 374              		.loc 1 58 55 discriminator 1 view .LVU103
+ 375 0086 9342     		cmp	r3, r2
+ 376 0088 EED8     		bhi	.L25
+ 377              	.L24:
+  43:Core/Src/dht22.c ****   {
+ 378              		.loc 1 43 16 is_stmt 1 discriminator 2 view .LVU104
+  43:Core/Src/dht22.c ****   {
+ 379              		.loc 1 43 17 is_stmt 0 discriminator 2 view .LVU105
+ 380 008a 0134     		adds	r4, r4, #1
+ 381              	.LVL33:
+  43:Core/Src/dht22.c ****   {
+ 382              		.loc 1 43 17 discriminator 2 view .LVU106
+ 383 008c E4B2     		uxtb	r4, r4
+ 384              	.LVL34:
+ 385              	.L17:
+  43:Core/Src/dht22.c ****   {
+ 386              		.loc 1 43 12 is_stmt 1 discriminator 1 view .LVU107
+  43:Core/Src/dht22.c ****   {
+ 387              		.loc 1 43 3 is_stmt 0 discriminator 1 view .LVU108
+ 388 008e 072C     		cmp	r4, #7
+ 389 0090 08D8     		bhi	.L28
+  45:Core/Src/dht22.c ****     cMillis = HAL_GetTick();
+ 390              		.loc 1 45 5 is_stmt 1 view .LVU109
+  45:Core/Src/dht22.c ****     cMillis = HAL_GetTick();
+ 391              		.loc 1 45 15 is_stmt 0 view .LVU110
+ 392 0092 FFF7FEFF 		bl	HAL_GetTick
+ 393              	.LVL35:
+  45:Core/Src/dht22.c ****     cMillis = HAL_GetTick();
+ 394              		.loc 1 45 13 view .LVU111
+ 395 0096 064B     		ldr	r3, .L29+8
+ 396 0098 1860     		str	r0, [r3]
+  46:Core/Src/dht22.c ****     while (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+ 397              		.loc 1 46 5 is_stmt 1 view .LVU112
+  46:Core/Src/dht22.c ****     while (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+ 398              		.loc 1 46 15 is_stmt 0 view .LVU113
+ 399 009a FFF7FEFF 		bl	HAL_GetTick
+ 400              	.LVL36:
+  46:Core/Src/dht22.c ****     while (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+ 401              		.loc 1 46 13 view .LVU114
+ 402 009e 024B     		ldr	r3, .L29
+ 403 00a0 1860     		str	r0, [r3]
+  47:Core/Src/dht22.c ****     {  // wait for the pin to go high
+ 404              		.loc 1 47 5 is_stmt 1 view .LVU115
+  47:Core/Src/dht22.c ****     {  // wait for the pin to go high
+ 405              		.loc 1 47 11 is_stmt 0 view .LVU116
+ 406 00a2 B5E7     		b	.L18
+ 407              	.L28:
+  61:Core/Src/dht22.c ****     }
+  62:Core/Src/dht22.c ****   }
+  63:Core/Src/dht22.c ****   return b;
+ 408              		.loc 1 63 3 is_stmt 1 view .LVU117
+  64:Core/Src/dht22.c **** }...
+ 409              		.loc 1 64 1 is_stmt 0 view .LVU118
+ 410 00a4 2846     		mov	r0, r5
+ 411 00a6 38BD     		pop	{r3, r4, r5, pc}
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 10
+
+
+ 412              	.LVL37:
+ 413              	.L30:
+ 414              		.loc 1 64 1 view .LVU119
+ 415              		.align	2
+ 416              	.L29:
+ 417 00a8 00000000 		.word	.LANCHOR1
+ 418 00ac 000C0140 		.word	1073810432
+ 419 00b0 00000000 		.word	.LANCHOR0
+ 420              		.cfi_endproc
+ 421              	.LFE70:
+ 423              		.global	cMillis
+ 424              		.global	pMillis
+ 425              		.section	.bss.cMillis,"aw",%nobits
+ 426              		.align	2
+ 427              		.set	.LANCHOR1,. + 0
+ 430              	cMillis:
+ 431 0000 00000000 		.space	4
+ 432              		.section	.bss.pMillis,"aw",%nobits
+ 433              		.align	2
+ 434              		.set	.LANCHOR0,. + 0
+ 437              	pMillis:
+ 438 0000 00000000 		.space	4
+ 439              		.text
+ 440              	.Letext0:
+ 441              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 442              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 443              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 444              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 445              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ 446              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 447              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ 448              		.file 9 "Core/Inc/tim.h"
+ 449              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 dht22.c
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:18     .text.microDelay:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:24     .text.microDelay:00000000 microDelay
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:52     .text.microDelay:00000010 $d
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:57     .text.DHT11_Start:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:63     .text.DHT11_Start:00000000 DHT11_Start
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:233    .text.DHT11_Start:000000b8 $d
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:240    .text.DHT11_Read:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:246    .text.DHT11_Read:00000000 DHT11_Read
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:417    .text.DHT11_Read:000000a8 $d
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:430    .bss.cMillis:00000000 cMillis
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:437    .bss.pMillis:00000000 pMillis
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:426    .bss.cMillis:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccKmcTMB.s:433    .bss.pMillis:00000000 $d
+
+UNDEFINED SYMBOLS
+htim1
+HAL_GPIO_Init
+HAL_GPIO_WritePin
+HAL_Delay
+HAL_GPIO_ReadPin
+HAL_GetTick

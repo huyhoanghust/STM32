@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "fatfs.h": "c",
+        "string.h": "c"
+    }
+}

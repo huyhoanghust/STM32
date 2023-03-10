@@ -1,7 +1,7 @@
 #include "dht11.h"
-#define DHT11_PORT GPIOA
-#define DHT11_PIN GPIO_PIN_1
-TIM_HandleTypeDef htim6;
+#define DHT11_PORT GPIOB
+#define DHT11_PIN GPIO_PIN_0
+//TIM_HandleTypeDef htim6;
 
 void Set_Pin_Output (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 {

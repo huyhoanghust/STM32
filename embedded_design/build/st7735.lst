@@ -1,0 +1,2372 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"st7735.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.st7735_Trans,"ax",%progbits
+  18              		.align	1
+  19              		.global	st7735_Trans
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	st7735_Trans:
+  25              	.LVL0:
+  26              	.LFB65:
+  27              		.file 1 "Core/Src/st7735.c"
+   1:Core/Src/st7735.c **** /**************************************************************************************************
+   2:Core/Src/st7735.c **** Ten Thu Vien: ST7735 LIB
+   3:Core/Src/st7735.c **** Chuc Nang: Dieu khien man hinh TFT LCD 1.44, 1.8 inch
+   4:Core/Src/st7735.c **** Tac Gia: Khue Nguyen Creator
+   5:Core/Src/st7735.c **** Huong Dan Su dung: 
+   6:Core/Src/st7735.c **** - Sua lai file Platform.h khi su dung voi thu vien khac nhau  
+   7:Core/Src/st7735.c **** - Dinh Nghia cac chan CS, DC, RS la cac chan ouput
+   8:Core/Src/st7735.c **** - Cau Hinh SPI, Sua lai marco de dung voi SPI can dung: #define st7735_PORT hspi1
+   9:Core/Src/st7735.c **** Pinout:
+  10:Core/Src/st7735.c **** 
+  11:Core/Src/st7735.c **** ***************************************************************************************************
+  12:Core/Src/st7735.c **** #include "st7735.h"
+  13:Core/Src/st7735.c **** 
+  14:Core/Src/st7735.c **** //*********************** Marco for HAL LIB ***************************************************///
+  15:Core/Src/st7735.c **** // #ifdef USE_HAL_LIB 
+  16:Core/Src/st7735.c **** #define st7735_PORT hspi2
+  17:Core/Src/st7735.c **** extern SPI_HandleTypeDef st7735_PORT;
+  18:Core/Src/st7735.c **** /****************** Low Level Functions ***********************************************************
+  19:Core/Src/st7735.c **** void st7735_Trans(uint8_t *buff, uint16_t buff_size)
+  20:Core/Src/st7735.c **** {
+  28              		.loc 1 20 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 20 1 is_stmt 0 view .LVU1
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  38 0002 0A46     		mov	r2, r1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 2
+
+
+  21:Core/Src/st7735.c **** 	HAL_SPI_Transmit(&st7735_PORT, buff, buff_size, HAL_MAX_DELAY);
+  39              		.loc 1 21 2 is_stmt 1 view .LVU2
+  40 0004 4FF0FF33 		mov	r3, #-1
+  41 0008 0146     		mov	r1, r0
+  42              	.LVL1:
+  43              		.loc 1 21 2 is_stmt 0 view .LVU3
+  44 000a 0248     		ldr	r0, .L3
+  45              	.LVL2:
+  46              		.loc 1 21 2 view .LVU4
+  47 000c FFF7FEFF 		bl	HAL_SPI_Transmit
+  48              	.LVL3:
+  22:Core/Src/st7735.c **** }
+  49              		.loc 1 22 1 view .LVU5
+  50 0010 08BD     		pop	{r3, pc}
+  51              	.L4:
+  52 0012 00BF     		.align	2
+  53              	.L3:
+  54 0014 00000000 		.word	hspi2
+  55              		.cfi_endproc
+  56              	.LFE65:
+  58              		.section	.text.delay_ms,"ax",%progbits
+  59              		.align	1
+  60              		.global	delay_ms
+  61              		.syntax unified
+  62              		.thumb
+  63              		.thumb_func
+  65              	delay_ms:
+  66              	.LVL4:
+  67              	.LFB66:
+  23:Core/Src/st7735.c **** void delay_ms(uint32_t time_delay)
+  24:Core/Src/st7735.c **** {
+  68              		.loc 1 24 1 is_stmt 1 view -0
+  69              		.cfi_startproc
+  70              		@ args = 0, pretend = 0, frame = 0
+  71              		@ frame_needed = 0, uses_anonymous_args = 0
+  72              		.loc 1 24 1 is_stmt 0 view .LVU7
+  73 0000 08B5     		push	{r3, lr}
+  74              	.LCFI1:
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 3, -8
+  77              		.cfi_offset 14, -4
+  25:Core/Src/st7735.c **** 	HAL_Delay(time_delay);
+  78              		.loc 1 25 2 is_stmt 1 view .LVU8
+  79 0002 FFF7FEFF 		bl	HAL_Delay
+  80              	.LVL5:
+  26:Core/Src/st7735.c **** }
+  81              		.loc 1 26 1 is_stmt 0 view .LVU9
+  82 0006 08BD     		pop	{r3, pc}
+  83              		.cfi_endproc
+  84              	.LFE66:
+  86              		.section	.text.ST7735_Reset,"ax",%progbits
+  87              		.align	1
+  88              		.global	ST7735_Reset
+  89              		.syntax unified
+  90              		.thumb
+  91              		.thumb_func
+  93              	ST7735_Reset:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 3
+
+
+  94              	.LFB67:
+  27:Core/Src/st7735.c **** // #endif
+  28:Core/Src/st7735.c **** /************************************ Middle Level Functions **************************************
+  29:Core/Src/st7735.c **** void ST7735_Reset() 
+  30:Core/Src/st7735.c **** {
+  95              		.loc 1 30 1 is_stmt 1 view -0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99 0000 10B5     		push	{r4, lr}
+ 100              	.LCFI2:
+ 101              		.cfi_def_cfa_offset 8
+ 102              		.cfi_offset 4, -8
+ 103              		.cfi_offset 14, -4
+  31:Core/Src/st7735.c ****     ST7735_RESET_ON();
+ 104              		.loc 1 31 5 view .LVU11
+ 105 0002 074C     		ldr	r4, .L9
+ 106 0004 0022     		movs	r2, #0
+ 107 0006 0421     		movs	r1, #4
+ 108 0008 2046     		mov	r0, r4
+ 109 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 110              	.LVL6:
+ 111              		.loc 1 31 22 view .LVU12
+  32:Core/Src/st7735.c ****     delay_ms(5);
+ 112              		.loc 1 32 5 view .LVU13
+ 113 000e 0520     		movs	r0, #5
+ 114 0010 FFF7FEFF 		bl	delay_ms
+ 115              	.LVL7:
+  33:Core/Src/st7735.c ****     ST7735_RESET_OFF();
+ 116              		.loc 1 33 5 view .LVU14
+ 117 0014 0122     		movs	r2, #1
+ 118 0016 0421     		movs	r1, #4
+ 119 0018 2046     		mov	r0, r4
+ 120 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 121              	.LVL8:
+ 122              		.loc 1 33 23 view .LVU15
+  34:Core/Src/st7735.c **** }			
+ 123              		.loc 1 34 1 is_stmt 0 view .LVU16
+ 124 001e 10BD     		pop	{r4, pc}
+ 125              	.L10:
+ 126              		.align	2
+ 127              	.L9:
+ 128 0020 00080140 		.word	1073809408
+ 129              		.cfi_endproc
+ 130              	.LFE67:
+ 132              		.section	.text.ST7735_WriteCommand,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	ST7735_WriteCommand
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 139              	ST7735_WriteCommand:
+ 140              	.LVL9:
+ 141              	.LFB68:
+  35:Core/Src/st7735.c **** void ST7735_WriteCommand(uint8_t cmd)
+  36:Core/Src/st7735.c **** {
+ 142              		.loc 1 36 1 is_stmt 1 view -0
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 4
+
+
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 8
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146              		.loc 1 36 1 is_stmt 0 view .LVU18
+ 147 0000 00B5     		push	{lr}
+ 148              	.LCFI3:
+ 149              		.cfi_def_cfa_offset 4
+ 150              		.cfi_offset 14, -4
+ 151 0002 83B0     		sub	sp, sp, #12
+ 152              	.LCFI4:
+ 153              		.cfi_def_cfa_offset 16
+ 154 0004 8DF80700 		strb	r0, [sp, #7]
+  37:Core/Src/st7735.c ****     ST7735_CMD();
+ 155              		.loc 1 37 5 is_stmt 1 view .LVU19
+ 156 0008 0022     		movs	r2, #0
+ 157 000a 0221     		movs	r1, #2
+ 158 000c 0548     		ldr	r0, .L13
+ 159              	.LVL10:
+ 160              		.loc 1 37 5 is_stmt 0 view .LVU20
+ 161 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 162              	.LVL11:
+  38:Core/Src/st7735.c **** 		st7735_Trans(&cmd, sizeof(cmd));
+ 163              		.loc 1 38 3 is_stmt 1 view .LVU21
+ 164 0012 0121     		movs	r1, #1
+ 165 0014 0DF10700 		add	r0, sp, #7
+ 166 0018 FFF7FEFF 		bl	st7735_Trans
+ 167              	.LVL12:
+  39:Core/Src/st7735.c **** }
+ 168              		.loc 1 39 1 is_stmt 0 view .LVU22
+ 169 001c 03B0     		add	sp, sp, #12
+ 170              	.LCFI5:
+ 171              		.cfi_def_cfa_offset 4
+ 172              		@ sp needed
+ 173 001e 5DF804FB 		ldr	pc, [sp], #4
+ 174              	.L14:
+ 175 0022 00BF     		.align	2
+ 176              	.L13:
+ 177 0024 00080140 		.word	1073809408
+ 178              		.cfi_endproc
+ 179              	.LFE68:
+ 181              		.section	.text.ST7735_WriteData,"ax",%progbits
+ 182              		.align	1
+ 183              		.global	ST7735_WriteData
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ 188              	ST7735_WriteData:
+ 189              	.LVL13:
+ 190              	.LFB69:
+  40:Core/Src/st7735.c **** void ST7735_WriteData(uint8_t* buff, size_t buff_size) 
+  41:Core/Src/st7735.c **** {
+ 191              		.loc 1 41 1 is_stmt 1 view -0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195              		.loc 1 41 1 is_stmt 0 view .LVU24
+ 196 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 5
+
+
+ 197              	.LCFI6:
+ 198              		.cfi_def_cfa_offset 16
+ 199              		.cfi_offset 3, -16
+ 200              		.cfi_offset 4, -12
+ 201              		.cfi_offset 5, -8
+ 202              		.cfi_offset 14, -4
+ 203 0002 0446     		mov	r4, r0
+ 204 0004 0D46     		mov	r5, r1
+  42:Core/Src/st7735.c ****     ST7735_DATA();
+ 205              		.loc 1 42 5 is_stmt 1 view .LVU25
+ 206 0006 0122     		movs	r2, #1
+ 207 0008 0221     		movs	r1, #2
+ 208              	.LVL14:
+ 209              		.loc 1 42 5 is_stmt 0 view .LVU26
+ 210 000a 0448     		ldr	r0, .L17
+ 211              	.LVL15:
+ 212              		.loc 1 42 5 view .LVU27
+ 213 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 214              	.LVL16:
+  43:Core/Src/st7735.c ****     st7735_Trans(buff, buff_size);
+ 215              		.loc 1 43 5 is_stmt 1 view .LVU28
+ 216 0010 A9B2     		uxth	r1, r5
+ 217 0012 2046     		mov	r0, r4
+ 218 0014 FFF7FEFF 		bl	st7735_Trans
+ 219              	.LVL17:
+  44:Core/Src/st7735.c **** }
+ 220              		.loc 1 44 1 is_stmt 0 view .LVU29
+ 221 0018 38BD     		pop	{r3, r4, r5, pc}
+ 222              	.LVL18:
+ 223              	.L18:
+ 224              		.loc 1 44 1 view .LVU30
+ 225 001a 00BF     		.align	2
+ 226              	.L17:
+ 227 001c 00080140 		.word	1073809408
+ 228              		.cfi_endproc
+ 229              	.LFE69:
+ 231              		.section	.text.ST7735_WriteData8,"ax",%progbits
+ 232              		.align	1
+ 233              		.global	ST7735_WriteData8
+ 234              		.syntax unified
+ 235              		.thumb
+ 236              		.thumb_func
+ 238              	ST7735_WriteData8:
+ 239              	.LVL19:
+ 240              	.LFB70:
+  45:Core/Src/st7735.c **** 
+  46:Core/Src/st7735.c **** void ST7735_WriteData8(uint8_t data) 
+  47:Core/Src/st7735.c **** {
+ 241              		.loc 1 47 1 is_stmt 1 view -0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 8
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245              		.loc 1 47 1 is_stmt 0 view .LVU32
+ 246 0000 10B5     		push	{r4, lr}
+ 247              	.LCFI7:
+ 248              		.cfi_def_cfa_offset 8
+ 249              		.cfi_offset 4, -8
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 6
+
+
+ 250              		.cfi_offset 14, -4
+ 251 0002 82B0     		sub	sp, sp, #8
+ 252              	.LCFI8:
+ 253              		.cfi_def_cfa_offset 16
+ 254 0004 0446     		mov	r4, r0
+  48:Core/Src/st7735.c ****     ST7735_DATA();
+ 255              		.loc 1 48 5 is_stmt 1 view .LVU33
+ 256 0006 0122     		movs	r2, #1
+ 257 0008 0221     		movs	r1, #2
+ 258 000a 0548     		ldr	r0, .L21
+ 259              	.LVL20:
+ 260              		.loc 1 48 5 is_stmt 0 view .LVU34
+ 261 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 262              	.LVL21:
+  49:Core/Src/st7735.c **** 		uint8_t data8[1];
+ 263              		.loc 1 49 3 is_stmt 1 view .LVU35
+  50:Core/Src/st7735.c **** 		data8[0] = data;
+ 264              		.loc 1 50 3 view .LVU36
+ 265              		.loc 1 50 12 is_stmt 0 view .LVU37
+ 266 0010 8DF80440 		strb	r4, [sp, #4]
+  51:Core/Src/st7735.c ****     st7735_Trans(data8, sizeof(data));
+ 267              		.loc 1 51 5 is_stmt 1 view .LVU38
+ 268 0014 0121     		movs	r1, #1
+ 269 0016 01A8     		add	r0, sp, #4
+ 270 0018 FFF7FEFF 		bl	st7735_Trans
+ 271              	.LVL22:
+  52:Core/Src/st7735.c **** }
+ 272              		.loc 1 52 1 is_stmt 0 view .LVU39
+ 273 001c 02B0     		add	sp, sp, #8
+ 274              	.LCFI9:
+ 275              		.cfi_def_cfa_offset 8
+ 276              		@ sp needed
+ 277 001e 10BD     		pop	{r4, pc}
+ 278              	.L22:
+ 279              		.align	2
+ 280              	.L21:
+ 281 0020 00080140 		.word	1073809408
+ 282              		.cfi_endproc
+ 283              	.LFE70:
+ 285              		.section	.text.ST7735_WriteData16,"ax",%progbits
+ 286              		.align	1
+ 287              		.global	ST7735_WriteData16
+ 288              		.syntax unified
+ 289              		.thumb
+ 290              		.thumb_func
+ 292              	ST7735_WriteData16:
+ 293              	.LVL23:
+ 294              	.LFB71:
+  53:Core/Src/st7735.c **** void ST7735_WriteData16(uint16_t data) 
+  54:Core/Src/st7735.c **** {
+ 295              		.loc 1 54 1 is_stmt 1 view -0
+ 296              		.cfi_startproc
+ 297              		@ args = 0, pretend = 0, frame = 8
+ 298              		@ frame_needed = 0, uses_anonymous_args = 0
+ 299              		.loc 1 54 1 is_stmt 0 view .LVU41
+ 300 0000 10B5     		push	{r4, lr}
+ 301              	.LCFI10:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 7
+
+
+ 302              		.cfi_def_cfa_offset 8
+ 303              		.cfi_offset 4, -8
+ 304              		.cfi_offset 14, -4
+ 305 0002 82B0     		sub	sp, sp, #8
+ 306              	.LCFI11:
+ 307              		.cfi_def_cfa_offset 16
+ 308 0004 0446     		mov	r4, r0
+  55:Core/Src/st7735.c ****     ST7735_DATA();
+ 309              		.loc 1 55 5 is_stmt 1 view .LVU42
+ 310 0006 0122     		movs	r2, #1
+ 311 0008 0221     		movs	r1, #2
+ 312 000a 0748     		ldr	r0, .L25
+ 313              	.LVL24:
+ 314              		.loc 1 55 5 is_stmt 0 view .LVU43
+ 315 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 316              	.LVL25:
+  56:Core/Src/st7735.c **** 		uint8_t data8[2];
+ 317              		.loc 1 56 3 is_stmt 1 view .LVU44
+  57:Core/Src/st7735.c **** 		data8[0] = data>>8 & 0xFF;
+ 318              		.loc 1 57 3 view .LVU45
+ 319              		.loc 1 57 12 is_stmt 0 view .LVU46
+ 320 0010 230A     		lsrs	r3, r4, #8
+ 321 0012 8DF80430 		strb	r3, [sp, #4]
+  58:Core/Src/st7735.c **** 		data8[1] = data &0xFF;
+ 322              		.loc 1 58 3 is_stmt 1 view .LVU47
+ 323              		.loc 1 58 12 is_stmt 0 view .LVU48
+ 324 0016 8DF80540 		strb	r4, [sp, #5]
+  59:Core/Src/st7735.c ****     st7735_Trans(data8, sizeof(data8));
+ 325              		.loc 1 59 5 is_stmt 1 view .LVU49
+ 326 001a 0221     		movs	r1, #2
+ 327 001c 01A8     		add	r0, sp, #4
+ 328 001e FFF7FEFF 		bl	st7735_Trans
+ 329              	.LVL26:
+  60:Core/Src/st7735.c **** }
+ 330              		.loc 1 60 1 is_stmt 0 view .LVU50
+ 331 0022 02B0     		add	sp, sp, #8
+ 332              	.LCFI12:
+ 333              		.cfi_def_cfa_offset 8
+ 334              		@ sp needed
+ 335 0024 10BD     		pop	{r4, pc}
+ 336              	.L26:
+ 337 0026 00BF     		.align	2
+ 338              	.L25:
+ 339 0028 00080140 		.word	1073809408
+ 340              		.cfi_endproc
+ 341              	.LFE71:
+ 343              		.section	.text.ST7735_ExecuteCommandList,"ax",%progbits
+ 344              		.align	1
+ 345              		.global	ST7735_ExecuteCommandList
+ 346              		.syntax unified
+ 347              		.thumb
+ 348              		.thumb_func
+ 350              	ST7735_ExecuteCommandList:
+ 351              	.LVL27:
+ 352              	.LFB72:
+  61:Core/Src/st7735.c **** 
+  62:Core/Src/st7735.c **** void ST7735_ExecuteCommandList(const uint8_t *addr) 
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 8
+
+
+  63:Core/Src/st7735.c **** {
+ 353              		.loc 1 63 1 is_stmt 1 view -0
+ 354              		.cfi_startproc
+ 355              		@ args = 0, pretend = 0, frame = 0
+ 356              		@ frame_needed = 0, uses_anonymous_args = 0
+ 357              		.loc 1 63 1 is_stmt 0 view .LVU52
+ 358 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 359              	.LCFI13:
+ 360              		.cfi_def_cfa_offset 24
+ 361              		.cfi_offset 3, -24
+ 362              		.cfi_offset 4, -20
+ 363              		.cfi_offset 5, -16
+ 364              		.cfi_offset 6, -12
+ 365              		.cfi_offset 7, -8
+ 366              		.cfi_offset 14, -4
+  64:Core/Src/st7735.c ****     uint8_t numCommands, numArgs;
+ 367              		.loc 1 64 5 is_stmt 1 view .LVU53
+  65:Core/Src/st7735.c ****     uint16_t ms;
+ 368              		.loc 1 65 5 view .LVU54
+  66:Core/Src/st7735.c ****     numCommands = *addr++;
+ 369              		.loc 1 66 5 view .LVU55
+ 370              		.loc 1 66 24 is_stmt 0 view .LVU56
+ 371 0002 0646     		mov	r6, r0
+ 372              	.LVL28:
+ 373              		.loc 1 66 17 view .LVU57
+ 374 0004 16F8012B 		ldrb	r2, [r6], #1	@ zero_extendqisi2
+ 375              	.LVL29:
+  67:Core/Src/st7735.c ****     while(numCommands--) {
+ 376              		.loc 1 67 5 is_stmt 1 view .LVU58
+ 377              		.loc 1 67 10 is_stmt 0 view .LVU59
+ 378 0008 09E0     		b	.L28
+ 379              	.LVL30:
+ 380              	.L36:
+ 381              	.LBB2:
+  68:Core/Src/st7735.c ****         uint8_t cmd = *addr++;
+  69:Core/Src/st7735.c ****         ST7735_WriteCommand(cmd);
+  70:Core/Src/st7735.c ****         numArgs = *addr++;
+  71:Core/Src/st7735.c ****         // If high bit set, delay follows args
+  72:Core/Src/st7735.c ****         ms = numArgs & DELAY;
+  73:Core/Src/st7735.c ****         numArgs &= ~DELAY;
+  74:Core/Src/st7735.c ****         if(numArgs) {
+  75:Core/Src/st7735.c ****             ST7735_WriteData((uint8_t*)addr, numArgs);
+ 382              		.loc 1 75 13 is_stmt 1 view .LVU60
+ 383 000a 3946     		mov	r1, r7
+ 384 000c 2046     		mov	r0, r4
+ 385 000e FFF7FEFF 		bl	ST7735_WriteData
+ 386              	.LVL31:
+  76:Core/Src/st7735.c ****             addr += numArgs;
+ 387              		.loc 1 76 13 view .LVU61
+ 388              		.loc 1 76 18 is_stmt 0 view .LVU62
+ 389 0012 3C44     		add	r4, r4, r7
+ 390              	.LVL32:
+ 391              		.loc 1 76 18 view .LVU63
+ 392 0014 0FE0     		b	.L29
+ 393              	.LVL33:
+ 394              	.L31:
+  77:Core/Src/st7735.c ****         }
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 9
+
+
+  78:Core/Src/st7735.c ****         if(ms) {
+  79:Core/Src/st7735.c ****             ms = *addr++;
+  80:Core/Src/st7735.c ****             if(ms == 255) ms = 500;
+  81:Core/Src/st7735.c ****             delay_ms(ms);
+ 395              		.loc 1 81 13 is_stmt 1 view .LVU64
+ 396 0016 FFF7FEFF 		bl	delay_ms
+ 397              	.LVL34:
+ 398              	.L30:
+  79:Core/Src/st7735.c ****             if(ms == 255) ms = 500;
+ 399              		.loc 1 79 23 is_stmt 0 view .LVU65
+ 400 001a 2A46     		mov	r2, r5
+ 401 001c 2646     		mov	r6, r4
+ 402              	.LVL35:
+ 403              	.L28:
+  79:Core/Src/st7735.c ****             if(ms == 255) ms = 500;
+ 404              		.loc 1 79 23 view .LVU66
+ 405              	.LBE2:
+  67:Core/Src/st7735.c ****         uint8_t cmd = *addr++;
+ 406              		.loc 1 67 10 is_stmt 1 view .LVU67
+  67:Core/Src/st7735.c ****         uint8_t cmd = *addr++;
+ 407              		.loc 1 67 22 is_stmt 0 view .LVU68
+ 408 001e 531E     		subs	r3, r2, #1
+ 409 0020 DDB2     		uxtb	r5, r3
+ 410              	.LVL36:
+  67:Core/Src/st7735.c ****         uint8_t cmd = *addr++;
+ 411              		.loc 1 67 10 view .LVU69
+ 412 0022 92B1     		cbz	r2, .L35
+ 413              	.LBB3:
+  68:Core/Src/st7735.c ****         ST7735_WriteCommand(cmd);
+ 414              		.loc 1 68 9 is_stmt 1 view .LVU70
+ 415              	.LVL37:
+  68:Core/Src/st7735.c ****         ST7735_WriteCommand(cmd);
+ 416              		.loc 1 68 17 is_stmt 0 view .LVU71
+ 417 0024 3446     		mov	r4, r6
+ 418              	.LVL38:
+  69:Core/Src/st7735.c ****         numArgs = *addr++;
+ 419              		.loc 1 69 9 is_stmt 1 view .LVU72
+ 420 0026 14F8020B 		ldrb	r0, [r4], #2	@ zero_extendqisi2
+ 421 002a FFF7FEFF 		bl	ST7735_WriteCommand
+ 422              	.LVL39:
+  70:Core/Src/st7735.c ****         // If high bit set, delay follows args
+ 423              		.loc 1 70 9 view .LVU73
+  70:Core/Src/st7735.c ****         // If high bit set, delay follows args
+ 424              		.loc 1 70 17 is_stmt 0 view .LVU74
+ 425 002e 7678     		ldrb	r6, [r6, #1]	@ zero_extendqisi2
+ 426              	.LVL40:
+  72:Core/Src/st7735.c ****         numArgs &= ~DELAY;
+ 427              		.loc 1 72 9 is_stmt 1 view .LVU75
+  73:Core/Src/st7735.c ****         if(numArgs) {
+ 428              		.loc 1 73 9 view .LVU76
+  74:Core/Src/st7735.c ****             ST7735_WriteData((uint8_t*)addr, numArgs);
+ 429              		.loc 1 74 9 view .LVU77
+  74:Core/Src/st7735.c ****             ST7735_WriteData((uint8_t*)addr, numArgs);
+ 430              		.loc 1 74 11 is_stmt 0 view .LVU78
+ 431 0030 16F07F07 		ands	r7, r6, #127
+ 432 0034 E9D1     		bne	.L36
+ 433              	.L29:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 10
+
+
+  78:Core/Src/st7735.c ****             ms = *addr++;
+ 434              		.loc 1 78 9 is_stmt 1 view .LVU79
+  78:Core/Src/st7735.c ****             ms = *addr++;
+ 435              		.loc 1 78 11 is_stmt 0 view .LVU80
+ 436 0036 16F0800F 		tst	r6, #128
+ 437 003a EED0     		beq	.L30
+  79:Core/Src/st7735.c ****             if(ms == 255) ms = 500;
+ 438              		.loc 1 79 13 is_stmt 1 view .LVU81
+ 439              	.LVL41:
+  79:Core/Src/st7735.c ****             if(ms == 255) ms = 500;
+ 440              		.loc 1 79 16 is_stmt 0 view .LVU82
+ 441 003c 14F8010B 		ldrb	r0, [r4], #1	@ zero_extendqisi2
+ 442              	.LVL42:
+  80:Core/Src/st7735.c ****             delay_ms(ms);
+ 443              		.loc 1 80 13 is_stmt 1 view .LVU83
+  80:Core/Src/st7735.c ****             delay_ms(ms);
+ 444              		.loc 1 80 15 is_stmt 0 view .LVU84
+ 445 0040 FF28     		cmp	r0, #255
+ 446 0042 E8D1     		bne	.L31
+  80:Core/Src/st7735.c ****             delay_ms(ms);
+ 447              		.loc 1 80 30 view .LVU85
+ 448 0044 4FF4FA70 		mov	r0, #500
+ 449              	.LVL43:
+  80:Core/Src/st7735.c ****             delay_ms(ms);
+ 450              		.loc 1 80 30 view .LVU86
+ 451 0048 E5E7     		b	.L31
+ 452              	.LVL44:
+ 453              	.L35:
+  80:Core/Src/st7735.c ****             delay_ms(ms);
+ 454              		.loc 1 80 30 view .LVU87
+ 455              	.LBE3:
+  82:Core/Src/st7735.c ****         }
+  83:Core/Src/st7735.c ****     }
+  84:Core/Src/st7735.c **** }
+ 456              		.loc 1 84 1 view .LVU88
+ 457 004a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 458              		.loc 1 84 1 view .LVU89
+ 459              		.cfi_endproc
+ 460              	.LFE72:
+ 462              		.section	.text.ST7735_SetAddressWindow,"ax",%progbits
+ 463              		.align	1
+ 464              		.global	ST7735_SetAddressWindow
+ 465              		.syntax unified
+ 466              		.thumb
+ 467              		.thumb_func
+ 469              	ST7735_SetAddressWindow:
+ 470              	.LVL45:
+ 471              	.LFB73:
+  85:Core/Src/st7735.c **** void ST7735_SetAddressWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1) {
+ 472              		.loc 1 85 78 is_stmt 1 view -0
+ 473              		.cfi_startproc
+ 474              		@ args = 0, pretend = 0, frame = 8
+ 475              		@ frame_needed = 0, uses_anonymous_args = 0
+ 476              		.loc 1 85 78 is_stmt 0 view .LVU91
+ 477 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 478              	.LCFI14:
+ 479              		.cfi_def_cfa_offset 20
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 11
+
+
+ 480              		.cfi_offset 4, -20
+ 481              		.cfi_offset 5, -16
+ 482              		.cfi_offset 6, -12
+ 483              		.cfi_offset 7, -8
+ 484              		.cfi_offset 14, -4
+ 485 0002 83B0     		sub	sp, sp, #12
+ 486              	.LCFI15:
+ 487              		.cfi_def_cfa_offset 32
+ 488 0004 0746     		mov	r7, r0
+ 489 0006 0D46     		mov	r5, r1
+ 490 0008 1646     		mov	r6, r2
+ 491 000a 1C46     		mov	r4, r3
+  86:Core/Src/st7735.c ****     // column address set
+  87:Core/Src/st7735.c ****     ST7735_WriteCommand(ST7735_CASET);
+ 492              		.loc 1 87 5 is_stmt 1 view .LVU92
+ 493 000c 2A20     		movs	r0, #42
+ 494              	.LVL46:
+ 495              		.loc 1 87 5 is_stmt 0 view .LVU93
+ 496 000e FFF7FEFF 		bl	ST7735_WriteCommand
+ 497              	.LVL47:
+  88:Core/Src/st7735.c ****     uint8_t data[] = { 0x00, x0 + ST7735_XSTART, 0x00, x1 + ST7735_XSTART };
+ 498              		.loc 1 88 5 is_stmt 1 view .LVU94
+ 499              		.loc 1 88 13 is_stmt 0 view .LVU95
+ 500 0012 0023     		movs	r3, #0
+ 501 0014 8DF80430 		strb	r3, [sp, #4]
+ 502 0018 8DF80570 		strb	r7, [sp, #5]
+ 503 001c 8DF80630 		strb	r3, [sp, #6]
+ 504 0020 8DF80760 		strb	r6, [sp, #7]
+  89:Core/Src/st7735.c ****     ST7735_WriteData(data, sizeof(data));
+ 505              		.loc 1 89 5 is_stmt 1 view .LVU96
+ 506 0024 0421     		movs	r1, #4
+ 507 0026 0DEB0100 		add	r0, sp, r1
+ 508 002a FFF7FEFF 		bl	ST7735_WriteData
+ 509              	.LVL48:
+  90:Core/Src/st7735.c **** 
+  91:Core/Src/st7735.c ****     // row address set
+  92:Core/Src/st7735.c ****     ST7735_WriteCommand(ST7735_RASET);
+ 510              		.loc 1 92 5 view .LVU97
+ 511 002e 2B20     		movs	r0, #43
+ 512 0030 FFF7FEFF 		bl	ST7735_WriteCommand
+ 513              	.LVL49:
+  93:Core/Src/st7735.c ****     data[1] = y0 + ST7735_YSTART;
+ 514              		.loc 1 93 5 view .LVU98
+ 515              		.loc 1 93 13 is_stmt 0 view .LVU99
+ 516 0034 8DF80550 		strb	r5, [sp, #5]
+  94:Core/Src/st7735.c ****     data[3] = y1 + ST7735_YSTART;
+ 517              		.loc 1 94 5 is_stmt 1 view .LVU100
+ 518              		.loc 1 94 13 is_stmt 0 view .LVU101
+ 519 0038 8DF80740 		strb	r4, [sp, #7]
+  95:Core/Src/st7735.c ****     ST7735_WriteData(data, sizeof(data));
+ 520              		.loc 1 95 5 is_stmt 1 view .LVU102
+ 521 003c 0421     		movs	r1, #4
+ 522 003e 0DEB0100 		add	r0, sp, r1
+ 523 0042 FFF7FEFF 		bl	ST7735_WriteData
+ 524              	.LVL50:
+  96:Core/Src/st7735.c ****     // write to RAM
+  97:Core/Src/st7735.c ****     ST7735_WriteCommand(ST7735_RAMWR);
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 12
+
+
+ 525              		.loc 1 97 5 view .LVU103
+ 526 0046 2C20     		movs	r0, #44
+ 527 0048 FFF7FEFF 		bl	ST7735_WriteCommand
+ 528              	.LVL51:
+  98:Core/Src/st7735.c **** }
+ 529              		.loc 1 98 1 is_stmt 0 view .LVU104
+ 530 004c 03B0     		add	sp, sp, #12
+ 531              	.LCFI16:
+ 532              		.cfi_def_cfa_offset 20
+ 533              		@ sp needed
+ 534 004e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 535              		.cfi_endproc
+ 536              	.LFE73:
+ 538              		.section	.text.ST7735_WriteChar,"ax",%progbits
+ 539              		.align	1
+ 540              		.syntax unified
+ 541              		.thumb
+ 542              		.thumb_func
+ 544              	ST7735_WriteChar:
+ 545              	.LVL52:
+ 546              	.LFB79:
+  99:Core/Src/st7735.c **** 
+ 100:Core/Src/st7735.c **** void ST7735_SetCursor(uint16_t Xpos, uint16_t Ypos)
+ 101:Core/Src/st7735.c **** {
+ 102:Core/Src/st7735.c ****   ST7735_WriteCommand(ST7735_CASET); 
+ 103:Core/Src/st7735.c **** 	ST7735_WriteData8(Xpos>>8); 
+ 104:Core/Src/st7735.c **** 	ST7735_WriteData8(Xpos&0XFF);	 
+ 105:Core/Src/st7735.c **** 	ST7735_WriteCommand(ST7735_RASET); 
+ 106:Core/Src/st7735.c **** 	ST7735_WriteData8(Ypos>>8); 
+ 107:Core/Src/st7735.c **** 	ST7735_WriteData8(Ypos&0XFF);
+ 108:Core/Src/st7735.c **** }
+ 109:Core/Src/st7735.c **** 
+ 110:Core/Src/st7735.c **** void ST7735_WriteRAM_Prepare(void)
+ 111:Core/Src/st7735.c **** {
+ 112:Core/Src/st7735.c **** 	ST7735_WriteCommand(ST7735_RAMWR);  
+ 113:Core/Src/st7735.c **** }
+ 114:Core/Src/st7735.c **** 
+ 115:Core/Src/st7735.c **** 
+ 116:Core/Src/st7735.c **** /************************* High level Functions ***************************************************
+ 117:Core/Src/st7735.c **** void ST7735_DisplayON(void)
+ 118:Core/Src/st7735.c **** {
+ 119:Core/Src/st7735.c **** 	ST7735_Select();
+ 120:Core/Src/st7735.c **** 	ST7735_WriteCommand(ST7735_DISPON);
+ 121:Core/Src/st7735.c **** 	delay_ms(10);
+ 122:Core/Src/st7735.c **** 	ST7735_Unselect();
+ 123:Core/Src/st7735.c **** }
+ 124:Core/Src/st7735.c **** void ST7735_DisplayOFF(void)
+ 125:Core/Src/st7735.c **** {
+ 126:Core/Src/st7735.c **** 	ST7735_Select();
+ 127:Core/Src/st7735.c **** 	ST7735_WriteCommand(ST7735_DISPOFF);
+ 128:Core/Src/st7735.c **** 	delay_ms(10);
+ 129:Core/Src/st7735.c **** 	ST7735_Unselect();
+ 130:Core/Src/st7735.c **** }
+ 131:Core/Src/st7735.c **** 
+ 132:Core/Src/st7735.c **** void ST7735_DrawPixel(uint16_t x, uint16_t y, uint16_t color) {
+ 133:Core/Src/st7735.c ****     if((x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT))
+ 134:Core/Src/st7735.c ****         return;
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 13
+
+
+ 135:Core/Src/st7735.c ****     ST7735_Select();
+ 136:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x+1, y+1);
+ 137:Core/Src/st7735.c ****     uint8_t data[] = { color >> 8, color & 0xFF };
+ 138:Core/Src/st7735.c ****     ST7735_WriteData(data, sizeof(data));
+ 139:Core/Src/st7735.c ****     ST7735_Unselect();
+ 140:Core/Src/st7735.c **** }
+ 141:Core/Src/st7735.c **** 
+ 142:Core/Src/st7735.c **** static void ST7735_WriteChar(uint16_t x, uint16_t y, char ch, FontDef font, uint16_t color, uint16_
+ 547              		.loc 1 142 111 is_stmt 1 view -0
+ 548              		.cfi_startproc
+ 549              		@ args = 20, pretend = 8, frame = 8
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 551              		.loc 1 142 111 is_stmt 0 view .LVU106
+ 552 0000 82B0     		sub	sp, sp, #8
+ 553              	.LCFI17:
+ 554              		.cfi_def_cfa_offset 8
+ 555 0002 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 556              	.LCFI18:
+ 557              		.cfi_def_cfa_offset 44
+ 558              		.cfi_offset 4, -44
+ 559              		.cfi_offset 5, -40
+ 560              		.cfi_offset 6, -36
+ 561              		.cfi_offset 7, -32
+ 562              		.cfi_offset 8, -28
+ 563              		.cfi_offset 9, -24
+ 564              		.cfi_offset 10, -20
+ 565              		.cfi_offset 11, -16
+ 566              		.cfi_offset 14, -12
+ 567 0006 83B0     		sub	sp, sp, #12
+ 568              	.LCFI19:
+ 569              		.cfi_def_cfa_offset 56
+ 570 0008 9346     		mov	fp, r2
+ 571 000a 0D93     		str	r3, [sp, #52]
+ 572 000c BDF83C80 		ldrh	r8, [sp, #60]
+ 573 0010 BDF84070 		ldrh	r7, [sp, #64]
+ 143:Core/Src/st7735.c ****     uint32_t i, b, j;
+ 574              		.loc 1 143 5 is_stmt 1 view .LVU107
+ 144:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x+font.width-1, y+font.height-1);
+ 575              		.loc 1 144 5 view .LVU108
+ 576 0014 C0B2     		uxtb	r0, r0
+ 577              	.LVL53:
+ 578              		.loc 1 144 5 is_stmt 0 view .LVU109
+ 579 0016 C9B2     		uxtb	r1, r1
+ 580              	.LVL54:
+ 581              		.loc 1 144 41 view .LVU110
+ 582 0018 9DF83450 		ldrb	r5, [sp, #52]	@ zero_extendqisi2
+ 583              		.loc 1 144 36 view .LVU111
+ 584 001c 4219     		adds	r2, r0, r5
+ 585              	.LVL55:
+ 586              		.loc 1 144 36 view .LVU112
+ 587 001e D2B2     		uxtb	r2, r2
+ 588              		.loc 1 144 57 view .LVU113
+ 589 0020 9DF835A0 		ldrb	r10, [sp, #53]	@ zero_extendqisi2
+ 590              		.loc 1 144 52 view .LVU114
+ 591 0024 01EB0A03 		add	r3, r1, r10
+ 592 0028 DBB2     		uxtb	r3, r3
+ 593              		.loc 1 144 5 view .LVU115
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 14
+
+
+ 594 002a 013B     		subs	r3, r3, #1
+ 595 002c 013A     		subs	r2, r2, #1
+ 596 002e DBB2     		uxtb	r3, r3
+ 597 0030 D2B2     		uxtb	r2, r2
+ 598 0032 FFF7FEFF 		bl	ST7735_SetAddressWindow
+ 599              	.LVL56:
+ 145:Core/Src/st7735.c ****     for(i = 0; i < font.height; i++) {
+ 600              		.loc 1 145 5 is_stmt 1 view .LVU116
+ 601              		.loc 1 145 11 is_stmt 0 view .LVU117
+ 602 0036 4FF00009 		mov	r9, #0
+ 603              		.loc 1 145 5 view .LVU118
+ 604 003a 1DE0     		b	.L40
+ 605              	.LVL57:
+ 606              	.L42:
+ 607              	.LBB4:
+ 146:Core/Src/st7735.c ****         b = font.data[(ch - 32) * font.height + i];
+ 147:Core/Src/st7735.c ****         for(j = 0; j < font.width; j++) {
+ 148:Core/Src/st7735.c ****             if((b << j) & 0x8000)  {
+ 149:Core/Src/st7735.c ****                 uint8_t data[] = { color >> 8, color & 0xFF };
+ 150:Core/Src/st7735.c ****                 ST7735_WriteData(data, sizeof(data));
+ 151:Core/Src/st7735.c ****             } else {
+ 152:Core/Src/st7735.c ****                 uint8_t data[] = { bgcolor >> 8, bgcolor & 0xFF };
+ 608              		.loc 1 152 17 is_stmt 1 view .LVU119
+ 609              		.loc 1 152 25 is_stmt 0 view .LVU120
+ 610 003c 3B0A     		lsrs	r3, r7, #8
+ 611 003e 8DF80430 		strb	r3, [sp, #4]
+ 612 0042 8DF80570 		strb	r7, [sp, #5]
+ 153:Core/Src/st7735.c ****                 ST7735_WriteData(data, sizeof(data));
+ 613              		.loc 1 153 17 is_stmt 1 view .LVU121
+ 614 0046 0221     		movs	r1, #2
+ 615 0048 01A8     		add	r0, sp, #4
+ 616 004a FFF7FEFF 		bl	ST7735_WriteData
+ 617              	.LVL58:
+ 618              	.L43:
+ 619              		.loc 1 153 17 is_stmt 0 view .LVU122
+ 620              	.LBE4:
+ 147:Core/Src/st7735.c ****             if((b << j) & 0x8000)  {
+ 621              		.loc 1 147 36 is_stmt 1 discriminator 2 view .LVU123
+ 147:Core/Src/st7735.c ****             if((b << j) & 0x8000)  {
+ 622              		.loc 1 147 37 is_stmt 0 discriminator 2 view .LVU124
+ 623 004e 0134     		adds	r4, r4, #1
+ 624              	.LVL59:
+ 625              	.L41:
+ 147:Core/Src/st7735.c ****             if((b << j) & 0x8000)  {
+ 626              		.loc 1 147 20 is_stmt 1 discriminator 1 view .LVU125
+ 147:Core/Src/st7735.c ****             if((b << j) & 0x8000)  {
+ 627              		.loc 1 147 9 is_stmt 0 discriminator 1 view .LVU126
+ 628 0050 A542     		cmp	r5, r4
+ 629 0052 0FD9     		bls	.L47
+ 148:Core/Src/st7735.c ****                 uint8_t data[] = { color >> 8, color & 0xFF };
+ 630              		.loc 1 148 13 is_stmt 1 view .LVU127
+ 148:Core/Src/st7735.c ****                 uint8_t data[] = { color >> 8, color & 0xFF };
+ 631              		.loc 1 148 19 is_stmt 0 view .LVU128
+ 632 0054 06FA04F3 		lsl	r3, r6, r4
+ 148:Core/Src/st7735.c ****                 uint8_t data[] = { color >> 8, color & 0xFF };
+ 633              		.loc 1 148 15 view .LVU129
+ 634 0058 13F4004F 		tst	r3, #32768
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 15
+
+
+ 635 005c EED0     		beq	.L42
+ 636              	.LBB5:
+ 149:Core/Src/st7735.c ****                 ST7735_WriteData(data, sizeof(data));
+ 637              		.loc 1 149 17 is_stmt 1 view .LVU130
+ 149:Core/Src/st7735.c ****                 ST7735_WriteData(data, sizeof(data));
+ 638              		.loc 1 149 25 is_stmt 0 view .LVU131
+ 639 005e 4FEA1823 		lsr	r3, r8, #8
+ 640 0062 8DF80430 		strb	r3, [sp, #4]
+ 641 0066 8DF80580 		strb	r8, [sp, #5]
+ 150:Core/Src/st7735.c ****             } else {
+ 642              		.loc 1 150 17 is_stmt 1 view .LVU132
+ 643 006a 0221     		movs	r1, #2
+ 644 006c 01A8     		add	r0, sp, #4
+ 645 006e FFF7FEFF 		bl	ST7735_WriteData
+ 646              	.LVL60:
+ 647              	.LBE5:
+ 648 0072 ECE7     		b	.L43
+ 649              	.L47:
+ 145:Core/Src/st7735.c ****         b = font.data[(ch - 32) * font.height + i];
+ 650              		.loc 1 145 33 discriminator 2 view .LVU133
+ 145:Core/Src/st7735.c ****         b = font.data[(ch - 32) * font.height + i];
+ 651              		.loc 1 145 34 is_stmt 0 discriminator 2 view .LVU134
+ 652 0074 09F10109 		add	r9, r9, #1
+ 653              	.LVL61:
+ 654              	.L40:
+ 145:Core/Src/st7735.c ****         b = font.data[(ch - 32) * font.height + i];
+ 655              		.loc 1 145 16 is_stmt 1 discriminator 1 view .LVU135
+ 145:Core/Src/st7735.c ****         b = font.data[(ch - 32) * font.height + i];
+ 656              		.loc 1 145 5 is_stmt 0 discriminator 1 view .LVU136
+ 657 0078 CA45     		cmp	r10, r9
+ 658 007a 08D9     		bls	.L48
+ 146:Core/Src/st7735.c ****         for(j = 0; j < font.width; j++) {
+ 659              		.loc 1 146 9 is_stmt 1 view .LVU137
+ 146:Core/Src/st7735.c ****         for(j = 0; j < font.width; j++) {
+ 660              		.loc 1 146 27 is_stmt 0 view .LVU138
+ 661 007c ABF12003 		sub	r3, fp, #32
+ 146:Core/Src/st7735.c ****         for(j = 0; j < font.width; j++) {
+ 662              		.loc 1 146 47 view .LVU139
+ 663 0080 0AFB0393 		mla	r3, r10, r3, r9
+ 146:Core/Src/st7735.c ****         for(j = 0; j < font.width; j++) {
+ 664              		.loc 1 146 22 view .LVU140
+ 665 0084 0E9A     		ldr	r2, [sp, #56]
+ 666 0086 32F81360 		ldrh	r6, [r2, r3, lsl #1]
+ 667              	.LVL62:
+ 147:Core/Src/st7735.c ****             if((b << j) & 0x8000)  {
+ 668              		.loc 1 147 9 is_stmt 1 view .LVU141
+ 147:Core/Src/st7735.c ****             if((b << j) & 0x8000)  {
+ 669              		.loc 1 147 15 is_stmt 0 view .LVU142
+ 670 008a 0024     		movs	r4, #0
+ 147:Core/Src/st7735.c ****             if((b << j) & 0x8000)  {
+ 671              		.loc 1 147 9 view .LVU143
+ 672 008c E0E7     		b	.L41
+ 673              	.LVL63:
+ 674              	.L48:
+ 154:Core/Src/st7735.c ****             }
+ 155:Core/Src/st7735.c ****         }
+ 156:Core/Src/st7735.c ****     }
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 16
+
+
+ 157:Core/Src/st7735.c **** }
+ 675              		.loc 1 157 1 view .LVU144
+ 676 008e 03B0     		add	sp, sp, #12
+ 677              	.LCFI20:
+ 678              		.cfi_def_cfa_offset 44
+ 679              		@ sp needed
+ 680 0090 BDE8F04F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 681              	.LCFI21:
+ 682              		.cfi_restore 14
+ 683              		.cfi_restore 11
+ 684              		.cfi_restore 10
+ 685              		.cfi_restore 9
+ 686              		.cfi_restore 8
+ 687              		.cfi_restore 7
+ 688              		.cfi_restore 6
+ 689              		.cfi_restore 5
+ 690              		.cfi_restore 4
+ 691              		.cfi_def_cfa_offset 8
+ 692              	.LVL64:
+ 693              		.loc 1 157 1 view .LVU145
+ 694 0094 02B0     		add	sp, sp, #8
+ 695              	.LCFI22:
+ 696              		.cfi_def_cfa_offset 0
+ 697 0096 7047     		bx	lr
+ 698              		.cfi_endproc
+ 699              	.LFE79:
+ 701              		.section	.text.ST7735_SetCursor,"ax",%progbits
+ 702              		.align	1
+ 703              		.global	ST7735_SetCursor
+ 704              		.syntax unified
+ 705              		.thumb
+ 706              		.thumb_func
+ 708              	ST7735_SetCursor:
+ 709              	.LVL65:
+ 710              	.LFB74:
+ 101:Core/Src/st7735.c ****   ST7735_WriteCommand(ST7735_CASET); 
+ 711              		.loc 1 101 1 is_stmt 1 view -0
+ 712              		.cfi_startproc
+ 713              		@ args = 0, pretend = 0, frame = 0
+ 714              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101:Core/Src/st7735.c ****   ST7735_WriteCommand(ST7735_CASET); 
+ 715              		.loc 1 101 1 is_stmt 0 view .LVU147
+ 716 0000 38B5     		push	{r3, r4, r5, lr}
+ 717              	.LCFI23:
+ 718              		.cfi_def_cfa_offset 16
+ 719              		.cfi_offset 3, -16
+ 720              		.cfi_offset 4, -12
+ 721              		.cfi_offset 5, -8
+ 722              		.cfi_offset 14, -4
+ 723 0002 0546     		mov	r5, r0
+ 724 0004 0C46     		mov	r4, r1
+ 102:Core/Src/st7735.c **** 	ST7735_WriteData8(Xpos>>8); 
+ 725              		.loc 1 102 3 is_stmt 1 view .LVU148
+ 726 0006 2A20     		movs	r0, #42
+ 727              	.LVL66:
+ 102:Core/Src/st7735.c **** 	ST7735_WriteData8(Xpos>>8); 
+ 728              		.loc 1 102 3 is_stmt 0 view .LVU149
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 17
+
+
+ 729 0008 FFF7FEFF 		bl	ST7735_WriteCommand
+ 730              	.LVL67:
+ 103:Core/Src/st7735.c **** 	ST7735_WriteData8(Xpos&0XFF);	 
+ 731              		.loc 1 103 2 is_stmt 1 view .LVU150
+ 732 000c 280A     		lsrs	r0, r5, #8
+ 733 000e FFF7FEFF 		bl	ST7735_WriteData8
+ 734              	.LVL68:
+ 104:Core/Src/st7735.c **** 	ST7735_WriteCommand(ST7735_RASET); 
+ 735              		.loc 1 104 2 view .LVU151
+ 736 0012 E8B2     		uxtb	r0, r5
+ 737 0014 FFF7FEFF 		bl	ST7735_WriteData8
+ 738              	.LVL69:
+ 105:Core/Src/st7735.c **** 	ST7735_WriteData8(Ypos>>8); 
+ 739              		.loc 1 105 2 view .LVU152
+ 740 0018 2B20     		movs	r0, #43
+ 741 001a FFF7FEFF 		bl	ST7735_WriteCommand
+ 742              	.LVL70:
+ 106:Core/Src/st7735.c **** 	ST7735_WriteData8(Ypos&0XFF);
+ 743              		.loc 1 106 2 view .LVU153
+ 744 001e 200A     		lsrs	r0, r4, #8
+ 745 0020 FFF7FEFF 		bl	ST7735_WriteData8
+ 746              	.LVL71:
+ 107:Core/Src/st7735.c **** }
+ 747              		.loc 1 107 2 view .LVU154
+ 748 0024 E0B2     		uxtb	r0, r4
+ 749 0026 FFF7FEFF 		bl	ST7735_WriteData8
+ 750              	.LVL72:
+ 108:Core/Src/st7735.c **** 
+ 751              		.loc 1 108 1 is_stmt 0 view .LVU155
+ 752 002a 38BD     		pop	{r3, r4, r5, pc}
+ 753              		.cfi_endproc
+ 754              	.LFE74:
+ 756              		.section	.text.ST7735_WriteRAM_Prepare,"ax",%progbits
+ 757              		.align	1
+ 758              		.global	ST7735_WriteRAM_Prepare
+ 759              		.syntax unified
+ 760              		.thumb
+ 761              		.thumb_func
+ 763              	ST7735_WriteRAM_Prepare:
+ 764              	.LFB75:
+ 111:Core/Src/st7735.c **** 	ST7735_WriteCommand(ST7735_RAMWR);  
+ 765              		.loc 1 111 1 is_stmt 1 view -0
+ 766              		.cfi_startproc
+ 767              		@ args = 0, pretend = 0, frame = 0
+ 768              		@ frame_needed = 0, uses_anonymous_args = 0
+ 769 0000 08B5     		push	{r3, lr}
+ 770              	.LCFI24:
+ 771              		.cfi_def_cfa_offset 8
+ 772              		.cfi_offset 3, -8
+ 773              		.cfi_offset 14, -4
+ 112:Core/Src/st7735.c **** }
+ 774              		.loc 1 112 2 view .LVU157
+ 775 0002 2C20     		movs	r0, #44
+ 776 0004 FFF7FEFF 		bl	ST7735_WriteCommand
+ 777              	.LVL73:
+ 113:Core/Src/st7735.c **** 
+ 778              		.loc 1 113 1 is_stmt 0 view .LVU158
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 18
+
+
+ 779 0008 08BD     		pop	{r3, pc}
+ 780              		.cfi_endproc
+ 781              	.LFE75:
+ 783              		.section	.text.ST7735_DisplayON,"ax",%progbits
+ 784              		.align	1
+ 785              		.global	ST7735_DisplayON
+ 786              		.syntax unified
+ 787              		.thumb
+ 788              		.thumb_func
+ 790              	ST7735_DisplayON:
+ 791              	.LFB76:
+ 118:Core/Src/st7735.c **** 	ST7735_Select();
+ 792              		.loc 1 118 1 is_stmt 1 view -0
+ 793              		.cfi_startproc
+ 794              		@ args = 0, pretend = 0, frame = 0
+ 795              		@ frame_needed = 0, uses_anonymous_args = 0
+ 796 0000 10B5     		push	{r4, lr}
+ 797              	.LCFI25:
+ 798              		.cfi_def_cfa_offset 8
+ 799              		.cfi_offset 4, -8
+ 800              		.cfi_offset 14, -4
+ 119:Core/Src/st7735.c **** 	ST7735_WriteCommand(ST7735_DISPON);
+ 801              		.loc 1 119 2 view .LVU160
+ 802 0002 094C     		ldr	r4, .L55
+ 803 0004 0022     		movs	r2, #0
+ 804 0006 0121     		movs	r1, #1
+ 805 0008 2046     		mov	r0, r4
+ 806 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 807              	.LVL74:
+ 120:Core/Src/st7735.c **** 	delay_ms(10);
+ 808              		.loc 1 120 2 view .LVU161
+ 809 000e 2920     		movs	r0, #41
+ 810 0010 FFF7FEFF 		bl	ST7735_WriteCommand
+ 811              	.LVL75:
+ 121:Core/Src/st7735.c **** 	ST7735_Unselect();
+ 812              		.loc 1 121 2 view .LVU162
+ 813 0014 0A20     		movs	r0, #10
+ 814 0016 FFF7FEFF 		bl	delay_ms
+ 815              	.LVL76:
+ 122:Core/Src/st7735.c **** }
+ 816              		.loc 1 122 2 view .LVU163
+ 817 001a 0122     		movs	r2, #1
+ 818 001c 1146     		mov	r1, r2
+ 819 001e 2046     		mov	r0, r4
+ 820 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 821              	.LVL77:
+ 123:Core/Src/st7735.c **** void ST7735_DisplayOFF(void)
+ 822              		.loc 1 123 1 is_stmt 0 view .LVU164
+ 823 0024 10BD     		pop	{r4, pc}
+ 824              	.L56:
+ 825 0026 00BF     		.align	2
+ 826              	.L55:
+ 827 0028 00080140 		.word	1073809408
+ 828              		.cfi_endproc
+ 829              	.LFE76:
+ 831              		.section	.text.ST7735_DisplayOFF,"ax",%progbits
+ 832              		.align	1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 19
+
+
+ 833              		.global	ST7735_DisplayOFF
+ 834              		.syntax unified
+ 835              		.thumb
+ 836              		.thumb_func
+ 838              	ST7735_DisplayOFF:
+ 839              	.LFB77:
+ 125:Core/Src/st7735.c **** 	ST7735_Select();
+ 840              		.loc 1 125 1 is_stmt 1 view -0
+ 841              		.cfi_startproc
+ 842              		@ args = 0, pretend = 0, frame = 0
+ 843              		@ frame_needed = 0, uses_anonymous_args = 0
+ 844 0000 10B5     		push	{r4, lr}
+ 845              	.LCFI26:
+ 846              		.cfi_def_cfa_offset 8
+ 847              		.cfi_offset 4, -8
+ 848              		.cfi_offset 14, -4
+ 126:Core/Src/st7735.c **** 	ST7735_WriteCommand(ST7735_DISPOFF);
+ 849              		.loc 1 126 2 view .LVU166
+ 850 0002 094C     		ldr	r4, .L59
+ 851 0004 0022     		movs	r2, #0
+ 852 0006 0121     		movs	r1, #1
+ 853 0008 2046     		mov	r0, r4
+ 854 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 855              	.LVL78:
+ 127:Core/Src/st7735.c **** 	delay_ms(10);
+ 856              		.loc 1 127 2 view .LVU167
+ 857 000e 2820     		movs	r0, #40
+ 858 0010 FFF7FEFF 		bl	ST7735_WriteCommand
+ 859              	.LVL79:
+ 128:Core/Src/st7735.c **** 	ST7735_Unselect();
+ 860              		.loc 1 128 2 view .LVU168
+ 861 0014 0A20     		movs	r0, #10
+ 862 0016 FFF7FEFF 		bl	delay_ms
+ 863              	.LVL80:
+ 129:Core/Src/st7735.c **** }
+ 864              		.loc 1 129 2 view .LVU169
+ 865 001a 0122     		movs	r2, #1
+ 866 001c 1146     		mov	r1, r2
+ 867 001e 2046     		mov	r0, r4
+ 868 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 869              	.LVL81:
+ 130:Core/Src/st7735.c **** 
+ 870              		.loc 1 130 1 is_stmt 0 view .LVU170
+ 871 0024 10BD     		pop	{r4, pc}
+ 872              	.L60:
+ 873 0026 00BF     		.align	2
+ 874              	.L59:
+ 875 0028 00080140 		.word	1073809408
+ 876              		.cfi_endproc
+ 877              	.LFE77:
+ 879              		.section	.text.ST7735_DrawPixel,"ax",%progbits
+ 880              		.align	1
+ 881              		.global	ST7735_DrawPixel
+ 882              		.syntax unified
+ 883              		.thumb
+ 884              		.thumb_func
+ 886              	ST7735_DrawPixel:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 20
+
+
+ 887              	.LVL82:
+ 888              	.LFB78:
+ 132:Core/Src/st7735.c ****     if((x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT))
+ 889              		.loc 1 132 63 is_stmt 1 view -0
+ 890              		.cfi_startproc
+ 891              		@ args = 0, pretend = 0, frame = 8
+ 892              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133:Core/Src/st7735.c ****         return;
+ 893              		.loc 1 133 5 view .LVU172
+ 133:Core/Src/st7735.c ****         return;
+ 894              		.loc 1 133 7 is_stmt 0 view .LVU173
+ 895 0000 7F28     		cmp	r0, #127
+ 896 0002 25D8     		bhi	.L66
+ 132:Core/Src/st7735.c ****     if((x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT))
+ 897              		.loc 1 132 63 discriminator 1 view .LVU174
+ 898 0004 F0B5     		push	{r4, r5, r6, r7, lr}
+ 899              	.LCFI27:
+ 900              		.cfi_def_cfa_offset 20
+ 901              		.cfi_offset 4, -20
+ 902              		.cfi_offset 5, -16
+ 903              		.cfi_offset 6, -12
+ 904              		.cfi_offset 7, -8
+ 905              		.cfi_offset 14, -4
+ 906 0006 83B0     		sub	sp, sp, #12
+ 907              	.LCFI28:
+ 908              		.cfi_def_cfa_offset 32
+ 909 0008 0446     		mov	r4, r0
+ 910 000a 0D46     		mov	r5, r1
+ 911 000c 1646     		mov	r6, r2
+ 133:Core/Src/st7735.c ****         return;
+ 912              		.loc 1 133 28 discriminator 1 view .LVU175
+ 913 000e 9F29     		cmp	r1, #159
+ 914 0010 01D9     		bls	.L69
+ 915              	.LVL83:
+ 916              	.L61:
+ 140:Core/Src/st7735.c **** 
+ 917              		.loc 1 140 1 view .LVU176
+ 918 0012 03B0     		add	sp, sp, #12
+ 919              	.LCFI29:
+ 920              		.cfi_remember_state
+ 921              		.cfi_def_cfa_offset 20
+ 922              		@ sp needed
+ 923 0014 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 924              	.LVL84:
+ 925              	.L69:
+ 926              	.LCFI30:
+ 927              		.cfi_restore_state
+ 135:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x+1, y+1);
+ 928              		.loc 1 135 5 is_stmt 1 view .LVU177
+ 929 0016 0F4F     		ldr	r7, .L70
+ 930 0018 0022     		movs	r2, #0
+ 931              	.LVL85:
+ 135:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x+1, y+1);
+ 932              		.loc 1 135 5 is_stmt 0 view .LVU178
+ 933 001a 0121     		movs	r1, #1
+ 934              	.LVL86:
+ 135:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x+1, y+1);
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 21
+
+
+ 935              		.loc 1 135 5 view .LVU179
+ 936 001c 3846     		mov	r0, r7
+ 937              	.LVL87:
+ 135:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x+1, y+1);
+ 938              		.loc 1 135 5 view .LVU180
+ 939 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 940              	.LVL88:
+ 136:Core/Src/st7735.c ****     uint8_t data[] = { color >> 8, color & 0xFF };
+ 941              		.loc 1 136 5 is_stmt 1 view .LVU181
+ 942 0022 E0B2     		uxtb	r0, r4
+ 943 0024 E9B2     		uxtb	r1, r5
+ 944 0026 4B1C     		adds	r3, r1, #1
+ 945 0028 421C     		adds	r2, r0, #1
+ 946 002a DBB2     		uxtb	r3, r3
+ 947 002c D2B2     		uxtb	r2, r2
+ 948 002e FFF7FEFF 		bl	ST7735_SetAddressWindow
+ 949              	.LVL89:
+ 137:Core/Src/st7735.c ****     ST7735_WriteData(data, sizeof(data));
+ 950              		.loc 1 137 5 view .LVU182
+ 137:Core/Src/st7735.c ****     ST7735_WriteData(data, sizeof(data));
+ 951              		.loc 1 137 13 is_stmt 0 view .LVU183
+ 952 0032 330A     		lsrs	r3, r6, #8
+ 953 0034 8DF80430 		strb	r3, [sp, #4]
+ 954 0038 8DF80560 		strb	r6, [sp, #5]
+ 138:Core/Src/st7735.c ****     ST7735_Unselect();
+ 955              		.loc 1 138 5 is_stmt 1 view .LVU184
+ 956 003c 0221     		movs	r1, #2
+ 957 003e 01A8     		add	r0, sp, #4
+ 958 0040 FFF7FEFF 		bl	ST7735_WriteData
+ 959              	.LVL90:
+ 139:Core/Src/st7735.c **** }
+ 960              		.loc 1 139 5 view .LVU185
+ 961 0044 0122     		movs	r2, #1
+ 962 0046 1146     		mov	r1, r2
+ 963 0048 3846     		mov	r0, r7
+ 964 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 965              	.LVL91:
+ 966 004e E0E7     		b	.L61
+ 967              	.LVL92:
+ 968              	.L66:
+ 969              	.LCFI31:
+ 970              		.cfi_def_cfa_offset 0
+ 971              		.cfi_restore 4
+ 972              		.cfi_restore 5
+ 973              		.cfi_restore 6
+ 974              		.cfi_restore 7
+ 975              		.cfi_restore 14
+ 139:Core/Src/st7735.c **** }
+ 976              		.loc 1 139 5 is_stmt 0 view .LVU186
+ 977 0050 7047     		bx	lr
+ 978              	.L71:
+ 979 0052 00BF     		.align	2
+ 980              	.L70:
+ 981 0054 00080140 		.word	1073809408
+ 982              		.cfi_endproc
+ 983              	.LFE78:
+ 985              		.section	.text.ST7735_WriteString,"ax",%progbits
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 22
+
+
+ 986              		.align	1
+ 987              		.global	ST7735_WriteString
+ 988              		.syntax unified
+ 989              		.thumb
+ 990              		.thumb_func
+ 992              	ST7735_WriteString:
+ 993              	.LVL93:
+ 994              	.LFB80:
+ 158:Core/Src/st7735.c **** void ST7735_WriteString(uint16_t x, uint16_t y, const char* str, FontDef font, uint16_t color, uint
+ 995              		.loc 1 158 114 is_stmt 1 view -0
+ 996              		.cfi_startproc
+ 997              		@ args = 20, pretend = 8, frame = 0
+ 998              		@ frame_needed = 0, uses_anonymous_args = 0
+ 999              		.loc 1 158 114 is_stmt 0 view .LVU188
+ 1000 0000 82B0     		sub	sp, sp, #8
+ 1001              	.LCFI32:
+ 1002              		.cfi_def_cfa_offset 8
+ 1003 0002 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 1004              	.LCFI33:
+ 1005              		.cfi_def_cfa_offset 36
+ 1006              		.cfi_offset 4, -36
+ 1007              		.cfi_offset 5, -32
+ 1008              		.cfi_offset 6, -28
+ 1009              		.cfi_offset 7, -24
+ 1010              		.cfi_offset 8, -20
+ 1011              		.cfi_offset 9, -16
+ 1012              		.cfi_offset 14, -12
+ 1013 0006 85B0     		sub	sp, sp, #20
+ 1014              	.LCFI34:
+ 1015              		.cfi_def_cfa_offset 56
+ 1016 0008 0646     		mov	r6, r0
+ 1017 000a 0D46     		mov	r5, r1
+ 1018 000c 1746     		mov	r7, r2
+ 1019 000e 0D93     		str	r3, [sp, #52]
+ 1020 0010 BDF83C90 		ldrh	r9, [sp, #60]
+ 1021 0014 BDF84080 		ldrh	r8, [sp, #64]
+ 159:Core/Src/st7735.c ****     ST7735_Select();
+ 1022              		.loc 1 159 5 is_stmt 1 view .LVU189
+ 1023 0018 0022     		movs	r2, #0
+ 1024              	.LVL94:
+ 1025              		.loc 1 159 5 is_stmt 0 view .LVU190
+ 1026 001a 0121     		movs	r1, #1
+ 1027              	.LVL95:
+ 1028              		.loc 1 159 5 view .LVU191
+ 1029 001c 1848     		ldr	r0, .L81
+ 1030              	.LVL96:
+ 1031              		.loc 1 159 5 view .LVU192
+ 1032 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1033              	.LVL97:
+ 160:Core/Src/st7735.c ****     while(*str) {
+ 1034              		.loc 1 160 5 is_stmt 1 view .LVU193
+ 1035              		.loc 1 160 10 is_stmt 0 view .LVU194
+ 1036 0022 10E0     		b	.L73
+ 1037              	.LVL98:
+ 1038              	.L80:
+ 161:Core/Src/st7735.c ****         if(x + font.width >= ST7735_WIDTH) {
+ 162:Core/Src/st7735.c ****             x = 0;
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 23
+
+
+ 163:Core/Src/st7735.c ****             y += font.height;
+ 164:Core/Src/st7735.c ****             if(y + font.height >= ST7735_HEIGHT) {
+ 165:Core/Src/st7735.c ****                 break;
+ 166:Core/Src/st7735.c ****             }
+ 167:Core/Src/st7735.c ****             if(*str == ' ') {
+ 168:Core/Src/st7735.c ****                 // skip spaces in the beginning of the new line
+ 169:Core/Src/st7735.c ****                 str++;
+ 1039              		.loc 1 169 17 is_stmt 1 view .LVU195
+ 1040              		.loc 1 169 20 is_stmt 0 view .LVU196
+ 1041 0024 0137     		adds	r7, r7, #1
+ 1042              	.LVL99:
+ 170:Core/Src/st7735.c ****                 continue;
+ 1043              		.loc 1 170 17 is_stmt 1 view .LVU197
+ 162:Core/Src/st7735.c ****             y += font.height;
+ 1044              		.loc 1 162 15 is_stmt 0 view .LVU198
+ 1045 0026 0026     		movs	r6, #0
+ 1046              		.loc 1 170 17 view .LVU199
+ 1047 0028 0DE0     		b	.L73
+ 1048              	.LVL100:
+ 1049              	.L74:
+ 171:Core/Src/st7735.c ****             }
+ 172:Core/Src/st7735.c ****         }
+ 173:Core/Src/st7735.c ****         ST7735_WriteChar(x, y, *str, font, color, bgcolor);
+ 1050              		.loc 1 173 9 is_stmt 1 view .LVU200
+ 1051 002a CDF80880 		str	r8, [sp, #8]
+ 1052 002e CDF80490 		str	r9, [sp, #4]
+ 1053 0032 0E9B     		ldr	r3, [sp, #56]
+ 1054 0034 0093     		str	r3, [sp]
+ 1055 0036 0D9B     		ldr	r3, [sp, #52]
+ 1056 0038 2946     		mov	r1, r5
+ 1057 003a 3046     		mov	r0, r6
+ 1058 003c FFF7FEFF 		bl	ST7735_WriteChar
+ 1059              	.LVL101:
+ 174:Core/Src/st7735.c ****         x += font.width;
+ 1060              		.loc 1 174 9 view .LVU201
+ 1061              		.loc 1 174 11 is_stmt 0 view .LVU202
+ 1062 0040 3444     		add	r4, r4, r6
+ 1063 0042 A6B2     		uxth	r6, r4
+ 1064              	.LVL102:
+ 175:Core/Src/st7735.c ****         str++;
+ 1065              		.loc 1 175 9 is_stmt 1 view .LVU203
+ 1066              		.loc 1 175 12 is_stmt 0 view .LVU204
+ 1067 0044 0137     		adds	r7, r7, #1
+ 1068              	.LVL103:
+ 1069              	.L73:
+ 160:Core/Src/st7735.c ****         if(x + font.width >= ST7735_WIDTH) {
+ 1070              		.loc 1 160 10 is_stmt 1 view .LVU205
+ 160:Core/Src/st7735.c ****         if(x + font.width >= ST7735_WIDTH) {
+ 1071              		.loc 1 160 11 is_stmt 0 view .LVU206
+ 1072 0046 3A78     		ldrb	r2, [r7]	@ zero_extendqisi2
+ 160:Core/Src/st7735.c ****         if(x + font.width >= ST7735_WIDTH) {
+ 1073              		.loc 1 160 10 view .LVU207
+ 1074 0048 7AB1     		cbz	r2, .L75
+ 161:Core/Src/st7735.c ****             x = 0;
+ 1075              		.loc 1 161 9 is_stmt 1 view .LVU208
+ 161:Core/Src/st7735.c ****             x = 0;
+ 1076              		.loc 1 161 20 is_stmt 0 view .LVU209
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 24
+
+
+ 1077 004a 9DF83440 		ldrb	r4, [sp, #52]	@ zero_extendqisi2
+ 161:Core/Src/st7735.c ****             x = 0;
+ 1078              		.loc 1 161 14 view .LVU210
+ 1079 004e 3319     		adds	r3, r6, r4
+ 161:Core/Src/st7735.c ****             x = 0;
+ 1080              		.loc 1 161 11 view .LVU211
+ 1081 0050 7F2B     		cmp	r3, #127
+ 1082 0052 EADD     		ble	.L74
+ 162:Core/Src/st7735.c ****             y += font.height;
+ 1083              		.loc 1 162 13 is_stmt 1 view .LVU212
+ 1084              	.LVL104:
+ 163:Core/Src/st7735.c ****             if(y + font.height >= ST7735_HEIGHT) {
+ 1085              		.loc 1 163 13 view .LVU213
+ 163:Core/Src/st7735.c ****             if(y + font.height >= ST7735_HEIGHT) {
+ 1086              		.loc 1 163 22 is_stmt 0 view .LVU214
+ 1087 0054 9DF83530 		ldrb	r3, [sp, #53]	@ zero_extendqisi2
+ 163:Core/Src/st7735.c ****             if(y + font.height >= ST7735_HEIGHT) {
+ 1088              		.loc 1 163 15 view .LVU215
+ 1089 0058 1D44     		add	r5, r5, r3
+ 1090              	.LVL105:
+ 163:Core/Src/st7735.c ****             if(y + font.height >= ST7735_HEIGHT) {
+ 1091              		.loc 1 163 15 view .LVU216
+ 1092 005a ADB2     		uxth	r5, r5
+ 1093              	.LVL106:
+ 164:Core/Src/st7735.c ****                 break;
+ 1094              		.loc 1 164 13 is_stmt 1 view .LVU217
+ 164:Core/Src/st7735.c ****                 break;
+ 1095              		.loc 1 164 18 is_stmt 0 view .LVU218
+ 1096 005c 2B44     		add	r3, r3, r5
+ 164:Core/Src/st7735.c ****                 break;
+ 1097              		.loc 1 164 15 view .LVU219
+ 1098 005e 9F2B     		cmp	r3, #159
+ 1099 0060 03DC     		bgt	.L75
+ 167:Core/Src/st7735.c ****                 // skip spaces in the beginning of the new line
+ 1100              		.loc 1 167 13 is_stmt 1 view .LVU220
+ 167:Core/Src/st7735.c ****                 // skip spaces in the beginning of the new line
+ 1101              		.loc 1 167 15 is_stmt 0 view .LVU221
+ 1102 0062 202A     		cmp	r2, #32
+ 1103 0064 DED0     		beq	.L80
+ 162:Core/Src/st7735.c ****             y += font.height;
+ 1104              		.loc 1 162 15 view .LVU222
+ 1105 0066 0026     		movs	r6, #0
+ 1106 0068 DFE7     		b	.L74
+ 1107              	.LVL107:
+ 1108              	.L75:
+ 176:Core/Src/st7735.c ****     }
+ 177:Core/Src/st7735.c ****     ST7735_Unselect();
+ 1109              		.loc 1 177 5 is_stmt 1 view .LVU223
+ 1110 006a 0122     		movs	r2, #1
+ 1111 006c 1146     		mov	r1, r2
+ 1112 006e 0448     		ldr	r0, .L81
+ 1113 0070 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1114              	.LVL108:
+ 178:Core/Src/st7735.c **** }
+ 1115              		.loc 1 178 1 is_stmt 0 view .LVU224
+ 1116 0074 05B0     		add	sp, sp, #20
+ 1117              	.LCFI35:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 25
+
+
+ 1118              		.cfi_def_cfa_offset 36
+ 1119              		@ sp needed
+ 1120 0076 BDE8F043 		pop	{r4, r5, r6, r7, r8, r9, lr}
+ 1121              	.LCFI36:
+ 1122              		.cfi_restore 14
+ 1123              		.cfi_restore 9
+ 1124              		.cfi_restore 8
+ 1125              		.cfi_restore 7
+ 1126              		.cfi_restore 6
+ 1127              		.cfi_restore 5
+ 1128              		.cfi_restore 4
+ 1129              		.cfi_def_cfa_offset 8
+ 1130              	.LVL109:
+ 1131              		.loc 1 178 1 view .LVU225
+ 1132 007a 02B0     		add	sp, sp, #8
+ 1133              	.LCFI37:
+ 1134              		.cfi_def_cfa_offset 0
+ 1135 007c 7047     		bx	lr
+ 1136              	.L82:
+ 1137 007e 00BF     		.align	2
+ 1138              	.L81:
+ 1139 0080 00080140 		.word	1073809408
+ 1140              		.cfi_endproc
+ 1141              	.LFE80:
+ 1143              		.section	.text.ST7735_FillRectangle,"ax",%progbits
+ 1144              		.align	1
+ 1145              		.global	ST7735_FillRectangle
+ 1146              		.syntax unified
+ 1147              		.thumb
+ 1148              		.thumb_func
+ 1150              	ST7735_FillRectangle:
+ 1151              	.LVL110:
+ 1152              	.LFB81:
+ 179:Core/Src/st7735.c **** void ST7735_FillRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color) {
+ 1153              		.loc 1 179 91 is_stmt 1 view -0
+ 1154              		.cfi_startproc
+ 1155              		@ args = 4, pretend = 0, frame = 8
+ 1156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1157              		.loc 1 179 91 is_stmt 0 view .LVU227
+ 1158 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1159              	.LCFI38:
+ 1160              		.cfi_def_cfa_offset 24
+ 1161              		.cfi_offset 4, -24
+ 1162              		.cfi_offset 5, -20
+ 1163              		.cfi_offset 6, -16
+ 1164              		.cfi_offset 7, -12
+ 1165              		.cfi_offset 8, -8
+ 1166              		.cfi_offset 14, -4
+ 1167 0004 82B0     		sub	sp, sp, #8
+ 1168              	.LCFI39:
+ 1169              		.cfi_def_cfa_offset 32
+ 1170 0006 BDF82070 		ldrh	r7, [sp, #32]
+ 180:Core/Src/st7735.c ****     // clipping
+ 181:Core/Src/st7735.c ****     if((x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT)) return;
+ 1171              		.loc 1 181 5 is_stmt 1 view .LVU228
+ 1172              		.loc 1 181 7 is_stmt 0 view .LVU229
+ 1173 000a 7F28     		cmp	r0, #127
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 26
+
+
+ 1174 000c 3BD8     		bhi	.L83
+ 1175 000e 8046     		mov	r8, r0
+ 1176 0010 0C46     		mov	r4, r1
+ 1177 0012 1646     		mov	r6, r2
+ 1178 0014 1D46     		mov	r5, r3
+ 1179              		.loc 1 181 28 discriminator 2 view .LVU230
+ 1180 0016 9F29     		cmp	r1, #159
+ 1181 0018 35D8     		bhi	.L83
+ 182:Core/Src/st7735.c ****     if((x + w - 1) >= ST7735_WIDTH) w = ST7735_WIDTH - x;
+ 1182              		.loc 1 182 5 is_stmt 1 view .LVU231
+ 1183              		.loc 1 182 11 is_stmt 0 view .LVU232
+ 1184 001a 8318     		adds	r3, r0, r2
+ 1185              	.LVL111:
+ 1186              		.loc 1 182 7 view .LVU233
+ 1187 001c 802B     		cmp	r3, #128
+ 1188 001e 02DD     		ble	.L87
+ 1189              		.loc 1 182 37 is_stmt 1 discriminator 1 view .LVU234
+ 1190              		.loc 1 182 39 is_stmt 0 discriminator 1 view .LVU235
+ 1191 0020 C0F18006 		rsb	r6, r0, #128
+ 1192 0024 B6B2     		uxth	r6, r6
+ 1193              	.LVL112:
+ 1194              	.L87:
+ 183:Core/Src/st7735.c ****     if((y + h - 1) >= ST7735_HEIGHT) h = ST7735_HEIGHT - y;
+ 1195              		.loc 1 183 5 is_stmt 1 view .LVU236
+ 1196              		.loc 1 183 11 is_stmt 0 view .LVU237
+ 1197 0026 6319     		adds	r3, r4, r5
+ 1198              		.loc 1 183 7 view .LVU238
+ 1199 0028 A02B     		cmp	r3, #160
+ 1200 002a 02DD     		ble	.L88
+ 1201              		.loc 1 183 38 is_stmt 1 discriminator 1 view .LVU239
+ 1202              		.loc 1 183 40 is_stmt 0 discriminator 1 view .LVU240
+ 1203 002c C4F1A005 		rsb	r5, r4, #160
+ 1204 0030 ADB2     		uxth	r5, r5
+ 1205              	.LVL113:
+ 1206              	.L88:
+ 184:Core/Src/st7735.c **** 
+ 185:Core/Src/st7735.c ****     ST7735_Select();
+ 1207              		.loc 1 185 5 is_stmt 1 view .LVU241
+ 1208 0032 0022     		movs	r2, #0
+ 1209 0034 0121     		movs	r1, #1
+ 1210              	.LVL114:
+ 1211              		.loc 1 185 5 is_stmt 0 view .LVU242
+ 1212 0036 1548     		ldr	r0, .L95
+ 1213              	.LVL115:
+ 1214              		.loc 1 185 5 view .LVU243
+ 1215 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1216              	.LVL116:
+ 186:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x+w-1, y+h-1);
+ 1217              		.loc 1 186 5 is_stmt 1 view .LVU244
+ 1218 003c 5FFA88F0 		uxtb	r0, r8
+ 1219 0040 E1B2     		uxtb	r1, r4
+ 1220              		.loc 1 186 36 is_stmt 0 view .LVU245
+ 1221 0042 8219     		adds	r2, r0, r6
+ 1222 0044 D2B2     		uxtb	r2, r2
+ 1223              		.loc 1 186 43 view .LVU246
+ 1224 0046 4B19     		adds	r3, r1, r5
+ 1225 0048 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 27
+
+
+ 1226              		.loc 1 186 5 view .LVU247
+ 1227 004a 013B     		subs	r3, r3, #1
+ 1228 004c 013A     		subs	r2, r2, #1
+ 1229 004e DBB2     		uxtb	r3, r3
+ 1230 0050 D2B2     		uxtb	r2, r2
+ 1231 0052 FFF7FEFF 		bl	ST7735_SetAddressWindow
+ 1232              	.LVL117:
+ 187:Core/Src/st7735.c **** 
+ 188:Core/Src/st7735.c ****     uint8_t data[] = { color >> 8, color & 0xFF };
+ 1233              		.loc 1 188 5 is_stmt 1 view .LVU248
+ 1234              		.loc 1 188 13 is_stmt 0 view .LVU249
+ 1235 0056 3B0A     		lsrs	r3, r7, #8
+ 1236 0058 8DF80430 		strb	r3, [sp, #4]
+ 1237 005c 8DF80570 		strb	r7, [sp, #5]
+ 189:Core/Src/st7735.c ****     for(y = h; y > 0; y--) {
+ 1238              		.loc 1 189 5 is_stmt 1 view .LVU250
+ 1239              	.LVL118:
+ 1240              		.loc 1 189 5 is_stmt 0 view .LVU251
+ 1241 0060 09E0     		b	.L89
+ 1242              	.LVL119:
+ 1243              	.L90:
+ 190:Core/Src/st7735.c ****         for(x = w; x > 0; x--) {
+ 191:Core/Src/st7735.c ****             ST7735_WriteData(data, sizeof(data));
+ 1244              		.loc 1 191 13 is_stmt 1 discriminator 3 view .LVU252
+ 1245 0062 0221     		movs	r1, #2
+ 1246 0064 01A8     		add	r0, sp, #4
+ 1247 0066 FFF7FEFF 		bl	ST7735_WriteData
+ 1248              	.LVL120:
+ 190:Core/Src/st7735.c ****         for(x = w; x > 0; x--) {
+ 1249              		.loc 1 190 27 discriminator 3 view .LVU253
+ 190:Core/Src/st7735.c ****         for(x = w; x > 0; x--) {
+ 1250              		.loc 1 190 28 is_stmt 0 discriminator 3 view .LVU254
+ 1251 006a 013C     		subs	r4, r4, #1
+ 1252              	.LVL121:
+ 190:Core/Src/st7735.c ****         for(x = w; x > 0; x--) {
+ 1253              		.loc 1 190 28 discriminator 3 view .LVU255
+ 1254 006c A4B2     		uxth	r4, r4
+ 1255              	.LVL122:
+ 1256              	.L91:
+ 190:Core/Src/st7735.c ****         for(x = w; x > 0; x--) {
+ 1257              		.loc 1 190 20 is_stmt 1 discriminator 1 view .LVU256
+ 190:Core/Src/st7735.c ****         for(x = w; x > 0; x--) {
+ 1258              		.loc 1 190 9 is_stmt 0 discriminator 1 view .LVU257
+ 1259 006e 002C     		cmp	r4, #0
+ 1260 0070 F7D1     		bne	.L90
+ 189:Core/Src/st7735.c ****     for(y = h; y > 0; y--) {
+ 1261              		.loc 1 189 23 is_stmt 1 discriminator 2 view .LVU258
+ 189:Core/Src/st7735.c ****     for(y = h; y > 0; y--) {
+ 1262              		.loc 1 189 24 is_stmt 0 discriminator 2 view .LVU259
+ 1263 0072 013D     		subs	r5, r5, #1
+ 1264              	.LVL123:
+ 189:Core/Src/st7735.c ****     for(y = h; y > 0; y--) {
+ 1265              		.loc 1 189 24 discriminator 2 view .LVU260
+ 1266 0074 ADB2     		uxth	r5, r5
+ 1267              	.LVL124:
+ 1268              	.L89:
+ 189:Core/Src/st7735.c ****     for(y = h; y > 0; y--) {
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 28
+
+
+ 1269              		.loc 1 189 16 is_stmt 1 discriminator 1 view .LVU261
+ 189:Core/Src/st7735.c ****     for(y = h; y > 0; y--) {
+ 1270              		.loc 1 189 5 is_stmt 0 discriminator 1 view .LVU262
+ 1271 0076 0DB1     		cbz	r5, .L94
+ 190:Core/Src/st7735.c ****         for(x = w; x > 0; x--) {
+ 1272              		.loc 1 190 15 view .LVU263
+ 1273 0078 3446     		mov	r4, r6
+ 1274 007a F8E7     		b	.L91
+ 1275              	.L94:
+ 192:Core/Src/st7735.c ****         }
+ 193:Core/Src/st7735.c ****     }
+ 194:Core/Src/st7735.c ****     ST7735_Unselect();
+ 1276              		.loc 1 194 5 is_stmt 1 view .LVU264
+ 1277 007c 0122     		movs	r2, #1
+ 1278 007e 1146     		mov	r1, r2
+ 1279 0080 0248     		ldr	r0, .L95
+ 1280 0082 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1281              	.LVL125:
+ 1282              	.L83:
+ 195:Core/Src/st7735.c **** }
+ 1283              		.loc 1 195 1 is_stmt 0 view .LVU265
+ 1284 0086 02B0     		add	sp, sp, #8
+ 1285              	.LCFI40:
+ 1286              		.cfi_def_cfa_offset 24
+ 1287              		@ sp needed
+ 1288 0088 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1289              	.LVL126:
+ 1290              	.L96:
+ 1291              		.loc 1 195 1 view .LVU266
+ 1292              		.align	2
+ 1293              	.L95:
+ 1294 008c 00080140 		.word	1073809408
+ 1295              		.cfi_endproc
+ 1296              	.LFE81:
+ 1298              		.section	.text.ST7735_FillScreen,"ax",%progbits
+ 1299              		.align	1
+ 1300              		.global	ST7735_FillScreen
+ 1301              		.syntax unified
+ 1302              		.thumb
+ 1303              		.thumb_func
+ 1305              	ST7735_FillScreen:
+ 1306              	.LVL127:
+ 1307              	.LFB82:
+ 196:Core/Src/st7735.c **** void ST7735_FillScreen(uint16_t color) {
+ 1308              		.loc 1 196 40 is_stmt 1 view -0
+ 1309              		.cfi_startproc
+ 1310              		@ args = 0, pretend = 0, frame = 0
+ 1311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1312              		.loc 1 196 40 is_stmt 0 view .LVU268
+ 1313 0000 00B5     		push	{lr}
+ 1314              	.LCFI41:
+ 1315              		.cfi_def_cfa_offset 4
+ 1316              		.cfi_offset 14, -4
+ 1317 0002 83B0     		sub	sp, sp, #12
+ 1318              	.LCFI42:
+ 1319              		.cfi_def_cfa_offset 16
+ 197:Core/Src/st7735.c ****     ST7735_FillRectangle(0, 0, ST7735_WIDTH, ST7735_HEIGHT, color);
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 29
+
+
+ 1320              		.loc 1 197 5 is_stmt 1 view .LVU269
+ 1321 0004 0090     		str	r0, [sp]
+ 1322 0006 A023     		movs	r3, #160
+ 1323 0008 8022     		movs	r2, #128
+ 1324 000a 0021     		movs	r1, #0
+ 1325 000c 0846     		mov	r0, r1
+ 1326              	.LVL128:
+ 1327              		.loc 1 197 5 is_stmt 0 view .LVU270
+ 1328 000e FFF7FEFF 		bl	ST7735_FillRectangle
+ 1329              	.LVL129:
+ 198:Core/Src/st7735.c **** }
+ 1330              		.loc 1 198 1 view .LVU271
+ 1331 0012 03B0     		add	sp, sp, #12
+ 1332              	.LCFI43:
+ 1333              		.cfi_def_cfa_offset 4
+ 1334              		@ sp needed
+ 1335 0014 5DF804FB 		ldr	pc, [sp], #4
+ 1336              		.cfi_endproc
+ 1337              	.LFE82:
+ 1339              		.section	.text.ST7735_InvertColors,"ax",%progbits
+ 1340              		.align	1
+ 1341              		.global	ST7735_InvertColors
+ 1342              		.syntax unified
+ 1343              		.thumb
+ 1344              		.thumb_func
+ 1346              	ST7735_InvertColors:
+ 1347              	.LVL130:
+ 1348              	.LFB83:
+ 199:Core/Src/st7735.c **** void ST7735_InvertColors(bool invert) {
+ 1349              		.loc 1 199 39 is_stmt 1 view -0
+ 1350              		.cfi_startproc
+ 1351              		@ args = 0, pretend = 0, frame = 0
+ 1352              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1353              		.loc 1 199 39 is_stmt 0 view .LVU273
+ 1354 0000 10B5     		push	{r4, lr}
+ 1355              	.LCFI44:
+ 1356              		.cfi_def_cfa_offset 8
+ 1357              		.cfi_offset 4, -8
+ 1358              		.cfi_offset 14, -4
+ 1359 0002 0446     		mov	r4, r0
+ 200:Core/Src/st7735.c ****     ST7735_Select();
+ 1360              		.loc 1 200 5 is_stmt 1 view .LVU274
+ 1361 0004 0022     		movs	r2, #0
+ 1362 0006 0121     		movs	r1, #1
+ 1363 0008 0748     		ldr	r0, .L103
+ 1364              	.LVL131:
+ 1365              		.loc 1 200 5 is_stmt 0 view .LVU275
+ 1366 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1367              	.LVL132:
+ 201:Core/Src/st7735.c ****     ST7735_WriteCommand(invert ? ST7735_INVON : ST7735_INVOFF);
+ 1368              		.loc 1 201 5 is_stmt 1 view .LVU276
+ 1369 000e 44B1     		cbz	r4, .L101
+ 1370 0010 2120     		movs	r0, #33
+ 1371              	.L100:
+ 1372              		.loc 1 201 5 is_stmt 0 discriminator 4 view .LVU277
+ 1373 0012 FFF7FEFF 		bl	ST7735_WriteCommand
+ 1374              	.LVL133:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 30
+
+
+ 202:Core/Src/st7735.c ****     ST7735_Unselect();
+ 1375              		.loc 1 202 5 is_stmt 1 discriminator 4 view .LVU278
+ 1376 0016 0122     		movs	r2, #1
+ 1377 0018 1146     		mov	r1, r2
+ 1378 001a 0348     		ldr	r0, .L103
+ 1379 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1380              	.LVL134:
+ 203:Core/Src/st7735.c **** }
+ 1381              		.loc 1 203 1 is_stmt 0 discriminator 4 view .LVU279
+ 1382 0020 10BD     		pop	{r4, pc}
+ 1383              	.L101:
+ 201:Core/Src/st7735.c ****     ST7735_WriteCommand(invert ? ST7735_INVON : ST7735_INVOFF);
+ 1384              		.loc 1 201 5 view .LVU280
+ 1385 0022 2020     		movs	r0, #32
+ 1386 0024 F5E7     		b	.L100
+ 1387              	.L104:
+ 1388 0026 00BF     		.align	2
+ 1389              	.L103:
+ 1390 0028 00080140 		.word	1073809408
+ 1391              		.cfi_endproc
+ 1392              	.LFE83:
+ 1394              		.section	.text.ST7735_DrawImage,"ax",%progbits
+ 1395              		.align	1
+ 1396              		.global	ST7735_DrawImage
+ 1397              		.syntax unified
+ 1398              		.thumb
+ 1399              		.thumb_func
+ 1401              	ST7735_DrawImage:
+ 1402              	.LVL135:
+ 1403              	.LFB84:
+ 204:Core/Src/st7735.c **** 
+ 205:Core/Src/st7735.c **** void ST7735_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint8_t* data) {
+ 1404              		.loc 1 205 92 is_stmt 1 view -0
+ 1405              		.cfi_startproc
+ 1406              		@ args = 4, pretend = 0, frame = 0
+ 1407              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1408              		.loc 1 205 92 is_stmt 0 view .LVU282
+ 1409 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1410              	.LCFI45:
+ 1411              		.cfi_def_cfa_offset 24
+ 1412              		.cfi_offset 4, -24
+ 1413              		.cfi_offset 5, -20
+ 1414              		.cfi_offset 6, -16
+ 1415              		.cfi_offset 7, -12
+ 1416              		.cfi_offset 8, -8
+ 1417              		.cfi_offset 14, -4
+ 1418 0004 069E     		ldr	r6, [sp, #24]
+ 206:Core/Src/st7735.c ****     if((x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT)) return;
+ 1419              		.loc 1 206 5 is_stmt 1 view .LVU283
+ 1420              		.loc 1 206 7 is_stmt 0 view .LVU284
+ 1421 0006 7F28     		cmp	r0, #127
+ 1422 0008 0CD8     		bhi	.L105
+ 1423 000a 0446     		mov	r4, r0
+ 1424 000c 0D46     		mov	r5, r1
+ 1425 000e 1746     		mov	r7, r2
+ 1426 0010 9846     		mov	r8, r3
+ 1427              		.loc 1 206 28 discriminator 2 view .LVU285
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 31
+
+
+ 1428 0012 9F29     		cmp	r1, #159
+ 1429 0014 06D8     		bhi	.L105
+ 207:Core/Src/st7735.c ****     if((x + w - 1) >= ST7735_WIDTH) return;
+ 1430              		.loc 1 207 5 is_stmt 1 view .LVU286
+ 1431              		.loc 1 207 11 is_stmt 0 view .LVU287
+ 1432 0016 8318     		adds	r3, r0, r2
+ 1433              	.LVL136:
+ 1434              		.loc 1 207 7 view .LVU288
+ 1435 0018 802B     		cmp	r3, #128
+ 1436 001a 03DC     		bgt	.L105
+ 208:Core/Src/st7735.c ****     if((y + h - 1) >= ST7735_HEIGHT) return;
+ 1437              		.loc 1 208 5 is_stmt 1 view .LVU289
+ 1438              		.loc 1 208 11 is_stmt 0 view .LVU290
+ 1439 001c 01EB0803 		add	r3, r1, r8
+ 1440              		.loc 1 208 7 view .LVU291
+ 1441 0020 A02B     		cmp	r3, #160
+ 1442 0022 01DD     		ble	.L110
+ 1443              	.LVL137:
+ 1444              	.L105:
+ 209:Core/Src/st7735.c ****     ST7735_Select();
+ 210:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x+w, y+h);
+ 211:Core/Src/st7735.c **** 		for(int i =0; i< 2*w*h; i++)
+ 212:Core/Src/st7735.c **** 		{
+ 213:Core/Src/st7735.c **** 			ST7735_WriteData8(data[i]);
+ 214:Core/Src/st7735.c **** 		}
+ 215:Core/Src/st7735.c ****     ST7735_Unselect();
+ 216:Core/Src/st7735.c **** }
+ 1445              		.loc 1 216 1 view .LVU292
+ 1446 0024 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1447              	.LVL138:
+ 1448              	.L110:
+ 209:Core/Src/st7735.c ****     ST7735_Select();
+ 1449              		.loc 1 209 5 is_stmt 1 view .LVU293
+ 1450 0028 0022     		movs	r2, #0
+ 1451              	.LVL139:
+ 209:Core/Src/st7735.c ****     ST7735_Select();
+ 1452              		.loc 1 209 5 is_stmt 0 view .LVU294
+ 1453 002a 0121     		movs	r1, #1
+ 1454              	.LVL140:
+ 209:Core/Src/st7735.c ****     ST7735_Select();
+ 1455              		.loc 1 209 5 view .LVU295
+ 1456 002c 0E48     		ldr	r0, .L111
+ 1457              	.LVL141:
+ 209:Core/Src/st7735.c ****     ST7735_Select();
+ 1458              		.loc 1 209 5 view .LVU296
+ 1459 002e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1460              	.LVL142:
+ 210:Core/Src/st7735.c **** 		for(int i =0; i< 2*w*h; i++)
+ 1461              		.loc 1 210 5 is_stmt 1 view .LVU297
+ 1462 0032 E0B2     		uxtb	r0, r4
+ 1463 0034 E9B2     		uxtb	r1, r5
+ 1464 0036 01EB0803 		add	r3, r1, r8
+ 1465 003a C219     		adds	r2, r0, r7
+ 1466 003c DBB2     		uxtb	r3, r3
+ 1467 003e D2B2     		uxtb	r2, r2
+ 1468 0040 FFF7FEFF 		bl	ST7735_SetAddressWindow
+ 1469              	.LVL143:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 32
+
+
+ 211:Core/Src/st7735.c **** 		{
+ 1470              		.loc 1 211 3 view .LVU298
+ 1471              	.LBB6:
+ 211:Core/Src/st7735.c **** 		{
+ 1472              		.loc 1 211 7 view .LVU299
+ 211:Core/Src/st7735.c **** 		{
+ 1473              		.loc 1 211 11 is_stmt 0 view .LVU300
+ 1474 0044 0024     		movs	r4, #0
+ 211:Core/Src/st7735.c **** 		{
+ 1475              		.loc 1 211 3 view .LVU301
+ 1476 0046 03E0     		b	.L107
+ 1477              	.LVL144:
+ 1478              	.L108:
+ 213:Core/Src/st7735.c **** 		}
+ 1479              		.loc 1 213 4 is_stmt 1 discriminator 3 view .LVU302
+ 1480 0048 305D     		ldrb	r0, [r6, r4]	@ zero_extendqisi2
+ 1481 004a FFF7FEFF 		bl	ST7735_WriteData8
+ 1482              	.LVL145:
+ 211:Core/Src/st7735.c **** 		{
+ 1483              		.loc 1 211 27 discriminator 3 view .LVU303
+ 211:Core/Src/st7735.c **** 		{
+ 1484              		.loc 1 211 28 is_stmt 0 discriminator 3 view .LVU304
+ 1485 004e 0134     		adds	r4, r4, #1
+ 1486              	.LVL146:
+ 1487              	.L107:
+ 211:Core/Src/st7735.c **** 		{
+ 1488              		.loc 1 211 17 is_stmt 1 discriminator 1 view .LVU305
+ 211:Core/Src/st7735.c **** 		{
+ 1489              		.loc 1 211 23 is_stmt 0 discriminator 1 view .LVU306
+ 1490 0050 08FB07F3 		mul	r3, r8, r7
+ 211:Core/Src/st7735.c **** 		{
+ 1491              		.loc 1 211 3 discriminator 1 view .LVU307
+ 1492 0054 B4EB430F 		cmp	r4, r3, lsl #1
+ 1493 0058 F6DB     		blt	.L108
+ 1494              	.LBE6:
+ 215:Core/Src/st7735.c **** }
+ 1495              		.loc 1 215 5 is_stmt 1 view .LVU308
+ 1496 005a 0122     		movs	r2, #1
+ 1497 005c 1146     		mov	r1, r2
+ 1498 005e 0248     		ldr	r0, .L111
+ 1499 0060 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1500              	.LVL147:
+ 1501 0064 DEE7     		b	.L105
+ 1502              	.L112:
+ 1503 0066 00BF     		.align	2
+ 1504              	.L111:
+ 1505 0068 00080140 		.word	1073809408
+ 1506              		.cfi_endproc
+ 1507              	.LFE84:
+ 1509              		.section	.text.drawHline,"ax",%progbits
+ 1510              		.align	1
+ 1511              		.global	drawHline
+ 1512              		.syntax unified
+ 1513              		.thumb
+ 1514              		.thumb_func
+ 1516              	drawHline:
+ 1517              	.LVL148:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 33
+
+
+ 1518              	.LFB85:
+ 217:Core/Src/st7735.c **** void drawHline(uint16_t xStart, uint16_t yStart, uint16_t Lenght, uint16_t Color) // Chieu Ngang
+ 218:Core/Src/st7735.c **** {
+ 1519              		.loc 1 218 1 view -0
+ 1520              		.cfi_startproc
+ 1521              		@ args = 0, pretend = 0, frame = 0
+ 1522              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1523              		.loc 1 218 1 is_stmt 0 view .LVU310
+ 1524 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1525              	.LCFI46:
+ 1526              		.cfi_def_cfa_offset 24
+ 1527              		.cfi_offset 4, -24
+ 1528              		.cfi_offset 5, -20
+ 1529              		.cfi_offset 6, -16
+ 1530              		.cfi_offset 7, -12
+ 1531              		.cfi_offset 8, -8
+ 1532              		.cfi_offset 14, -4
+ 1533 0004 0546     		mov	r5, r0
+ 1534 0006 8846     		mov	r8, r1
+ 1535 0008 1646     		mov	r6, r2
+ 1536 000a 1F46     		mov	r7, r3
+ 219:Core/Src/st7735.c **** 	for(int i = xStart; i < Lenght + xStart - 1; i++)
+ 1537              		.loc 1 219 2 is_stmt 1 view .LVU311
+ 1538              	.LBB7:
+ 1539              		.loc 1 219 6 view .LVU312
+ 1540              	.LVL149:
+ 1541              		.loc 1 219 10 is_stmt 0 view .LVU313
+ 1542 000c 0446     		mov	r4, r0
+ 1543              		.loc 1 219 2 view .LVU314
+ 1544 000e 05E0     		b	.L114
+ 1545              	.LVL150:
+ 1546              	.L115:
+ 220:Core/Src/st7735.c **** 	{
+ 221:Core/Src/st7735.c **** 		ST7735_DrawPixel(i, yStart, Color);
+ 1547              		.loc 1 221 3 is_stmt 1 discriminator 3 view .LVU315
+ 1548 0010 3A46     		mov	r2, r7
+ 1549 0012 4146     		mov	r1, r8
+ 1550 0014 A0B2     		uxth	r0, r4
+ 1551 0016 FFF7FEFF 		bl	ST7735_DrawPixel
+ 1552              	.LVL151:
+ 219:Core/Src/st7735.c **** 	for(int i = xStart; i < Lenght + xStart - 1; i++)
+ 1553              		.loc 1 219 47 discriminator 3 view .LVU316
+ 219:Core/Src/st7735.c **** 	for(int i = xStart; i < Lenght + xStart - 1; i++)
+ 1554              		.loc 1 219 48 is_stmt 0 discriminator 3 view .LVU317
+ 1555 001a 0134     		adds	r4, r4, #1
+ 1556              	.LVL152:
+ 1557              	.L114:
+ 219:Core/Src/st7735.c **** 	for(int i = xStart; i < Lenght + xStart - 1; i++)
+ 1558              		.loc 1 219 22 is_stmt 1 discriminator 1 view .LVU318
+ 219:Core/Src/st7735.c **** 	for(int i = xStart; i < Lenght + xStart - 1; i++)
+ 1559              		.loc 1 219 33 is_stmt 0 discriminator 1 view .LVU319
+ 1560 001c 06EB050C 		add	ip, r6, r5
+ 219:Core/Src/st7735.c **** 	for(int i = xStart; i < Lenght + xStart - 1; i++)
+ 1561              		.loc 1 219 42 discriminator 1 view .LVU320
+ 1562 0020 0CF1FF3C 		add	ip, ip, #-1
+ 219:Core/Src/st7735.c **** 	for(int i = xStart; i < Lenght + xStart - 1; i++)
+ 1563              		.loc 1 219 2 discriminator 1 view .LVU321
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 34
+
+
+ 1564 0024 A445     		cmp	ip, r4
+ 1565 0026 F3DC     		bgt	.L115
+ 219:Core/Src/st7735.c **** 	for(int i = xStart; i < Lenght + xStart - 1; i++)
+ 1566              		.loc 1 219 2 discriminator 1 view .LVU322
+ 1567              	.LBE7:
+ 222:Core/Src/st7735.c **** 	}
+ 223:Core/Src/st7735.c **** }	
+ 1568              		.loc 1 223 1 view .LVU323
+ 1569 0028 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1570              		.loc 1 223 1 view .LVU324
+ 1571              		.cfi_endproc
+ 1572              	.LFE85:
+ 1574              		.section	.text.drawVline,"ax",%progbits
+ 1575              		.align	1
+ 1576              		.global	drawVline
+ 1577              		.syntax unified
+ 1578              		.thumb
+ 1579              		.thumb_func
+ 1581              	drawVline:
+ 1582              	.LVL153:
+ 1583              	.LFB86:
+ 224:Core/Src/st7735.c **** void drawVline(uint16_t xStart, uint16_t yStart, uint16_t Lenght, uint16_t Color) // Chieu Doc
+ 225:Core/Src/st7735.c **** {
+ 1584              		.loc 1 225 1 is_stmt 1 view -0
+ 1585              		.cfi_startproc
+ 1586              		@ args = 0, pretend = 0, frame = 0
+ 1587              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1588              		.loc 1 225 1 is_stmt 0 view .LVU326
+ 1589 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1590              	.LCFI47:
+ 1591              		.cfi_def_cfa_offset 24
+ 1592              		.cfi_offset 4, -24
+ 1593              		.cfi_offset 5, -20
+ 1594              		.cfi_offset 6, -16
+ 1595              		.cfi_offset 7, -12
+ 1596              		.cfi_offset 8, -8
+ 1597              		.cfi_offset 14, -4
+ 1598 0004 8046     		mov	r8, r0
+ 1599 0006 0D46     		mov	r5, r1
+ 1600 0008 1646     		mov	r6, r2
+ 1601 000a 1F46     		mov	r7, r3
+ 226:Core/Src/st7735.c **** 	for(int i = yStart; i < Lenght + yStart - 1; i++)
+ 1602              		.loc 1 226 2 is_stmt 1 view .LVU327
+ 1603              	.LBB8:
+ 1604              		.loc 1 226 6 view .LVU328
+ 1605              	.LVL154:
+ 1606              		.loc 1 226 10 is_stmt 0 view .LVU329
+ 1607 000c 0C46     		mov	r4, r1
+ 1608              		.loc 1 226 2 view .LVU330
+ 1609 000e 05E0     		b	.L118
+ 1610              	.LVL155:
+ 1611              	.L119:
+ 227:Core/Src/st7735.c **** 	{
+ 228:Core/Src/st7735.c **** 		ST7735_DrawPixel(xStart, i, Color);
+ 1612              		.loc 1 228 3 is_stmt 1 discriminator 3 view .LVU331
+ 1613 0010 3A46     		mov	r2, r7
+ 1614 0012 A1B2     		uxth	r1, r4
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 35
+
+
+ 1615 0014 4046     		mov	r0, r8
+ 1616 0016 FFF7FEFF 		bl	ST7735_DrawPixel
+ 1617              	.LVL156:
+ 226:Core/Src/st7735.c **** 	for(int i = yStart; i < Lenght + yStart - 1; i++)
+ 1618              		.loc 1 226 47 discriminator 3 view .LVU332
+ 226:Core/Src/st7735.c **** 	for(int i = yStart; i < Lenght + yStart - 1; i++)
+ 1619              		.loc 1 226 48 is_stmt 0 discriminator 3 view .LVU333
+ 1620 001a 0134     		adds	r4, r4, #1
+ 1621              	.LVL157:
+ 1622              	.L118:
+ 226:Core/Src/st7735.c **** 	for(int i = yStart; i < Lenght + yStart - 1; i++)
+ 1623              		.loc 1 226 22 is_stmt 1 discriminator 1 view .LVU334
+ 226:Core/Src/st7735.c **** 	for(int i = yStart; i < Lenght + yStart - 1; i++)
+ 1624              		.loc 1 226 33 is_stmt 0 discriminator 1 view .LVU335
+ 1625 001c 06EB050C 		add	ip, r6, r5
+ 226:Core/Src/st7735.c **** 	for(int i = yStart; i < Lenght + yStart - 1; i++)
+ 1626              		.loc 1 226 42 discriminator 1 view .LVU336
+ 1627 0020 0CF1FF3C 		add	ip, ip, #-1
+ 226:Core/Src/st7735.c **** 	for(int i = yStart; i < Lenght + yStart - 1; i++)
+ 1628              		.loc 1 226 2 discriminator 1 view .LVU337
+ 1629 0024 A445     		cmp	ip, r4
+ 1630 0026 F3DC     		bgt	.L119
+ 226:Core/Src/st7735.c **** 	for(int i = yStart; i < Lenght + yStart - 1; i++)
+ 1631              		.loc 1 226 2 discriminator 1 view .LVU338
+ 1632              	.LBE8:
+ 229:Core/Src/st7735.c **** 	}
+ 230:Core/Src/st7735.c **** }
+ 1633              		.loc 1 230 1 view .LVU339
+ 1634 0028 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1635              		.loc 1 230 1 view .LVU340
+ 1636              		.cfi_endproc
+ 1637              	.LFE86:
+ 1639              		.section	.text.drawRect,"ax",%progbits
+ 1640              		.align	1
+ 1641              		.global	drawRect
+ 1642              		.syntax unified
+ 1643              		.thumb
+ 1644              		.thumb_func
+ 1646              	drawRect:
+ 1647              	.LVL158:
+ 1648              	.LFB87:
+ 231:Core/Src/st7735.c **** void drawRect(uint16_t xStart, uint16_t yStart, uint16_t Width, uint16_t Height, uint16_t Color)
+ 232:Core/Src/st7735.c **** {
+ 1649              		.loc 1 232 1 is_stmt 1 view -0
+ 1650              		.cfi_startproc
+ 1651              		@ args = 4, pretend = 0, frame = 0
+ 1652              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1653              		.loc 1 232 1 is_stmt 0 view .LVU342
+ 1654 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1655              	.LCFI48:
+ 1656              		.cfi_def_cfa_offset 24
+ 1657              		.cfi_offset 4, -24
+ 1658              		.cfi_offset 5, -20
+ 1659              		.cfi_offset 6, -16
+ 1660              		.cfi_offset 7, -12
+ 1661              		.cfi_offset 8, -8
+ 1662              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 36
+
+
+ 1663 0004 0546     		mov	r5, r0
+ 1664 0006 0C46     		mov	r4, r1
+ 1665 0008 1646     		mov	r6, r2
+ 1666 000a 1F46     		mov	r7, r3
+ 1667 000c BDF81880 		ldrh	r8, [sp, #24]
+ 233:Core/Src/st7735.c **** 	drawVline(xStart, yStart, Height , Color);
+ 1668              		.loc 1 233 2 is_stmt 1 view .LVU343
+ 1669 0010 4346     		mov	r3, r8
+ 1670              	.LVL159:
+ 1671              		.loc 1 233 2 is_stmt 0 view .LVU344
+ 1672 0012 3A46     		mov	r2, r7
+ 1673              	.LVL160:
+ 1674              		.loc 1 233 2 view .LVU345
+ 1675 0014 FFF7FEFF 		bl	drawVline
+ 1676              	.LVL161:
+ 234:Core/Src/st7735.c **** 	drawVline(xStart + Width - 1, yStart, Height, Color);
+ 1677              		.loc 1 234 2 is_stmt 1 view .LVU346
+ 1678              		.loc 1 234 19 is_stmt 0 view .LVU347
+ 1679 0018 A819     		adds	r0, r5, r6
+ 1680 001a 80B2     		uxth	r0, r0
+ 1681              		.loc 1 234 2 view .LVU348
+ 1682 001c 0138     		subs	r0, r0, #1
+ 1683 001e 4346     		mov	r3, r8
+ 1684 0020 3A46     		mov	r2, r7
+ 1685 0022 2146     		mov	r1, r4
+ 1686 0024 80B2     		uxth	r0, r0
+ 1687 0026 FFF7FEFF 		bl	drawVline
+ 1688              	.LVL162:
+ 235:Core/Src/st7735.c **** 	drawHline(xStart, yStart, Width , Color);
+ 1689              		.loc 1 235 2 is_stmt 1 view .LVU349
+ 1690 002a 4346     		mov	r3, r8
+ 1691 002c 3246     		mov	r2, r6
+ 1692 002e 2146     		mov	r1, r4
+ 1693 0030 2846     		mov	r0, r5
+ 1694 0032 FFF7FEFF 		bl	drawHline
+ 1695              	.LVL163:
+ 236:Core/Src/st7735.c **** 	drawHline(xStart, yStart + Height - 1, Width , Color);
+ 1696              		.loc 1 236 2 view .LVU350
+ 1697              		.loc 1 236 27 is_stmt 0 view .LVU351
+ 1698 0036 E119     		adds	r1, r4, r7
+ 1699 0038 89B2     		uxth	r1, r1
+ 1700              		.loc 1 236 2 view .LVU352
+ 1701 003a 0139     		subs	r1, r1, #1
+ 1702 003c 4346     		mov	r3, r8
+ 1703 003e 3246     		mov	r2, r6
+ 1704 0040 89B2     		uxth	r1, r1
+ 1705 0042 2846     		mov	r0, r5
+ 1706 0044 FFF7FEFF 		bl	drawHline
+ 1707              	.LVL164:
+ 237:Core/Src/st7735.c **** 
+ 238:Core/Src/st7735.c **** }
+ 1708              		.loc 1 238 1 view .LVU353
+ 1709 0048 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1710              		.loc 1 238 1 view .LVU354
+ 1711              		.cfi_endproc
+ 1712              	.LFE87:
+ 1714              		.section	.text.ST7735_Init,"ax",%progbits
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 37
+
+
+ 1715              		.align	1
+ 1716              		.global	ST7735_Init
+ 1717              		.syntax unified
+ 1718              		.thumb
+ 1719              		.thumb_func
+ 1721              	ST7735_Init:
+ 1722              	.LFB88:
+ 239:Core/Src/st7735.c **** void ST7735_Init() 
+ 240:Core/Src/st7735.c **** {
+ 1723              		.loc 1 240 1 is_stmt 1 view -0
+ 1724              		.cfi_startproc
+ 1725              		@ args = 0, pretend = 0, frame = 0
+ 1726              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1727 0000 10B5     		push	{r4, lr}
+ 1728              	.LCFI49:
+ 1729              		.cfi_def_cfa_offset 8
+ 1730              		.cfi_offset 4, -8
+ 1731              		.cfi_offset 14, -4
+ 241:Core/Src/st7735.c ****     ST7735_Select();
+ 1732              		.loc 1 241 5 view .LVU356
+ 1733 0002 0B4C     		ldr	r4, .L125
+ 1734 0004 0022     		movs	r2, #0
+ 1735 0006 0121     		movs	r1, #1
+ 1736 0008 2046     		mov	r0, r4
+ 1737 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1738              	.LVL165:
+ 242:Core/Src/st7735.c ****     ST7735_Reset();
+ 1739              		.loc 1 242 5 view .LVU357
+ 1740 000e FFF7FEFF 		bl	ST7735_Reset
+ 1741              	.LVL166:
+ 243:Core/Src/st7735.c ****     ST7735_ExecuteCommandList(init_cmds1);
+ 1742              		.loc 1 243 5 view .LVU358
+ 1743 0012 0848     		ldr	r0, .L125+4
+ 1744 0014 FFF7FEFF 		bl	ST7735_ExecuteCommandList
+ 1745              	.LVL167:
+ 244:Core/Src/st7735.c ****     ST7735_ExecuteCommandList(init_cmds2);
+ 1746              		.loc 1 244 5 view .LVU359
+ 1747 0018 0748     		ldr	r0, .L125+8
+ 1748 001a FFF7FEFF 		bl	ST7735_ExecuteCommandList
+ 1749              	.LVL168:
+ 245:Core/Src/st7735.c ****     ST7735_ExecuteCommandList(init_cmds3);
+ 1750              		.loc 1 245 5 view .LVU360
+ 1751 001e 0748     		ldr	r0, .L125+12
+ 1752 0020 FFF7FEFF 		bl	ST7735_ExecuteCommandList
+ 1753              	.LVL169:
+ 246:Core/Src/st7735.c ****     ST7735_Unselect();
+ 1754              		.loc 1 246 5 view .LVU361
+ 1755 0024 0122     		movs	r2, #1
+ 1756 0026 1146     		mov	r1, r2
+ 1757 0028 2046     		mov	r0, r4
+ 1758 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1759              	.LVL170:
+ 247:Core/Src/st7735.c **** }...
+ 1760              		.loc 1 247 1 is_stmt 0 view .LVU362
+ 1761 002e 10BD     		pop	{r4, pc}
+ 1762              	.L126:
+ 1763              		.align	2
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 38
+
+
+ 1764              	.L125:
+ 1765 0030 00080140 		.word	1073809408
+ 1766 0034 00000000 		.word	.LANCHOR0
+ 1767 0038 00000000 		.word	.LANCHOR1
+ 1768 003c 00000000 		.word	.LANCHOR2
+ 1769              		.cfi_endproc
+ 1770              	.LFE88:
+ 1772              		.section	.rodata.init_cmds1,"a"
+ 1773              		.align	2
+ 1774              		.set	.LANCHOR0,. + 0
+ 1777              	init_cmds1:
+ 1778 0000 0F018096 		.ascii	"\017\001\200\226\021\200\377\261\003\001,-\262\003\001"
+ 1778      1180FFB1 
+ 1778      03012C2D 
+ 1778      B20301
+ 1779 000f 2C2DB306 		.ascii	",-\263\006\001,-\001,-\264\001\007\300\003\242\002\204"
+ 1779      012C2D01 
+ 1779      2C2DB401 
+ 1779      07C003A2 
+ 1779      0284
+ 1780 0021 C101C5C2 		.ascii	"\301\001\305\302\002\012\000\303\002\212*\304\002\212"
+ 1780      020A00C3 
+ 1780      028A2AC4 
+ 1780      028A
+ 1781 002f EEC5010E 		.ascii	"\356\305\001\016 \0006\001\300:\001\005"
+ 1781      20003601 
+ 1781      C03A0105 
+ 1782              		.section	.rodata.init_cmds2,"a"
+ 1783              		.align	2
+ 1784              		.set	.LANCHOR1,. + 0
+ 1787              	init_cmds2:
+ 1788 0000 022A0400 		.ascii	"\002*\004\000\000\000\177+\004\000\000\000\177"
+ 1788      00007F2B 
+ 1788      04000000 
+ 1788      7F
+ 1789              		.section	.rodata.init_cmds3,"a"
+ 1790              		.align	2
+ 1791              		.set	.LANCHOR2,. + 0
+ 1794              	init_cmds3:
+ 1795 0000 04E01002 		.ascii	"\004\340\020\002\034\007\02272)-)%+9\000\001\003\020"
+ 1795      1C071237 
+ 1795      32292D29 
+ 1795      252B3900 
+ 1795      010310
+ 1796 0013 E110031D 		.ascii	"\341\020\003\035\007\006.,)-..7?\000\000\002\020\023"
+ 1796      07062E2C 
+ 1796      292D2E2E 
+ 1796      373F0000 
+ 1796      021013
+ 1797 0026 800A2980 		.ascii	"\200\012)\200d"
+ 1797      64
+ 1798              		.text
+ 1799              	.Letext0:
+ 1800              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1801              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 1802              		.file 4 "Core/Inc/fonts.h"
+ 1803              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 39
+
+
+ 1804              		.file 6 "d:\\10 2021.10\\lib\\gcc\\arm-none-eabi\\10.3.1\\include\\stddef.h"
+ 1805              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 1806              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ 1807              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 1808              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h"
+ 1809              		.file 11 "Core/Inc/st7735.h"
+ 1810              		.file 12 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 40
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 st7735.c
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:18     .text.st7735_Trans:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:24     .text.st7735_Trans:00000000 st7735_Trans
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:54     .text.st7735_Trans:00000014 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:59     .text.delay_ms:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:65     .text.delay_ms:00000000 delay_ms
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:87     .text.ST7735_Reset:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:93     .text.ST7735_Reset:00000000 ST7735_Reset
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:128    .text.ST7735_Reset:00000020 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:133    .text.ST7735_WriteCommand:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:139    .text.ST7735_WriteCommand:00000000 ST7735_WriteCommand
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:177    .text.ST7735_WriteCommand:00000024 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:182    .text.ST7735_WriteData:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:188    .text.ST7735_WriteData:00000000 ST7735_WriteData
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:227    .text.ST7735_WriteData:0000001c $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:232    .text.ST7735_WriteData8:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:238    .text.ST7735_WriteData8:00000000 ST7735_WriteData8
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:281    .text.ST7735_WriteData8:00000020 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:286    .text.ST7735_WriteData16:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:292    .text.ST7735_WriteData16:00000000 ST7735_WriteData16
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:339    .text.ST7735_WriteData16:00000028 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:344    .text.ST7735_ExecuteCommandList:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:350    .text.ST7735_ExecuteCommandList:00000000 ST7735_ExecuteCommandList
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:463    .text.ST7735_SetAddressWindow:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:469    .text.ST7735_SetAddressWindow:00000000 ST7735_SetAddressWindow
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:539    .text.ST7735_WriteChar:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:544    .text.ST7735_WriteChar:00000000 ST7735_WriteChar
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:702    .text.ST7735_SetCursor:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:708    .text.ST7735_SetCursor:00000000 ST7735_SetCursor
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:757    .text.ST7735_WriteRAM_Prepare:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:763    .text.ST7735_WriteRAM_Prepare:00000000 ST7735_WriteRAM_Prepare
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:784    .text.ST7735_DisplayON:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:790    .text.ST7735_DisplayON:00000000 ST7735_DisplayON
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:827    .text.ST7735_DisplayON:00000028 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:832    .text.ST7735_DisplayOFF:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:838    .text.ST7735_DisplayOFF:00000000 ST7735_DisplayOFF
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:875    .text.ST7735_DisplayOFF:00000028 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:880    .text.ST7735_DrawPixel:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:886    .text.ST7735_DrawPixel:00000000 ST7735_DrawPixel
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:981    .text.ST7735_DrawPixel:00000054 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:986    .text.ST7735_WriteString:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:992    .text.ST7735_WriteString:00000000 ST7735_WriteString
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1139   .text.ST7735_WriteString:00000080 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1144   .text.ST7735_FillRectangle:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1150   .text.ST7735_FillRectangle:00000000 ST7735_FillRectangle
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1294   .text.ST7735_FillRectangle:0000008c $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1299   .text.ST7735_FillScreen:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1305   .text.ST7735_FillScreen:00000000 ST7735_FillScreen
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1340   .text.ST7735_InvertColors:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1346   .text.ST7735_InvertColors:00000000 ST7735_InvertColors
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1390   .text.ST7735_InvertColors:00000028 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1395   .text.ST7735_DrawImage:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1401   .text.ST7735_DrawImage:00000000 ST7735_DrawImage
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1505   .text.ST7735_DrawImage:00000068 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1510   .text.drawHline:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1516   .text.drawHline:00000000 drawHline
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s 			page 41
+
+
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1575   .text.drawVline:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1581   .text.drawVline:00000000 drawVline
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1640   .text.drawRect:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1646   .text.drawRect:00000000 drawRect
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1715   .text.ST7735_Init:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1721   .text.ST7735_Init:00000000 ST7735_Init
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1765   .text.ST7735_Init:00000030 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1773   .rodata.init_cmds1:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1777   .rodata.init_cmds1:00000000 init_cmds1
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1783   .rodata.init_cmds2:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1787   .rodata.init_cmds2:00000000 init_cmds2
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1790   .rodata.init_cmds3:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccrvALRg.s:1794   .rodata.init_cmds3:00000000 init_cmds3
+
+UNDEFINED SYMBOLS
+HAL_SPI_Transmit
+hspi2
+HAL_Delay
+HAL_GPIO_WritePin

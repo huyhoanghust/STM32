@@ -1,0 +1,101 @@
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccPNiJUH.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"spi_lib.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.TM_SPI_Send,"ax",%progbits
+  18              		.align	1
+  19              		.global	TM_SPI_Send
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	TM_SPI_Send:
+  25              	.LVL0:
+  26              	.LFB65:
+  27              		.file 1 "Core/Src/spi_lib.c"
+   1:Core/Src/spi_lib.c **** #include "spi_lib.h"
+   2:Core/Src/spi_lib.c **** #include "spi.h"
+   3:Core/Src/spi_lib.c **** 
+   4:Core/Src/spi_lib.c **** uint8_t TM_SPI_Send(uint8_t data)
+   5:Core/Src/spi_lib.c **** {
+  28              		.loc 1 5 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 16
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 5 1 is_stmt 0 view .LVU1
+  33 0000 00B5     		push	{lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 14, -4
+  37 0002 87B0     		sub	sp, sp, #28
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 32
+  40 0004 8DF80F00 		strb	r0, [sp, #15]
+   6:Core/Src/spi_lib.c **** 	uint8_t rv;
+  41              		.loc 1 6 2 is_stmt 1 view .LVU2
+   7:Core/Src/spi_lib.c **** 	HAL_SPI_TransmitReceive(&hspi2,(uint8_t *)&data,(uint8_t *)&rv,1,100);
+  42              		.loc 1 7 2 view .LVU3
+  43 0008 6423     		movs	r3, #100
+  44 000a 0093     		str	r3, [sp]
+  45 000c 0123     		movs	r3, #1
+  46 000e 0DF11702 		add	r2, sp, #23
+  47 0012 0DF10F01 		add	r1, sp, #15
+  48 0016 0448     		ldr	r0, .L3
+  49              	.LVL1:
+  50              		.loc 1 7 2 is_stmt 0 view .LVU4
+  51 0018 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccPNiJUH.s 			page 2
+
+
+  52              	.LVL2:
+   8:Core/Src/spi_lib.c **** 	return rv;
+  53              		.loc 1 8 2 is_stmt 1 view .LVU5
+   9:Core/Src/spi_lib.c **** }
+  54              		.loc 1 9 1 is_stmt 0 view .LVU6
+  55 001c 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+  56 0020 07B0     		add	sp, sp, #28
+  57              	.LCFI2:
+  58              		.cfi_def_cfa_offset 4
+  59              		@ sp needed
+  60 0022 5DF804FB 		ldr	pc, [sp], #4
+  61              	.L4:
+  62 0026 00BF     		.align	2
+  63              	.L3:
+  64 0028 00000000 		.word	hspi2
+  65              		.cfi_endproc
+  66              	.LFE65:
+  68              		.text
+  69              	.Letext0:
+  70              		.file 2 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+  71              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+  72              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+  73              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+  74              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+  75              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h"
+  76              		.file 8 "Core/Inc/spi_lib.h"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccPNiJUH.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 spi_lib.c
+C:\Users\Admin\AppData\Local\Temp\ccPNiJUH.s:18     .text.TM_SPI_Send:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccPNiJUH.s:24     .text.TM_SPI_Send:00000000 TM_SPI_Send
+C:\Users\Admin\AppData\Local\Temp\ccPNiJUH.s:64     .text.TM_SPI_Send:00000028 $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_TransmitReceive
+hspi2
