@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
   29:Core/Src/main.c **** #include "stdlib.h"
   30:Core/Src/main.c **** #include "math.h"
   31:Core/Src/main.c **** #include "string.h"
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 2
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 2
 
 
   32:Core/Src/main.c **** #include "st7735.h"
@@ -114,11 +114,11 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
   82:Core/Src/main.c **** volatile bool perform_d = false;
   83:Core/Src/main.c **** 
   84:Core/Src/main.c **** int PC_rota;
-  85:Core/Src/main.c **** float PC_threshold;
+  85:Core/Src/main.c **** float PC_threshold = 30;
   86:Core/Src/main.c **** 
-  87:Core/Src/main.c **** int temp = 30;
-  88:Core/Src/main.c **** int humi = 90;
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 3
+  87:Core/Src/main.c **** int temp;
+  88:Core/Src/main.c **** int humi;
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 3
 
 
   89:Core/Src/main.c **** /* USER CODE END PV */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
   67              		.cfi_def_cfa_offset 8
   68              		.cfi_offset 4, -8
   69              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 4
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 4
 
 
   70 0002 0446     		mov	r4, r0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  112:Core/Src/main.c ****   {
  113:Core/Src/main.c ****     if (Type_task == Task_sensor)
  114:Core/Src/main.c ****     {
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 5
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 5
 
 
  115:Core/Src/main.c ****       perform_s = false;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  129:Core/Src/main.c ****       Type_task = Task_sensor;
  144              		.loc 1 129 7 is_stmt 1 view .LVU26
  129:Core/Src/main.c ****       Type_task = Task_sensor;
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 6
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 6
 
 
  145              		.loc 1 129 17 is_stmt 0 view .LVU27
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  185 004a 094B     		ldr	r3, .L16+16
  186 004c 0022     		movs	r2, #0
  187 004e 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 7
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 7
 
 
  123:Core/Src/main.c ****       set_timer(500);
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  234 0000 08B5     		push	{r3, lr}
  235              	.LCFI2:
  236              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 8
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 8
 
 
  237              		.cfi_offset 3, -8
@@ -446,21 +446,18 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  152:Core/Src/main.c ****       {
  153:Core/Src/main.c ****         Mode = Mode_auto;
  154:Core/Src/main.c ****       }
- 155:Core/Src/main.c **** 
- 156:Core/Src/main.c ****       // HAL_TIM_Base_Stop_IT(&htim3);
- 157:Core/Src/main.c ****       // log_data(buffer_data);
- 158:Core/Src/main.c ****     }
- 159:Core/Src/main.c ****     else
- 160:Core/Src/main.c ****     {
- 161:Core/Src/main.c ****       buffer_data[Rx_index] = (char)Rx_data;
- 162:Core/Src/main.c ****       Rx_index++;
- 163:Core/Src/main.c ****       // log_data((char*)Rx_data);
- 164:Core/Src/main.c ****     }
- 165:Core/Src/main.c ****     HAL_UART_Receive_IT(&huart3, &Rx_data, 1);
- 166:Core/Src/main.c ****     HAL_TIM_Base_Start(&htim3);
- 167:Core/Src/main.c ****   }
- 168:Core/Src/main.c **** }
- 246              		.loc 1 168 1 view .LVU51
+ 155:Core/Src/main.c ****     }
+ 156:Core/Src/main.c ****     else
+ 157:Core/Src/main.c ****     {
+ 158:Core/Src/main.c ****       buffer_data[Rx_index] = (char)Rx_data;
+ 159:Core/Src/main.c ****       Rx_index++;
+ 160:Core/Src/main.c ****       // log_data((char*)Rx_data);
+ 161:Core/Src/main.c ****     }
+ 162:Core/Src/main.c ****     HAL_UART_Receive_IT(&huart3, &Rx_data, 1);
+ 163:Core/Src/main.c ****     HAL_TIM_Base_Start(&htim3);
+ 164:Core/Src/main.c ****   }
+ 165:Core/Src/main.c **** }
+ 246              		.loc 1 165 1 view .LVU51
  247 0008 08BD     		pop	{r3, pc}
  248              	.LVL18:
  249              	.L24:
@@ -478,44 +475,44 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  257              		.loc 1 142 17 is_stmt 0 view .LVU55
  258 0010 184B     		ldr	r3, .L26+8
  259 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 9
-
-
  142:Core/Src/main.c ****     {
  260              		.loc 1 142 8 view .LVU56
  261 0014 0D2B     		cmp	r3, #13
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 9
+
+
  262 0016 0FD0     		beq	.L25
- 161:Core/Src/main.c ****       Rx_index++;
- 263              		.loc 1 161 7 is_stmt 1 view .LVU57
- 161:Core/Src/main.c ****       Rx_index++;
- 264              		.loc 1 161 18 is_stmt 0 view .LVU58
+ 158:Core/Src/main.c ****       Rx_index++;
+ 263              		.loc 1 158 7 is_stmt 1 view .LVU57
+ 158:Core/Src/main.c ****       Rx_index++;
+ 264              		.loc 1 158 18 is_stmt 0 view .LVU58
  265 0018 174A     		ldr	r2, .L26+12
  266 001a 1168     		ldr	r1, [r2]
- 161:Core/Src/main.c ****       Rx_index++;
- 267              		.loc 1 161 29 view .LVU59
+ 158:Core/Src/main.c ****       Rx_index++;
+ 267              		.loc 1 158 29 view .LVU59
  268 001c 1748     		ldr	r0, .L26+16
  269 001e 4354     		strb	r3, [r0, r1]
- 162:Core/Src/main.c ****       // log_data((char*)Rx_data);
- 270              		.loc 1 162 7 is_stmt 1 view .LVU60
- 162:Core/Src/main.c ****       // log_data((char*)Rx_data);
- 271              		.loc 1 162 15 is_stmt 0 view .LVU61
+ 159:Core/Src/main.c ****       // log_data((char*)Rx_data);
+ 270              		.loc 1 159 7 is_stmt 1 view .LVU60
+ 159:Core/Src/main.c ****       // log_data((char*)Rx_data);
+ 271              		.loc 1 159 15 is_stmt 0 view .LVU61
  272 0020 1368     		ldr	r3, [r2]
  273 0022 0133     		adds	r3, r3, #1
  274 0024 1360     		str	r3, [r2]
  275              	.L22:
- 165:Core/Src/main.c ****     HAL_TIM_Base_Start(&htim3);
- 276              		.loc 1 165 5 is_stmt 1 view .LVU62
+ 162:Core/Src/main.c ****     HAL_TIM_Base_Start(&htim3);
+ 276              		.loc 1 162 5 is_stmt 1 view .LVU62
  277 0026 0122     		movs	r2, #1
  278 0028 1249     		ldr	r1, .L26+8
  279 002a 1048     		ldr	r0, .L26
  280 002c FFF7FEFF 		bl	HAL_UART_Receive_IT
  281              	.LVL21:
- 166:Core/Src/main.c ****   }
- 282              		.loc 1 166 5 view .LVU63
+ 163:Core/Src/main.c ****   }
+ 282              		.loc 1 163 5 view .LVU63
  283 0030 0F48     		ldr	r0, .L26+4
  284 0032 FFF7FEFF 		bl	HAL_TIM_Base_Start
  285              	.LVL22:
- 286              		.loc 1 168 1 is_stmt 0 view .LVU64
+ 286              		.loc 1 165 1 is_stmt 0 view .LVU64
  287 0036 E7E7     		b	.L18
  288              	.L25:
  144:Core/Src/main.c ****       Rx_index = 0;
@@ -538,12 +535,12 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  300              		.loc 1 146 7 is_stmt 1 view .LVU70
  146:Core/Src/main.c ****       if (strcmp(buffer_data, "manual") == 0)
  301              		.loc 1 146 19 is_stmt 0 view .LVU71
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 10
-
-
  302 0044 0E4B     		ldr	r3, .L26+20
  303 0046 0122     		movs	r2, #1
  304 0048 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 10
+
+
  147:Core/Src/main.c ****       {
  305              		.loc 1 147 7 is_stmt 1 view .LVU72
  147:Core/Src/main.c ****       {
@@ -598,19 +595,22 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  346              	.LFE71:
  348              		.section	.text.Error_Handler,"ax",%progbits
  349              		.align	1
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 11
-
-
  350              		.global	Error_Handler
  351              		.syntax unified
  352              		.thumb
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 11
+
+
  353              		.thumb_func
  355              	Error_Handler:
  356              	.LFB74:
- 169:Core/Src/main.c **** uint8_t RHI, RHD, TCI, TCD, SUM;
- 170:Core/Src/main.c **** float tCelsius = 0;
- 171:Core/Src/main.c **** float tFahrenheit = 0;
- 172:Core/Src/main.c **** float RH = 0;
+ 166:Core/Src/main.c **** uint8_t RHI, RHD, TCI, TCD, SUM;
+ 167:Core/Src/main.c **** float tCelsius = 0;
+ 168:Core/Src/main.c **** float tFahrenheit = 0;
+ 169:Core/Src/main.c **** float RH = 0;
+ 170:Core/Src/main.c **** 
+ 171:Core/Src/main.c **** char thres_tring[]="Thres: 30";
+ 172:Core/Src/main.c **** 
  173:Core/Src/main.c **** /* USER CODE END 0 */
  174:Core/Src/main.c **** 
  175:Core/Src/main.c **** /**
@@ -657,216 +657,251 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  216:Core/Src/main.c ****   ST7735_FillScreen(ST7735_BLACK);
  217:Core/Src/main.c ****   ST7735_WriteString(25, 0, "Team 17", Font_11x18, ST7735_RED, ST7735_BLACK);
  218:Core/Src/main.c ****   ST7735_WriteString(0, 30, "Temp: ", Font_11x18, ST7735_RED, ST7735_BLACK);
- 219:Core/Src/main.c ****   ST7735_WriteString(0, 3*10*2, "Humi: ", Font_11x18, ST7735_RED, ST7735_BLACK);
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 12
+ 219:Core/Src/main.c ****   ST7735_WriteString(0, 3 * 10 * 2, "Humi: ", Font_11x18, ST7735_RED, ST7735_BLACK);
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 12
 
 
  220:Core/Src/main.c ****   ST7735_WriteString(0, 3 * 10 * 3, "Rota: ", Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 221:Core/Src/main.c ****   ST7735_WriteString(0, 3 * 10 * 4, "Thresh: ", Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 222:Core/Src/main.c ****   ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
- 223:Core/Src/main.c ****   HAL_Delay(1000);
+ 221:Core/Src/main.c ****   //sprintf(thres_tring,"Thresh: %.1f",PC_threshold);
+ 222:Core/Src/main.c ****   //strcat(thres_tring,"30");
+ 223:Core/Src/main.c ****   ST7735_WriteString(0, 3 * 10 * 4, thres_tring, Font_11x18, ST7735_GREEN, ST7735_BLACK);
  224:Core/Src/main.c **** 
- 225:Core/Src/main.c ****   set_timer(1000);
- 226:Core/Src/main.c ****   HAL_TIM_Base_Start_IT(&htim3);
+ 225:Core/Src/main.c ****   // ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+ 226:Core/Src/main.c ****   HAL_Delay(1000);
  227:Core/Src/main.c **** 
- 228:Core/Src/main.c ****   // interrupt UART
- 229:Core/Src/main.c ****   HAL_UART_Receive_IT(&huart3, &Rx_data, 1);
- 230:Core/Src/main.c ****   /* USER CODE END 2 */
- 231:Core/Src/main.c **** 
- 232:Core/Src/main.c ****   /* Infinite loop */
- 233:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
- 234:Core/Src/main.c ****   while (1)
- 235:Core/Src/main.c ****   {
- 236:Core/Src/main.c ****     /* USER CODE END WHILE */
- 237:Core/Src/main.c **** 
- 238:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
- 239:Core/Src/main.c ****     switch (Mode)
- 240:Core/Src/main.c ****     {
- 241:Core/Src/main.c ****     case Mode_auto:
- 242:Core/Src/main.c ****       if (Type_task == Task_sensor)
- 243:Core/Src/main.c ****       {
- 244:Core/Src/main.c ****         if (!perform_s)
- 245:Core/Src/main.c ****         {
- 246:Core/Src/main.c ****           perform_s = true;
- 247:Core/Src/main.c ****           log_data("task sensor\n");
- 248:Core/Src/main.c ****           // if (DHT11_Start())
- 249:Core/Src/main.c ****           // {
- 250:Core/Src/main.c ****           //   RHI = DHT11_Read(); // Relative humidity integral
- 251:Core/Src/main.c ****           //   RHD = DHT11_Read(); // Relative humidity decimal
- 252:Core/Src/main.c ****           //   TCI = DHT11_Read(); // Celsius integral
- 253:Core/Src/main.c ****           //   TCD = DHT11_Read(); // Celsius decimal
- 254:Core/Src/main.c ****           //   SUM = DHT11_Read(); // Check sum
- 255:Core/Src/main.c ****           //   if (RHI + RHD + TCI + TCD == SUM)
- 256:Core/Src/main.c ****           //   {
- 257:Core/Src/main.c ****           //     // Can use RHI and TCI for any purposes if whole number only needed
- 258:Core/Src/main.c ****           //     temp = (float)TCI + (float)(TCD / 10.0);
- 259:Core/Src/main.c ****           //     humi = (float)RHI + (float)(RHD / 10.0);
- 260:Core/Src/main.c ****           //     // Can use tCelsius, tFahrenheit and RH for any purposes
- 261:Core/Src/main.c ****           //   }
- 262:Core/Src/main.c ****           }
- 263:Core/Src/main.c ****         // read sensor
- 264:Core/Src/main.c ****       }
- 265:Core/Src/main.c ****       if (Type_task == Task_control)
- 266:Core/Src/main.c ****       {
- 267:Core/Src/main.c ****         if (!perform_c)
- 268:Core/Src/main.c ****         {
- 269:Core/Src/main.c ****           perform_c = true;
- 270:Core/Src/main.c ****           log_data("task control\n");
- 271:Core/Src/main.c ****           // depend Temp value
- 272:Core/Src/main.c ****           //>30C -> close curtain
- 273:Core/Src/main.c ****           if (temp > 30)
- 274:Core/Src/main.c ****           {
- 275:Core/Src/main.c ****             TIM2->CCR1 = 25;
- 276:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", 0);
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 13
+ 228:Core/Src/main.c ****   set_timer(1000);
+ 229:Core/Src/main.c ****   HAL_TIM_Base_Start_IT(&htim3);
+ 230:Core/Src/main.c **** 
+ 231:Core/Src/main.c ****   // interrupt UART
+ 232:Core/Src/main.c ****   HAL_UART_Receive_IT(&huart3, &Rx_data, 1);
+ 233:Core/Src/main.c ****   /* USER CODE END 2 */
+ 234:Core/Src/main.c **** 
+ 235:Core/Src/main.c ****   /* Infinite loop */
+ 236:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
+ 237:Core/Src/main.c ****   while (1)
+ 238:Core/Src/main.c ****   {
+ 239:Core/Src/main.c ****     /* USER CODE END WHILE */
+ 240:Core/Src/main.c **** 
+ 241:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
+ 242:Core/Src/main.c ****     switch (Mode)
+ 243:Core/Src/main.c ****     {
+ 244:Core/Src/main.c ****     case Mode_auto:
+ 245:Core/Src/main.c ****       if (Type_task == Task_sensor)
+ 246:Core/Src/main.c ****       {
+ 247:Core/Src/main.c ****         if (!perform_s)
+ 248:Core/Src/main.c ****         {
+ 249:Core/Src/main.c ****           perform_s = true;
+ 250:Core/Src/main.c ****           log_data("task sensor\n");
+ 251:Core/Src/main.c ****           if (DHT11_Start())
+ 252:Core/Src/main.c ****           {
+ 253:Core/Src/main.c ****             RHI = DHT11_Read(); // Relative humidity integral
+ 254:Core/Src/main.c ****             RHD = DHT11_Read(); // Relative humidity decimal
+ 255:Core/Src/main.c ****             TCI = DHT11_Read(); // Celsius integral
+ 256:Core/Src/main.c ****             TCD = DHT11_Read(); // Celsius decimal
+ 257:Core/Src/main.c ****             SUM = DHT11_Read(); // Check sum
+ 258:Core/Src/main.c ****             if (RHI + RHD + TCI + TCD == SUM)
+ 259:Core/Src/main.c ****             {
+ 260:Core/Src/main.c ****               // Can use RHI and TCI for any purposes if whole number only needed
+ 261:Core/Src/main.c ****               temp = (float)TCI + (float)(TCD / 10.0);
+ 262:Core/Src/main.c ****               humi = (float)RHI + (float)(RHD / 10.0);
+ 263:Core/Src/main.c ****               // Can use tCelsius, tFahrenheit and RH for any purposes
+ 264:Core/Src/main.c ****             }
+ 265:Core/Src/main.c ****           }
+ 266:Core/Src/main.c ****         }
+ 267:Core/Src/main.c ****           // read sensor
+ 268:Core/Src/main.c ****         }
+ 269:Core/Src/main.c ****         if (Type_task == Task_control)
+ 270:Core/Src/main.c ****         {
+ 271:Core/Src/main.c ****           if (!perform_c)
+ 272:Core/Src/main.c ****           {
+ 273:Core/Src/main.c ****             perform_c = true;
+ 274:Core/Src/main.c ****             log_data("task control\n");
+ 275:Core/Src/main.c ****             // depend Temp value
+ 276:Core/Src/main.c ****             //>PC_threshold -> close curtain
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 13
 
 
- 277:Core/Src/main.c ****             // log_data(rota);
- 278:Core/Src/main.c ****             ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 279:Core/Src/main.c ****           }
- 280:Core/Src/main.c ****           //>30C -> close curtain
- 281:Core/Src/main.c ****           else
- 282:Core/Src/main.c ****           {
- 283:Core/Src/main.c ****             TIM2->CCR1 = 125;
- 284:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", 180);
- 285:Core/Src/main.c ****             // log_data(rota);
- 286:Core/Src/main.c ****             ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 287:Core/Src/main.c ****           }
- 288:Core/Src/main.c ****         }
- 289:Core/Src/main.c ****       }
- 290:Core/Src/main.c ****       if (Type_task == Task_display)
- 291:Core/Src/main.c ****       {
- 292:Core/Src/main.c ****         if (!perform_d)
- 293:Core/Src/main.c ****         {
- 294:Core/Src/main.c ****           perform_d = true;
- 295:Core/Src/main.c ****           log_data("task display\n");
- 296:Core/Src/main.c ****           sprintf(buf_temp, "Temp: %d C", temp);
- 297:Core/Src/main.c ****           sprintf(buf_humi, "Humi: %d ", humi);
- 298:Core/Src/main.c ****           ST7735_WriteString(0, 30, buf_temp, Font_11x18, ST7735_RED, ST7735_BLACK);
- 299:Core/Src/main.c ****           ST7735_WriteString(0, 3*10*2, strcat(buf_humi, "%"), Font_11x18, ST7735_RED, ST7735_BLACK
- 300:Core/Src/main.c ****         }
- 301:Core/Src/main.c ****       }
- 302:Core/Src/main.c ****       break;
- 303:Core/Src/main.c **** 
- 304:Core/Src/main.c ****     case Mode_manual:
- 305:Core/Src/main.c ****       if (Rx_complete)
- 306:Core/Src/main.c ****       {
- 307:Core/Src/main.c ****         Rx_complete = false;
- 308:Core/Src/main.c ****         if (strncmp(buffer_data, "Rota", 4) == 0)
- 309:Core/Src/main.c ****         {
- 310:Core/Src/main.c ****           // Parse string
- 311:Core/Src/main.c ****           sscanf(buffer_data, "%*[^0-9]%d", &PC_rota);
- 312:Core/Src/main.c ****           // control Servo
- 313:Core/Src/main.c ****           TIM2->CCR1 = (int)((PC_rota + 45) / 1.8);
- 314:Core/Src/main.c ****           sprintf(rota, "Rota: %d  ", PC_rota);
- 315:Core/Src/main.c ****           log_data(rota);
- 316:Core/Src/main.c ****           ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 317:Core/Src/main.c ****         }
- 318:Core/Src/main.c ****         if (strncmp(buffer_data, "Threshold", strlen("Threshold")) == 0)
- 319:Core/Src/main.c ****         {
- 320:Core/Src/main.c ****           char str_buf[]="Thres: ";
- 321:Core/Src/main.c ****           // Parse string
- 322:Core/Src/main.c ****           sscanf(buffer_data, "%s%s", label_thres, str_thres);
- 323:Core/Src/main.c ****           log_data(str_thres);log_data(label_thres);
- 324:Core/Src/main.c ****           // control Servo
- 325:Core/Src/main.c ****           PC_threshold = atof(str_thres);
- 326:Core/Src/main.c ****           strcat(str_buf, str_thres);
- 327:Core/Src/main.c ****           log_data(str_buf);
- 328:Core/Src/main.c ****           // sprintf(threshold, "%.1f  ", PC_threshold);
- 329:Core/Src/main.c ****           // // strcat()
- 330:Core/Src/main.c ****           // // strcpy(threshold,str_thres);
- 331:Core/Src/main.c ****           // log_data(threshold);
- 332:Core/Src/main.c ****           ST7735_WriteString(0, 3 * 10 * 4, str_buf, Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 333:Core/Src/main.c ****         }
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 14
+ 277:Core/Src/main.c ****             if (temp > PC_threshold)
+ 278:Core/Src/main.c ****             {
+ 279:Core/Src/main.c ****               TIM2->CCR1 = 25;
+ 280:Core/Src/main.c ****               // sprintf(rota, "Rota: %d  ", 0);
+ 281:Core/Src/main.c ****               // log_data(rota);
+ 282:Core/Src/main.c ****               // log_data("\n");
+ 283:Core/Src/main.c ****               // ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 284:Core/Src/main.c ****               // ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+ 285:Core/Src/main.c **** 
+ 286:Core/Src/main.c ****             }
+ 287:Core/Src/main.c ****             //<PC_threshold -> close curtain
+ 288:Core/Src/main.c ****             else
+ 289:Core/Src/main.c ****             {
+ 290:Core/Src/main.c ****               TIM2->CCR1 = 125;
+ 291:Core/Src/main.c ****               // sprintf(rota, "Rota: %d  ", 180);
+ 292:Core/Src/main.c ****               // log_data(rota);
+ 293:Core/Src/main.c ****               // log_data("\n");
+ 294:Core/Src/main.c ****               // ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 295:Core/Src/main.c ****               // ST7735_WriteString(35, 145, "          ", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+ 296:Core/Src/main.c ****             }
+ 297:Core/Src/main.c ****           }
+ 298:Core/Src/main.c ****         }
+ 299:Core/Src/main.c ****         if (Type_task == Task_display)
+ 300:Core/Src/main.c ****         {
+ 301:Core/Src/main.c ****           if (!perform_d)
+ 302:Core/Src/main.c ****           {
+ 303:Core/Src/main.c ****             perform_d = true;
+ 304:Core/Src/main.c ****             log_data("task display\n");
+ 305:Core/Src/main.c ****             sprintf(buf_temp, "Temp: %d C", temp);
+ 306:Core/Src/main.c ****             sprintf(buf_humi, "Humi: %d ", humi);
+ 307:Core/Src/main.c ****             log_data(buf_temp);
+ 308:Core/Src/main.c ****             log_data("\n");
+ 309:Core/Src/main.c ****             log_data(buf_humi);
+ 310:Core/Src/main.c ****             log_data("\n");
+ 311:Core/Src/main.c ****             if (temp > PC_threshold)
+ 312:Core/Src/main.c ****             {
+ 313:Core/Src/main.c ****               sprintf(rota, "Rota: %d  ", 0);
+ 314:Core/Src/main.c ****               log_data(rota);
+ 315:Core/Src/main.c ****               log_data("\n");
+ 316:Core/Src/main.c ****               ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 317:Core/Src/main.c ****               ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+ 318:Core/Src/main.c ****             }
+ 319:Core/Src/main.c ****             else
+ 320:Core/Src/main.c ****             {
+ 321:Core/Src/main.c ****               sprintf(rota, "Rota: %d  ", 180);
+ 322:Core/Src/main.c ****               log_data(rota);
+ 323:Core/Src/main.c ****               log_data("\n");
+ 324:Core/Src/main.c ****               ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 325:Core/Src/main.c ****               ST7735_WriteString(35, 145, "          ", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+ 326:Core/Src/main.c ****             }
+ 327:Core/Src/main.c ****             ST7735_WriteString(0, 30, buf_temp, Font_11x18, ST7735_RED, ST7735_BLACK);
+ 328:Core/Src/main.c ****             ST7735_WriteString(0, 3 * 10 * 2, strcat(buf_humi, "%"), Font_11x18, ST7735_RED, ST7735
+ 329:Core/Src/main.c ****           }
+ 330:Core/Src/main.c ****         }
+ 331:Core/Src/main.c ****         break;
+ 332:Core/Src/main.c **** 
+ 333:Core/Src/main.c ****       case Mode_manual:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 14
 
 
- 334:Core/Src/main.c ****         memset(buffer_data,'\0',sizeof(buffer_data));
- 335:Core/Src/main.c ****         //HAL_TIM_Base_Start_IT(&htim3);
- 336:Core/Src/main.c ****       }
- 337:Core/Src/main.c ****     }
- 338:Core/Src/main.c ****     HAL_Delay(100);
- 339:Core/Src/main.c ****     // HAL_TIM_Base_Stop(&htim3);
- 340:Core/Src/main.c ****     // HAL_Delay(3000);
- 341:Core/Src/main.c ****     // HAL_TIM_Base_Start_IT(&htim3);
- 342:Core/Src/main.c ****     // HAL_Delay(3000);
- 343:Core/Src/main.c ****     // TIM2 -> CCR1 = count;
- 344:Core/Src/main.c ****     // angle = 1.8*count-45;
- 345:Core/Src/main.c ****     // sprintf(rota,"Rota: %d  ",angle);
- 346:Core/Src/main.c ****     // debug(rota);
- 347:Core/Src/main.c ****     // ST7735_WriteString(0, 3 * 10 * 2, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 348:Core/Src/main.c ****     // count =count+10;
- 349:Core/Src/main.c ****     // if(count>125)
- 350:Core/Src/main.c ****     // {
- 351:Core/Src/main.c ****     //   count=25;
- 352:Core/Src/main.c ****     // }
- 353:Core/Src/main.c ****     // HAL_Delay(2000);
- 354:Core/Src/main.c ****     // Check fonts
- 355:Core/Src/main.c ****   }
- 356:Core/Src/main.c ****   /* USER CODE END 3 */
- 357:Core/Src/main.c **** }
- 358:Core/Src/main.c **** 
- 359:Core/Src/main.c **** /**
- 360:Core/Src/main.c ****  * @brief System Clock Configuration
- 361:Core/Src/main.c ****  * @retval None
- 362:Core/Src/main.c ****  */
- 363:Core/Src/main.c **** void SystemClock_Config(void)
- 364:Core/Src/main.c **** {
- 365:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 366:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 367:Core/Src/main.c **** 
- 368:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
- 369:Core/Src/main.c ****    * in the RCC_OscInitTypeDef structure.
- 370:Core/Src/main.c ****    */
- 371:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
- 372:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 373:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
- 374:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 375:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 376:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 377:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
- 378:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 379:Core/Src/main.c ****   {
- 380:Core/Src/main.c ****     Error_Handler();
- 381:Core/Src/main.c ****   }
- 382:Core/Src/main.c **** 
- 383:Core/Src/main.c ****   /** Initializes the CPU, AHB and APB buses clocks
- 384:Core/Src/main.c ****    */
- 385:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | R
- 386:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 387:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 388:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 389:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 334:Core/Src/main.c ****         if (Rx_complete)
+ 335:Core/Src/main.c ****         {
+ 336:Core/Src/main.c ****           Rx_complete = false;
+ 337:Core/Src/main.c ****           if (strncmp(buffer_data, "Rota", 4) == 0)
+ 338:Core/Src/main.c ****           {
+ 339:Core/Src/main.c ****             // Parse string
+ 340:Core/Src/main.c ****             sscanf(buffer_data, "%*[^0-9]%d", &PC_rota);
+ 341:Core/Src/main.c ****             // control Servo
+ 342:Core/Src/main.c ****             TIM2->CCR1 = (int)((PC_rota + 45) / 1.8);
+ 343:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", PC_rota);
+ 344:Core/Src/main.c ****             log_data("\nPC control ");
+ 345:Core/Src/main.c ****             log_data(rota);
+ 346:Core/Src/main.c ****             ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 347:Core/Src/main.c ****           }
+ 348:Core/Src/main.c ****           if (strncmp(buffer_data, "Threshold", strlen("Threshold")) == 0)
+ 349:Core/Src/main.c ****           {
+ 350:Core/Src/main.c ****             char str_buf[] = "Thres: ";
+ 351:Core/Src/main.c ****             // Parse string
+ 352:Core/Src/main.c ****             sscanf(buffer_data, "%s%s", label_thres, str_thres);
+ 353:Core/Src/main.c ****             //log_data(str_thres);
+ 354:Core/Src/main.c ****             //log_data(label_thres);
+ 355:Core/Src/main.c ****             // control Servo
+ 356:Core/Src/main.c ****             PC_threshold = atof(str_thres);
+ 357:Core/Src/main.c ****             strcat(str_buf, str_thres);
+ 358:Core/Src/main.c ****             log_data("\nPC set Threshold: ");log_data(str_thres);
+ 359:Core/Src/main.c ****             //log_data(str_buf);
+ 360:Core/Src/main.c ****             // sprintf(threshold, "%.1f  ", PC_threshold);
+ 361:Core/Src/main.c ****             // // strcat()
+ 362:Core/Src/main.c ****             // // strcpy(threshold,str_thres);
+ 363:Core/Src/main.c ****             // log_data(threshold);
+ 364:Core/Src/main.c ****             ST7735_WriteString(0, 3 * 10 * 4, str_buf, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 365:Core/Src/main.c ****           }
+ 366:Core/Src/main.c ****           memset(buffer_data, '\0', sizeof(buffer_data));
+ 367:Core/Src/main.c ****           // HAL_TIM_Base_Start_IT(&htim3);
+ 368:Core/Src/main.c ****         }
+ 369:Core/Src/main.c ****       }
+ 370:Core/Src/main.c ****       HAL_Delay(100);
+ 371:Core/Src/main.c ****       // HAL_TIM_Base_Stop(&htim3);
+ 372:Core/Src/main.c ****       // HAL_Delay(3000);
+ 373:Core/Src/main.c ****       // HAL_TIM_Base_Start_IT(&htim3);
+ 374:Core/Src/main.c ****       // HAL_Delay(3000);
+ 375:Core/Src/main.c ****       // TIM2 -> CCR1 = count;
+ 376:Core/Src/main.c ****       // angle = 1.8*count-45;
+ 377:Core/Src/main.c ****       // sprintf(rota,"Rota: %d  ",angle);
+ 378:Core/Src/main.c ****       // debug(rota);
+ 379:Core/Src/main.c ****       // ST7735_WriteString(0, 3 * 10 * 2, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 380:Core/Src/main.c ****       // count =count+10;
+ 381:Core/Src/main.c ****       // if(count>125)
+ 382:Core/Src/main.c ****       // {
+ 383:Core/Src/main.c ****       //   count=25;
+ 384:Core/Src/main.c ****       // }
+ 385:Core/Src/main.c ****       // HAL_Delay(2000);
+ 386:Core/Src/main.c ****       // Check fonts
+ 387:Core/Src/main.c ****   }
+ 388:Core/Src/main.c ****   /* USER CODE END 3 */
+ 389:Core/Src/main.c **** }
  390:Core/Src/main.c **** 
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 15
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 15
 
 
- 391:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
- 392:Core/Src/main.c ****   {
- 393:Core/Src/main.c ****     Error_Handler();
- 394:Core/Src/main.c ****   }
- 395:Core/Src/main.c **** }
- 396:Core/Src/main.c **** 
- 397:Core/Src/main.c **** /* USER CODE BEGIN 4 */
- 398:Core/Src/main.c **** 
- 399:Core/Src/main.c **** /* USER CODE END 4 */
- 400:Core/Src/main.c **** 
- 401:Core/Src/main.c **** /**
- 402:Core/Src/main.c ****  * @brief  This function is executed in case of error occurrence.
- 403:Core/Src/main.c ****  * @retval None
- 404:Core/Src/main.c ****  */
- 405:Core/Src/main.c **** void Error_Handler(void)
- 406:Core/Src/main.c **** {
- 357              		.loc 1 406 1 is_stmt 1 view -0
+ 391:Core/Src/main.c **** /**
+ 392:Core/Src/main.c ****  * @brief System Clock Configuration
+ 393:Core/Src/main.c ****  * @retval None
+ 394:Core/Src/main.c ****  */
+ 395:Core/Src/main.c **** void SystemClock_Config(void)
+ 396:Core/Src/main.c **** {
+ 397:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 398:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 399:Core/Src/main.c **** 
+ 400:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
+ 401:Core/Src/main.c ****    * in the RCC_OscInitTypeDef structure.
+ 402:Core/Src/main.c ****    */
+ 403:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 404:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 405:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+ 406:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 407:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 408:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 409:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+ 410:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 411:Core/Src/main.c ****   {
+ 412:Core/Src/main.c ****     Error_Handler();
+ 413:Core/Src/main.c ****   }
+ 414:Core/Src/main.c **** 
+ 415:Core/Src/main.c ****   /** Initializes the CPU, AHB and APB buses clocks
+ 416:Core/Src/main.c ****    */
+ 417:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | R
+ 418:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 419:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 420:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 421:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 422:Core/Src/main.c **** 
+ 423:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+ 424:Core/Src/main.c ****   {
+ 425:Core/Src/main.c ****     Error_Handler();
+ 426:Core/Src/main.c ****   }
+ 427:Core/Src/main.c **** }
+ 428:Core/Src/main.c **** 
+ 429:Core/Src/main.c **** /* USER CODE BEGIN 4 */
+ 430:Core/Src/main.c **** 
+ 431:Core/Src/main.c **** /* USER CODE END 4 */
+ 432:Core/Src/main.c **** 
+ 433:Core/Src/main.c **** /**
+ 434:Core/Src/main.c ****  * @brief  This function is executed in case of error occurrence.
+ 435:Core/Src/main.c ****  * @retval None
+ 436:Core/Src/main.c ****  */
+ 437:Core/Src/main.c **** void Error_Handler(void)
+ 438:Core/Src/main.c **** {
+ 357              		.loc 1 438 1 is_stmt 1 view -0
  358              		.cfi_startproc
  359              		@ Volatile: function does not return.
  360              		@ args = 0, pretend = 0, frame = 0
  361              		@ frame_needed = 0, uses_anonymous_args = 0
  362              		@ link register save eliminated.
- 407:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
- 408:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
- 409:Core/Src/main.c ****   __disable_irq();
- 363              		.loc 1 409 3 view .LVU83
+ 439:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 440:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
+ 441:Core/Src/main.c ****   __disable_irq();
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 16
+
+
+ 363              		.loc 1 441 3 view .LVU83
  364              	.LBB4:
  365              	.LBI4:
  366              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
@@ -898,9 +933,6 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
   26:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
   27:Drivers/CMSIS/Include/cmsis_gcc.h **** 
   28:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 16
-
-
   29:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
   30:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
   31:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
@@ -926,6 +958,9 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
   51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif                                           
   52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
   53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 17
+
+
   54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
   56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
@@ -958,9 +993,6 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
   83:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
   84:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))-
   85:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 17
-
-
   86:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_READ
   87:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
   88:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
@@ -986,6 +1018,9 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
  109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 18
+
+
  111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
  112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
@@ -1018,9 +1053,6 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  140:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
  367              		.loc 2 140 27 view .LVU84
  368              	.LBB5:
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 18
-
-
  141:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  142:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
  369              		.loc 2 142 3 view .LVU85
@@ -1033,26 +1065,29 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  376              	.L29:
  377              	.LBE5:
  378              	.LBE4:
- 410:Core/Src/main.c ****   while (1)
- 379              		.loc 1 410 3 discriminator 1 view .LVU86
- 411:Core/Src/main.c ****   {
- 412:Core/Src/main.c ****   }
- 380              		.loc 1 412 3 discriminator 1 view .LVU87
- 410:Core/Src/main.c ****   while (1)
- 381              		.loc 1 410 9 discriminator 1 view .LVU88
+ 442:Core/Src/main.c ****   while (1)
+ 379              		.loc 1 442 3 discriminator 1 view .LVU86
+ 443:Core/Src/main.c ****   {
+ 444:Core/Src/main.c ****   }
+ 380              		.loc 1 444 3 discriminator 1 view .LVU87
+ 442:Core/Src/main.c ****   while (1)
+ 381              		.loc 1 442 9 discriminator 1 view .LVU88
  382 0002 FEE7     		b	.L29
  383              		.cfi_endproc
  384              	.LFE74:
  386              		.section	.text.SystemClock_Config,"ax",%progbits
  387              		.align	1
  388              		.global	SystemClock_Config
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 19
+
+
  389              		.syntax unified
  390              		.thumb
  391              		.thumb_func
  393              	SystemClock_Config:
  394              	.LFB73:
- 364:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 395              		.loc 1 364 1 view -0
+ 396:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 395              		.loc 1 396 1 view -0
  396              		.cfi_startproc
  397              		@ args = 0, pretend = 0, frame = 64
  398              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1063,118 +1098,118 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  403 0002 91B0     		sub	sp, sp, #68
  404              	.LCFI4:
  405              		.cfi_def_cfa_offset 72
- 365:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 406              		.loc 1 365 3 view .LVU90
- 365:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 407              		.loc 1 365 22 is_stmt 0 view .LVU91
+ 397:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 406              		.loc 1 397 3 view .LVU90
+ 397:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 407              		.loc 1 397 22 is_stmt 0 view .LVU91
  408 0004 2822     		movs	r2, #40
  409 0006 0021     		movs	r1, #0
  410 0008 06A8     		add	r0, sp, #24
  411 000a FFF7FEFF 		bl	memset
  412              	.LVL25:
- 366:Core/Src/main.c **** 
- 413              		.loc 1 366 3 is_stmt 1 view .LVU92
- 366:Core/Src/main.c **** 
- 414              		.loc 1 366 22 is_stmt 0 view .LVU93
+ 398:Core/Src/main.c **** 
+ 413              		.loc 1 398 3 is_stmt 1 view .LVU92
+ 398:Core/Src/main.c **** 
+ 414              		.loc 1 398 22 is_stmt 0 view .LVU93
  415 000e 0023     		movs	r3, #0
  416 0010 0193     		str	r3, [sp, #4]
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 19
-
-
  417 0012 0293     		str	r3, [sp, #8]
  418 0014 0393     		str	r3, [sp, #12]
  419 0016 0493     		str	r3, [sp, #16]
  420 0018 0593     		str	r3, [sp, #20]
- 371:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 421              		.loc 1 371 3 is_stmt 1 view .LVU94
- 371:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 422              		.loc 1 371 36 is_stmt 0 view .LVU95
+ 403:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 421              		.loc 1 403 3 is_stmt 1 view .LVU94
+ 403:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 422              		.loc 1 403 36 is_stmt 0 view .LVU95
  423 001a 0122     		movs	r2, #1
  424 001c 0692     		str	r2, [sp, #24]
- 372:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
- 425              		.loc 1 372 3 is_stmt 1 view .LVU96
- 372:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
- 426              		.loc 1 372 30 is_stmt 0 view .LVU97
+ 404:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+ 425              		.loc 1 404 3 is_stmt 1 view .LVU96
+ 404:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+ 426              		.loc 1 404 30 is_stmt 0 view .LVU97
  427 001e 4FF48033 		mov	r3, #65536
  428 0022 0793     		str	r3, [sp, #28]
- 373:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 429              		.loc 1 373 3 is_stmt 1 view .LVU98
- 374:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 430              		.loc 1 374 3 view .LVU99
- 374:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 431              		.loc 1 374 30 is_stmt 0 view .LVU100
+ 405:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 429              		.loc 1 405 3 is_stmt 1 view .LVU98
+ 406:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 430              		.loc 1 406 3 view .LVU99
+ 406:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 431              		.loc 1 406 30 is_stmt 0 view .LVU100
  432 0024 0A92     		str	r2, [sp, #40]
- 375:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 433              		.loc 1 375 3 is_stmt 1 view .LVU101
- 375:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 434              		.loc 1 375 34 is_stmt 0 view .LVU102
+ 407:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 433              		.loc 1 407 3 is_stmt 1 view .LVU101
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 20
+
+
+ 407:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 434              		.loc 1 407 34 is_stmt 0 view .LVU102
  435 0026 0222     		movs	r2, #2
  436 0028 0D92     		str	r2, [sp, #52]
- 376:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
- 437              		.loc 1 376 3 is_stmt 1 view .LVU103
- 376:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
- 438              		.loc 1 376 35 is_stmt 0 view .LVU104
+ 408:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+ 437              		.loc 1 408 3 is_stmt 1 view .LVU103
+ 408:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+ 438              		.loc 1 408 35 is_stmt 0 view .LVU104
  439 002a 0E93     		str	r3, [sp, #56]
- 377:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 440              		.loc 1 377 3 is_stmt 1 view .LVU105
- 377:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 441              		.loc 1 377 32 is_stmt 0 view .LVU106
+ 409:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 440              		.loc 1 409 3 is_stmt 1 view .LVU105
+ 409:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 441              		.loc 1 409 32 is_stmt 0 view .LVU106
  442 002c 4FF4E013 		mov	r3, #1835008
  443 0030 0F93     		str	r3, [sp, #60]
- 378:Core/Src/main.c ****   {
- 444              		.loc 1 378 3 is_stmt 1 view .LVU107
- 378:Core/Src/main.c ****   {
- 445              		.loc 1 378 7 is_stmt 0 view .LVU108
+ 410:Core/Src/main.c ****   {
+ 444              		.loc 1 410 3 is_stmt 1 view .LVU107
+ 410:Core/Src/main.c ****   {
+ 445              		.loc 1 410 7 is_stmt 0 view .LVU108
  446 0032 06A8     		add	r0, sp, #24
  447 0034 FFF7FEFF 		bl	HAL_RCC_OscConfig
  448              	.LVL26:
- 378:Core/Src/main.c ****   {
- 449              		.loc 1 378 6 view .LVU109
+ 410:Core/Src/main.c ****   {
+ 449              		.loc 1 410 6 view .LVU109
  450 0038 80B9     		cbnz	r0, .L34
- 385:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 451              		.loc 1 385 3 is_stmt 1 view .LVU110
- 385:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 452              		.loc 1 385 31 is_stmt 0 view .LVU111
+ 417:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 451              		.loc 1 417 3 is_stmt 1 view .LVU110
+ 417:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 452              		.loc 1 417 31 is_stmt 0 view .LVU111
  453 003a 0F23     		movs	r3, #15
  454 003c 0193     		str	r3, [sp, #4]
- 386:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 20
-
-
- 455              		.loc 1 386 3 is_stmt 1 view .LVU112
- 386:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 456              		.loc 1 386 34 is_stmt 0 view .LVU113
+ 418:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 455              		.loc 1 418 3 is_stmt 1 view .LVU112
+ 418:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 456              		.loc 1 418 34 is_stmt 0 view .LVU113
  457 003e 0221     		movs	r1, #2
  458 0040 0291     		str	r1, [sp, #8]
- 387:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 459              		.loc 1 387 3 is_stmt 1 view .LVU114
- 387:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 460              		.loc 1 387 35 is_stmt 0 view .LVU115
+ 419:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 459              		.loc 1 419 3 is_stmt 1 view .LVU114
+ 419:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 460              		.loc 1 419 35 is_stmt 0 view .LVU115
  461 0042 0023     		movs	r3, #0
  462 0044 0393     		str	r3, [sp, #12]
- 388:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 463              		.loc 1 388 3 is_stmt 1 view .LVU116
- 388:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 464              		.loc 1 388 36 is_stmt 0 view .LVU117
+ 420:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 463              		.loc 1 420 3 is_stmt 1 view .LVU116
+ 420:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 464              		.loc 1 420 36 is_stmt 0 view .LVU117
  465 0046 4FF48062 		mov	r2, #1024
  466 004a 0492     		str	r2, [sp, #16]
- 389:Core/Src/main.c **** 
- 467              		.loc 1 389 3 is_stmt 1 view .LVU118
- 389:Core/Src/main.c **** 
- 468              		.loc 1 389 36 is_stmt 0 view .LVU119
+ 421:Core/Src/main.c **** 
+ 467              		.loc 1 421 3 is_stmt 1 view .LVU118
+ 421:Core/Src/main.c **** 
+ 468              		.loc 1 421 36 is_stmt 0 view .LVU119
  469 004c 0593     		str	r3, [sp, #20]
- 391:Core/Src/main.c ****   {
- 470              		.loc 1 391 3 is_stmt 1 view .LVU120
- 391:Core/Src/main.c ****   {
- 471              		.loc 1 391 7 is_stmt 0 view .LVU121
+ 423:Core/Src/main.c ****   {
+ 470              		.loc 1 423 3 is_stmt 1 view .LVU120
+ 423:Core/Src/main.c ****   {
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 21
+
+
+ 471              		.loc 1 423 7 is_stmt 0 view .LVU121
  472 004e 01A8     		add	r0, sp, #4
  473 0050 FFF7FEFF 		bl	HAL_RCC_ClockConfig
  474              	.LVL27:
- 391:Core/Src/main.c ****   {
- 475              		.loc 1 391 6 view .LVU122
+ 423:Core/Src/main.c ****   {
+ 475              		.loc 1 423 6 view .LVU122
  476 0054 20B9     		cbnz	r0, .L35
- 395:Core/Src/main.c **** 
- 477              		.loc 1 395 1 view .LVU123
+ 427:Core/Src/main.c **** 
+ 477              		.loc 1 427 1 view .LVU123
  478 0056 11B0     		add	sp, sp, #68
  479              	.LCFI5:
  480              		.cfi_remember_state
@@ -1184,13 +1219,13 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  484              	.L34:
  485              	.LCFI6:
  486              		.cfi_restore_state
- 380:Core/Src/main.c ****   }
- 487              		.loc 1 380 5 is_stmt 1 view .LVU124
+ 412:Core/Src/main.c ****   }
+ 487              		.loc 1 412 5 is_stmt 1 view .LVU124
  488 005c FFF7FEFF 		bl	Error_Handler
  489              	.LVL28:
  490              	.L35:
- 393:Core/Src/main.c ****   }
- 491              		.loc 1 393 5 view .LVU125
+ 425:Core/Src/main.c ****   }
+ 491              		.loc 1 425 5 view .LVU125
  492 0060 FFF7FEFF 		bl	Error_Handler
  493              	.LVL29:
  494              		.cfi_endproc
@@ -1198,9 +1233,6 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  497              		.section	.rodata.main.str1.4,"aMS",%progbits,1
  498              		.align	2
  499              	.LC2:
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 21
-
-
  500 0000 5465616D 		.ascii	"Team 17\000"
  500      20313700 
  501              		.align	2
@@ -1217,1069 +1249,1359 @@ ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 1
  509      3A2000
  510 001f 00       		.align	2
  511              	.LC6:
- 512 0020 54687265 		.ascii	"Thresh: \000"
- 512      73683A20 
+ 512 0020 7461736B 		.ascii	"task sensor\012\000"
+ 512      2073656E 
+ 512      736F720A 
  512      00
- 513 0029 000000   		.align	2
- 514              	.LC7:
- 515 002c 5761726E 		.ascii	"Warnning\000"
- 515      6E696E67 
- 515      00
- 516 0035 000000   		.align	2
- 517              	.LC8:
- 518 0038 7461736B 		.ascii	"task sensor\012\000"
- 518      2073656E 
- 518      736F720A 
- 518      00
- 519 0045 000000   		.align	2
- 520              	.LC9:
- 521 0048 7461736B 		.ascii	"task control\012\000"
+ 513              		.global	__aeabi_ui2f
+ 514              		.global	__aeabi_i2d
+ 515              		.global	__aeabi_ddiv
+ 516              		.global	__aeabi_d2f
+ 517              		.global	__aeabi_fadd
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 22
+
+
+ 518              		.global	__aeabi_f2iz
+ 519 002d 000000   		.align	2
+ 520              	.LC7:
+ 521 0030 7461736B 		.ascii	"task control\012\000"
  521      20636F6E 
  521      74726F6C 
  521      0A00
- 522 0056 0000     		.align	2
- 523              	.LC10:
- 524 0058 526F7461 		.ascii	"Rota: %d  \000"
- 524      3A202564 
- 524      202000
- 525 0063 00       		.align	2
- 526              	.LC11:
- 527 0064 7461736B 		.ascii	"task display\012\000"
- 527      20646973 
- 527      706C6179 
- 527      0A00
- 528 0072 0000     		.align	2
- 529              	.LC12:
- 530 0074 54656D70 		.ascii	"Temp: %d C\000"
- 530      3A202564 
- 530      204300
- 531 007f 00       		.align	2
- 532              	.LC13:
- 533 0080 48756D69 		.ascii	"Humi: %d \000"
- 533      3A202564 
- 533      2000
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 22
+ 522              		.global	__aeabi_i2f
+ 523              		.global	__aeabi_fcmpgt
+ 524 003e 0000     		.align	2
+ 525              	.LC8:
+ 526 0040 7461736B 		.ascii	"task display\012\000"
+ 526      20646973 
+ 526      706C6179 
+ 526      0A00
+ 527 004e 0000     		.align	2
+ 528              	.LC9:
+ 529 0050 54656D70 		.ascii	"Temp: %d C\000"
+ 529      3A202564 
+ 529      204300
+ 530 005b 00       		.align	2
+ 531              	.LC10:
+ 532 005c 48756D69 		.ascii	"Humi: %d \000"
+ 532      3A202564 
+ 532      2000
+ 533 0066 0000     		.align	2
+ 534              	.LC11:
+ 535 0068 0A00     		.ascii	"\012\000"
+ 536 006a 0000     		.align	2
+ 537              	.LC12:
+ 538 006c 526F7461 		.ascii	"Rota: %d  \000"
+ 538      3A202564 
+ 538      202000
+ 539 0077 00       		.align	2
+ 540              	.LC13:
+ 541 0078 5761726E 		.ascii	"Warnning\000"
+ 541      6E696E67 
+ 541      00
+ 542 0081 000000   		.align	2
+ 543              	.LC14:
+ 544 0084 20202020 		.ascii	"          \000"
+ 544      20202020 
+ 544      202000
+ 545 008f 00       		.align	2
+ 546              	.LC15:
+ 547 0090 2500     		.ascii	"%\000"
+ 548 0092 0000     		.align	2
+ 549              	.LC16:
+ 550 0094 526F7461 		.ascii	"Rota\000"
+ 550      00
+ 551 0099 000000   		.align	2
+ 552              	.LC17:
+ 553 009c 252A5B5E 		.ascii	"%*[^0-9]%d\000"
+ 553      302D395D 
+ 553      256400
+ 554              		.global	__aeabi_d2iz
+ 555 00a7 00       		.align	2
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 23
 
 
- 534 008a 0000     		.align	2
- 535              	.LC14:
- 536 008c 2500     		.ascii	"%\000"
- 537 008e 0000     		.align	2
- 538              	.LC15:
- 539 0090 526F7461 		.ascii	"Rota\000"
- 539      00
- 540 0095 000000   		.align	2
- 541              	.LC16:
- 542 0098 252A5B5E 		.ascii	"%*[^0-9]%d\000"
- 542      302D395D 
- 542      256400
- 543              		.global	__aeabi_i2d
- 544              		.global	__aeabi_ddiv
- 545              		.global	__aeabi_d2iz
- 546 00a3 00       		.align	2
- 547              	.LC17:
- 548 00a4 54687265 		.ascii	"Threshold\000"
- 548      73686F6C 
- 548      6400
- 549 00ae 0000     		.align	2
- 550              	.LC19:
- 551 00b0 25732573 		.ascii	"%s%s\000"
- 551      00
- 552              		.global	__aeabi_d2f
- 553 00b5 000000   		.align	2
- 554              	.LC18:
- 555 00b8 54687265 		.ascii	"Thres: \000"
- 555      733A2000 
- 556              		.section	.text.main,"ax",%progbits
- 557              		.align	1
- 558              		.global	main
- 559              		.syntax unified
- 560              		.thumb
- 561              		.thumb_func
- 563              	main:
- 564              	.LFB72:
+ 556              	.LC18:
+ 557 00a8 0A504320 		.ascii	"\012PC control \000"
+ 557      636F6E74 
+ 557      726F6C20 
+ 557      00
+ 558 00b5 000000   		.align	2
+ 559              	.LC19:
+ 560 00b8 54687265 		.ascii	"Threshold\000"
+ 560      73686F6C 
+ 560      6400
+ 561 00c2 0000     		.align	2
+ 562              	.LC21:
+ 563 00c4 25732573 		.ascii	"%s%s\000"
+ 563      00
+ 564 00c9 000000   		.align	2
+ 565              	.LC22:
+ 566 00cc 0A504320 		.ascii	"\012PC set Threshold: \000"
+ 566      73657420 
+ 566      54687265 
+ 566      73686F6C 
+ 566      643A2000 
+ 567              		.align	2
+ 568              	.LC20:
+ 569 00e0 54687265 		.ascii	"Thres: \000"
+ 569      733A2000 
+ 570              		.section	.text.main,"ax",%progbits
+ 571              		.align	1
+ 572              		.global	main
+ 573              		.syntax unified
+ 574              		.thumb
+ 575              		.thumb_func
+ 577              	main:
+ 578              	.LFB72:
  180:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
- 565              		.loc 1 180 1 view -0
- 566              		.cfi_startproc
- 567              		@ Volatile: function does not return.
- 568              		@ args = 0, pretend = 0, frame = 8
- 569              		@ frame_needed = 0, uses_anonymous_args = 0
- 570 0000 80B5     		push	{r7, lr}
- 571              	.LCFI7:
- 572              		.cfi_def_cfa_offset 8
- 573              		.cfi_offset 7, -8
- 574              		.cfi_offset 14, -4
- 575 0002 86B0     		sub	sp, sp, #24
- 576              	.LCFI8:
- 577              		.cfi_def_cfa_offset 32
+ 579              		.loc 1 180 1 view -0
+ 580              		.cfi_startproc
+ 581              		@ Volatile: function does not return.
+ 582              		@ args = 0, pretend = 0, frame = 8
+ 583              		@ frame_needed = 0, uses_anonymous_args = 0
+ 584 0000 80B5     		push	{r7, lr}
+ 585              	.LCFI7:
+ 586              		.cfi_def_cfa_offset 8
+ 587              		.cfi_offset 7, -8
+ 588              		.cfi_offset 14, -4
+ 589 0002 86B0     		sub	sp, sp, #24
+ 590              	.LCFI8:
+ 591              		.cfi_def_cfa_offset 32
  188:Core/Src/main.c **** 
- 578              		.loc 1 188 3 view .LVU127
- 579 0004 FFF7FEFF 		bl	HAL_Init
- 580              	.LVL30:
+ 592              		.loc 1 188 3 view .LVU127
+ 593 0004 FFF7FEFF 		bl	HAL_Init
+ 594              	.LVL30:
  195:Core/Src/main.c **** 
- 581              		.loc 1 195 3 view .LVU128
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 23
-
-
- 582 0008 FFF7FEFF 		bl	SystemClock_Config
- 583              	.LVL31:
+ 595              		.loc 1 195 3 view .LVU128
+ 596 0008 FFF7FEFF 		bl	SystemClock_Config
+ 597              	.LVL31:
  202:Core/Src/main.c ****   MX_SPI2_Init();
- 584              		.loc 1 202 3 view .LVU129
- 585 000c FFF7FEFF 		bl	MX_GPIO_Init
- 586              	.LVL32:
+ 598              		.loc 1 202 3 view .LVU129
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 24
+
+
+ 599 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 600              	.LVL32:
  203:Core/Src/main.c ****   MX_TIM1_Init();
- 587              		.loc 1 203 3 view .LVU130
- 588 0010 FFF7FEFF 		bl	MX_SPI2_Init
- 589              	.LVL33:
+ 601              		.loc 1 203 3 view .LVU130
+ 602 0010 FFF7FEFF 		bl	MX_SPI2_Init
+ 603              	.LVL33:
  204:Core/Src/main.c ****   MX_USART3_UART_Init();
- 590              		.loc 1 204 3 view .LVU131
- 591 0014 FFF7FEFF 		bl	MX_TIM1_Init
- 592              	.LVL34:
+ 604              		.loc 1 204 3 view .LVU131
+ 605 0014 FFF7FEFF 		bl	MX_TIM1_Init
+ 606              	.LVL34:
  205:Core/Src/main.c ****   MX_TIM2_Init();
- 593              		.loc 1 205 3 view .LVU132
- 594 0018 FFF7FEFF 		bl	MX_USART3_UART_Init
- 595              	.LVL35:
+ 607              		.loc 1 205 3 view .LVU132
+ 608 0018 FFF7FEFF 		bl	MX_USART3_UART_Init
+ 609              	.LVL35:
  206:Core/Src/main.c ****   MX_TIM3_Init();
- 596              		.loc 1 206 3 view .LVU133
- 597 001c FFF7FEFF 		bl	MX_TIM2_Init
- 598              	.LVL36:
+ 610              		.loc 1 206 3 view .LVU133
+ 611 001c FFF7FEFF 		bl	MX_TIM2_Init
+ 612              	.LVL36:
  207:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
- 599              		.loc 1 207 3 view .LVU134
- 600 0020 FFF7FEFF 		bl	MX_TIM3_Init
- 601              	.LVL37:
+ 613              		.loc 1 207 3 view .LVU134
+ 614 0020 FFF7FEFF 		bl	MX_TIM3_Init
+ 615              	.LVL37:
  210:Core/Src/main.c ****   // init LCD TFT
- 602              		.loc 1 210 3 view .LVU135
- 603 0024 0021     		movs	r1, #0
- 604 0026 A248     		ldr	r0, .L52+8
- 605 0028 FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 606              	.LVL38:
+ 616              		.loc 1 210 3 view .LVU135
+ 617 0024 0021     		movs	r1, #0
+ 618 0026 7D48     		ldr	r0, .L60
+ 619 0028 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 620              	.LVL38:
  212:Core/Src/main.c ****   // Timer 1 to gen delay for DHT22
- 607              		.loc 1 212 3 view .LVU136
- 608 002c FFF7FEFF 		bl	ST7735_Init
- 609              	.LVL39:
+ 621              		.loc 1 212 3 view .LVU136
+ 622 002c FFF7FEFF 		bl	ST7735_Init
+ 623              	.LVL39:
  214:Core/Src/main.c ****   // set screen
- 610              		.loc 1 214 3 view .LVU137
- 611 0030 A048     		ldr	r0, .L52+12
- 612 0032 FFF7FEFF 		bl	HAL_TIM_Base_Start
- 613              	.LVL40:
+ 624              		.loc 1 214 3 view .LVU137
+ 625 0030 7B48     		ldr	r0, .L60+4
+ 626 0032 FFF7FEFF 		bl	HAL_TIM_Base_Start
+ 627              	.LVL40:
  216:Core/Src/main.c ****   ST7735_WriteString(25, 0, "Team 17", Font_11x18, ST7735_RED, ST7735_BLACK);
- 614              		.loc 1 216 3 view .LVU138
- 615 0036 0020     		movs	r0, #0
- 616 0038 FFF7FEFF 		bl	ST7735_FillScreen
- 617              	.LVL41:
+ 628              		.loc 1 216 3 view .LVU138
+ 629 0036 0020     		movs	r0, #0
+ 630 0038 FFF7FEFF 		bl	ST7735_FillScreen
+ 631              	.LVL41:
  217:Core/Src/main.c ****   ST7735_WriteString(0, 30, "Temp: ", Font_11x18, ST7735_RED, ST7735_BLACK);
- 618              		.loc 1 217 3 view .LVU139
- 619 003c 9E4D     		ldr	r5, .L52+16
- 620 003e 0024     		movs	r4, #0
- 621 0040 0294     		str	r4, [sp, #8]
- 622 0042 4FF47846 		mov	r6, #63488
- 623 0046 0196     		str	r6, [sp, #4]
- 624 0048 6B68     		ldr	r3, [r5, #4]
- 625 004a 0093     		str	r3, [sp]
- 626 004c 2B68     		ldr	r3, [r5]
- 627 004e 9B4A     		ldr	r2, .L52+20
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 24
+ 632              		.loc 1 217 3 view .LVU139
+ 633 003c 794D     		ldr	r5, .L60+8
+ 634 003e 0024     		movs	r4, #0
+ 635 0040 0294     		str	r4, [sp, #8]
+ 636 0042 4FF47846 		mov	r6, #63488
+ 637 0046 0196     		str	r6, [sp, #4]
+ 638 0048 6B68     		ldr	r3, [r5, #4]
+ 639 004a 0093     		str	r3, [sp]
+ 640 004c 2B68     		ldr	r3, [r5]
+ 641 004e 764A     		ldr	r2, .L60+12
+ 642 0050 2146     		mov	r1, r4
+ 643 0052 1920     		movs	r0, #25
+ 644 0054 FFF7FEFF 		bl	ST7735_WriteString
+ 645              	.LVL42:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 25
 
 
- 628 0050 2146     		mov	r1, r4
- 629 0052 1920     		movs	r0, #25
- 630 0054 FFF7FEFF 		bl	ST7735_WriteString
- 631              	.LVL42:
- 218:Core/Src/main.c ****   ST7735_WriteString(0, 3*10*2, "Humi: ", Font_11x18, ST7735_RED, ST7735_BLACK);
- 632              		.loc 1 218 3 view .LVU140
- 633 0058 0294     		str	r4, [sp, #8]
- 634 005a 0196     		str	r6, [sp, #4]
- 635 005c 6B68     		ldr	r3, [r5, #4]
- 636 005e 0093     		str	r3, [sp]
- 637 0060 2B68     		ldr	r3, [r5]
- 638 0062 974A     		ldr	r2, .L52+24
- 639 0064 1E21     		movs	r1, #30
- 640 0066 2046     		mov	r0, r4
- 641 0068 FFF7FEFF 		bl	ST7735_WriteString
- 642              	.LVL43:
+ 218:Core/Src/main.c ****   ST7735_WriteString(0, 3 * 10 * 2, "Humi: ", Font_11x18, ST7735_RED, ST7735_BLACK);
+ 646              		.loc 1 218 3 view .LVU140
+ 647 0058 0294     		str	r4, [sp, #8]
+ 648 005a 0196     		str	r6, [sp, #4]
+ 649 005c 6B68     		ldr	r3, [r5, #4]
+ 650 005e 0093     		str	r3, [sp]
+ 651 0060 2B68     		ldr	r3, [r5]
+ 652 0062 724A     		ldr	r2, .L60+16
+ 653 0064 1E21     		movs	r1, #30
+ 654 0066 2046     		mov	r0, r4
+ 655 0068 FFF7FEFF 		bl	ST7735_WriteString
+ 656              	.LVL43:
  219:Core/Src/main.c ****   ST7735_WriteString(0, 3 * 10 * 3, "Rota: ", Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 643              		.loc 1 219 3 view .LVU141
- 644 006c 0294     		str	r4, [sp, #8]
- 645 006e 0196     		str	r6, [sp, #4]
- 646 0070 6B68     		ldr	r3, [r5, #4]
- 647 0072 0093     		str	r3, [sp]
- 648 0074 2B68     		ldr	r3, [r5]
- 649 0076 934A     		ldr	r2, .L52+28
- 650 0078 3C21     		movs	r1, #60
- 651 007a 2046     		mov	r0, r4
- 652 007c FFF7FEFF 		bl	ST7735_WriteString
- 653              	.LVL44:
- 220:Core/Src/main.c ****   ST7735_WriteString(0, 3 * 10 * 4, "Thresh: ", Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 654              		.loc 1 220 3 view .LVU142
- 655 0080 0294     		str	r4, [sp, #8]
- 656 0082 4FF4FC66 		mov	r6, #2016
- 657 0086 0196     		str	r6, [sp, #4]
- 658 0088 6B68     		ldr	r3, [r5, #4]
- 659 008a 0093     		str	r3, [sp]
- 660 008c 2B68     		ldr	r3, [r5]
- 661 008e 8E4A     		ldr	r2, .L52+32
- 662 0090 5A21     		movs	r1, #90
- 663 0092 2046     		mov	r0, r4
- 664 0094 FFF7FEFF 		bl	ST7735_WriteString
- 665              	.LVL45:
- 221:Core/Src/main.c ****   ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
- 666              		.loc 1 221 3 view .LVU143
- 667 0098 0294     		str	r4, [sp, #8]
- 668 009a 0196     		str	r6, [sp, #4]
- 669 009c 6B68     		ldr	r3, [r5, #4]
- 670 009e 0093     		str	r3, [sp]
- 671 00a0 2B68     		ldr	r3, [r5]
- 672 00a2 8A4A     		ldr	r2, .L52+36
- 673 00a4 7821     		movs	r1, #120
- 674 00a6 2046     		mov	r0, r4
- 675 00a8 FFF7FEFF 		bl	ST7735_WriteString
- 676              	.LVL46:
- 222:Core/Src/main.c ****   HAL_Delay(1000);
- 677              		.loc 1 222 3 view .LVU144
- 678 00ac 884B     		ldr	r3, .L52+40
- 679 00ae 0294     		str	r4, [sp, #8]
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 25
-
-
- 680 00b0 4FF6FF72 		movw	r2, #65535
- 681 00b4 0192     		str	r2, [sp, #4]
- 682 00b6 5A68     		ldr	r2, [r3, #4]
- 683 00b8 0092     		str	r2, [sp]
- 684 00ba 1B68     		ldr	r3, [r3]
- 685 00bc 854A     		ldr	r2, .L52+44
- 686 00be 9121     		movs	r1, #145
- 687 00c0 2320     		movs	r0, #35
- 688 00c2 FFF7FEFF 		bl	ST7735_WriteString
- 689              	.LVL47:
+ 657              		.loc 1 219 3 view .LVU141
+ 658 006c 0294     		str	r4, [sp, #8]
+ 659 006e 0196     		str	r6, [sp, #4]
+ 660 0070 6B68     		ldr	r3, [r5, #4]
+ 661 0072 0093     		str	r3, [sp]
+ 662 0074 2B68     		ldr	r3, [r5]
+ 663 0076 6E4A     		ldr	r2, .L60+20
+ 664 0078 3C21     		movs	r1, #60
+ 665 007a 2046     		mov	r0, r4
+ 666 007c FFF7FEFF 		bl	ST7735_WriteString
+ 667              	.LVL44:
+ 220:Core/Src/main.c ****   //sprintf(thres_tring,"Thresh: %.1f",PC_threshold);
+ 668              		.loc 1 220 3 view .LVU142
+ 669 0080 0294     		str	r4, [sp, #8]
+ 670 0082 4FF4FC66 		mov	r6, #2016
+ 671 0086 0196     		str	r6, [sp, #4]
+ 672 0088 6B68     		ldr	r3, [r5, #4]
+ 673 008a 0093     		str	r3, [sp]
+ 674 008c 2B68     		ldr	r3, [r5]
+ 675 008e 694A     		ldr	r2, .L60+24
+ 676 0090 5A21     		movs	r1, #90
+ 677 0092 2046     		mov	r0, r4
+ 678 0094 FFF7FEFF 		bl	ST7735_WriteString
+ 679              	.LVL45:
  223:Core/Src/main.c **** 
- 690              		.loc 1 223 3 view .LVU145
- 691 00c6 4FF47A70 		mov	r0, #1000
- 692 00ca FFF7FEFF 		bl	HAL_Delay
- 693              	.LVL48:
- 225:Core/Src/main.c ****   HAL_TIM_Base_Start_IT(&htim3);
- 694              		.loc 1 225 3 view .LVU146
- 695 00ce 4FF47A70 		mov	r0, #1000
- 696 00d2 FFF7FEFF 		bl	set_timer
- 697              	.LVL49:
+ 680              		.loc 1 223 3 view .LVU143
+ 681 0098 0294     		str	r4, [sp, #8]
+ 682 009a 0196     		str	r6, [sp, #4]
+ 683 009c 6B68     		ldr	r3, [r5, #4]
+ 684 009e 0093     		str	r3, [sp]
+ 685 00a0 2B68     		ldr	r3, [r5]
+ 686 00a2 654A     		ldr	r2, .L60+28
+ 687 00a4 7821     		movs	r1, #120
+ 688 00a6 2046     		mov	r0, r4
+ 689 00a8 FFF7FEFF 		bl	ST7735_WriteString
+ 690              	.LVL46:
  226:Core/Src/main.c **** 
- 698              		.loc 1 226 3 view .LVU147
- 699 00d6 8048     		ldr	r0, .L52+48
- 700 00d8 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
- 701              	.LVL50:
- 229:Core/Src/main.c ****   /* USER CODE END 2 */
- 702              		.loc 1 229 3 view .LVU148
- 703 00dc 0122     		movs	r2, #1
- 704 00de 7F49     		ldr	r1, .L52+52
- 705 00e0 7F48     		ldr	r0, .L52+56
- 706 00e2 FFF7FEFF 		bl	HAL_UART_Receive_IT
- 707              	.LVL51:
- 708 00e6 11E0     		b	.L45
- 709              	.L37:
- 242:Core/Src/main.c ****       {
- 710              		.loc 1 242 7 view .LVU149
- 242:Core/Src/main.c ****       {
- 711              		.loc 1 242 21 is_stmt 0 view .LVU150
- 712 00e8 7E4B     		ldr	r3, .L52+60
- 713 00ea 1B68     		ldr	r3, [r3]
- 242:Core/Src/main.c ****       {
- 714              		.loc 1 242 10 view .LVU151
- 715 00ec 1BB9     		cbnz	r3, .L40
- 244:Core/Src/main.c ****         {
- 716              		.loc 1 244 9 is_stmt 1 view .LVU152
- 244:Core/Src/main.c ****         {
- 717              		.loc 1 244 13 is_stmt 0 view .LVU153
- 718 00ee 7E4B     		ldr	r3, .L52+64
- 719 00f0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 244:Core/Src/main.c ****         {
- 720              		.loc 1 244 12 view .LVU154
- 721 00f2 002B     		cmp	r3, #0
- 722 00f4 2DD0     		beq	.L47
- 723              	.L40:
- 265:Core/Src/main.c ****       {
- 724              		.loc 1 265 7 is_stmt 1 view .LVU155
- 265:Core/Src/main.c ****       {
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 26
+ 691              		.loc 1 226 3 view .LVU144
+ 692 00ac 4FF47A70 		mov	r0, #1000
+ 693 00b0 FFF7FEFF 		bl	HAL_Delay
+ 694              	.LVL47:
+ 228:Core/Src/main.c ****   HAL_TIM_Base_Start_IT(&htim3);
+ 695              		.loc 1 228 3 view .LVU145
+ 696 00b4 4FF47A70 		mov	r0, #1000
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 26
 
 
- 725              		.loc 1 265 21 is_stmt 0 view .LVU156
- 726 00f6 7B4B     		ldr	r3, .L52+60
- 727 00f8 1B68     		ldr	r3, [r3]
- 265:Core/Src/main.c ****       {
- 728              		.loc 1 265 10 view .LVU157
- 729 00fa 012B     		cmp	r3, #1
- 730 00fc 30D0     		beq	.L48
- 731              	.L41:
- 290:Core/Src/main.c ****       {
- 732              		.loc 1 290 7 is_stmt 1 view .LVU158
- 290:Core/Src/main.c ****       {
- 733              		.loc 1 290 21 is_stmt 0 view .LVU159
- 734 00fe 794B     		ldr	r3, .L52+60
- 735 0100 1B68     		ldr	r3, [r3]
- 290:Core/Src/main.c ****       {
- 736              		.loc 1 290 10 view .LVU160
- 737 0102 022B     		cmp	r3, #2
- 738 0104 6AD0     		beq	.L49
- 739              	.L39:
- 338:Core/Src/main.c ****     // HAL_TIM_Base_Stop(&htim3);
- 740              		.loc 1 338 5 is_stmt 1 view .LVU161
- 741 0106 6420     		movs	r0, #100
- 742 0108 FFF7FEFF 		bl	HAL_Delay
- 743              	.LVL52:
- 234:Core/Src/main.c ****   {
- 744              		.loc 1 234 9 view .LVU162
- 745              	.L45:
- 234:Core/Src/main.c ****   {
- 746              		.loc 1 234 3 view .LVU163
- 239:Core/Src/main.c ****     {
- 747              		.loc 1 239 5 view .LVU164
- 748 010c 774B     		ldr	r3, .L52+68
- 749 010e 1B68     		ldr	r3, [r3]
- 750 0110 032B     		cmp	r3, #3
- 751 0112 E9D0     		beq	.L37
- 752 0114 042B     		cmp	r3, #4
- 753 0116 F6D1     		bne	.L39
- 305:Core/Src/main.c ****       {
- 754              		.loc 1 305 7 view .LVU165
- 305:Core/Src/main.c ****       {
- 755              		.loc 1 305 11 is_stmt 0 view .LVU166
- 756 0118 754B     		ldr	r3, .L52+72
- 757 011a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 305:Core/Src/main.c ****       {
- 758              		.loc 1 305 10 view .LVU167
- 759 011c 002B     		cmp	r3, #0
- 760 011e F2D0     		beq	.L39
- 307:Core/Src/main.c ****         if (strncmp(buffer_data, "Rota", 4) == 0)
- 761              		.loc 1 307 9 is_stmt 1 view .LVU168
- 307:Core/Src/main.c ****         if (strncmp(buffer_data, "Rota", 4) == 0)
- 762              		.loc 1 307 21 is_stmt 0 view .LVU169
- 763 0120 734B     		ldr	r3, .L52+72
- 764 0122 0022     		movs	r2, #0
- 765 0124 1A70     		strb	r2, [r3]
- 308:Core/Src/main.c ****         {
- 766              		.loc 1 308 9 is_stmt 1 view .LVU170
- 308:Core/Src/main.c ****         {
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 27
+ 697 00b8 FFF7FEFF 		bl	set_timer
+ 698              	.LVL48:
+ 229:Core/Src/main.c **** 
+ 699              		.loc 1 229 3 view .LVU146
+ 700 00bc 5F48     		ldr	r0, .L60+32
+ 701 00be FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 702              	.LVL49:
+ 232:Core/Src/main.c ****   /* USER CODE END 2 */
+ 703              		.loc 1 232 3 view .LVU147
+ 704 00c2 0122     		movs	r2, #1
+ 705 00c4 5E49     		ldr	r1, .L60+36
+ 706 00c6 5F48     		ldr	r0, .L60+40
+ 707 00c8 FFF7FEFF 		bl	HAL_UART_Receive_IT
+ 708              	.LVL50:
+ 709 00cc 12E0     		b	.L49
+ 710              	.L37:
+ 245:Core/Src/main.c ****       {
+ 711              		.loc 1 245 7 view .LVU148
+ 245:Core/Src/main.c ****       {
+ 712              		.loc 1 245 21 is_stmt 0 view .LVU149
+ 713 00ce 5E4B     		ldr	r3, .L60+44
+ 714 00d0 1B68     		ldr	r3, [r3]
+ 245:Core/Src/main.c ****       {
+ 715              		.loc 1 245 10 view .LVU150
+ 716 00d2 1BB9     		cbnz	r3, .L40
+ 247:Core/Src/main.c ****         {
+ 717              		.loc 1 247 9 is_stmt 1 view .LVU151
+ 247:Core/Src/main.c ****         {
+ 718              		.loc 1 247 13 is_stmt 0 view .LVU152
+ 719 00d4 5D4B     		ldr	r3, .L60+48
+ 720 00d6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 247:Core/Src/main.c ****         {
+ 721              		.loc 1 247 12 view .LVU153
+ 722 00d8 002B     		cmp	r3, #0
+ 723 00da 2ED0     		beq	.L55
+ 724              	.L40:
+ 269:Core/Src/main.c ****         {
+ 725              		.loc 1 269 9 is_stmt 1 view .LVU154
+ 269:Core/Src/main.c ****         {
+ 726              		.loc 1 269 23 is_stmt 0 view .LVU155
+ 727 00dc 5A4B     		ldr	r3, .L60+44
+ 728 00de 1B68     		ldr	r3, [r3]
+ 269:Core/Src/main.c ****         {
+ 729              		.loc 1 269 12 view .LVU156
+ 730 00e0 012B     		cmp	r3, #1
+ 731 00e2 7CD0     		beq	.L56
+ 732              	.L41:
+ 299:Core/Src/main.c ****         {
+ 733              		.loc 1 299 9 is_stmt 1 view .LVU157
+ 299:Core/Src/main.c ****         {
+ 734              		.loc 1 299 23 is_stmt 0 view .LVU158
+ 735 00e4 584B     		ldr	r3, .L60+44
+ 736 00e6 1B68     		ldr	r3, [r3]
+ 299:Core/Src/main.c ****         {
+ 737              		.loc 1 299 12 view .LVU159
+ 738 00e8 022B     		cmp	r3, #2
+ 739 00ea 00F0D380 		beq	.L57
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 27
 
 
- 767              		.loc 1 308 13 is_stmt 0 view .LVU171
- 768 0126 0422     		movs	r2, #4
- 769 0128 7249     		ldr	r1, .L52+76
- 770 012a 7348     		ldr	r0, .L52+80
- 771 012c FFF7FEFF 		bl	strncmp
- 772              	.LVL53:
- 308:Core/Src/main.c ****         {
- 773              		.loc 1 308 12 view .LVU172
- 774 0130 0028     		cmp	r0, #0
- 775 0132 00F08B80 		beq	.L50
- 776              	.L43:
- 318:Core/Src/main.c ****         {
- 777              		.loc 1 318 9 is_stmt 1 view .LVU173
- 318:Core/Src/main.c ****         {
- 778              		.loc 1 318 13 is_stmt 0 view .LVU174
- 779 0136 0922     		movs	r2, #9
- 780 0138 7049     		ldr	r1, .L52+84
- 781 013a 6F48     		ldr	r0, .L52+80
- 782 013c FFF7FEFF 		bl	strncmp
- 783              	.LVL54:
- 318:Core/Src/main.c ****         {
- 784              		.loc 1 318 12 view .LVU175
- 785 0140 0028     		cmp	r0, #0
- 786 0142 00F0FD80 		beq	.L51
- 787              	.L44:
- 334:Core/Src/main.c ****         //HAL_TIM_Base_Start_IT(&htim3);
- 788              		.loc 1 334 9 is_stmt 1 view .LVU176
- 789 0146 3222     		movs	r2, #50
- 790 0148 0021     		movs	r1, #0
- 791 014a 6B48     		ldr	r0, .L52+80
- 792 014c FFF7FEFF 		bl	memset
- 793              	.LVL55:
- 794 0150 D9E7     		b	.L39
- 795              	.L47:
- 246:Core/Src/main.c ****           log_data("task sensor\n");
- 796              		.loc 1 246 11 view .LVU177
- 246:Core/Src/main.c ****           log_data("task sensor\n");
- 797              		.loc 1 246 21 is_stmt 0 view .LVU178
- 798 0152 654B     		ldr	r3, .L52+64
- 799 0154 0122     		movs	r2, #1
- 800 0156 1A70     		strb	r2, [r3]
- 247:Core/Src/main.c ****           // if (DHT11_Start())
- 801              		.loc 1 247 11 is_stmt 1 view .LVU179
- 802 0158 6948     		ldr	r0, .L52+88
- 803 015a FFF7FEFF 		bl	log_data
- 804              	.LVL56:
- 805 015e CAE7     		b	.L40
- 806              	.L48:
- 267:Core/Src/main.c ****         {
- 807              		.loc 1 267 9 view .LVU180
- 267:Core/Src/main.c ****         {
- 808              		.loc 1 267 13 is_stmt 0 view .LVU181
- 809 0160 684B     		ldr	r3, .L52+92
- 810 0162 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 267:Core/Src/main.c ****         {
- 811              		.loc 1 267 12 view .LVU182
- 812 0164 002B     		cmp	r3, #0
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 28
+ 740              	.L39:
+ 370:Core/Src/main.c ****       // HAL_TIM_Base_Stop(&htim3);
+ 741              		.loc 1 370 7 is_stmt 1 view .LVU160
+ 742 00ee 6420     		movs	r0, #100
+ 743 00f0 FFF7FEFF 		bl	HAL_Delay
+ 744              	.LVL51:
+ 237:Core/Src/main.c ****   {
+ 745              		.loc 1 237 9 view .LVU161
+ 746              	.L49:
+ 237:Core/Src/main.c ****   {
+ 747              		.loc 1 237 3 view .LVU162
+ 242:Core/Src/main.c ****     {
+ 748              		.loc 1 242 5 view .LVU163
+ 749 00f4 564B     		ldr	r3, .L60+52
+ 750 00f6 1B68     		ldr	r3, [r3]
+ 751 00f8 032B     		cmp	r3, #3
+ 752 00fa E8D0     		beq	.L37
+ 753 00fc 042B     		cmp	r3, #4
+ 754 00fe F6D1     		bne	.L39
+ 334:Core/Src/main.c ****         {
+ 755              		.loc 1 334 9 view .LVU164
+ 334:Core/Src/main.c ****         {
+ 756              		.loc 1 334 13 is_stmt 0 view .LVU165
+ 757 0100 544B     		ldr	r3, .L60+56
+ 758 0102 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 334:Core/Src/main.c ****         {
+ 759              		.loc 1 334 12 view .LVU166
+ 760 0104 002B     		cmp	r3, #0
+ 761 0106 F2D0     		beq	.L39
+ 336:Core/Src/main.c ****           if (strncmp(buffer_data, "Rota", 4) == 0)
+ 762              		.loc 1 336 11 is_stmt 1 view .LVU167
+ 336:Core/Src/main.c ****           if (strncmp(buffer_data, "Rota", 4) == 0)
+ 763              		.loc 1 336 23 is_stmt 0 view .LVU168
+ 764 0108 524B     		ldr	r3, .L60+56
+ 765 010a 0022     		movs	r2, #0
+ 766 010c 1A70     		strb	r2, [r3]
+ 337:Core/Src/main.c ****           {
+ 767              		.loc 1 337 11 is_stmt 1 view .LVU169
+ 337:Core/Src/main.c ****           {
+ 768              		.loc 1 337 15 is_stmt 0 view .LVU170
+ 769 010e 0422     		movs	r2, #4
+ 770 0110 5149     		ldr	r1, .L60+60
+ 771 0112 5248     		ldr	r0, .L60+64
+ 772 0114 FFF7FEFF 		bl	strncmp
+ 773              	.LVL52:
+ 337:Core/Src/main.c ****           {
+ 774              		.loc 1 337 14 view .LVU171
+ 775 0118 0028     		cmp	r0, #0
+ 776 011a 00F05981 		beq	.L58
+ 777              	.L47:
+ 348:Core/Src/main.c ****           {
+ 778              		.loc 1 348 11 is_stmt 1 view .LVU172
+ 348:Core/Src/main.c ****           {
+ 779              		.loc 1 348 15 is_stmt 0 view .LVU173
+ 780 011e 0922     		movs	r2, #9
+ 781 0120 4F49     		ldr	r1, .L60+68
+ 782 0122 4E48     		ldr	r0, .L60+64
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 28
 
 
- 813 0166 CAD1     		bne	.L41
- 269:Core/Src/main.c ****           log_data("task control\n");
- 814              		.loc 1 269 11 is_stmt 1 view .LVU183
- 269:Core/Src/main.c ****           log_data("task control\n");
- 815              		.loc 1 269 21 is_stmt 0 view .LVU184
- 816 0168 664B     		ldr	r3, .L52+92
- 817 016a 0122     		movs	r2, #1
- 818 016c 1A70     		strb	r2, [r3]
- 270:Core/Src/main.c ****           // depend Temp value
- 819              		.loc 1 270 11 is_stmt 1 view .LVU185
- 820 016e 6648     		ldr	r0, .L52+96
- 821 0170 FFF7FEFF 		bl	log_data
- 822              	.LVL57:
- 273:Core/Src/main.c ****           {
- 823              		.loc 1 273 11 view .LVU186
- 273:Core/Src/main.c ****           {
- 824              		.loc 1 273 20 is_stmt 0 view .LVU187
- 825 0174 654B     		ldr	r3, .L52+100
- 826 0176 1B68     		ldr	r3, [r3]
- 273:Core/Src/main.c ****           {
- 827              		.loc 1 273 14 view .LVU188
- 828 0178 1E2B     		cmp	r3, #30
- 829 017a 17DD     		ble	.L42
- 275:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", 0);
- 830              		.loc 1 275 13 is_stmt 1 view .LVU189
- 275:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", 0);
- 831              		.loc 1 275 24 is_stmt 0 view .LVU190
- 832 017c 4FF08043 		mov	r3, #1073741824
- 833 0180 1922     		movs	r2, #25
- 834 0182 5A63     		str	r2, [r3, #52]
- 276:Core/Src/main.c ****             // log_data(rota);
- 835              		.loc 1 276 13 is_stmt 1 view .LVU191
- 836 0184 624C     		ldr	r4, .L52+104
- 837 0186 0022     		movs	r2, #0
- 838 0188 6249     		ldr	r1, .L52+108
- 839 018a 2046     		mov	r0, r4
- 840 018c FFF7FEFF 		bl	sprintf
- 841              	.LVL58:
- 278:Core/Src/main.c ****           }
- 842              		.loc 1 278 13 view .LVU192
- 843 0190 494B     		ldr	r3, .L52+16
- 844 0192 0020     		movs	r0, #0
- 845 0194 0290     		str	r0, [sp, #8]
- 846 0196 4FF4FC62 		mov	r2, #2016
- 847 019a 0192     		str	r2, [sp, #4]
- 848 019c 5A68     		ldr	r2, [r3, #4]
- 849 019e 0092     		str	r2, [sp]
- 850 01a0 1B68     		ldr	r3, [r3]
- 851 01a2 2246     		mov	r2, r4
- 852 01a4 5A21     		movs	r1, #90
- 853 01a6 FFF7FEFF 		bl	ST7735_WriteString
- 854              	.LVL59:
- 855 01aa A8E7     		b	.L41
- 856              	.L42:
- 283:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", 180);
- 857              		.loc 1 283 13 view .LVU193
- 283:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", 180);
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 29
+ 783 0124 FFF7FEFF 		bl	strncmp
+ 784              	.LVL53:
+ 348:Core/Src/main.c ****           {
+ 785              		.loc 1 348 14 view .LVU174
+ 786 0128 0028     		cmp	r0, #0
+ 787 012a 00F08081 		beq	.L59
+ 788              	.L48:
+ 366:Core/Src/main.c ****           // HAL_TIM_Base_Start_IT(&htim3);
+ 789              		.loc 1 366 11 is_stmt 1 view .LVU175
+ 790 012e 3222     		movs	r2, #50
+ 791 0130 0021     		movs	r1, #0
+ 792 0132 4A48     		ldr	r0, .L60+64
+ 793 0134 FFF7FEFF 		bl	memset
+ 794              	.LVL54:
+ 795 0138 D9E7     		b	.L39
+ 796              	.L55:
+ 249:Core/Src/main.c ****           log_data("task sensor\n");
+ 797              		.loc 1 249 11 view .LVU176
+ 249:Core/Src/main.c ****           log_data("task sensor\n");
+ 798              		.loc 1 249 21 is_stmt 0 view .LVU177
+ 799 013a 444B     		ldr	r3, .L60+48
+ 800 013c 0122     		movs	r2, #1
+ 801 013e 1A70     		strb	r2, [r3]
+ 250:Core/Src/main.c ****           if (DHT11_Start())
+ 802              		.loc 1 250 11 is_stmt 1 view .LVU178
+ 803 0140 4848     		ldr	r0, .L60+72
+ 804 0142 FFF7FEFF 		bl	log_data
+ 805              	.LVL55:
+ 251:Core/Src/main.c ****           {
+ 806              		.loc 1 251 11 view .LVU179
+ 251:Core/Src/main.c ****           {
+ 807              		.loc 1 251 15 is_stmt 0 view .LVU180
+ 808 0146 FFF7FEFF 		bl	DHT11_Start
+ 809              	.LVL56:
+ 251:Core/Src/main.c ****           {
+ 810              		.loc 1 251 14 view .LVU181
+ 811 014a 0028     		cmp	r0, #0
+ 812 014c C6D0     		beq	.L40
+ 253:Core/Src/main.c ****             RHD = DHT11_Read(); // Relative humidity decimal
+ 813              		.loc 1 253 13 is_stmt 1 view .LVU182
+ 253:Core/Src/main.c ****             RHD = DHT11_Read(); // Relative humidity decimal
+ 814              		.loc 1 253 19 is_stmt 0 view .LVU183
+ 815 014e FFF7FEFF 		bl	DHT11_Read
+ 816              	.LVL57:
+ 253:Core/Src/main.c ****             RHD = DHT11_Read(); // Relative humidity decimal
+ 817              		.loc 1 253 17 view .LVU184
+ 818 0152 454F     		ldr	r7, .L60+76
+ 819 0154 3870     		strb	r0, [r7]
+ 254:Core/Src/main.c ****             TCI = DHT11_Read(); // Celsius integral
+ 820              		.loc 1 254 13 is_stmt 1 view .LVU185
+ 254:Core/Src/main.c ****             TCI = DHT11_Read(); // Celsius integral
+ 821              		.loc 1 254 19 is_stmt 0 view .LVU186
+ 822 0156 FFF7FEFF 		bl	DHT11_Read
+ 823              	.LVL58:
+ 254:Core/Src/main.c ****             TCI = DHT11_Read(); // Celsius integral
+ 824              		.loc 1 254 17 view .LVU187
+ 825 015a 444E     		ldr	r6, .L60+80
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 29
 
 
- 858              		.loc 1 283 24 is_stmt 0 view .LVU194
- 859 01ac 4FF08043 		mov	r3, #1073741824
- 860 01b0 7D22     		movs	r2, #125
- 861 01b2 5A63     		str	r2, [r3, #52]
- 284:Core/Src/main.c ****             // log_data(rota);
- 862              		.loc 1 284 13 is_stmt 1 view .LVU195
- 863 01b4 564C     		ldr	r4, .L52+104
- 864 01b6 B422     		movs	r2, #180
- 865 01b8 5649     		ldr	r1, .L52+108
- 866 01ba 2046     		mov	r0, r4
- 867 01bc FFF7FEFF 		bl	sprintf
- 868              	.LVL60:
- 286:Core/Src/main.c ****           }
- 869              		.loc 1 286 13 view .LVU196
- 870 01c0 3D4B     		ldr	r3, .L52+16
- 871 01c2 0020     		movs	r0, #0
- 872 01c4 0290     		str	r0, [sp, #8]
- 873 01c6 4FF4FC62 		mov	r2, #2016
- 874 01ca 0192     		str	r2, [sp, #4]
- 875 01cc 5A68     		ldr	r2, [r3, #4]
- 876 01ce 0092     		str	r2, [sp]
- 877 01d0 1B68     		ldr	r3, [r3]
- 878 01d2 2246     		mov	r2, r4
- 879 01d4 5A21     		movs	r1, #90
- 880 01d6 FFF7FEFF 		bl	ST7735_WriteString
- 881              	.LVL61:
- 882 01da 90E7     		b	.L41
- 883              	.L49:
- 292:Core/Src/main.c ****         {
- 884              		.loc 1 292 9 view .LVU197
- 292:Core/Src/main.c ****         {
- 885              		.loc 1 292 13 is_stmt 0 view .LVU198
- 886 01dc 4E4B     		ldr	r3, .L52+112
- 887 01de 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 292:Core/Src/main.c ****         {
- 888              		.loc 1 292 12 view .LVU199
- 889 01e0 002B     		cmp	r3, #0
- 890 01e2 90D1     		bne	.L39
- 294:Core/Src/main.c ****           log_data("task display\n");
- 891              		.loc 1 294 11 is_stmt 1 view .LVU200
- 294:Core/Src/main.c ****           log_data("task display\n");
- 892              		.loc 1 294 21 is_stmt 0 view .LVU201
- 893 01e4 4C4B     		ldr	r3, .L52+112
- 894 01e6 0122     		movs	r2, #1
- 895 01e8 1A70     		strb	r2, [r3]
- 295:Core/Src/main.c ****           sprintf(buf_temp, "Temp: %d C", temp);
- 896              		.loc 1 295 11 is_stmt 1 view .LVU202
- 897 01ea 4C48     		ldr	r0, .L52+116
- 898 01ec FFF7FEFF 		bl	log_data
- 899              	.LVL62:
- 296:Core/Src/main.c ****           sprintf(buf_humi, "Humi: %d ", humi);
- 900              		.loc 1 296 11 view .LVU203
- 901 01f0 DFF82C81 		ldr	r8, .L52+120
- 902 01f4 454B     		ldr	r3, .L52+100
- 903 01f6 1A68     		ldr	r2, [r3]
- 904 01f8 4A49     		ldr	r1, .L52+124
- 905 01fa 4046     		mov	r0, r8
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 30
+ 826 015c 3070     		strb	r0, [r6]
+ 255:Core/Src/main.c ****             TCD = DHT11_Read(); // Celsius decimal
+ 827              		.loc 1 255 13 is_stmt 1 view .LVU188
+ 255:Core/Src/main.c ****             TCD = DHT11_Read(); // Celsius decimal
+ 828              		.loc 1 255 19 is_stmt 0 view .LVU189
+ 829 015e FFF7FEFF 		bl	DHT11_Read
+ 830              	.LVL59:
+ 255:Core/Src/main.c ****             TCD = DHT11_Read(); // Celsius decimal
+ 831              		.loc 1 255 17 view .LVU190
+ 832 0162 434D     		ldr	r5, .L60+84
+ 833 0164 2870     		strb	r0, [r5]
+ 256:Core/Src/main.c ****             SUM = DHT11_Read(); // Check sum
+ 834              		.loc 1 256 13 is_stmt 1 view .LVU191
+ 256:Core/Src/main.c ****             SUM = DHT11_Read(); // Check sum
+ 835              		.loc 1 256 19 is_stmt 0 view .LVU192
+ 836 0166 FFF7FEFF 		bl	DHT11_Read
+ 837              	.LVL60:
+ 256:Core/Src/main.c ****             SUM = DHT11_Read(); // Check sum
+ 838              		.loc 1 256 17 view .LVU193
+ 839 016a 424C     		ldr	r4, .L60+88
+ 840 016c 2070     		strb	r0, [r4]
+ 257:Core/Src/main.c ****             if (RHI + RHD + TCI + TCD == SUM)
+ 841              		.loc 1 257 13 is_stmt 1 view .LVU194
+ 257:Core/Src/main.c ****             if (RHI + RHD + TCI + TCD == SUM)
+ 842              		.loc 1 257 19 is_stmt 0 view .LVU195
+ 843 016e FFF7FEFF 		bl	DHT11_Read
+ 844              	.LVL61:
+ 845 0172 0246     		mov	r2, r0
+ 257:Core/Src/main.c ****             if (RHI + RHD + TCI + TCD == SUM)
+ 846              		.loc 1 257 17 view .LVU196
+ 847 0174 404B     		ldr	r3, .L60+92
+ 848 0176 1870     		strb	r0, [r3]
+ 258:Core/Src/main.c ****             {
+ 849              		.loc 1 258 13 is_stmt 1 view .LVU197
+ 258:Core/Src/main.c ****             {
+ 850              		.loc 1 258 21 is_stmt 0 view .LVU198
+ 851 0178 3F78     		ldrb	r7, [r7]	@ zero_extendqisi2
+ 852 017a 3678     		ldrb	r6, [r6]	@ zero_extendqisi2
+ 853 017c BB19     		adds	r3, r7, r6
+ 258:Core/Src/main.c ****             {
+ 854              		.loc 1 258 27 view .LVU199
+ 855 017e 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
+ 856 0180 0344     		add	r3, r3, r0
+ 258:Core/Src/main.c ****             {
+ 857              		.loc 1 258 33 view .LVU200
+ 858 0182 2478     		ldrb	r4, [r4]	@ zero_extendqisi2
+ 859 0184 2344     		add	r3, r3, r4
+ 258:Core/Src/main.c ****             {
+ 860              		.loc 1 258 16 view .LVU201
+ 861 0186 9342     		cmp	r3, r2
+ 862 0188 A8D1     		bne	.L40
+ 261:Core/Src/main.c ****               humi = (float)RHI + (float)(RHD / 10.0);
+ 863              		.loc 1 261 15 is_stmt 1 view .LVU202
+ 261:Core/Src/main.c ****               humi = (float)RHI + (float)(RHD / 10.0);
+ 864              		.loc 1 261 22 is_stmt 0 view .LVU203
+ 865 018a FFF7FEFF 		bl	__aeabi_ui2f
+ 866              	.LVL62:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 30
 
 
- 906 01fc FFF7FEFF 		bl	sprintf
- 907              	.LVL63:
- 297:Core/Src/main.c ****           ST7735_WriteString(0, 30, buf_temp, Font_11x18, ST7735_RED, ST7735_BLACK);
- 908              		.loc 1 297 11 view .LVU204
- 909 0200 494D     		ldr	r5, .L52+128
- 910 0202 4A4B     		ldr	r3, .L52+132
- 911 0204 1A68     		ldr	r2, [r3]
- 912 0206 4A49     		ldr	r1, .L52+136
- 913 0208 2846     		mov	r0, r5
- 914 020a FFF7FEFF 		bl	sprintf
- 915              	.LVL64:
- 298:Core/Src/main.c ****           ST7735_WriteString(0, 3*10*2, strcat(buf_humi, "%"), Font_11x18, ST7735_RED, ST7735_BLACK
- 916              		.loc 1 298 11 view .LVU205
- 917 020e 2A4E     		ldr	r6, .L52+16
- 918 0210 0024     		movs	r4, #0
- 919 0212 0294     		str	r4, [sp, #8]
- 920 0214 4FF47847 		mov	r7, #63488
- 921 0218 0197     		str	r7, [sp, #4]
- 922 021a 7368     		ldr	r3, [r6, #4]
- 923 021c 0093     		str	r3, [sp]
- 924 021e 3368     		ldr	r3, [r6]
- 925 0220 4246     		mov	r2, r8
- 926 0222 1E21     		movs	r1, #30
- 927 0224 2046     		mov	r0, r4
- 928 0226 FFF7FEFF 		bl	ST7735_WriteString
- 929              	.LVL65:
- 299:Core/Src/main.c ****         }
- 930              		.loc 1 299 11 view .LVU206
- 299:Core/Src/main.c ****         }
- 931              		.loc 1 299 41 is_stmt 0 view .LVU207
- 932 022a 2846     		mov	r0, r5
- 933 022c FFF7FEFF 		bl	strlen
- 934              	.LVL66:
- 935 0230 404B     		ldr	r3, .L52+140
- 936 0232 1B88     		ldrh	r3, [r3]	@ unaligned
- 937 0234 2B52     		strh	r3, [r5, r0]	@ unaligned
- 299:Core/Src/main.c ****         }
- 938              		.loc 1 299 11 view .LVU208
- 939 0236 0294     		str	r4, [sp, #8]
- 940 0238 0197     		str	r7, [sp, #4]
- 941 023a 7368     		ldr	r3, [r6, #4]
- 942 023c 0093     		str	r3, [sp]
- 943 023e 3368     		ldr	r3, [r6]
- 944 0240 2A46     		mov	r2, r5
- 945 0242 3C21     		movs	r1, #60
- 946 0244 2046     		mov	r0, r4
- 947 0246 FFF7FEFF 		bl	ST7735_WriteString
- 948              	.LVL67:
- 949 024a 5CE7     		b	.L39
- 950              	.L50:
- 311:Core/Src/main.c ****           // control Servo
- 951              		.loc 1 311 11 is_stmt 1 view .LVU209
- 952 024c 3A4C     		ldr	r4, .L52+144
- 953 024e 2246     		mov	r2, r4
- 954 0250 3A49     		ldr	r1, .L52+148
- 955 0252 2948     		ldr	r0, .L52+80
- 956 0254 FFF7FEFF 		bl	sscanf
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 31
+ 867 018e 0546     		mov	r5, r0
+ 261:Core/Src/main.c ****               humi = (float)RHI + (float)(RHD / 10.0);
+ 868              		.loc 1 261 47 view .LVU204
+ 869 0190 2046     		mov	r0, r4
+ 870 0192 FFF7FEFF 		bl	__aeabi_i2d
+ 871              	.LVL63:
+ 872 0196 0022     		movs	r2, #0
+ 873 0198 384B     		ldr	r3, .L60+96
+ 874 019a FFF7FEFF 		bl	__aeabi_ddiv
+ 875              	.LVL64:
+ 261:Core/Src/main.c ****               humi = (float)RHI + (float)(RHD / 10.0);
+ 876              		.loc 1 261 35 view .LVU205
+ 877 019e FFF7FEFF 		bl	__aeabi_d2f
+ 878              	.LVL65:
+ 879 01a2 0146     		mov	r1, r0
+ 261:Core/Src/main.c ****               humi = (float)RHI + (float)(RHD / 10.0);
+ 880              		.loc 1 261 33 view .LVU206
+ 881 01a4 2846     		mov	r0, r5
+ 882 01a6 FFF7FEFF 		bl	__aeabi_fadd
+ 883              	.LVL66:
+ 261:Core/Src/main.c ****               humi = (float)RHI + (float)(RHD / 10.0);
+ 884              		.loc 1 261 20 view .LVU207
+ 885 01aa FFF7FEFF 		bl	__aeabi_f2iz
+ 886              	.LVL67:
+ 887 01ae 344B     		ldr	r3, .L60+100
+ 888 01b0 1860     		str	r0, [r3]
+ 262:Core/Src/main.c ****               // Can use tCelsius, tFahrenheit and RH for any purposes
+ 889              		.loc 1 262 15 is_stmt 1 view .LVU208
+ 262:Core/Src/main.c ****               // Can use tCelsius, tFahrenheit and RH for any purposes
+ 890              		.loc 1 262 22 is_stmt 0 view .LVU209
+ 891 01b2 3846     		mov	r0, r7
+ 892 01b4 FFF7FEFF 		bl	__aeabi_ui2f
+ 893              	.LVL68:
+ 894 01b8 0446     		mov	r4, r0
+ 262:Core/Src/main.c ****               // Can use tCelsius, tFahrenheit and RH for any purposes
+ 895              		.loc 1 262 47 view .LVU210
+ 896 01ba 3046     		mov	r0, r6
+ 897 01bc FFF7FEFF 		bl	__aeabi_i2d
+ 898              	.LVL69:
+ 899 01c0 0022     		movs	r2, #0
+ 900 01c2 2E4B     		ldr	r3, .L60+96
+ 901 01c4 FFF7FEFF 		bl	__aeabi_ddiv
+ 902              	.LVL70:
+ 262:Core/Src/main.c ****               // Can use tCelsius, tFahrenheit and RH for any purposes
+ 903              		.loc 1 262 35 view .LVU211
+ 904 01c8 FFF7FEFF 		bl	__aeabi_d2f
+ 905              	.LVL71:
+ 906 01cc 0146     		mov	r1, r0
+ 262:Core/Src/main.c ****               // Can use tCelsius, tFahrenheit and RH for any purposes
+ 907              		.loc 1 262 33 view .LVU212
+ 908 01ce 2046     		mov	r0, r4
+ 909 01d0 FFF7FEFF 		bl	__aeabi_fadd
+ 910              	.LVL72:
+ 262:Core/Src/main.c ****               // Can use tCelsius, tFahrenheit and RH for any purposes
+ 911              		.loc 1 262 20 view .LVU213
+ 912 01d4 FFF7FEFF 		bl	__aeabi_f2iz
+ 913              	.LVL73:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 31
 
 
- 957              	.LVL68:
- 313:Core/Src/main.c ****           sprintf(rota, "Rota: %d  ", PC_rota);
- 958              		.loc 1 313 11 view .LVU210
- 313:Core/Src/main.c ****           sprintf(rota, "Rota: %d  ", PC_rota);
- 959              		.loc 1 313 39 is_stmt 0 view .LVU211
- 960 0258 2568     		ldr	r5, [r4]
- 313:Core/Src/main.c ****           sprintf(rota, "Rota: %d  ", PC_rota);
- 961              		.loc 1 313 45 view .LVU212
- 962 025a 05F12D00 		add	r0, r5, #45
- 963 025e FFF7FEFF 		bl	__aeabi_i2d
- 964              	.LVL69:
- 965 0262 11A3     		adr	r3, .L52
- 966 0264 D3E90023 		ldrd	r2, [r3]
- 967 0268 FFF7FEFF 		bl	__aeabi_ddiv
- 968              	.LVL70:
- 313:Core/Src/main.c ****           sprintf(rota, "Rota: %d  ", PC_rota);
- 969              		.loc 1 313 24 view .LVU213
- 970 026c FFF7FEFF 		bl	__aeabi_d2iz
- 971              	.LVL71:
- 313:Core/Src/main.c ****           sprintf(rota, "Rota: %d  ", PC_rota);
- 972              		.loc 1 313 22 view .LVU214
- 973 0270 4FF08043 		mov	r3, #1073741824
- 974 0274 5863     		str	r0, [r3, #52]
- 314:Core/Src/main.c ****           log_data(rota);
- 975              		.loc 1 314 11 is_stmt 1 view .LVU215
- 976 0276 264C     		ldr	r4, .L52+104
- 977 0278 2A46     		mov	r2, r5
- 978 027a 2649     		ldr	r1, .L52+108
- 979 027c 2046     		mov	r0, r4
- 980 027e FFF7FEFF 		bl	sprintf
- 981              	.LVL72:
- 315:Core/Src/main.c ****           ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
- 982              		.loc 1 315 11 view .LVU216
- 983 0282 2046     		mov	r0, r4
- 984 0284 FFF7FEFF 		bl	log_data
- 985              	.LVL73:
- 316:Core/Src/main.c ****         }
- 986              		.loc 1 316 11 view .LVU217
- 987 0288 0B4B     		ldr	r3, .L52+16
- 988 028a 0020     		movs	r0, #0
- 989 028c 0290     		str	r0, [sp, #8]
- 990 028e 4FF4FC62 		mov	r2, #2016
- 991 0292 0192     		str	r2, [sp, #4]
- 992 0294 5A68     		ldr	r2, [r3, #4]
- 993 0296 0092     		str	r2, [sp]
- 994 0298 1B68     		ldr	r3, [r3]
- 995 029a 2246     		mov	r2, r4
- 996 029c 5A21     		movs	r1, #90
- 997 029e FFF7FEFF 		bl	ST7735_WriteString
- 998              	.LVL74:
- 999 02a2 48E7     		b	.L43
- 1000              	.L53:
- 1001 02a4 AFF30080 		.align	3
- 1002              	.L52:
- 1003 02a8 CDCCCCCC 		.word	-858993459
- 1004 02ac CCCCFC3F 		.word	1073532108
- 1005 02b0 00000000 		.word	htim2
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 32
+ 914 01d8 2A4B     		ldr	r3, .L60+104
+ 915 01da 1860     		str	r0, [r3]
+ 916 01dc 7EE7     		b	.L40
+ 917              	.L56:
+ 271:Core/Src/main.c ****           {
+ 918              		.loc 1 271 11 is_stmt 1 view .LVU214
+ 271:Core/Src/main.c ****           {
+ 919              		.loc 1 271 15 is_stmt 0 view .LVU215
+ 920 01de 2A4B     		ldr	r3, .L60+108
+ 921 01e0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 271:Core/Src/main.c ****           {
+ 922              		.loc 1 271 14 view .LVU216
+ 923 01e2 002B     		cmp	r3, #0
+ 924 01e4 7FF47EAF 		bne	.L41
+ 273:Core/Src/main.c ****             log_data("task control\n");
+ 925              		.loc 1 273 13 is_stmt 1 view .LVU217
+ 273:Core/Src/main.c ****             log_data("task control\n");
+ 926              		.loc 1 273 23 is_stmt 0 view .LVU218
+ 927 01e8 274B     		ldr	r3, .L60+108
+ 928 01ea 0122     		movs	r2, #1
+ 929 01ec 1A70     		strb	r2, [r3]
+ 274:Core/Src/main.c ****             // depend Temp value
+ 930              		.loc 1 274 13 is_stmt 1 view .LVU219
+ 931 01ee 2748     		ldr	r0, .L60+112
+ 932 01f0 FFF7FEFF 		bl	log_data
+ 933              	.LVL74:
+ 277:Core/Src/main.c ****             {
+ 934              		.loc 1 277 13 view .LVU220
+ 277:Core/Src/main.c ****             {
+ 935              		.loc 1 277 22 is_stmt 0 view .LVU221
+ 936 01f4 224B     		ldr	r3, .L60+100
+ 937 01f6 1868     		ldr	r0, [r3]
+ 938 01f8 FFF7FEFF 		bl	__aeabi_i2f
+ 939              	.LVL75:
+ 277:Core/Src/main.c ****             {
+ 940              		.loc 1 277 16 view .LVU222
+ 941 01fc 244B     		ldr	r3, .L60+116
+ 942 01fe 1968     		ldr	r1, [r3]	@ float
+ 943 0200 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 944              	.LVL76:
+ 945 0204 20B1     		cbz	r0, .L52
+ 279:Core/Src/main.c ****               // sprintf(rota, "Rota: %d  ", 0);
+ 946              		.loc 1 279 15 is_stmt 1 view .LVU223
+ 279:Core/Src/main.c ****               // sprintf(rota, "Rota: %d  ", 0);
+ 947              		.loc 1 279 26 is_stmt 0 view .LVU224
+ 948 0206 4FF08043 		mov	r3, #1073741824
+ 949 020a 1922     		movs	r2, #25
+ 950 020c 5A63     		str	r2, [r3, #52]
+ 951 020e 69E7     		b	.L41
+ 952              	.L52:
+ 290:Core/Src/main.c ****               // sprintf(rota, "Rota: %d  ", 180);
+ 953              		.loc 1 290 15 is_stmt 1 view .LVU225
+ 290:Core/Src/main.c ****               // sprintf(rota, "Rota: %d  ", 180);
+ 954              		.loc 1 290 26 is_stmt 0 view .LVU226
+ 955 0210 4FF08043 		mov	r3, #1073741824
+ 956 0214 7D22     		movs	r2, #125
+ 957 0216 5A63     		str	r2, [r3, #52]
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 32
 
 
- 1006 02b4 00000000 		.word	htim1
- 1007 02b8 00000000 		.word	Font_11x18
- 1008 02bc 00000000 		.word	.LC2
- 1009 02c0 08000000 		.word	.LC3
- 1010 02c4 10000000 		.word	.LC4
- 1011 02c8 18000000 		.word	.LC5
- 1012 02cc 20000000 		.word	.LC6
- 1013 02d0 00000000 		.word	Font_7x10
- 1014 02d4 2C000000 		.word	.LC7
- 1015 02d8 00000000 		.word	htim3
- 1016 02dc 00000000 		.word	.LANCHOR4
- 1017 02e0 00000000 		.word	huart3
- 1018 02e4 00000000 		.word	.LANCHOR0
- 1019 02e8 00000000 		.word	.LANCHOR1
- 1020 02ec 00000000 		.word	.LANCHOR8
- 1021 02f0 00000000 		.word	.LANCHOR7
- 1022 02f4 90000000 		.word	.LC15
- 1023 02f8 00000000 		.word	.LANCHOR6
- 1024 02fc A4000000 		.word	.LC17
- 1025 0300 38000000 		.word	.LC8
- 1026 0304 00000000 		.word	.LANCHOR2
- 1027 0308 48000000 		.word	.LC9
- 1028 030c 00000000 		.word	.LANCHOR9
- 1029 0310 00000000 		.word	.LANCHOR10
- 1030 0314 58000000 		.word	.LC10
- 1031 0318 00000000 		.word	.LANCHOR3
- 1032 031c 64000000 		.word	.LC11
- 1033 0320 00000000 		.word	.LANCHOR11
- 1034 0324 74000000 		.word	.LC12
- 1035 0328 00000000 		.word	.LANCHOR13
- 1036 032c 00000000 		.word	.LANCHOR12
- 1037 0330 80000000 		.word	.LC13
- 1038 0334 8C000000 		.word	.LC14
- 1039 0338 00000000 		.word	.LANCHOR14
- 1040 033c 98000000 		.word	.LC16
- 1041              	.L51:
- 1042              	.LBB6:
- 320:Core/Src/main.c ****           // Parse string
- 1043              		.loc 1 320 11 view .LVU218
- 320:Core/Src/main.c ****           // Parse string
- 1044              		.loc 1 320 16 is_stmt 0 view .LVU219
- 1045 0340 174B     		ldr	r3, .L54
- 1046 0342 04AC     		add	r4, sp, #16
- 1047 0344 93E80300 		ldm	r3, {r0, r1}
- 1048 0348 84E80300 		stm	r4, {r0, r1}
- 322:Core/Src/main.c ****           log_data(str_thres);log_data(label_thres);
- 1049              		.loc 1 322 11 is_stmt 1 view .LVU220
- 1050 034c 154D     		ldr	r5, .L54+4
- 1051 034e 164E     		ldr	r6, .L54+8
- 1052 0350 2B46     		mov	r3, r5
- 1053 0352 3246     		mov	r2, r6
- 1054 0354 1549     		ldr	r1, .L54+12
- 1055 0356 1648     		ldr	r0, .L54+16
- 1056 0358 FFF7FEFF 		bl	sscanf
- 1057              	.LVL75:
- 323:Core/Src/main.c ****           // control Servo
- 1058              		.loc 1 323 11 view .LVU221
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 33
+ 958 0218 64E7     		b	.L41
+ 959              	.L61:
+ 960 021a 00BF     		.align	2
+ 961              	.L60:
+ 962 021c 00000000 		.word	htim2
+ 963 0220 00000000 		.word	htim1
+ 964 0224 00000000 		.word	Font_11x18
+ 965 0228 00000000 		.word	.LC2
+ 966 022c 08000000 		.word	.LC3
+ 967 0230 10000000 		.word	.LC4
+ 968 0234 18000000 		.word	.LC5
+ 969 0238 00000000 		.word	.LANCHOR9
+ 970 023c 00000000 		.word	htim3
+ 971 0240 00000000 		.word	.LANCHOR4
+ 972 0244 00000000 		.word	huart3
+ 973 0248 00000000 		.word	.LANCHOR0
+ 974 024c 00000000 		.word	.LANCHOR1
+ 975 0250 00000000 		.word	.LANCHOR8
+ 976 0254 00000000 		.word	.LANCHOR7
+ 977 0258 94000000 		.word	.LC16
+ 978 025c 00000000 		.word	.LANCHOR6
+ 979 0260 B8000000 		.word	.LC19
+ 980 0264 20000000 		.word	.LC6
+ 981 0268 00000000 		.word	.LANCHOR10
+ 982 026c 00000000 		.word	.LANCHOR11
+ 983 0270 00000000 		.word	.LANCHOR12
+ 984 0274 00000000 		.word	.LANCHOR13
+ 985 0278 00000000 		.word	.LANCHOR14
+ 986 027c 00002440 		.word	1076101120
+ 987 0280 00000000 		.word	.LANCHOR15
+ 988 0284 00000000 		.word	.LANCHOR16
+ 989 0288 00000000 		.word	.LANCHOR2
+ 990 028c 30000000 		.word	.LC7
+ 991 0290 00000000 		.word	.LANCHOR17
+ 992              	.L57:
+ 301:Core/Src/main.c ****           {
+ 993              		.loc 1 301 11 is_stmt 1 view .LVU227
+ 301:Core/Src/main.c ****           {
+ 994              		.loc 1 301 15 is_stmt 0 view .LVU228
+ 995 0294 7E4B     		ldr	r3, .L62+8
+ 996 0296 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 301:Core/Src/main.c ****           {
+ 997              		.loc 1 301 14 view .LVU229
+ 998 0298 002B     		cmp	r3, #0
+ 999 029a 7FF428AF 		bne	.L39
+ 303:Core/Src/main.c ****             log_data("task display\n");
+ 1000              		.loc 1 303 13 is_stmt 1 view .LVU230
+ 303:Core/Src/main.c ****             log_data("task display\n");
+ 1001              		.loc 1 303 23 is_stmt 0 view .LVU231
+ 1002 029e 7C4B     		ldr	r3, .L62+8
+ 1003 02a0 0122     		movs	r2, #1
+ 1004 02a2 1A70     		strb	r2, [r3]
+ 304:Core/Src/main.c ****             sprintf(buf_temp, "Temp: %d C", temp);
+ 1005              		.loc 1 304 13 is_stmt 1 view .LVU232
+ 1006 02a4 7B48     		ldr	r0, .L62+12
+ 1007 02a6 FFF7FEFF 		bl	log_data
+ 1008              	.LVL77:
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 33
 
 
- 1059 035c 2846     		mov	r0, r5
- 1060 035e FFF7FEFF 		bl	log_data
- 1061              	.LVL76:
- 323:Core/Src/main.c ****           // control Servo
- 1062              		.loc 1 323 31 view .LVU222
- 1063 0362 3046     		mov	r0, r6
- 1064 0364 FFF7FEFF 		bl	log_data
- 1065              	.LVL77:
- 325:Core/Src/main.c ****           strcat(str_buf, str_thres);
- 1066              		.loc 1 325 11 view .LVU223
- 325:Core/Src/main.c ****           strcat(str_buf, str_thres);
- 1067              		.loc 1 325 26 is_stmt 0 view .LVU224
- 1068 0368 2846     		mov	r0, r5
- 1069 036a FFF7FEFF 		bl	atof
- 1070              	.LVL78:
- 1071 036e FFF7FEFF 		bl	__aeabi_d2f
- 1072              	.LVL79:
- 325:Core/Src/main.c ****           strcat(str_buf, str_thres);
- 1073              		.loc 1 325 24 view .LVU225
- 1074 0372 104B     		ldr	r3, .L54+20
- 1075 0374 1860     		str	r0, [r3]	@ float
- 326:Core/Src/main.c ****           log_data(str_buf);
- 1076              		.loc 1 326 11 is_stmt 1 view .LVU226
- 1077 0376 2946     		mov	r1, r5
- 1078 0378 2046     		mov	r0, r4
- 1079 037a FFF7FEFF 		bl	strcat
- 1080              	.LVL80:
- 327:Core/Src/main.c ****           // sprintf(threshold, "%.1f  ", PC_threshold);
- 1081              		.loc 1 327 11 view .LVU227
- 1082 037e 2046     		mov	r0, r4
- 1083 0380 FFF7FEFF 		bl	log_data
- 1084              	.LVL81:
- 332:Core/Src/main.c ****         }
- 1085              		.loc 1 332 11 view .LVU228
- 1086 0384 0C4B     		ldr	r3, .L54+24
- 1087 0386 0020     		movs	r0, #0
- 1088 0388 0290     		str	r0, [sp, #8]
- 1089 038a 4FF4FC62 		mov	r2, #2016
- 1090 038e 0192     		str	r2, [sp, #4]
- 1091 0390 5A68     		ldr	r2, [r3, #4]
- 1092 0392 0092     		str	r2, [sp]
- 1093 0394 1B68     		ldr	r3, [r3]
- 1094 0396 2246     		mov	r2, r4
- 1095 0398 7821     		movs	r1, #120
- 1096 039a FFF7FEFF 		bl	ST7735_WriteString
- 1097              	.LVL82:
- 1098 039e D2E6     		b	.L44
- 1099              	.L55:
- 1100              		.align	2
- 1101              	.L54:
- 1102 03a0 B8000000 		.word	.LC18
- 1103 03a4 00000000 		.word	.LANCHOR15
- 1104 03a8 00000000 		.word	.LANCHOR16
- 1105 03ac B0000000 		.word	.LC19
- 1106 03b0 00000000 		.word	.LANCHOR6
- 1107 03b4 00000000 		.word	.LANCHOR17
- 1108 03b8 00000000 		.word	Font_11x18
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 34
+ 305:Core/Src/main.c ****             sprintf(buf_humi, "Humi: %d ", humi);
+ 1009              		.loc 1 305 13 view .LVU233
+ 1010 02aa 7B4C     		ldr	r4, .L62+16
+ 1011 02ac 7B4D     		ldr	r5, .L62+20
+ 1012 02ae 2268     		ldr	r2, [r4]
+ 1013 02b0 7B49     		ldr	r1, .L62+24
+ 1014 02b2 2846     		mov	r0, r5
+ 1015 02b4 FFF7FEFF 		bl	sprintf
+ 1016              	.LVL78:
+ 306:Core/Src/main.c ****             log_data(buf_temp);
+ 1017              		.loc 1 306 13 view .LVU234
+ 1018 02b8 7A4E     		ldr	r6, .L62+28
+ 1019 02ba 7B4B     		ldr	r3, .L62+32
+ 1020 02bc 1A68     		ldr	r2, [r3]
+ 1021 02be 7B49     		ldr	r1, .L62+36
+ 1022 02c0 3046     		mov	r0, r6
+ 1023 02c2 FFF7FEFF 		bl	sprintf
+ 1024              	.LVL79:
+ 307:Core/Src/main.c ****             log_data("\n");
+ 1025              		.loc 1 307 13 view .LVU235
+ 1026 02c6 2846     		mov	r0, r5
+ 1027 02c8 FFF7FEFF 		bl	log_data
+ 1028              	.LVL80:
+ 308:Core/Src/main.c ****             log_data(buf_humi);
+ 1029              		.loc 1 308 13 view .LVU236
+ 1030 02cc 784D     		ldr	r5, .L62+40
+ 1031 02ce 2846     		mov	r0, r5
+ 1032 02d0 FFF7FEFF 		bl	log_data
+ 1033              	.LVL81:
+ 309:Core/Src/main.c ****             log_data("\n");
+ 1034              		.loc 1 309 13 view .LVU237
+ 1035 02d4 3046     		mov	r0, r6
+ 1036 02d6 FFF7FEFF 		bl	log_data
+ 1037              	.LVL82:
+ 310:Core/Src/main.c ****             if (temp > PC_threshold)
+ 1038              		.loc 1 310 13 view .LVU238
+ 1039 02da 2846     		mov	r0, r5
+ 1040 02dc FFF7FEFF 		bl	log_data
+ 1041              	.LVL83:
+ 311:Core/Src/main.c ****             {
+ 1042              		.loc 1 311 13 view .LVU239
+ 311:Core/Src/main.c ****             {
+ 1043              		.loc 1 311 22 is_stmt 0 view .LVU240
+ 1044 02e0 2068     		ldr	r0, [r4]
+ 1045 02e2 FFF7FEFF 		bl	__aeabi_i2f
+ 1046              	.LVL84:
+ 311:Core/Src/main.c ****             {
+ 1047              		.loc 1 311 16 view .LVU241
+ 1048 02e6 734B     		ldr	r3, .L62+44
+ 1049 02e8 1968     		ldr	r1, [r3]	@ float
+ 1050 02ea FFF7FEFF 		bl	__aeabi_fcmpgt
+ 1051              	.LVL85:
+ 1052 02ee 0028     		cmp	r0, #0
+ 1053 02f0 46D0     		beq	.L53
+ 313:Core/Src/main.c ****               log_data(rota);
+ 1054              		.loc 1 313 15 is_stmt 1 view .LVU242
+ 1055 02f2 714D     		ldr	r5, .L62+48
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 34
 
 
- 1109              	.LBE6:
- 1110              		.cfi_endproc
- 1111              	.LFE72:
- 1113              		.global	RH
- 1114              		.global	tFahrenheit
- 1115              		.global	tCelsius
- 1116              		.global	SUM
- 1117              		.global	TCD
- 1118              		.global	TCI
- 1119              		.global	RHD
- 1120              		.global	RHI
- 1121              		.global	humi
- 1122              		.global	temp
- 1123              		.global	PC_threshold
- 1124              		.global	PC_rota
- 1125              		.global	perform_d
- 1126              		.global	perform_c
- 1127              		.global	perform_s
- 1128              		.global	Rx_complete
- 1129              		.global	Rx_index
- 1130              		.global	buffer_data
- 1131              		.global	Rx_data
- 1132              		.global	Mode
- 1133              		.global	Type_task
- 1134              		.global	buf_humi
- 1135              		.global	buf_temp
- 1136              		.global	angle
- 1137              		.global	str_thres
- 1138              		.global	label_thres
- 1139              		.global	threshold
- 1140              		.global	rota
- 1141              		.global	count
- 1142              		.section	.bss.PC_rota,"aw",%nobits
- 1143              		.align	2
- 1144              		.set	.LANCHOR14,. + 0
- 1147              	PC_rota:
- 1148 0000 00000000 		.space	4
- 1149              		.section	.bss.PC_threshold,"aw",%nobits
- 1150              		.align	2
- 1151              		.set	.LANCHOR17,. + 0
- 1154              	PC_threshold:
- 1155 0000 00000000 		.space	4
- 1156              		.section	.bss.RH,"aw",%nobits
- 1157              		.align	2
- 1160              	RH:
- 1161 0000 00000000 		.space	4
- 1162              		.section	.bss.RHD,"aw",%nobits
- 1165              	RHD:
- 1166 0000 00       		.space	1
- 1167              		.section	.bss.RHI,"aw",%nobits
- 1170              	RHI:
- 1171 0000 00       		.space	1
- 1172              		.section	.bss.Rx_complete,"aw",%nobits
- 1173              		.set	.LANCHOR7,. + 0
- 1176              	Rx_complete:
- 1177 0000 00       		.space	1
- 1178              		.section	.bss.Rx_data,"aw",%nobits
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 35
+ 1056 02f4 0022     		movs	r2, #0
+ 1057 02f6 7149     		ldr	r1, .L62+52
+ 1058 02f8 2846     		mov	r0, r5
+ 1059 02fa FFF7FEFF 		bl	sprintf
+ 1060              	.LVL86:
+ 314:Core/Src/main.c ****               log_data("\n");
+ 1061              		.loc 1 314 15 view .LVU243
+ 1062 02fe 2846     		mov	r0, r5
+ 1063 0300 FFF7FEFF 		bl	log_data
+ 1064              	.LVL87:
+ 315:Core/Src/main.c ****               ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 1065              		.loc 1 315 15 view .LVU244
+ 1066 0304 6A48     		ldr	r0, .L62+40
+ 1067 0306 FFF7FEFF 		bl	log_data
+ 1068              	.LVL88:
+ 316:Core/Src/main.c ****               ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+ 1069              		.loc 1 316 15 view .LVU245
+ 1070 030a 6D4B     		ldr	r3, .L62+56
+ 1071 030c 0024     		movs	r4, #0
+ 1072 030e 0294     		str	r4, [sp, #8]
+ 1073 0310 4FF4FC62 		mov	r2, #2016
+ 1074 0314 0192     		str	r2, [sp, #4]
+ 1075 0316 5A68     		ldr	r2, [r3, #4]
+ 1076 0318 0092     		str	r2, [sp]
+ 1077 031a 1B68     		ldr	r3, [r3]
+ 1078 031c 2A46     		mov	r2, r5
+ 1079 031e 5A21     		movs	r1, #90
+ 1080 0320 2046     		mov	r0, r4
+ 1081 0322 FFF7FEFF 		bl	ST7735_WriteString
+ 1082              	.LVL89:
+ 317:Core/Src/main.c ****             }
+ 1083              		.loc 1 317 15 view .LVU246
+ 1084 0326 674B     		ldr	r3, .L62+60
+ 1085 0328 0294     		str	r4, [sp, #8]
+ 1086 032a 4FF6FF72 		movw	r2, #65535
+ 1087 032e 0192     		str	r2, [sp, #4]
+ 1088 0330 5A68     		ldr	r2, [r3, #4]
+ 1089 0332 0092     		str	r2, [sp]
+ 1090 0334 1B68     		ldr	r3, [r3]
+ 1091 0336 644A     		ldr	r2, .L62+64
+ 1092 0338 9121     		movs	r1, #145
+ 1093 033a 2320     		movs	r0, #35
+ 1094 033c FFF7FEFF 		bl	ST7735_WriteString
+ 1095              	.LVL90:
+ 1096              	.L46:
+ 327:Core/Src/main.c ****             ST7735_WriteString(0, 3 * 10 * 2, strcat(buf_humi, "%"), Font_11x18, ST7735_RED, ST7735
+ 1097              		.loc 1 327 13 view .LVU247
+ 1098 0340 5F4D     		ldr	r5, .L62+56
+ 1099 0342 0024     		movs	r4, #0
+ 1100 0344 0294     		str	r4, [sp, #8]
+ 1101 0346 4FF47847 		mov	r7, #63488
+ 1102 034a 0197     		str	r7, [sp, #4]
+ 1103 034c 6B68     		ldr	r3, [r5, #4]
+ 1104 034e 0093     		str	r3, [sp]
+ 1105 0350 2B68     		ldr	r3, [r5]
+ 1106 0352 524A     		ldr	r2, .L62+20
+ 1107 0354 1E21     		movs	r1, #30
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 35
 
 
- 1179              		.set	.LANCHOR4,. + 0
- 1182              	Rx_data:
- 1183 0000 00       		.space	1
- 1184              		.section	.bss.Rx_index,"aw",%nobits
- 1185              		.align	2
- 1186              		.set	.LANCHOR5,. + 0
- 1189              	Rx_index:
- 1190 0000 00000000 		.space	4
- 1191              		.section	.bss.SUM,"aw",%nobits
- 1194              	SUM:
- 1195 0000 00       		.space	1
- 1196              		.section	.bss.TCD,"aw",%nobits
- 1199              	TCD:
- 1200 0000 00       		.space	1
- 1201              		.section	.bss.TCI,"aw",%nobits
- 1204              	TCI:
- 1205 0000 00       		.space	1
- 1206              		.section	.bss.Type_task,"aw",%nobits
- 1207              		.align	2
- 1208              		.set	.LANCHOR0,. + 0
- 1211              	Type_task:
- 1212 0000 00000000 		.space	4
- 1213              		.section	.bss.angle,"aw",%nobits
- 1214              		.align	2
- 1217              	angle:
- 1218 0000 00000000 		.space	4
- 1219              		.section	.bss.buf_humi,"aw",%nobits
- 1220              		.align	2
- 1221              		.set	.LANCHOR13,. + 0
- 1224              	buf_humi:
- 1225 0000 00000000 		.space	20
- 1225      00000000 
- 1225      00000000 
- 1225      00000000 
- 1225      00000000 
- 1226              		.section	.bss.buf_temp,"aw",%nobits
- 1227              		.align	2
- 1228              		.set	.LANCHOR11,. + 0
- 1231              	buf_temp:
- 1232 0000 00000000 		.space	20
- 1232      00000000 
- 1232      00000000 
- 1232      00000000 
- 1232      00000000 
- 1233              		.section	.bss.buffer_data,"aw",%nobits
- 1234              		.align	2
- 1235              		.set	.LANCHOR6,. + 0
- 1238              	buffer_data:
- 1239 0000 00000000 		.space	50
- 1239      00000000 
- 1239      00000000 
- 1239      00000000 
- 1239      00000000 
- 1240              		.section	.bss.label_thres,"aw",%nobits
- 1241              		.align	2
- 1242              		.set	.LANCHOR16,. + 0
- 1245              	label_thres:
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 36
+ 1108 0356 2046     		mov	r0, r4
+ 1109 0358 FFF7FEFF 		bl	ST7735_WriteString
+ 1110              	.LVL91:
+ 328:Core/Src/main.c ****           }
+ 1111              		.loc 1 328 13 view .LVU248
+ 328:Core/Src/main.c ****           }
+ 1112              		.loc 1 328 47 is_stmt 0 view .LVU249
+ 1113 035c 514E     		ldr	r6, .L62+28
+ 1114 035e 3046     		mov	r0, r6
+ 1115 0360 FFF7FEFF 		bl	strlen
+ 1116              	.LVL92:
+ 1117 0364 594B     		ldr	r3, .L62+68
+ 1118 0366 1B88     		ldrh	r3, [r3]	@ unaligned
+ 1119 0368 3352     		strh	r3, [r6, r0]	@ unaligned
+ 328:Core/Src/main.c ****           }
+ 1120              		.loc 1 328 13 view .LVU250
+ 1121 036a 0294     		str	r4, [sp, #8]
+ 1122 036c 0197     		str	r7, [sp, #4]
+ 1123 036e 6B68     		ldr	r3, [r5, #4]
+ 1124 0370 0093     		str	r3, [sp]
+ 1125 0372 2B68     		ldr	r3, [r5]
+ 1126 0374 3246     		mov	r2, r6
+ 1127 0376 3C21     		movs	r1, #60
+ 1128 0378 2046     		mov	r0, r4
+ 1129 037a FFF7FEFF 		bl	ST7735_WriteString
+ 1130              	.LVL93:
+ 1131 037e B6E6     		b	.L39
+ 1132              	.L53:
+ 321:Core/Src/main.c ****               log_data(rota);
+ 1133              		.loc 1 321 15 is_stmt 1 view .LVU251
+ 1134 0380 4D4D     		ldr	r5, .L62+48
+ 1135 0382 B422     		movs	r2, #180
+ 1136 0384 4D49     		ldr	r1, .L62+52
+ 1137 0386 2846     		mov	r0, r5
+ 1138 0388 FFF7FEFF 		bl	sprintf
+ 1139              	.LVL94:
+ 322:Core/Src/main.c ****               log_data("\n");
+ 1140              		.loc 1 322 15 view .LVU252
+ 1141 038c 2846     		mov	r0, r5
+ 1142 038e FFF7FEFF 		bl	log_data
+ 1143              	.LVL95:
+ 323:Core/Src/main.c ****               ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 1144              		.loc 1 323 15 view .LVU253
+ 1145 0392 4748     		ldr	r0, .L62+40
+ 1146 0394 FFF7FEFF 		bl	log_data
+ 1147              	.LVL96:
+ 324:Core/Src/main.c ****               ST7735_WriteString(35, 145, "          ", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+ 1148              		.loc 1 324 15 view .LVU254
+ 1149 0398 494B     		ldr	r3, .L62+56
+ 1150 039a 0024     		movs	r4, #0
+ 1151 039c 0294     		str	r4, [sp, #8]
+ 1152 039e 4FF4FC62 		mov	r2, #2016
+ 1153 03a2 0192     		str	r2, [sp, #4]
+ 1154 03a4 5A68     		ldr	r2, [r3, #4]
+ 1155 03a6 0092     		str	r2, [sp]
+ 1156 03a8 1B68     		ldr	r3, [r3]
+ 1157 03aa 2A46     		mov	r2, r5
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 36
 
 
- 1246 0000 00000000 		.space	10
- 1246      00000000 
- 1246      0000
- 1247              		.section	.bss.perform_c,"aw",%nobits
- 1248              		.set	.LANCHOR2,. + 0
- 1251              	perform_c:
- 1252 0000 00       		.space	1
- 1253              		.section	.bss.perform_d,"aw",%nobits
- 1254              		.set	.LANCHOR3,. + 0
- 1257              	perform_d:
- 1258 0000 00       		.space	1
- 1259              		.section	.bss.perform_s,"aw",%nobits
- 1260              		.set	.LANCHOR1,. + 0
- 1263              	perform_s:
- 1264 0000 00       		.space	1
- 1265              		.section	.bss.rota,"aw",%nobits
- 1266              		.align	2
- 1267              		.set	.LANCHOR10,. + 0
- 1270              	rota:
- 1271 0000 00000000 		.space	20
- 1271      00000000 
- 1271      00000000 
- 1271      00000000 
- 1271      00000000 
- 1272              		.section	.bss.str_thres,"aw",%nobits
- 1273              		.align	2
- 1274              		.set	.LANCHOR15,. + 0
- 1277              	str_thres:
- 1278 0000 00000000 		.space	5
- 1278      00
- 1279              		.section	.bss.tCelsius,"aw",%nobits
- 1280              		.align	2
- 1283              	tCelsius:
- 1284 0000 00000000 		.space	4
- 1285              		.section	.bss.tFahrenheit,"aw",%nobits
- 1286              		.align	2
- 1289              	tFahrenheit:
- 1290 0000 00000000 		.space	4
- 1291              		.section	.bss.threshold,"aw",%nobits
- 1292              		.align	2
- 1295              	threshold:
- 1296 0000 00000000 		.space	20
- 1296      00000000 
- 1296      00000000 
- 1296      00000000 
- 1296      00000000 
- 1297              		.section	.data.Mode,"aw"
- 1298              		.align	2
- 1299              		.set	.LANCHOR8,. + 0
- 1302              	Mode:
- 1303 0000 03000000 		.word	3
- 1304              		.section	.data.count,"aw"
- 1305              		.align	2
- 1308              	count:
- 1309 0000 19000000 		.word	25
- 1310              		.section	.data.humi,"aw"
- 1311              		.align	2
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 37
+ 1158 03ac 5A21     		movs	r1, #90
+ 1159 03ae 2046     		mov	r0, r4
+ 1160 03b0 FFF7FEFF 		bl	ST7735_WriteString
+ 1161              	.LVL97:
+ 325:Core/Src/main.c ****             }
+ 1162              		.loc 1 325 15 view .LVU255
+ 1163 03b4 434B     		ldr	r3, .L62+60
+ 1164 03b6 0294     		str	r4, [sp, #8]
+ 1165 03b8 4FF6FF72 		movw	r2, #65535
+ 1166 03bc 0192     		str	r2, [sp, #4]
+ 1167 03be 5A68     		ldr	r2, [r3, #4]
+ 1168 03c0 0092     		str	r2, [sp]
+ 1169 03c2 1B68     		ldr	r3, [r3]
+ 1170 03c4 424A     		ldr	r2, .L62+72
+ 1171 03c6 9121     		movs	r1, #145
+ 1172 03c8 2320     		movs	r0, #35
+ 1173 03ca FFF7FEFF 		bl	ST7735_WriteString
+ 1174              	.LVL98:
+ 1175 03ce B7E7     		b	.L46
+ 1176              	.L58:
+ 340:Core/Src/main.c ****             // control Servo
+ 1177              		.loc 1 340 13 view .LVU256
+ 1178 03d0 404C     		ldr	r4, .L62+76
+ 1179 03d2 2246     		mov	r2, r4
+ 1180 03d4 4049     		ldr	r1, .L62+80
+ 1181 03d6 4148     		ldr	r0, .L62+84
+ 1182 03d8 FFF7FEFF 		bl	sscanf
+ 1183              	.LVL99:
+ 342:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", PC_rota);
+ 1184              		.loc 1 342 13 view .LVU257
+ 342:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", PC_rota);
+ 1185              		.loc 1 342 41 is_stmt 0 view .LVU258
+ 1186 03dc 2568     		ldr	r5, [r4]
+ 342:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", PC_rota);
+ 1187              		.loc 1 342 47 view .LVU259
+ 1188 03de 05F12D00 		add	r0, r5, #45
+ 1189 03e2 FFF7FEFF 		bl	__aeabi_i2d
+ 1190              	.LVL100:
+ 1191 03e6 28A3     		adr	r3, .L62
+ 1192 03e8 D3E90023 		ldrd	r2, [r3]
+ 1193 03ec FFF7FEFF 		bl	__aeabi_ddiv
+ 1194              	.LVL101:
+ 342:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", PC_rota);
+ 1195              		.loc 1 342 26 view .LVU260
+ 1196 03f0 FFF7FEFF 		bl	__aeabi_d2iz
+ 1197              	.LVL102:
+ 342:Core/Src/main.c ****             sprintf(rota, "Rota: %d  ", PC_rota);
+ 1198              		.loc 1 342 24 view .LVU261
+ 1199 03f4 4FF08043 		mov	r3, #1073741824
+ 1200 03f8 5863     		str	r0, [r3, #52]
+ 343:Core/Src/main.c ****             log_data("\nPC control ");
+ 1201              		.loc 1 343 13 is_stmt 1 view .LVU262
+ 1202 03fa 2F4C     		ldr	r4, .L62+48
+ 1203 03fc 2A46     		mov	r2, r5
+ 1204 03fe 2F49     		ldr	r1, .L62+52
+ 1205 0400 2046     		mov	r0, r4
+ 1206 0402 FFF7FEFF 		bl	sprintf
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 37
 
 
- 1312              		.set	.LANCHOR12,. + 0
- 1315              	humi:
- 1316 0000 5A000000 		.word	90
- 1317              		.section	.data.temp,"aw"
- 1318              		.align	2
- 1319              		.set	.LANCHOR9,. + 0
- 1322              	temp:
- 1323 0000 1E000000 		.word	30
- 1324              		.text
- 1325              	.Letext0:
- 1326              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
- 1327              		.file 4 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
- 1328              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 1329              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
- 1330              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h"
- 1331              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h"
- 1332              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
- 1333              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
- 1334              		.file 11 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
- 1335              		.file 12 "Core/Inc/tim.h"
- 1336              		.file 13 "Core/Inc/usart.h"
- 1337              		.file 14 "Core/Inc/fonts.h"
- 1338              		.file 15 "Core/Inc/st7735.h"
- 1339              		.file 16 "d:\\10 2021.10\\arm-none-eabi\\include\\stdio.h"
- 1340              		.file 17 "d:\\10 2021.10\\arm-none-eabi\\include\\stdlib.h"
- 1341              		.file 18 "d:\\10 2021.10\\arm-none-eabi\\include\\string.h"
- 1342              		.file 19 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
- 1343              		.file 20 "Core/Inc/gpio.h"
- 1344              		.file 21 "Core/Inc/spi.h"
- 1345              		.file 22 "<built-in>"
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 38
+ 1207              	.LVL103:
+ 344:Core/Src/main.c ****             log_data(rota);
+ 1208              		.loc 1 344 13 view .LVU263
+ 1209 0406 3648     		ldr	r0, .L62+88
+ 1210 0408 FFF7FEFF 		bl	log_data
+ 1211              	.LVL104:
+ 345:Core/Src/main.c ****             ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+ 1212              		.loc 1 345 13 view .LVU264
+ 1213 040c 2046     		mov	r0, r4
+ 1214 040e FFF7FEFF 		bl	log_data
+ 1215              	.LVL105:
+ 346:Core/Src/main.c ****           }
+ 1216              		.loc 1 346 13 view .LVU265
+ 1217 0412 2B4B     		ldr	r3, .L62+56
+ 1218 0414 0020     		movs	r0, #0
+ 1219 0416 0290     		str	r0, [sp, #8]
+ 1220 0418 4FF4FC62 		mov	r2, #2016
+ 1221 041c 0192     		str	r2, [sp, #4]
+ 1222 041e 5A68     		ldr	r2, [r3, #4]
+ 1223 0420 0092     		str	r2, [sp]
+ 1224 0422 1B68     		ldr	r3, [r3]
+ 1225 0424 2246     		mov	r2, r4
+ 1226 0426 5A21     		movs	r1, #90
+ 1227 0428 FFF7FEFF 		bl	ST7735_WriteString
+ 1228              	.LVL106:
+ 1229 042c 77E6     		b	.L47
+ 1230              	.L59:
+ 1231              	.LBB6:
+ 350:Core/Src/main.c ****             // Parse string
+ 1232              		.loc 1 350 13 view .LVU266
+ 350:Core/Src/main.c ****             // Parse string
+ 1233              		.loc 1 350 18 is_stmt 0 view .LVU267
+ 1234 042e 2D4B     		ldr	r3, .L62+92
+ 1235 0430 04AC     		add	r4, sp, #16
+ 1236 0432 93E80300 		ldm	r3, {r0, r1}
+ 1237 0436 84E80300 		stm	r4, {r0, r1}
+ 352:Core/Src/main.c ****             //log_data(str_thres);
+ 1238              		.loc 1 352 13 is_stmt 1 view .LVU268
+ 1239 043a 2B4D     		ldr	r5, .L62+96
+ 1240 043c 2B46     		mov	r3, r5
+ 1241 043e 2B4A     		ldr	r2, .L62+100
+ 1242 0440 2B49     		ldr	r1, .L62+104
+ 1243 0442 2648     		ldr	r0, .L62+84
+ 1244 0444 FFF7FEFF 		bl	sscanf
+ 1245              	.LVL107:
+ 356:Core/Src/main.c ****             strcat(str_buf, str_thres);
+ 1246              		.loc 1 356 13 view .LVU269
+ 356:Core/Src/main.c ****             strcat(str_buf, str_thres);
+ 1247              		.loc 1 356 28 is_stmt 0 view .LVU270
+ 1248 0448 2846     		mov	r0, r5
+ 1249 044a FFF7FEFF 		bl	atof
+ 1250              	.LVL108:
+ 1251 044e FFF7FEFF 		bl	__aeabi_d2f
+ 1252              	.LVL109:
+ 356:Core/Src/main.c ****             strcat(str_buf, str_thres);
+ 1253              		.loc 1 356 26 view .LVU271
+ 1254 0452 184B     		ldr	r3, .L62+44
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 38
+
+
+ 1255 0454 1860     		str	r0, [r3]	@ float
+ 357:Core/Src/main.c ****             log_data("\nPC set Threshold: ");log_data(str_thres);
+ 1256              		.loc 1 357 13 is_stmt 1 view .LVU272
+ 1257 0456 2946     		mov	r1, r5
+ 1258 0458 2046     		mov	r0, r4
+ 1259 045a FFF7FEFF 		bl	strcat
+ 1260              	.LVL110:
+ 358:Core/Src/main.c ****             //log_data(str_buf);
+ 1261              		.loc 1 358 13 view .LVU273
+ 1262 045e 2548     		ldr	r0, .L62+108
+ 1263 0460 FFF7FEFF 		bl	log_data
+ 1264              	.LVL111:
+ 358:Core/Src/main.c ****             //log_data(str_buf);
+ 1265              		.loc 1 358 46 view .LVU274
+ 1266 0464 2846     		mov	r0, r5
+ 1267 0466 FFF7FEFF 		bl	log_data
+ 1268              	.LVL112:
+ 364:Core/Src/main.c ****           }
+ 1269              		.loc 1 364 13 view .LVU275
+ 1270 046a 154B     		ldr	r3, .L62+56
+ 1271 046c 0020     		movs	r0, #0
+ 1272 046e 0290     		str	r0, [sp, #8]
+ 1273 0470 4FF4FC62 		mov	r2, #2016
+ 1274 0474 0192     		str	r2, [sp, #4]
+ 1275 0476 5A68     		ldr	r2, [r3, #4]
+ 1276 0478 0092     		str	r2, [sp]
+ 1277 047a 1B68     		ldr	r3, [r3]
+ 1278 047c 2246     		mov	r2, r4
+ 1279 047e 7821     		movs	r1, #120
+ 1280 0480 FFF7FEFF 		bl	ST7735_WriteString
+ 1281              	.LVL113:
+ 1282 0484 53E6     		b	.L48
+ 1283              	.L63:
+ 1284 0486 00BF     		.align	3
+ 1285              	.L62:
+ 1286 0488 CDCCCCCC 		.word	-858993459
+ 1287 048c CCCCFC3F 		.word	1073532108
+ 1288 0490 00000000 		.word	.LANCHOR3
+ 1289 0494 40000000 		.word	.LC8
+ 1290 0498 00000000 		.word	.LANCHOR15
+ 1291 049c 00000000 		.word	.LANCHOR18
+ 1292 04a0 50000000 		.word	.LC9
+ 1293 04a4 00000000 		.word	.LANCHOR19
+ 1294 04a8 00000000 		.word	.LANCHOR16
+ 1295 04ac 5C000000 		.word	.LC10
+ 1296 04b0 68000000 		.word	.LC11
+ 1297 04b4 00000000 		.word	.LANCHOR17
+ 1298 04b8 00000000 		.word	.LANCHOR20
+ 1299 04bc 6C000000 		.word	.LC12
+ 1300 04c0 00000000 		.word	Font_11x18
+ 1301 04c4 00000000 		.word	Font_7x10
+ 1302 04c8 78000000 		.word	.LC13
+ 1303 04cc 90000000 		.word	.LC15
+ 1304 04d0 84000000 		.word	.LC14
+ 1305 04d4 00000000 		.word	.LANCHOR21
+ 1306 04d8 9C000000 		.word	.LC17
+ 1307 04dc 00000000 		.word	.LANCHOR6
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 39
+
+
+ 1308 04e0 A8000000 		.word	.LC18
+ 1309 04e4 E0000000 		.word	.LC20
+ 1310 04e8 00000000 		.word	.LANCHOR22
+ 1311 04ec 00000000 		.word	.LANCHOR23
+ 1312 04f0 C4000000 		.word	.LC21
+ 1313 04f4 CC000000 		.word	.LC22
+ 1314              	.LBE6:
+ 1315              		.cfi_endproc
+ 1316              	.LFE72:
+ 1318              		.global	thres_tring
+ 1319              		.global	RH
+ 1320              		.global	tFahrenheit
+ 1321              		.global	tCelsius
+ 1322              		.global	SUM
+ 1323              		.global	TCD
+ 1324              		.global	TCI
+ 1325              		.global	RHD
+ 1326              		.global	RHI
+ 1327              		.global	humi
+ 1328              		.global	temp
+ 1329              		.global	PC_threshold
+ 1330              		.global	PC_rota
+ 1331              		.global	perform_d
+ 1332              		.global	perform_c
+ 1333              		.global	perform_s
+ 1334              		.global	Rx_complete
+ 1335              		.global	Rx_index
+ 1336              		.global	buffer_data
+ 1337              		.global	Rx_data
+ 1338              		.global	Mode
+ 1339              		.global	Type_task
+ 1340              		.global	buf_humi
+ 1341              		.global	buf_temp
+ 1342              		.global	angle
+ 1343              		.global	str_thres
+ 1344              		.global	label_thres
+ 1345              		.global	threshold
+ 1346              		.global	rota
+ 1347              		.global	count
+ 1348              		.section	.bss.PC_rota,"aw",%nobits
+ 1349              		.align	2
+ 1350              		.set	.LANCHOR21,. + 0
+ 1353              	PC_rota:
+ 1354 0000 00000000 		.space	4
+ 1355              		.section	.bss.RH,"aw",%nobits
+ 1356              		.align	2
+ 1359              	RH:
+ 1360 0000 00000000 		.space	4
+ 1361              		.section	.bss.RHD,"aw",%nobits
+ 1362              		.set	.LANCHOR11,. + 0
+ 1365              	RHD:
+ 1366 0000 00       		.space	1
+ 1367              		.section	.bss.RHI,"aw",%nobits
+ 1368              		.set	.LANCHOR10,. + 0
+ 1371              	RHI:
+ 1372 0000 00       		.space	1
+ 1373              		.section	.bss.Rx_complete,"aw",%nobits
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 40
+
+
+ 1374              		.set	.LANCHOR7,. + 0
+ 1377              	Rx_complete:
+ 1378 0000 00       		.space	1
+ 1379              		.section	.bss.Rx_data,"aw",%nobits
+ 1380              		.set	.LANCHOR4,. + 0
+ 1383              	Rx_data:
+ 1384 0000 00       		.space	1
+ 1385              		.section	.bss.Rx_index,"aw",%nobits
+ 1386              		.align	2
+ 1387              		.set	.LANCHOR5,. + 0
+ 1390              	Rx_index:
+ 1391 0000 00000000 		.space	4
+ 1392              		.section	.bss.SUM,"aw",%nobits
+ 1393              		.set	.LANCHOR14,. + 0
+ 1396              	SUM:
+ 1397 0000 00       		.space	1
+ 1398              		.section	.bss.TCD,"aw",%nobits
+ 1399              		.set	.LANCHOR13,. + 0
+ 1402              	TCD:
+ 1403 0000 00       		.space	1
+ 1404              		.section	.bss.TCI,"aw",%nobits
+ 1405              		.set	.LANCHOR12,. + 0
+ 1408              	TCI:
+ 1409 0000 00       		.space	1
+ 1410              		.section	.bss.Type_task,"aw",%nobits
+ 1411              		.align	2
+ 1412              		.set	.LANCHOR0,. + 0
+ 1415              	Type_task:
+ 1416 0000 00000000 		.space	4
+ 1417              		.section	.bss.angle,"aw",%nobits
+ 1418              		.align	2
+ 1421              	angle:
+ 1422 0000 00000000 		.space	4
+ 1423              		.section	.bss.buf_humi,"aw",%nobits
+ 1424              		.align	2
+ 1425              		.set	.LANCHOR19,. + 0
+ 1428              	buf_humi:
+ 1429 0000 00000000 		.space	20
+ 1429      00000000 
+ 1429      00000000 
+ 1429      00000000 
+ 1429      00000000 
+ 1430              		.section	.bss.buf_temp,"aw",%nobits
+ 1431              		.align	2
+ 1432              		.set	.LANCHOR18,. + 0
+ 1435              	buf_temp:
+ 1436 0000 00000000 		.space	20
+ 1436      00000000 
+ 1436      00000000 
+ 1436      00000000 
+ 1436      00000000 
+ 1437              		.section	.bss.buffer_data,"aw",%nobits
+ 1438              		.align	2
+ 1439              		.set	.LANCHOR6,. + 0
+ 1442              	buffer_data:
+ 1443 0000 00000000 		.space	50
+ 1443      00000000 
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 41
+
+
+ 1443      00000000 
+ 1443      00000000 
+ 1443      00000000 
+ 1444              		.section	.bss.humi,"aw",%nobits
+ 1445              		.align	2
+ 1446              		.set	.LANCHOR16,. + 0
+ 1449              	humi:
+ 1450 0000 00000000 		.space	4
+ 1451              		.section	.bss.label_thres,"aw",%nobits
+ 1452              		.align	2
+ 1453              		.set	.LANCHOR23,. + 0
+ 1456              	label_thres:
+ 1457 0000 00000000 		.space	10
+ 1457      00000000 
+ 1457      0000
+ 1458              		.section	.bss.perform_c,"aw",%nobits
+ 1459              		.set	.LANCHOR2,. + 0
+ 1462              	perform_c:
+ 1463 0000 00       		.space	1
+ 1464              		.section	.bss.perform_d,"aw",%nobits
+ 1465              		.set	.LANCHOR3,. + 0
+ 1468              	perform_d:
+ 1469 0000 00       		.space	1
+ 1470              		.section	.bss.perform_s,"aw",%nobits
+ 1471              		.set	.LANCHOR1,. + 0
+ 1474              	perform_s:
+ 1475 0000 00       		.space	1
+ 1476              		.section	.bss.rota,"aw",%nobits
+ 1477              		.align	2
+ 1478              		.set	.LANCHOR20,. + 0
+ 1481              	rota:
+ 1482 0000 00000000 		.space	20
+ 1482      00000000 
+ 1482      00000000 
+ 1482      00000000 
+ 1482      00000000 
+ 1483              		.section	.bss.str_thres,"aw",%nobits
+ 1484              		.align	2
+ 1485              		.set	.LANCHOR22,. + 0
+ 1488              	str_thres:
+ 1489 0000 00000000 		.space	5
+ 1489      00
+ 1490              		.section	.bss.tCelsius,"aw",%nobits
+ 1491              		.align	2
+ 1494              	tCelsius:
+ 1495 0000 00000000 		.space	4
+ 1496              		.section	.bss.tFahrenheit,"aw",%nobits
+ 1497              		.align	2
+ 1500              	tFahrenheit:
+ 1501 0000 00000000 		.space	4
+ 1502              		.section	.bss.temp,"aw",%nobits
+ 1503              		.align	2
+ 1504              		.set	.LANCHOR15,. + 0
+ 1507              	temp:
+ 1508 0000 00000000 		.space	4
+ 1509              		.section	.bss.threshold,"aw",%nobits
+ 1510              		.align	2
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 42
+
+
+ 1513              	threshold:
+ 1514 0000 00000000 		.space	20
+ 1514      00000000 
+ 1514      00000000 
+ 1514      00000000 
+ 1514      00000000 
+ 1515              		.section	.data.Mode,"aw"
+ 1516              		.align	2
+ 1517              		.set	.LANCHOR8,. + 0
+ 1520              	Mode:
+ 1521 0000 03000000 		.word	3
+ 1522              		.section	.data.PC_threshold,"aw"
+ 1523              		.align	2
+ 1524              		.set	.LANCHOR17,. + 0
+ 1527              	PC_threshold:
+ 1528 0000 0000F041 		.word	1106247680
+ 1529              		.section	.data.count,"aw"
+ 1530              		.align	2
+ 1533              	count:
+ 1534 0000 19000000 		.word	25
+ 1535              		.section	.data.thres_tring,"aw"
+ 1536              		.align	2
+ 1537              		.set	.LANCHOR9,. + 0
+ 1540              	thres_tring:
+ 1541 0000 54687265 		.ascii	"Thres: 30\000"
+ 1541      733A2033 
+ 1541      3000
+ 1542              		.text
+ 1543              	.Letext0:
+ 1544              		.file 3 "d:\\10 2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1545              		.file 4 "d:\\10 2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 1546              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 1547              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 1548              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h"
+ 1549              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h"
+ 1550              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 1551              		.file 10 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ 1552              		.file 11 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
+ 1553              		.file 12 "Core/Inc/tim.h"
+ 1554              		.file 13 "Core/Inc/usart.h"
+ 1555              		.file 14 "Core/Inc/fonts.h"
+ 1556              		.file 15 "Core/Inc/st7735.h"
+ 1557              		.file 16 "d:\\10 2021.10\\arm-none-eabi\\include\\stdio.h"
+ 1558              		.file 17 "d:\\10 2021.10\\arm-none-eabi\\include\\stdlib.h"
+ 1559              		.file 18 "d:\\10 2021.10\\arm-none-eabi\\include\\string.h"
+ 1560              		.file 19 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ 1561              		.file 20 "Core/Inc/gpio.h"
+ 1562              		.file 21 "Core/Inc/spi.h"
+ 1563              		.file 22 "Core/Inc/dht22.h"
+ 1564              		.file 23 "<built-in>"
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 43
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:18     .text.set_timer:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:24     .text.set_timer:00000000 set_timer
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:46     .text.set_timer:00000014 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:51     .text.log_data:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:57     .text.log_data:00000000 log_data
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:89     .text.log_data:00000018 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:94     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:100    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:204    .text.HAL_TIM_PeriodElapsedCallback:00000060 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:213    .rodata.HAL_UART_RxCpltCallback.str1.4:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:220    .text.HAL_UART_RxCpltCallback:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:226    .text.HAL_UART_RxCpltCallback:00000000 HAL_UART_RxCpltCallback
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:336    .text.HAL_UART_RxCpltCallback:0000006c $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:349    .text.Error_Handler:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:355    .text.Error_Handler:00000000 Error_Handler
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:387    .text.SystemClock_Config:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:393    .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:498    .rodata.main.str1.4:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:557    .text.main:00000000 $t
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:563    .text.main:00000000 main
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1003   .text.main:000002a8 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1045   .text.main:00000340 $t
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1102   .text.main:000003a0 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1160   .bss.RH:00000000 RH
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1289   .bss.tFahrenheit:00000000 tFahrenheit
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1283   .bss.tCelsius:00000000 tCelsius
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1194   .bss.SUM:00000000 SUM
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1199   .bss.TCD:00000000 TCD
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1204   .bss.TCI:00000000 TCI
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1165   .bss.RHD:00000000 RHD
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1170   .bss.RHI:00000000 RHI
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1315   .data.humi:00000000 humi
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1322   .data.temp:00000000 temp
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1154   .bss.PC_threshold:00000000 PC_threshold
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1147   .bss.PC_rota:00000000 PC_rota
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1257   .bss.perform_d:00000000 perform_d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1251   .bss.perform_c:00000000 perform_c
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1263   .bss.perform_s:00000000 perform_s
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1176   .bss.Rx_complete:00000000 Rx_complete
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1189   .bss.Rx_index:00000000 Rx_index
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1238   .bss.buffer_data:00000000 buffer_data
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1182   .bss.Rx_data:00000000 Rx_data
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1302   .data.Mode:00000000 Mode
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1211   .bss.Type_task:00000000 Type_task
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1224   .bss.buf_humi:00000000 buf_humi
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1231   .bss.buf_temp:00000000 buf_temp
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1217   .bss.angle:00000000 angle
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1277   .bss.str_thres:00000000 str_thres
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1245   .bss.label_thres:00000000 label_thres
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1295   .bss.threshold:00000000 threshold
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1270   .bss.rota:00000000 rota
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1308   .data.count:00000000 count
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1143   .bss.PC_rota:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1150   .bss.PC_threshold:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1157   .bss.RH:00000000 $d
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 39
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:18     .text.set_timer:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:24     .text.set_timer:00000000 set_timer
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:46     .text.set_timer:00000014 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:51     .text.log_data:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:57     .text.log_data:00000000 log_data
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:89     .text.log_data:00000018 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:94     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:100    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:204    .text.HAL_TIM_PeriodElapsedCallback:00000060 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:213    .rodata.HAL_UART_RxCpltCallback.str1.4:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:220    .text.HAL_UART_RxCpltCallback:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:226    .text.HAL_UART_RxCpltCallback:00000000 HAL_UART_RxCpltCallback
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:336    .text.HAL_UART_RxCpltCallback:0000006c $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:349    .text.Error_Handler:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:355    .text.Error_Handler:00000000 Error_Handler
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:387    .text.SystemClock_Config:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:393    .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:498    .rodata.main.str1.4:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:571    .text.main:00000000 $t
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:577    .text.main:00000000 main
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:962    .text.main:0000021c $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:995    .text.main:00000294 $t
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1286   .text.main:00000488 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1540   .data.thres_tring:00000000 thres_tring
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1359   .bss.RH:00000000 RH
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1500   .bss.tFahrenheit:00000000 tFahrenheit
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1494   .bss.tCelsius:00000000 tCelsius
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1396   .bss.SUM:00000000 SUM
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1402   .bss.TCD:00000000 TCD
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1408   .bss.TCI:00000000 TCI
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1365   .bss.RHD:00000000 RHD
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1371   .bss.RHI:00000000 RHI
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1449   .bss.humi:00000000 humi
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1507   .bss.temp:00000000 temp
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1527   .data.PC_threshold:00000000 PC_threshold
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1353   .bss.PC_rota:00000000 PC_rota
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1468   .bss.perform_d:00000000 perform_d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1462   .bss.perform_c:00000000 perform_c
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1474   .bss.perform_s:00000000 perform_s
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1377   .bss.Rx_complete:00000000 Rx_complete
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1390   .bss.Rx_index:00000000 Rx_index
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1442   .bss.buffer_data:00000000 buffer_data
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1383   .bss.Rx_data:00000000 Rx_data
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1520   .data.Mode:00000000 Mode
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1415   .bss.Type_task:00000000 Type_task
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1428   .bss.buf_humi:00000000 buf_humi
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1435   .bss.buf_temp:00000000 buf_temp
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1421   .bss.angle:00000000 angle
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1488   .bss.str_thres:00000000 str_thres
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1456   .bss.label_thres:00000000 label_thres
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1513   .bss.threshold:00000000 threshold
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1481   .bss.rota:00000000 rota
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1533   .data.count:00000000 count
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1349   .bss.PC_rota:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1356   .bss.RH:00000000 $d
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 44
 
 
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1166   .bss.RHD:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1171   .bss.RHI:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1177   .bss.Rx_complete:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1183   .bss.Rx_data:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1185   .bss.Rx_index:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1195   .bss.SUM:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1200   .bss.TCD:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1205   .bss.TCI:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1207   .bss.Type_task:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1214   .bss.angle:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1220   .bss.buf_humi:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1227   .bss.buf_temp:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1234   .bss.buffer_data:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1241   .bss.label_thres:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1252   .bss.perform_c:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1258   .bss.perform_d:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1264   .bss.perform_s:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1266   .bss.rota:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1273   .bss.str_thres:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1280   .bss.tCelsius:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1286   .bss.tFahrenheit:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1292   .bss.threshold:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1298   .data.Mode:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1305   .data.count:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1311   .data.humi:00000000 $d
-C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s:1318   .data.temp:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1366   .bss.RHD:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1372   .bss.RHI:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1378   .bss.Rx_complete:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1384   .bss.Rx_data:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1386   .bss.Rx_index:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1397   .bss.SUM:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1403   .bss.TCD:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1409   .bss.TCI:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1411   .bss.Type_task:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1418   .bss.angle:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1424   .bss.buf_humi:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1431   .bss.buf_temp:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1438   .bss.buffer_data:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1445   .bss.humi:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1452   .bss.label_thres:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1463   .bss.perform_c:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1469   .bss.perform_d:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1475   .bss.perform_s:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1477   .bss.rota:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1484   .bss.str_thres:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1491   .bss.tCelsius:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1497   .bss.tFahrenheit:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1503   .bss.temp:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1510   .bss.threshold:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1516   .data.Mode:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1523   .data.PC_threshold:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1530   .data.count:00000000 $d
+C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s:1536   .data.thres_tring:00000000 $d
 
 UNDEFINED SYMBOLS
 strlen
@@ -2293,10 +2615,15 @@ strcmp
 memset
 HAL_RCC_OscConfig
 HAL_RCC_ClockConfig
+__aeabi_ui2f
 __aeabi_i2d
 __aeabi_ddiv
-__aeabi_d2iz
 __aeabi_d2f
+__aeabi_fadd
+__aeabi_f2iz
+__aeabi_i2f
+__aeabi_fcmpgt
+__aeabi_d2iz
 HAL_Init
 MX_GPIO_Init
 MX_SPI2_Init
@@ -2304,6 +2631,9 @@ MX_TIM1_Init
 MX_USART3_UART_Init
 MX_TIM2_Init
 MX_TIM3_Init
+ARM GAS  C:\Users\Admin\AppData\Local\Temp\ccgbUHXa.s 			page 45
+
+
 HAL_TIM_PWM_Start
 ST7735_Init
 ST7735_FillScreen
@@ -2311,14 +2641,13 @@ ST7735_WriteString
 HAL_Delay
 HAL_TIM_Base_Start_IT
 strncmp
-ARM GAS  C:\Users\Admin\AppData\Local\Temp\cci7rBwO.s 			page 40
-
-
-sprintf
-sscanf
+DHT11_Start
+DHT11_Read
 htim2
 htim1
 Font_11x18
-Font_7x10
+sprintf
+sscanf
 atof
 strcat
+Font_7x10

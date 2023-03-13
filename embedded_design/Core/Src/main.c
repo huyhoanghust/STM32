@@ -82,10 +82,10 @@ volatile bool perform_c = false;
 volatile bool perform_d = false;
 
 int PC_rota;
-float PC_threshold;
+float PC_threshold = 30;
 
-int temp = 30;
-int humi = 90;
+int temp;
+int humi;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -152,9 +152,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
       {
         Mode = Mode_auto;
       }
-
-      // HAL_TIM_Base_Stop_IT(&htim3);
-      // log_data(buffer_data);
     }
     else
     {
@@ -170,6 +167,9 @@ uint8_t RHI, RHD, TCI, TCD, SUM;
 float tCelsius = 0;
 float tFahrenheit = 0;
 float RH = 0;
+
+char thres_tring[]="Thres: 30";
+
 /* USER CODE END 0 */
 
 /**
@@ -218,8 +218,11 @@ int main(void)
   ST7735_WriteString(0, 30, "Temp: ", Font_11x18, ST7735_RED, ST7735_BLACK);
   ST7735_WriteString(0, 3 * 10 * 2, "Humi: ", Font_11x18, ST7735_RED, ST7735_BLACK);
   ST7735_WriteString(0, 3 * 10 * 3, "Rota: ", Font_11x18, ST7735_GREEN, ST7735_BLACK);
-  ST7735_WriteString(0, 3 * 10 * 4, "Thresh: ", Font_11x18, ST7735_GREEN, ST7735_BLACK);
-  ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+  //sprintf(thres_tring,"Thresh: %.1f",PC_threshold);
+  //strcat(thres_tring,"30");
+  ST7735_WriteString(0, 3 * 10 * 4, thres_tring, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+
+  // ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
   HAL_Delay(1000);
 
   set_timer(1000);
@@ -260,6 +263,7 @@ int main(void)
               // Can use tCelsius, tFahrenheit and RH for any purposes
             }
           }
+        }
           // read sensor
         }
         if (Type_task == Task_control)
@@ -269,21 +273,26 @@ int main(void)
             perform_c = true;
             log_data("task control\n");
             // depend Temp value
-            //>30C -> close curtain
-            if (temp > 30)
+            //>PC_threshold -> close curtain
+            if (temp > PC_threshold)
             {
               TIM2->CCR1 = 25;
-              sprintf(rota, "Rota: %d  ", 0);
+              // sprintf(rota, "Rota: %d  ", 0);
               // log_data(rota);
-              ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+              // log_data("\n");
+              // ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+              // ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+
             }
-            //>30C -> close curtain
+            //<PC_threshold -> close curtain
             else
             {
               TIM2->CCR1 = 125;
-              sprintf(rota, "Rota: %d  ", 180);
+              // sprintf(rota, "Rota: %d  ", 180);
               // log_data(rota);
-              ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+              // log_data("\n");
+              // ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+              // ST7735_WriteString(35, 145, "          ", Font_7x10, ST7735_WHITE, ST7735_BLACK);
             }
           }
         }
@@ -295,6 +304,26 @@ int main(void)
             log_data("task display\n");
             sprintf(buf_temp, "Temp: %d C", temp);
             sprintf(buf_humi, "Humi: %d ", humi);
+            log_data(buf_temp);
+            log_data("\n");
+            log_data(buf_humi);
+            log_data("\n");
+            if (temp > PC_threshold)
+            {
+              sprintf(rota, "Rota: %d  ", 0);
+              log_data(rota);
+              log_data("\n");
+              ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+              ST7735_WriteString(35, 145, "Warnning", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+            }
+            else
+            {
+              sprintf(rota, "Rota: %d  ", 180);
+              log_data(rota);
+              log_data("\n");
+              ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
+              ST7735_WriteString(35, 145, "          ", Font_7x10, ST7735_WHITE, ST7735_BLACK);
+            }
             ST7735_WriteString(0, 30, buf_temp, Font_11x18, ST7735_RED, ST7735_BLACK);
             ST7735_WriteString(0, 3 * 10 * 2, strcat(buf_humi, "%"), Font_11x18, ST7735_RED, ST7735_BLACK);
           }
@@ -312,6 +341,7 @@ int main(void)
             // control Servo
             TIM2->CCR1 = (int)((PC_rota + 45) / 1.8);
             sprintf(rota, "Rota: %d  ", PC_rota);
+            log_data("\nPC control ");
             log_data(rota);
             ST7735_WriteString(0, 3 * 10 * 3, rota, Font_11x18, ST7735_GREEN, ST7735_BLACK);
           }
@@ -320,12 +350,13 @@ int main(void)
             char str_buf[] = "Thres: ";
             // Parse string
             sscanf(buffer_data, "%s%s", label_thres, str_thres);
-            log_data(str_thres);
-            log_data(label_thres);
+            //log_data(str_thres);
+            //log_data(label_thres);
             // control Servo
             PC_threshold = atof(str_thres);
             strcat(str_buf, str_thres);
-            log_data(str_buf);
+            log_data("\nPC set Threshold: ");log_data(str_thres);
+            //log_data(str_buf);
             // sprintf(threshold, "%.1f  ", PC_threshold);
             // // strcat()
             // // strcpy(threshold,str_thres);
@@ -353,7 +384,6 @@ int main(void)
       // }
       // HAL_Delay(2000);
       // Check fonts
-    }
   }
   /* USER CODE END 3 */
 }

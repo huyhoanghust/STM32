@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include "tim.h"
 #define DHT11_PORT GPIOB
-#define DHT11_PIN GPIO_PIN_11
+#define DHT11_PIN GPIO_PIN_0
 
 uint8_t DHT11_Start (void);
 uint8_t DHT11_Read (void);
